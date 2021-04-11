@@ -13,8 +13,6 @@
 
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- Used to setup the Maven timestamp attribute -->
-		<maven.build.timestamp.format>yyyy-MM-dd'T'HH.mm.ss</maven.build.timestamp.format>
     </properties>
 	
 	<dependencies>
@@ -125,7 +123,7 @@
                         </goals>
                         <configuration>
                             <headerType>gui</headerType>
-                            <outfile>target/AXE-N_${maven.build.timestamp}.exe</outfile>
+                            <outfile>target/AXE-N_${build.time}.exe</outfile>
                             <jar>target/${project.artifactId}-${project.version}.jar</jar>
                             <!-- if <dontWrapJar>true</dontWrapJar> change to this conf <jar>${project.artifactId}-${project.version}.jar</jar> -->
                             <dontWrapJar>false</dontWrapJar>
@@ -140,6 +138,27 @@
                                 <initialHeapSize>512</initialHeapSize>
                                 <maxHeapSize>1024</maxHeapSize>
                             </jre>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Allows for the use of timestamps with ${build.time}-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <configuration>
+                            <name>build.time</name>
+                            <pattern>yyyy-MM-dd_HH.mm.ss</pattern>
+                            <locale>sv_SE</locale>
+                            <timeZone>Europe/Stockholm</timeZone>
                         </configuration>
                     </execution>
                 </executions>

@@ -27,5 +27,5 @@ target/*
 out
 *.iml
 .idea
-!target/*.exe
+#!target/*.exe
 !target/*.jar
