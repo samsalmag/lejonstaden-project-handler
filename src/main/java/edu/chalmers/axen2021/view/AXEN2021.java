@@ -21,6 +21,7 @@ public class AXEN2021 extends Application {
         stage.show();
 
         String title = "AXE-N 2021";
+        String newtitle = "1234";
         stage.setTitle(title);
     }
 }
