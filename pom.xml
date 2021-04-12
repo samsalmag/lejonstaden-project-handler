@@ -134,7 +134,7 @@
                             <icon>src/main/resources/images/icon.ico</icon>
                             <jre>
                                 <minVersion>10.0.0</minVersion>
-                                <maxVersion>13.0.0</maxVersion>
+                                <maxVersion>17.0.0</maxVersion>
                                 <initialHeapSize>512</initialHeapSize>
                                 <maxHeapSize>1024</maxHeapSize>
                             </jre>
