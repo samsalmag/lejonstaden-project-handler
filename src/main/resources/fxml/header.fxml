@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="logoImageView" fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logoImageView" fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0">
          <image>
             <Image url="@../images/lejonstadenLogga.png" />
          </image>

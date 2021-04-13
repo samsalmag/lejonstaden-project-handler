@@ -2,11 +2,10 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.RootController">
    <children>
       <AnchorPane fx:id="headerAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="880.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="sideBarAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1720.0" AnchorPane.topAnchor="200.0" />
-      <AnchorPane fx:id="centerStageAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
+      <AnchorPane fx:id="sideBarAnchorPane" prefHeight="200.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1640.0" AnchorPane.topAnchor="200.0" />
+      <AnchorPane fx:id="centerStageAnchorPane" prefHeight="880.0" prefWidth="1640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0" />
    </children>
 </AnchorPane>

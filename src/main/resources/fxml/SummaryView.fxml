@@ -3,11 +3,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="label1" layoutX="743.0" layoutY="247.0" text="Label" />
-      <Label fx:id="label2" layoutX="743.0" layoutY="363.0" text="Label" />
-      <Label layoutX="743.0" layoutY="511.0" text="Label" />
+      <Label fx:id="label2" layoutX="846.0" layoutY="432.0" text="Label" />
+      <Label layoutX="917.0" layoutY="210.0" text="Label" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="927.0" layoutY="220.0" text="Label" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="927.0" layoutY="220.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <Label layoutX="927.0" layoutY="220.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
