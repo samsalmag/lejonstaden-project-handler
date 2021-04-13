@@ -1,0 +1,20 @@
+#header{
+    -fx-background-color: #FFFFFF;
+}
+
+#side-bar{
+    -fx-background-color: #FDFDFD;
+}
+
+#center-stage{
+    -fx-background-color: #FAFAFB;
+}
+
+#application-title{
+    -fx-font-size: 32px;
+}
+
+.project-buttons{
+
+}
+
