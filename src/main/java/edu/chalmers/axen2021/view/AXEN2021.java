@@ -6,12 +6,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main view class for the application.
+ * @author Sam Salek
+ * @author Oscar Arvidson
+ */
 public class AXEN2021 extends Application {
 
+    /**
+     * Runs the view configured in the 'start' method.
+     * @param args
+     */
     public static void run(String[] args) {
         launch(args);
     }
 
+    /**
+     * Applies and configures the main root view.
+     * @param stage The main window.
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent rootFXML = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/root.fxml"));
