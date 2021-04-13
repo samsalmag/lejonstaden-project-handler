@@ -29,10 +29,12 @@ public class RootController implements Initializable {
         //Initialize Controllers
         HeaderController headerController = new HeaderController();
         SummaryViewController summaryViewController = new SummaryViewController();
+        SideBarController sideBarController = new SideBarController();
 
         //Adds node to headerAnchorPane
         headerAnchorPane.getChildren().setAll(headerController.getHeader());
         centerStageAnchorPane.getChildren().setAll(summaryViewController.getNode());
+        sideBarAnchorPane.getChildren().setAll(sideBarController.getSideBar());
 
     }
 }
