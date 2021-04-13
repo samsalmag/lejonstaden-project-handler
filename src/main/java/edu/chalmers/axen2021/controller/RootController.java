@@ -20,8 +20,10 @@ public class RootController implements Initializable {
 
         //Initialize Controllers
         HeaderController headerController = new HeaderController();
+        SummaryViewController summaryViewController = new SummaryViewController();
 
         headerAnchorPane.getChildren().setAll(headerController.getHeader());
+        centerStageAnchorPane.getChildren().setAll(summaryViewController.getNode());
 
     }
 }
