@@ -15,12 +15,12 @@ public class AXEN2021 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent rootFXML = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/root.fxml"));
-        Scene scene = new Scene(rootFXML, 500, 300);
+        Scene scene = new Scene(rootFXML, 1280, 720);
 
         stage.setScene(scene);
-        stage.show();
-
+        stage.setFullScreen(true);
         String title = "AXE-N 2021";
         stage.setTitle(title);
+        stage.show();
     }
 }
