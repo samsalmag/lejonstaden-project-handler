@@ -24,10 +24,10 @@ hs_err_pid*
 
 # Manually added
 target/*
+!target/_build
+target/_build/*
+!target/_build/*.jar
 out
 *.iml
 .idea
-!target/_build
-target/_build/win32
-target/_build/*.exe
 bin
