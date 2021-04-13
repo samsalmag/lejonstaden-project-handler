@@ -1,11 +1,20 @@
 package edu.chalmers.axen2021.controller;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
 
 public class SideBarController {
+
+
+    /**
+     * TilePane in the sideBar.
+     */
+    @FXML private TilePane projectTilePane;
 
     /**
      * Node of the sideBar.fxml
@@ -25,6 +34,13 @@ public class SideBarController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void addNewProject(ActionEvent event){
+        SideBarItemController sideBarItemController = new SideBarItemController();
+        projectTilePane.getChildren().add(sideBarItemController.getSideBarItem());
+    }
+
 
     //-----------------------------------Getters--------------------------------//
 
