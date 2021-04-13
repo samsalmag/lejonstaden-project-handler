@@ -27,6 +27,7 @@ target/*
 out
 *.iml
 .idea
-#!target/*.exe
-!target/*.jar
+!target/_build
+target/_build/win32
+target/_build/*.exe
 bin
