@@ -5,6 +5,11 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the applications SummaryView.fxml.
+ * Initialize a SummaryView Node.
+ * @author Erik Wetter
+ */
 public class SummaryViewController {
 
     /**

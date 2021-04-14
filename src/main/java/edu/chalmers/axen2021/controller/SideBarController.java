@@ -8,6 +8,12 @@ import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the applications sideBar.fxml.
+ * Handles all event triggered in the sideBar.
+ * Initialize a sideBar Node.
+ * @author Oscar Arvidson
+ */
 public class SideBarController {
 
 
@@ -35,8 +41,14 @@ public class SideBarController {
         }
     }
 
+    /**
+     * Method for on addProject button clicked.
+     * Adds sideBarItem to the tilePane for the new project.
+     * @param event of action.
+     */
     @FXML
     private void addNewProject(ActionEvent event){
+        //ToDo add functionality: Fill in input for new project and show it in the centerStage view.
         SideBarItemController sideBarItemController = new SideBarItemController();
         projectTilePane.getChildren().add(sideBarItemController.getSideBarItem());
     }

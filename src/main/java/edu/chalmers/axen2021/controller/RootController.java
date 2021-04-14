@@ -7,6 +7,12 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the applications root.fxml.
+ * Initialize all controllers for the starting page.
+ * @author Oscar Arvidson
+ * @author Erik Wetter
+ */
 public class RootController implements Initializable {
 
     /**

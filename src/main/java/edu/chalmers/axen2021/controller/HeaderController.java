@@ -7,7 +7,12 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
-
+/**
+ * Controller class for the applications header.fxml.
+ * Handles all event triggered in the header.
+ * Initialize a header Node.
+ * @author Oscar Arvidson
+ */
 public class HeaderController{
 
     /**

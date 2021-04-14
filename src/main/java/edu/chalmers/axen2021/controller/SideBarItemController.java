@@ -5,6 +5,11 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the applications sideBarItem.fxml.
+ * Initialize a sideBarItem Node.
+ * @author Oscar Arvidson
+ */
 public class SideBarItemController {
 
     /**
