@@ -1,15 +1,18 @@
 package edu.chalmers.axen2021.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
  * Controller class for the applications root.fxml.
- * Initialize all controllers for the starting page.
+ * Initialize starting page and all its nodes.
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
@@ -32,15 +35,17 @@ public class RootController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        //Initialize Controllers
-        HeaderController headerController = new HeaderController();
-        SummaryViewController summaryViewController = new SummaryViewController();
-        SideBarController sideBarController = new SideBarController();
+        Node header = null;
+        Node sideBar = null;
 
-        //Adds node to headerAnchorPane
-        headerAnchorPane.getChildren().setAll(headerController.getHeader());
-        centerStageAnchorPane.getChildren().setAll(summaryViewController.getNode());
-        sideBarAnchorPane.getChildren().setAll(sideBarController.getSideBar());
+        try {
+            header = FXMLLoader.load(getClass().getResource("/fxml/header.fxml"));
+            sideBar = FXMLLoader.load(getClass().getResource("/fxml/sideBar.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        headerAnchorPane.getChildren().setAll(header);
+        sideBarAnchorPane.getChildren().setAll(sideBar);
     }
 }
