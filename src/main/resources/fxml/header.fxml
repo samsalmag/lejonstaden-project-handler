@@ -5,13 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1920.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1920.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.HeaderController">
    <children>
       <ImageView fx:id="logoImageView" fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/lejonstadenLogga.png" />
          </image>
       </ImageView>
-      <Label id="application-title" layoutX="821.0" layoutY="74.0" prefHeight="53.0" prefWidth="251.0" text="Projekt Hanterare" />
+      <Label id="application-title" layoutX="821.0" layoutY="74.0" prefHeight="53.0" prefWidth="235.0" text="Projekthanterare" AnchorPane.bottomAnchor="73.5" AnchorPane.leftAnchor="1000.0" AnchorPane.topAnchor="73.5" />
    </children>
 </AnchorPane>
