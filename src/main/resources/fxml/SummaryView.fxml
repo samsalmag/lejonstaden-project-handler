@@ -1,14 +1,456 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="center-stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1640.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.SummaryViewController">
+<AnchorPane id="center-stage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1640.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.SummaryViewController">
    <children>
-      <Label fx:id="label2" layoutX="846.0" layoutY="432.0" text="Label" />
-      <Label layoutX="917.0" layoutY="210.0" text="Label" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="927.0" layoutY="220.0" text="Label" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="927.0" layoutY="220.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-      <Label layoutX="927.0" layoutY="220.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <VBox maxHeight="1440.0" maxWidth="2560.0" prefHeight="880.0" prefWidth="1640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane minHeight="100.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="40.0" prefHeight="18.0" prefWidth="1640.0" text="Sammanfattning" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <HBox maxHeight="4000.0" minHeight="150.0">
+               <children>
+                  <VBox minHeight="150.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="2000.0" text="Lägenhetsdata Sammanfattning">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="150.0" style="-fx-background-color: 0;">
+                           <content>
+                              <TilePane alignment="TOP_CENTER" minWidth="300.0" prefColumns="1" prefRows="0" vgap="10.0">
+                                 <children>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </MenuButton>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="100.0" prefWidth="500.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
+                                                         <VBox.margin>
+                                                            <Insets top="15.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <TextField prefHeight="34.0" prefWidth="500.0">
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </TilePane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <VBox minHeight="150.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="2000.0" text="Nyckeltal">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox alignment="TOP_CENTER" minHeight="300.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" text="Placeholder" />
+                              <Label alignment="CENTER" text="Placeholder" />
+                              <Label alignment="CENTER" text="Placeholder" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <AnchorPane>
+               <children>
+                  <VBox AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="4000.0" text="Projektkostnad" />
+                        <Label alignment="CENTER" prefWidth="4000.0" text="Marknadsvärde" />
+                        <Label alignment="CENTER" prefWidth="4000.0" text="Projektvinst" />
+                        <Label alignment="CENTER" prefWidth="4000.0" text="Projektvinst i %" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
