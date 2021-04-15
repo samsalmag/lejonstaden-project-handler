@@ -30,6 +30,6 @@ target/_build/*
 out
 *.iml
 .idea
-#bin
-#.settings
-#.classpath
+bin
+.settings
+.classpath
