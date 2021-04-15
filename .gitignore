@@ -33,3 +33,4 @@ out
 bin
 .settings
 .classpath
+.project
