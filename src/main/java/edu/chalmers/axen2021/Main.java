@@ -7,6 +7,7 @@ import edu.chalmers.axen2021.view.AXEN2021;
  * @author Sam Salek
  */
 public class Main {
+	String title = "hej";
 
     /**
      * Runs the application.
