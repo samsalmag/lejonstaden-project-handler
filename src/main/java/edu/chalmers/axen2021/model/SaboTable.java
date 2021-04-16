@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
+ * Class for containing the SABO table values required for calculations.
  * @author Sara Vardheim
  * @author Tilda Grönlund
  *
@@ -52,6 +52,11 @@ public class SaboTable {
 	 * @return +RE value.
 	 */
 	public double getRE(String rooms) {
+		try {
+			sabo.get(rooms);
+		} catch (NullPointerException npe) {
+			System.out.println("Not a valid entry");
+		}
 		return sabo.get(rooms);
 	}
 }
