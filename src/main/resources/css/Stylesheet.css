@@ -1,0 +1,22 @@
+#header{
+    -fx-background-color: #FFFFFF;
+}
+
+#side-bar{
+    -fx-background-color: #FDFDFD;
+}
+
+#center-stage{
+    -fx-background-color: #FAFAFB;
+}
+
+#application-title{
+    -fx-font-size: 32px;
+}
+
+.project-buttons{
+    -fx-background-color: #E8C261;
+    -fx-font-size: 14px;
+    -fx-background-radius: 30px;
+    -fx-text-align: center;
+}
