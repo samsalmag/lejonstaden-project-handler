@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
-public class RootController implements Initializable {
+public class RootController implements Initializable, IViewObserver {
 
     /**
      * Header AnchorPane in root.fxml
@@ -47,5 +47,23 @@ public class RootController implements Initializable {
 
         headerAnchorPane.getChildren().setAll(header);
         sideBarAnchorPane.getChildren().setAll(sideBar);
+    }
+
+    /**
+     * Method is called when a button that wants to change view/scene is clicked in order to change view
+     *
+     * @param fxmlName the name of the fxml file that should be changed to
+     */
+    @Override
+    public void update(String fxmlName) {
+
+        Node center = null;
+        try {
+            center = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        centerStageAnchorPane.getChildren().setAll(center);
     }
 }
