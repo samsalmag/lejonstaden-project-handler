@@ -22,7 +22,6 @@ public class SaboTable {
 		sabo = new HashMap<>();
 		fillTable();
 	}
-	
 
 	/**
 	 * Maps the type of apartment to its +RE value. 
@@ -53,10 +52,9 @@ public class SaboTable {
 	 */
 	public double getRE(String rooms) {
 		try {
-			sabo.get(rooms);
+			return sabo.get(rooms);
 		} catch (NullPointerException npe) {
-			System.out.println("Not a valid entry");
+			throw new NullPointerException("Not a valid entry");
 		}
-		return sabo.get(rooms);
 	}
 }
