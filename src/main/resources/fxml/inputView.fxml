@@ -144,9 +144,9 @@
                                           <Insets bottom="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox>
+                                    <VBox alignment="TOP_CENTER">
                                        <children>
-                                          <Label alignment="CENTER" prefWidth="2000.0" text="Projektkostnader">
+                                          <Label alignment="CENTER" text="Projektkostnader">
                                              <VBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                              </VBox.margin>
@@ -207,7 +207,7 @@
                                                       </Button>
                                                       <Label text="Projektkostnad">
                                                          <VBox.margin>
-                                                            <Insets left="5.0" right="5.0" />
+                                                            <Insets left="5.0" right="5.0" top="5.0" />
                                                          </VBox.margin></Label>
                                                    </children>
                                                 </VBox>
@@ -516,7 +516,7 @@
                                                       </Button>
                                                       <Label text="Marknadsvärde">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                                                          </VBox.margin></Label>
                                                    </children>
                                                 </VBox>
