@@ -1,5 +1,8 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.observers.IViewObservable;
+import edu.chalmers.axen2021.observers.IViewObserver;
+
 /**
  * Controller class for the applications SummaryView.fxml.
  * Handles all event triggered in the SummaryView.

@@ -1,4 +1,4 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.observers;
 
 /**
  * Interface used to observe views

@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +32,6 @@ public class RootController implements Initializable, IViewObserver {
      */
     @FXML private AnchorPane centerStageAnchorPane;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -51,7 +51,6 @@ public class RootController implements Initializable, IViewObserver {
 
     /**
      * Method is called when a button that wants to change view/scene is clicked in order to change view
-     *
      * @param fxmlName the name of the fxml file that should be changed to
      */
     @Override

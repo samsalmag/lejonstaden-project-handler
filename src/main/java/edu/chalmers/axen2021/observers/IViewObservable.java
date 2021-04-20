@@ -1,4 +1,4 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.observers;
 
 import java.util.ArrayList;
 import java.util.List;
