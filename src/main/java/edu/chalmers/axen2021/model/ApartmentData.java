@@ -14,7 +14,7 @@ public class ApartmentData {
     }
 
     /**
-     * Calculates and returns monthly rent.
+     * Calculates and returns the monthly rent.
      * @param type apartment type, no of rooms
      * @param rent normrent if low, presumed rent if high
      * @param boa living area of the apartment
