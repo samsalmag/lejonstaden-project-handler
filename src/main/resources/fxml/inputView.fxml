@@ -18,7 +18,7 @@
          <children>
             <AnchorPane minHeight="100.0" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" layoutY="40.0" prefHeight="18.0" prefWidth="1640.0" text="Projekt namn" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label alignment="CENTER" layoutY="40.0" text="Projekt namn" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
             <HBox maxHeight="4000.0" minHeight="150.0" VBox.vgrow="ALWAYS">
@@ -32,63 +32,62 @@
                         </Label>
                         <Button minWidth="200.0" mnemonicParsing="false" text="Lägg till lägenhets typ">
                            <VBox.margin>
-                              <Insets left="100.0" right="100.0" />
+                              <Insets left="150.0" right="150.0" />
                            </VBox.margin>
                         </Button>
-                        <AnchorPane prefHeight="100.0" prefWidth="800.0">
+                        <HBox>
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" minWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <VBox prefHeight="200.0" prefWidth="500.0">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Typ">
-                                             <VBox.margin>
-                                                <Insets top="15.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="500.0" text="MenuButton">
-                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                             </items>
-                                             <VBox.margin>
-                                                <Insets left="10.0" right="10.0" top="5.0" />
-                                             </VBox.margin>
-                                          </MenuButton>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="100.0" prefWidth="500.0">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="BOA" textAlignment="CENTER">
-                                             <VBox.margin>
-                                                <Insets top="15.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField prefHeight="34.0" prefWidth="500.0">
-                                             <VBox.margin>
-                                                <Insets left="10.0" right="10.0" top="5.0" />
-                                             </VBox.margin>
-                                          </TextField>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="100.0" prefWidth="500.0">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="500.0" text="Antal">
-                                             <VBox.margin>
-                                                <Insets top="15.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField prefHeight="34.0" prefWidth="500.0">
-                                             <VBox.margin>
-                                                <Insets left="10.0" right="10.0" top="5.0" />
-                                             </VBox.margin>
-                                          </TextField>
-                                       </children>
-                                    </VBox>
+                                    <Label alignment="CENTER" text="Typ">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MenuButton alignment="CENTER" maxWidth="100.0" minWidth="50.0" mnemonicParsing="false" text="MenuButton">
+                                       <items>
+                                          <MenuItem mnemonicParsing="false" text="Action 1" />
+                                          <MenuItem mnemonicParsing="false" text="Action 2" />
+                                       </items>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </MenuButton>
                                  </children>
-                              </HBox>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" minWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" text="BOA" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField maxWidth="100.0" minWidth="50.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" minWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" text="Antal">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField maxWidth="100.0" minWidth="50.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
                            </children>
-                        </AnchorPane>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox minHeight="150.0" minWidth="300.0" HBox.hgrow="ALWAYS">
@@ -163,50 +162,53 @@
                                                       </Label>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Tomtkostnader">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Nedlagda bygherre">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Anslutningar">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Byggherrekostnader">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Entrepenad">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Oförutsett">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Finansiella kostnader">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Mervärdeskatt">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Investeringsstöd">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
-                                                      <Label text="Projektkostnad" />
+                                                      <Label text="Projektkostnad">
+                                                         <VBox.margin>
+                                                            <Insets left="5.0" right="5.0" />
+                                                         </VBox.margin></Label>
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
@@ -218,7 +220,7 @@
                                                       </Label>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -226,7 +228,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -234,7 +236,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -242,7 +244,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -250,7 +252,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -258,7 +260,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -266,7 +268,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -274,7 +276,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -282,7 +284,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -293,7 +295,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </TextField>
                                                    </children>
@@ -307,7 +309,7 @@
                                                       </Label>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -315,7 +317,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -323,7 +325,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -331,7 +333,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -339,7 +341,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -347,7 +349,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -355,7 +357,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -363,7 +365,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -371,7 +373,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -382,7 +384,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </TextField>
                                                    </children>
@@ -396,7 +398,7 @@
                                                       </Label>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -404,7 +406,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -412,7 +414,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -420,7 +422,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -428,7 +430,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -436,7 +438,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -444,7 +446,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -452,7 +454,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -460,7 +462,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -471,7 +473,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </TextField>
                                                    </children>
@@ -489,32 +491,32 @@
                                                    <children>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Hyresintäkter">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Drift &amp; Underhåll">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Tomträttsavgäld">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Driftnetto">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Button minWidth="120.0" mnemonicParsing="false" text="Yield">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                       <Label text="Marknadsvärde">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin></Label>
                                                    </children>
                                                 </VBox>
@@ -522,7 +524,7 @@
                                                    <children>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -530,7 +532,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -538,7 +540,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -546,7 +548,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -554,7 +556,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -565,7 +567,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </TextField>
                                                    </children>
@@ -574,7 +576,7 @@
                                                    <children>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -582,7 +584,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -590,7 +592,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -598,7 +600,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -606,7 +608,7 @@
                                                       </TextField>
                                                       <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
@@ -617,7 +619,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </TextField>
                                                    </children>
