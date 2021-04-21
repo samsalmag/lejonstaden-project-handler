@@ -20,3 +20,7 @@
     -fx-background-radius: 30px;
     -fx-text-align: center;
 }
+
+.modal-window-shadow{
+    -fx-background-color: rgba(0, 0, 0, 0.75);
+}
