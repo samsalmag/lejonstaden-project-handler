@@ -32,6 +32,11 @@ public class RootController implements Initializable, IViewObserver {
      */
     @FXML private AnchorPane centerStageAnchorPane;
 
+    /**
+     * Modal AnchorPane in root.fxml
+     */
+    @FXML private AnchorPane modalAnchorPane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
