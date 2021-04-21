@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="880.0" prefWidth="1640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="1440.0" maxWidth="2560.0" minHeight="391.0" minWidth="729.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.SummaryViewController">
    <children>
       <Label text="Projektnamn + Sammanfattning">
          <VBox.margin>

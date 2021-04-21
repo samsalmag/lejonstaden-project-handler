@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="center-stage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1640.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.SummaryViewController">
+<AnchorPane id="center-stage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1640.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutY="-17.0" maxHeight="1440.0" maxWidth="2560.0" prefHeight="880.0" prefWidth="1640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
