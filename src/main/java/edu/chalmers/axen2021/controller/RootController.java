@@ -46,7 +46,17 @@ public class RootController implements Initializable, IViewObserver {
         }
 
         headerAnchorPane.getChildren().setAll(header);
+        setAnchors(headerAnchorPane, header);
         sideBarAnchorPane.getChildren().setAll(sideBar);
+        setAnchors(sideBarAnchorPane, sideBar);
+    }
+
+
+    private void setAnchors(AnchorPane anchorPane, Node node) {
+        anchorPane.setTopAnchor(node, 0.0);
+        anchorPane.setRightAnchor(node, 0.0);
+        anchorPane.setLeftAnchor(node, 0.0);
+        anchorPane.setBottomAnchor(node, 0.0);
     }
 
     /**
