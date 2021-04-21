@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Kostnad:" wrapText="true">
+         <HBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </HBox.margin>
+      </Label>
+      <TextField minWidth="50.0">
+         <HBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </HBox.margin>
+      </TextField>
+      <TextArea maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar" text="&#10;">
+         <HBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </HBox.margin>
+      </TextArea>
+   </children>
+</HBox>
