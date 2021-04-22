@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.model;
 import edu.chalmers.axen2021.observers.IInputObserver;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -73,6 +74,39 @@ public class SaveManager implements IInputObserver {
      */
     private String saveDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".axen2021";
+    }
+
+    /**
+     * Get the names of all projects that exists
+     * @return Project names.
+     */
+    public ArrayList<String> getProjectNames() {
+        ArrayList<String> projects = new ArrayList<>();
+
+        File projectDir = new File(saveDirectory());
+        if (projectDir.isDirectory()) {
+            File[] files = projectDir.listFiles();
+
+            for (File currentFile : files) {
+                if (!currentFile.isHidden() && currentFile.getName().endsWith(".txt")) {
+                    String fileName = currentFile.getName().substring(0, currentFile.getName().lastIndexOf('.'));  // Remove extension .txt of the name
+                    projects.add(fileName);
+                }
+            }
+        }
+        return projects;
+    }
+
+    /**
+     * Remove a project file by inputting the project name to be removed
+     *
+     * @param projectName Name of the project to remove
+     * @return Boolean if remove file was successful
+     */
+    public boolean removeProjectFile(String projectName) {
+
+        File projectFile = new File(saveDirectory() + File.separatorChar + projectName + ".txt");
+        return projectFile.delete();
     }
 
     /**
