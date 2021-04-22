@@ -19,15 +19,8 @@ class SaboTableTest {
      */
     @Test
     public void getRETest() {
-
         assertEquals(sabo.getRE("1rok"), 34.0);   // Valid input
         assertEquals(sabo.getRE("3rok"), 44.0);   // Valid input
         assertThrows(NullPointerException.class, () -> sabo.getRE("10rok"));  // Invalid input, should throw NullPointerException
-
-        /*
-        System.out.println(sabo.getRE("1rok"));
-        System.out.println(sabo.getRE("3rok"));
-        System.out.println(sabo.getRE("1rolk"));
-         */
     }
 }

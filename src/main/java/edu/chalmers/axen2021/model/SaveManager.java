@@ -5,7 +5,6 @@ import edu.chalmers.axen2021.observers.IInputObserver;
 import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Saves projects to files on the local computer.
@@ -96,7 +95,7 @@ public class SaveManager implements IInputObserver {
      */
     public void saveProject()  {
 
-        // TODO - "project_1.txt" should be replaced with the correct project name.
+        // TODO - filename should be replaced with the correct project name.
         Date date = new Date();
         String filename = saveDirectory() + File.separatorChar + "project_" + date.getTime() +".txt";
         try {

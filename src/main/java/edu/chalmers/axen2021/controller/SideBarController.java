@@ -3,7 +3,6 @@ package edu.chalmers.axen2021.controller;
 import edu.chalmers.axen2021.model.SaveManager;
 import edu.chalmers.axen2021.observers.IInputObservable;
 import edu.chalmers.axen2021.observers.IInputObserver;
-import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

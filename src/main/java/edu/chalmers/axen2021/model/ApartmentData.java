@@ -54,5 +54,4 @@ public class ApartmentData {
 
         return x/1000*quantity*1.75;
     }
-
 }
