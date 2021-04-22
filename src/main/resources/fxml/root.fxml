@@ -13,7 +13,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane fx:id="sideBarAnchorPane" maxWidth="250.0" minHeight="391.0" minWidth="175.0" HBox.hgrow="ALWAYS" />
-                  <AnchorPane fx:id="centerStageAnchorPane" minHeight="391.0" minWidth="729.0" HBox.hgrow="ALWAYS" />
+                  <AnchorPane fx:id="centerStageAnchorPane" minHeight="391.0" minWidth="729.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
