@@ -3,21 +3,38 @@ package edu.chalmers.axen2021.controller;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 
 /**
- * Controller class for the applications root.fxml.
+ * Controller singleton class for the applications root.fxml.
  * Initialize starting page and all its nodes.
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
-public class RootController implements Initializable, IViewObserver {
+public class RootController implements IViewObserver {
+
+    /**
+     * Instance of RootController class.
+     */
+    private static RootController instance = null;
+
+    //Because of singleton pattern.
+    private RootController() {}
+
+    /**
+     * Getter for instance of this class.
+     * @return instance of this class.
+     */
+    public static RootController getInstance() {
+        if(instance == null) {
+            instance = new RootController();
+        }
+        return instance;
+    }
 
     /**
      * Header AnchorPane in root.fxml
@@ -31,21 +48,24 @@ public class RootController implements Initializable, IViewObserver {
      * CenterStage AnchorPane in root.fxml
      */
     @FXML private AnchorPane centerStageAnchorPane;
-
     /**
      * Modal AnchorPane in root.fxml
      */
     @FXML private AnchorPane modalAnchorPane;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    /**
+     * Initialize method that starts up the first scene and all its children.
+     */
+    public void initialize() {
 
         Node header = null;
         Node sideBar = null;
+        Node modalWindow = null;
 
         try {
             header = FXMLLoader.load(getClass().getResource("/fxml/header.fxml"));
             sideBar = FXMLLoader.load(getClass().getResource("/fxml/sideBar.fxml"));
+            modalWindow = FXMLLoader.load(getClass().getResource("/fxml/modalWindow.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,9 +74,17 @@ public class RootController implements Initializable, IViewObserver {
         setAnchors(headerAnchorPane, header);
         sideBarAnchorPane.getChildren().setAll(sideBar);
         setAnchors(sideBarAnchorPane, sideBar);
+        modalAnchorPane.getChildren().setAll(modalWindow);
+        setAnchors(modalAnchorPane, modalWindow);
+
+
     }
 
-
+    /**
+     * Method for anchoring child to its parent.
+     * @param anchorPane Parent.
+     * @param node Child.
+     */
     private void setAnchors(AnchorPane anchorPane, Node node) {
         anchorPane.setTopAnchor(node, 0.0);
         anchorPane.setRightAnchor(node, 0.0);
@@ -79,5 +107,14 @@ public class RootController implements Initializable, IViewObserver {
         }
 
         centerStageAnchorPane.getChildren().setAll(center);
+    }
+
+
+    /**
+     * Getter for the modalAnchorPane.
+     * @return
+     */
+    public AnchorPane getModalAnchorPane() {
+        return modalAnchorPane;
     }
 }
