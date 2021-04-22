@@ -26,13 +26,13 @@ public class SideBarController implements Initializable, IInputObservable {
     private SaveManager saveManager = SaveManager.getInstance();
 
     /**
-     * TilePane in the sideBar.
+     * VBox in the sideBar.
      */
     @FXML private VBox projectItemVbox;
 
     /**
      * Method for on addProject button clicked.
-     * Adds sideBarItem to the tilePane for the new project.
+     * Adds sideBarItem to the VBox for the new project.
      * @param event of action.
      */
     @FXML
