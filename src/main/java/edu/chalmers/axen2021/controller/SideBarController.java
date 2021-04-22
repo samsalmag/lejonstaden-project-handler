@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +28,7 @@ public class SideBarController implements Initializable, IInputObservable {
     /**
      * TilePane in the sideBar.
      */
-    @FXML private TilePane projectTilePane;
+    @FXML private VBox projectItemVbox;
 
     /**
      * Method for on addProject button clicked.
@@ -39,7 +39,7 @@ public class SideBarController implements Initializable, IInputObservable {
     private void addNewProject(ActionEvent event) throws IOException {
         //ToDo add functionality: Fill in input for new project and show it in the centerStage view.
         Node sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
-        projectTilePane.getChildren().add(sideBarItem);
+        projectItemVbox.getChildren().add(sideBarItem);
 
         // TODO - Improve implementation after fxml is done.
         notifyInputValueObservers();

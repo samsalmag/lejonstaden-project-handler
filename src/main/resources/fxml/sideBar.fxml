@@ -5,12 +5,11 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox minHeight="391.0" minWidth="175.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.SideBarController">
    <children>
-      <Button fx:id="addProjectButton" alignment="CENTER" contentDisplay="RIGHT" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="105.0" mnemonicParsing="false" onAction="#addNewProject" styleClass="project-buttons" text="Lägg till projekt" VBox.vgrow="ALWAYS">
+      <Button fx:id="addProjectButton" alignment="CENTER" contentDisplay="RIGHT" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="155.0" mnemonicParsing="false" onAction="#addNewProject" styleClass="project-buttons" text="Lägg till projekt" VBox.vgrow="ALWAYS">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,7 +23,7 @@
       </Button>
       <ScrollPane id="side-bar" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
          <content>
-            <TilePane id="side-bar" fx:id="projectTilePane" prefColumns="1" />
+            <VBox fx:id="projectItemVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" />
          </content>
       </ScrollPane>
    </children>
