@@ -12,12 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class ProjectCostsTest {
+    private ProjectCosts apt = new ProjectCosts();
     /**
      * Tests the getConnectionsCost(int, int) method in ProjectCosts class.
      */
     @Test
     public void getConnectionsCostTest() {
-        assertEquals(ProjectCosts.getConnectionsCost(2000, 4), 8);
+        assertEquals(apt.getConnectionsCost(2000, 4), 8);
     }
 
     /**
@@ -25,7 +26,7 @@ class ProjectCostsTest {
      */
     @Test
     public void getClientCostTest() {
-        assertEquals(ProjectCosts.getClientCost(2000, 5), 10);
+        assertEquals(apt.getClientCost(2000, 5), 10);
     }
 
     /**
@@ -33,7 +34,7 @@ class ProjectCostsTest {
      */
     @Test
     public void getContractCostTest() {
-        assertEquals(ProjectCosts.getContractCost(2000, 6), 12);
+        assertEquals(apt.getContractCost(2000, 6), 12);
     }
 
     /**
@@ -41,7 +42,7 @@ class ProjectCostsTest {
      */
     @Test
     public void getUnforseenCostTest() {
-        assertEquals(ProjectCosts.getUnforseenCost(30, 200, 0.04), 0.24);
+        assertEquals(apt.getUnforseenCost(30, 200, 0.04), 0.24);
     }
 
     /**
@@ -49,6 +50,6 @@ class ProjectCostsTest {
      */
     @Test
     public void getFinancialCostTest() {
-        assertEquals(ProjectCosts.getFinantialCost(2000, 6), 12);
+        assertEquals(apt.getFinantialCost(2000, 6), 12);
     }
 }
