@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" minWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
@@ -17,10 +17,23 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <MenuButton alignment="CENTER" maxWidth="100.0" minWidth="50.0" mnemonicParsing="false" text="MenuButton">
+            <MenuButton alignment="CENTER" maxWidth="150.0" minWidth="105.0" mnemonicParsing="false" text="Lägenhetstyp">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem mnemonicParsing="false" text="1rks" />
+                  <MenuItem mnemonicParsing="false" text="1rokv" />
+                  <MenuItem mnemonicParsing="false" text="1rok" />
+                  <MenuItem mnemonicParsing="false" text="1.5rok" />
+                  <MenuItem mnemonicParsing="false" text="2rokv" />
+                  <MenuItem mnemonicParsing="false" text="2rok" />
+                  <MenuItem mnemonicParsing="false" text="2.5rok" />
+                  <MenuItem mnemonicParsing="false" text="3rok" />
+                  <MenuItem mnemonicParsing="false" text="3.5rok" />
+                  <MenuItem mnemonicParsing="false" text="4rok" />
+                  <MenuItem mnemonicParsing="false" text="4.5rok" />
+                  <MenuItem mnemonicParsing="false" text="5rok" />
+                  <MenuItem mnemonicParsing="false" text="6rok" />
+                  <MenuItem mnemonicParsing="false" text="7rok" />
+                  <MenuItem mnemonicParsing="false" text="8rok" />
                </items>
                <VBox.margin>
                   <Insets top="5.0" />
@@ -35,7 +48,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="100.0" minWidth="50.0">
+            <TextField maxWidth="100.0" minWidth="100.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -49,7 +62,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="100.0" minWidth="50.0">
+            <TextField maxWidth="100.0" minWidth="100.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
