@@ -55,7 +55,7 @@ public class ProjectCosts {
      * @param krPerSqm cost in kr per square meter.
      * @return Finantial costs of the project.
      */
-    public double getFinantialCost(int totBoa, int krPerSqm) {
+    public double getFinancialCost(int totBoa, int krPerSqm) {
         return (totBoa * krPerSqm) / 1000;
     }
 }

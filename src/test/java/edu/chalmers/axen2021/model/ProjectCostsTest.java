@@ -50,6 +50,6 @@ class ProjectCostsTest {
      */
     @Test
     public void getFinancialCostTest() {
-        assertEquals(apt.getFinantialCost(2000, 6), 12);
+        assertEquals(apt.getFinancialCost(2000, 6), 12);
     }
 }
