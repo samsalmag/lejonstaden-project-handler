@@ -1,18 +1,14 @@
 package edu.chalmers.axen2021.model;
 
-import edu.chalmers.axen2021.observers.IInputObserver;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 /**
  * Saves projects to files on the local computer.
  * @author Sam Salek
  * @author Malte Åkvist
  */
-public class SaveManager implements IInputObserver {
+public class SaveManager {
 
     /**
      * The instance of this class.
@@ -20,10 +16,18 @@ public class SaveManager implements IInputObserver {
     private static SaveManager instance = null;
 
     /**
-     * Maps for input values and their comments.
+     * The file type used to create save files, and save projects.
      */
+    private static String fileType = ".axen";
+
+    // TODO - Remove or uncomment when save system is set
+    /*
+    /**
+     * Maps for input values and their comments.
+
     private HashMap<String, Double> valuesMap = new HashMap<>();
     private HashMap<String, String> commentsMap = new HashMap<>();
+    */
 
     // Private constructor because Singleton class.
     private SaveManager(){}
@@ -41,72 +45,19 @@ public class SaveManager implements IInputObserver {
         return instance;
     }
 
-    @Override
-    public void updateValue(String variableName, Double value) {
-        valuesMap.put(variableName, value);
-    }
-
-    @Override
-    public void updateComment(String variableName, String comment) {
-        commentsMap.put(variableName, comment);
-    }
-
+    /**
+     * Initializes this class by running necessary methods.
+     */
     private void init() {
         verifyDirectory();
-
-        // TODO - Remove when Observer is fully implemented.
-        // TEST VALUES
-        /*
-        valuesMap.put("test1", 43.0);
-        valuesMap.put("test2", 456.0);
-        valuesMap.put("test3", 434.0);
-        valuesMap.put("test4", 4.0);
-        commentsMap.put("test1", "some value");
-        commentsMap.put("test2", "some value noice");
-        commentsMap.put("test3", "some value yre");
-        commentsMap.put("test4", "some ve");
-         */
     }
 
     /**
      * The path directory for where project are saved.
      * @return The directory.
      */
-    private String saveDirectory() {
+    private static String getSaveDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".axen2021";
-    }
-
-    /**
-     * Get the names of all projects that exists
-     * @return Project names.
-     */
-    public ArrayList<String> getProjectNames() {
-        ArrayList<String> projects = new ArrayList<>();
-
-        File projectDir = new File(saveDirectory());
-        if (projectDir.isDirectory()) {
-            File[] files = projectDir.listFiles();
-
-            for (File currentFile : files) {
-                if (!currentFile.isHidden() && currentFile.getName().endsWith(".txt")) {
-                    String fileName = currentFile.getName().substring(0, currentFile.getName().lastIndexOf('.'));  // Remove extension .txt of the name
-                    projects.add(fileName);
-                }
-            }
-        }
-        return projects;
-    }
-
-    /**
-     * Remove a project file by inputting the project name to be removed
-     *
-     * @param projectName Name of the project to remove
-     * @return Boolean if remove file was successful
-     */
-    public boolean removeProjectFile(String projectName) {
-
-        File projectFile = new File(saveDirectory() + File.separatorChar + projectName + ".txt");
-        return projectFile.delete();
     }
 
     /**
@@ -115,7 +66,7 @@ public class SaveManager implements IInputObserver {
     private void verifyDirectory() {
         File directory;
         try {
-            directory = new File(saveDirectory());
+            directory = new File(getSaveDirectory());
             if (!directory.exists()) {
                 directory.mkdir();
             }
@@ -125,8 +76,96 @@ public class SaveManager implements IInputObserver {
     }
 
     /**
-     * Saves the project and its input values to a .txt file
+     * Get the names of all projects that exists
+     * @return Project names.
      */
+    public static ArrayList<String> getProjectNames() {
+        ArrayList<String> projects = new ArrayList<>();
+
+        File projectDir = new File(getSaveDirectory());
+        if (projectDir.isDirectory()) {
+            File[] files = projectDir.listFiles();
+
+            for (File currentFile : files) {
+                if (!currentFile.isHidden() && currentFile.getName().endsWith(fileType)) {
+                    String fileName = currentFile.getName().substring(0, currentFile.getName().lastIndexOf('.'));  // Remove extension .txt of the name
+                    projects.add(fileName);
+                }
+            }
+        }
+        return projects;
+    }
+
+    /**
+     * Saves the given project and its values to a .axen file.
+     * @param project The project to save.
+     */
+    public static void saveProject(Project project)  {
+        String filename = getSaveDirectory() + File.separatorChar + project.getName() + fileType;
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            ObjectOutputStream oos = new ObjectOutputStream(fileOut);
+            oos.writeObject(project);
+            oos.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved for project " + project.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Reads all projects in the save directory.
+     * @return Returns a list of all read projects.
+     */
+    public static ArrayList<Project> readProjects()  {
+        ArrayList<Project> projects = new ArrayList<>();
+
+        for (String projectName : getProjectNames()) {
+            Project project = readProject(projectName);
+            projects.add(project);
+        }
+
+        return projects;
+    }
+
+    /**
+     * Reads a single project from the given project name.
+     * @param projectName Project name.
+     * @return Returns the read project.
+     */
+    public static Project readProject(String projectName)  {
+        String filename = getSaveDirectory() + File.separatorChar + projectName + fileType;
+        Project project = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(fileIn);
+            project = (Project) ois.readObject();
+            ois.close();
+            fileIn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return project;
+    }
+
+    /**
+     * Remove a project file by inputting the project name to be removed
+     * @param projectName Name of the project to remove
+     * @return Boolean if remove file was successful
+     */
+    public static boolean removeProjectFile(String projectName) {
+        File projectFile = new File(getSaveDirectory() + File.separatorChar + projectName + fileType);
+        return projectFile.delete();
+    }
+
+    // --------------------------- OLD SAVE SYSTEM BELOW --------------------------- //
+    // TODO - Remove or uncomment when save system is set
+    /*
+    /**
+     * Saves the project and its input values to a .txt file
+
     public void saveProject()  {
 
         // TODO - filename should be replaced with the correct project name.
@@ -151,7 +190,7 @@ public class SaveManager implements IInputObserver {
      * @param osw OutputStreamWriter.
      * @param key Key Object.
      * @param value Value Object.
-     */
+
     private void writeToFile(OutputStreamWriter osw, Object key, Object value) {
         String line;
         line = "" + key + ":" + value + "\n";
@@ -162,4 +201,5 @@ public class SaveManager implements IInputObserver {
             e.printStackTrace();
         }
     }
+    */
 }

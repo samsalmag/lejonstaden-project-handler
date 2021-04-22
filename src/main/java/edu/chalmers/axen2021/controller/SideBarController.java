@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.SaveManager;
 import edu.chalmers.axen2021.observers.IInputObservable;
 import edu.chalmers.axen2021.observers.IInputObserver;
@@ -12,6 +13,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -21,8 +24,6 @@ import java.util.ResourceBundle;
  * @author Erik Wetter
  */
 public class SideBarController implements Initializable, IInputObservable {
-
-    private SaveManager saveManager = SaveManager.getInstance();
 
     /**
      * VBox in the sideBar.
@@ -41,13 +42,28 @@ public class SideBarController implements Initializable, IInputObservable {
         projectItemVbox.getChildren().add(sideBarItem);
 
         // TODO - Improve implementation after fxml is done.
-        notifyInputValueObservers();
-        saveManager.saveProject();
+        //notifyInputValueObservers();
+
+        SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
+        //Project project = SaveManager.getInstance().readProject("1619129916294");
+
+        System.out.println("test");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addObserver(saveManager);
+        //addObserver(saveManager);
+
+        ArrayList<Project> projects = SaveManager.getInstance().readProjects();
+        for (Project project : projects) {
+            Node sideBarItem = null;
+            try {
+                sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            projectItemVbox.getChildren().add(sideBarItem);
+        }
     }
 
     @Override
