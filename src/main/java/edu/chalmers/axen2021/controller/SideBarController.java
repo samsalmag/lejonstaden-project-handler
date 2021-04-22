@@ -2,8 +2,6 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.SaveManager;
-import edu.chalmers.axen2021.observers.IInputObservable;
-import edu.chalmers.axen2021.observers.IInputObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +21,7 @@ import java.util.ResourceBundle;
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
-public class SideBarController implements Initializable, IInputObservable {
+public class SideBarController implements Initializable {
 
     /**
      * VBox in the sideBar.
@@ -37,23 +35,17 @@ public class SideBarController implements Initializable, IInputObservable {
      */
     @FXML
     private void addNewProject(ActionEvent event) throws IOException {
-        //ToDo add functionality: Fill in input for new project and show it in the centerStage view.
+        //TODO - add functionality: Fill in input for new project and show it in the centerStage view.
         Node sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
         projectItemVbox.getChildren().add(sideBarItem);
 
-        // TODO - Improve implementation after fxml is done.
-        //notifyInputValueObservers();
-
+        // TODO - replace 'String.valueOf(new Date().getTime())' with the name given to the project when it was created.
         SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
         //Project project = SaveManager.getInstance().readProject("1619129916294");
-
-        System.out.println("test");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //addObserver(saveManager);
-
+    // TODO - temporary position for this method (?). Should preferably be in RootController (must find way to reach this class from there..)
+    private void loadProjects() {
         ArrayList<Project> projects = SaveManager.getInstance().readProjects();
         for (Project project : projects) {
             Node sideBarItem = null;
@@ -67,19 +59,7 @@ public class SideBarController implements Initializable, IInputObservable {
     }
 
     @Override
-    public void notifyInputValueObservers() {
-        for (IInputObserver inputObserver : IInputObservers) {
-            inputObserver.updateValue("test1", 342.0);
-        }
-    }
-
-    @Override
-    public void notifyInputCommentObservers() {
-        // No comment input fields exists yet.
-    }
-
-    @Override
-    public void addObserver(IInputObserver iInputObserver) {
-        IInputObservers.add(iInputObserver);
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadProjects();
     }
 }

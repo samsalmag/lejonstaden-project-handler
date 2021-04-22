@@ -77,7 +77,7 @@ public class RootController implements IViewObserver {
         modalAnchorPane.getChildren().setAll(modalWindow);
         setAnchors(modalAnchorPane, modalWindow);
 
-
+        // TODO - projects should preferably be loaded from here (root)
     }
 
     /**
@@ -108,7 +108,6 @@ public class RootController implements IViewObserver {
 
         centerStageAnchorPane.getChildren().setAll(center);
     }
-
 
     /**
      * Getter for the modalAnchorPane.

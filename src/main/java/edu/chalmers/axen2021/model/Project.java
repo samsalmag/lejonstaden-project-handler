@@ -11,6 +11,8 @@ public class Project implements Serializable {
     public Project(String name) {
         this.name = name;
 
+        // TODO - Remove when input values from the view can be read.
+        // TEST VALUES
         addInput("test1", "1");
         addInput("test2", "2");
         addInput("test3", "3");
