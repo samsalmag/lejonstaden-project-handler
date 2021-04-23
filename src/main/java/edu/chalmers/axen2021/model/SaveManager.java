@@ -20,15 +20,6 @@ public class SaveManager {
      */
     private static String fileType = ".axen";
 
-    // TODO - Remove or uncomment when save system is set
-    /*
-    /**
-     * Maps for input values and their comments.
-
-    private HashMap<String, Double> valuesMap = new HashMap<>();
-    private HashMap<String, String> commentsMap = new HashMap<>();
-    */
-
     // Private constructor because Singleton class.
     private SaveManager(){}
 
@@ -162,6 +153,15 @@ public class SaveManager {
 
     // --------------------------- OLD SAVE SYSTEM BELOW --------------------------- //
     // TODO - Remove or uncomment when save system is set
+
+    /*
+    /**
+     * Maps for input values and their comments.
+
+    private HashMap<String, Double> valuesMap = new HashMap<>();
+    private HashMap<String, String> commentsMap = new HashMap<>();
+    */
+
     /*
     /**
      * Saves the project and its input values to a .txt file

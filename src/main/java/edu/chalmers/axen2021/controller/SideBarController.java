@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.Model;
 import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.SaveManager;
 import javafx.event.ActionEvent;
@@ -41,20 +42,20 @@ public class SideBarController implements Initializable {
 
         // TODO - replace 'String.valueOf(new Date().getTime())' with the name given to the project when it was created.
         SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
-        //Project project = SaveManager.getInstance().readProject("1619129916294");
     }
 
     // TODO - temporary position for this method (?). Should preferably be in RootController (must find way to reach this class from there..)
     private void loadProjects() {
-        ArrayList<Project> projects = SaveManager.getInstance().readProjects();
-        for (Project project : projects) {
+        for (Project project : SaveManager.getInstance().readProjects()) {
             Node sideBarItem = null;
             try {
                 sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             projectItemVbox.getChildren().add(sideBarItem);
+
+            Model.addProject(project);
         }
     }
 

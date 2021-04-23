@@ -10,6 +10,7 @@ public class Project implements Serializable {
 
     public Project(String name) {
         this.name = name;
+        Model.addProject(this);
 
         // TODO - Remove when input values from the view can be read.
         // TEST VALUES
@@ -25,7 +26,6 @@ public class Project implements Serializable {
     public void addInput(String inputId, String value){
         inputsMap.put(inputId, value);
     }
-
 
     // ------------------ GETTERS ------------------ //
     public String getName() {
