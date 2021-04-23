@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -55,7 +54,7 @@ public class SideBarController implements Initializable {
             }
             projectItemVbox.getChildren().add(sideBarItem);
 
-            Model.addProject(project);
+            Model.addProject(project); // Add project to 'projects' list during load.
         }
     }
 
