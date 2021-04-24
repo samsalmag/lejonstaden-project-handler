@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Saves projects to files on the local computer.
+ * Saves projects within the application to files on the local computer.
  * @author Sam Salek
  * @author Malte Åkvist
  */
@@ -20,7 +20,7 @@ public class SaveManager {
      */
     private static String fileType = ".axen";
 
-    // Private constructor because Singleton class.
+    // Private constructor because Singleton class. Use getInstance() instead.
     private SaveManager(){}
 
     /**
@@ -67,7 +67,7 @@ public class SaveManager {
     }
 
     /**
-     * Get the names of all projects that exists
+     * Get the names of all projects that exists in save directory.
      * @return Project names.
      */
     public static ArrayList<String> getProjectNames() {
