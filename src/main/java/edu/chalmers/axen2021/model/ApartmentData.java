@@ -9,7 +9,8 @@ package edu.chalmers.axen2021.model;
 public class ApartmentData {
     private SaboTable sabo;
 
-    public ApartmentData() {
+    // Can only be accessed within 'model' package. Use 'Model' class to get access to this class outside of package.
+    ApartmentData() {
         this.sabo = new SaboTable();
     }
 

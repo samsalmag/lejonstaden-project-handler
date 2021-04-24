@@ -15,8 +15,7 @@ public class Model {
      * Is updated when a new Project is created, and also when program startup.
      */
     private static ArrayList<Project> projects = new ArrayList<>();
-
-    // TODO - maybe make classes below Singleton? and then use getInstance() instead of 'new ...'?.
+    
     private static ApartmentData apartmentData = new ApartmentData();
     private static ProjectCosts projectCosts = new ProjectCosts();
     private static SaboTable saboTable = new SaboTable();

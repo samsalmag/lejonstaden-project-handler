@@ -8,6 +8,9 @@ package edu.chalmers.axen2021.model;
 
 public class ProjectCosts {
 
+    // Can only be accessed within 'model' package. Use 'Model' class to get access to this class outside of package.
+    ProjectCosts(){}
+
     /**
      * Calculates and returns the Connection costs.
      * @param krPerApt cost in kr per apartment.

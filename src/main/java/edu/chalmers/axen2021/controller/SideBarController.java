@@ -1,8 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Model;
-import edu.chalmers.axen2021.model.Project;
-import edu.chalmers.axen2021.model.SaveManager;
+import edu.chalmers.axen2021.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +52,7 @@ public class SideBarController implements Initializable {
             }
             projectItemVbox.getChildren().add(sideBarItem);
 
-            Model.addProject(project); // Add project to 'projects' list during load.
+            Model.getInstance().addProject(project); // Add project to 'projects' list during load.
         }
     }
 

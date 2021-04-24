@@ -18,7 +18,8 @@ public class SaboTable {
 	/**
 	 * Creates a new SABO table and fills it using the fillTable method.
 	 */
-	public SaboTable() {
+	// Can only be accessed within 'model' package. Use 'Model' class to get access to this class outside of package.
+	SaboTable() {
 		sabo = new HashMap<>();
 		fillTable();
 	}
