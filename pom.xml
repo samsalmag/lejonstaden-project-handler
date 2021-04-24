@@ -45,6 +45,7 @@
             <version>16</version>
         </dependency>
 
+
         <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -118,41 +119,6 @@
                 </executions>
             </plugin>
 
-            <!-- Creates an .exe file from the jar file -->
-            <plugin>
-                <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                <artifactId>launch4j-maven-plugin</artifactId>
-                <version>1.7.25</version>
-                <executions>
-                    <execution>
-                        <id>l4j-gui</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>launch4j</goal>
-                        </goals>
-                        <configuration>
-                            <headerType>gui</headerType>
-                            <outfile>target/_build/AXE-N_${build.time}.exe</outfile>
-                            <jar>target/_build/${project.artifactId}-${project.version}.jar</jar>
-                            <!-- if <dontWrapJar>true</dontWrapJar> change to this conf <jar>${project.artifactId}-${project.version}.jar</jar> -->
-                            <dontWrapJar>false</dontWrapJar>
-                            <errTitle>Error in launch4j plugin</errTitle>
-                            <classPath>
-                                <mainClass>edu.chalmers.axen2021.Main</mainClass>
-                            </classPath>
-                            <icon>src/main/resources/images/icon.ico</icon>
-                            <jre>
-                                <path>./win32/java</path>
-                                <!-- <minVersion>10.0.0</minVersion> -->
-                                <!-- <maxVersion>17.0.0</maxVersion> -->
-                                <initialHeapSize>512</initialHeapSize>
-                                <maxHeapSize>1024</maxHeapSize>
-                            </jre>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Allows for the use of timestamps with ${build.time}-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -181,7 +147,6 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <!-- here the phase you need -->
                         <phase>package</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -198,6 +163,40 @@
                 </executions>
             </plugin>
 
+            <!-- Creates an .exe file from the jar file -->
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <executions>
+                    <execution>
+                        <id>l4j-gui</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <outfile>target/_build/AXE-N_${build.time}.exe</outfile>
+                            <jar>target/_build/${project.artifactId}-${project.version}.jar</jar>
+                            <!-- if <dontWrapJar>true</dontWrapJar> change to this conf <jar>${project.artifactId}-${project.version}.jar</jar> -->
+                            <dontWrapJar>false</dontWrapJar>
+                            <errTitle>Error in launch4j plugin</errTitle>
+                            <classPath>
+                                <mainClass>edu.chalmers.axen2021.Main</mainClass>
+                            </classPath>
+                            <icon>src/main/resources/images/icon.ico</icon>
+                            <jre>
+                                <path>./win32/java</path>
+                                <initialHeapSize>512</initialHeapSize>
+                                <maxHeapSize>1024</maxHeapSize>
+                            </jre>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
 		</plugins>
 	</build>
 
