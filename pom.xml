@@ -44,8 +44,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>16</version>
         </dependency>
-
-
+        
         <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
