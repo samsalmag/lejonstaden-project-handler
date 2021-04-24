@@ -26,7 +26,7 @@ public class SaveManager {
     /**
      * This class acts as a Singleton.
      * Returns the instance of the class.
-     * @return
+     * @return Instance of class.
      */
     public static SaveManager getInstance() {
         if(instance == null) {

@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Model {
 
+    private static Model instance = null;
+
     /**
      * A list of all projects during runtime.
      * Is updated when a new Project is created, and also when program startup.
@@ -19,11 +21,26 @@ public class Model {
     private static ProjectCosts projectCosts = new ProjectCosts();
     private static SaboTable saboTable = new SaboTable();
 
+    // Singleton class. Use getInstance() to get access.
+    private Model(){}
+
+    /**
+     * This class acts as a Singleton.
+     * Returns the instance of the class.
+     * @return Instance of class.
+     */
+    public static Model getInstance() {
+        if(instance == null) {
+            instance = new Model();
+        }
+        return instance;
+    }
+
     /**
      * Used to add a project to the 'projects' list.
      * @param project The project to be added.
      */
-    public static void addProject(Project project) {
+    public void addProject(Project project) {
         projects.add(project);
     }
 
@@ -32,7 +49,7 @@ public class Model {
      * Getter for the 'projects' list.
      * @return The 'projects' list.
      */
-    public static ArrayList<Project> getProjects() {
+    public ArrayList<Project> getProjects() {
         return projects;
     }
 
