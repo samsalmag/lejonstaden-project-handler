@@ -21,25 +21,29 @@ import java.util.ResourceBundle;
  */
 public class SideBarController implements Initializable {
 
-    RootController rootController = RootController.getInstance();
+    private RootController rootController = RootController.getInstance();
 
     /**
      * VBox in the sideBar.
      */
     @FXML private VBox projectItemVbox;
 
+    @FXML
+    private void openAddNewProjectView() {
+        rootController.getAddNewProjectAnchorPane().toFront();
+    }
+
     /**
      * Method for on addProject button clicked.
      * Adds sideBarItem to the VBox for the new project.
      * @param event of action.
      */
-    @FXML
-    private void addNewProject(ActionEvent event) throws IOException {
+    protected void addNewProject() throws IOException {
         //TODO - add functionality: Fill in input for new project and show it in the centerStage view.
         Node sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
         projectItemVbox.getChildren().add(sideBarItem);
 
-        rootController.getAddNewProjectAnchorPane().toFront();
+
 
         // TODO - replace 'String.valueOf(new Date().getTime())' with the name given to the project when it was created.
         //SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
