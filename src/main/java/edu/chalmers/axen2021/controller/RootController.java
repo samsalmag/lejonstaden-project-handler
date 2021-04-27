@@ -24,10 +24,9 @@ public class RootController implements IViewObserver {
     private static RootController instance = null;
 
     private HeaderController headerController;
-
     private SideBarController sideBarController;
-
     private ModalController modalController;
+    private InputController inputController;
 
     //Because of singleton pattern.
     private RootController() {}
@@ -69,26 +68,30 @@ public class RootController implements IViewObserver {
         FXMLLoader sideBar = new FXMLLoader(getClass().getResource("/fxml/sideBar.fxml"));
         FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
 
-        //FXMLLoader test = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
+        FXMLLoader inputWindow = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
 
         headerController = new HeaderController();
         sideBarController = new SideBarController();
         modalController = new ModalController();
 
-        //test = new InputController();
+        inputController = new InputController();
 
         header.setController(headerController);
         sideBar.setController(sideBarController);
         modalWindow.setController(modalController);
 
+        inputWindow.setController(inputController);
+
         Node headerNode = null;
         Node sideBarNode = null;
         Node modalWindowNode = null;
+        Node inputWindowNode = null;
 
         try {
             headerNode = header.load();
             sideBarNode = sideBar.load();
             modalWindowNode = modalWindow.load();
+            inputWindowNode = inputWindow.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,6 +102,9 @@ public class RootController implements IViewObserver {
         setAnchors(sideBarAnchorPane, sideBarNode);
         modalAnchorPane.getChildren().setAll(modalWindowNode);
         setAnchors(modalAnchorPane, modalWindowNode);
+
+        centerStageAnchorPane.getChildren().setAll(inputWindowNode);
+        setAnchors(centerStageAnchorPane, inputWindowNode);
 
         // TODO - projects should preferably be loaded from here (root)
         //ProjectManager.getInstance().setActiveProject("Button");

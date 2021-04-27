@@ -33,7 +33,7 @@ public class Project implements Serializable {
         if(ProjectManager.getInstance().getActiveCategory().equals("Tomtkostnader")) {
             CostItem costItem = new CostItem("test1");
             tomtKostnader.add(costItem);
-            //ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
+            ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
         }
 
         // TODO add for all lists

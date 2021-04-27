@@ -151,17 +151,8 @@ public class InputController implements Initializable {
 
         //rootController.getModalAnchorPane().getChildren().removeAll(rootController.getModalAnchorPane().getChildren());
         ProjectManager.getInstance().setActiveCategory(((Button)event.getSource()).getText());
+        rootController.getModalController().populateTilePane();
 
-        // For every cost in a category add a cost to the specified category
-        for(int i = 0; i < projectManager.getActiveCategoryList().size(); i++) {
-            Node modalWindowItem = null;
-            try {
-                modalWindowItem = FXMLLoader.load(getClass().getResource("/fxml/modalWindowItem.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            rootController.getModalAnchorPane().getChildren().add(modalWindowItem);
-        }
         rootController.getModalAnchorPane().toFront();
     }
 
