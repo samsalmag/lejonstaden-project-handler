@@ -14,7 +14,7 @@
       <HBox alignment="CENTER" maxHeight="250.0" minHeight="200.0" VBox.vgrow="ALWAYS">
          <children>
             <Pane minWidth="330.0" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" maxWidth="400.0" minWidth="300.0" spacing="10.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" maxWidth="400.0" minWidth="300.0" spacing="10.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Lägg till kostnad" />
                   <Label text="Namn på kostnaden:">
