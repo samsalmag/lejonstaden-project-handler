@@ -10,11 +10,11 @@
 
 <VBox minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane minHeight="170.0" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
+      <Pane minHeight="170.0" onMouseClicked="#closeAddNewProjectView" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
       <HBox alignment="CENTER" maxHeight="250.0" minHeight="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <Pane minWidth="330.0" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" maxWidth="400.0" minWidth="300.0" spacing="10.0" HBox.hgrow="ALWAYS">
+            <Pane minWidth="330.0" onMouseClicked="#closeAddNewProjectView" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" maxWidth="400.0" minWidth="300.0" spacing="10.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Lägg till nytt projekt" />
                   <Label text="Projektnamn:">
@@ -22,11 +22,11 @@
                         <Insets top="20.0" />
                      </padding>
                   </Label>
-                  <TextField maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="100.0" />
+                  <TextField fx:id="projektnamnTextField" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="100.0" />
                   <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minWidth="100.0" mnemonicParsing="false" text="Lägg till projekt" />
-                        <Button minWidth="100.0" mnemonicParsing="false" text="Avbryt" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#addNewProject" text="Lägg till projekt" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeAddNewProjectView" text="Avbryt" />
                      </children>
                   </HBox>
                </children>
@@ -34,9 +34,9 @@
                   <Insets top="20.0" />
                </padding>
             </VBox>
-            <Pane minWidth="330.0" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
+            <Pane minWidth="330.0" onMouseClicked="#closeAddNewProjectView" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <Pane minHeight="170.0" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
+      <Pane minHeight="170.0" onMouseClicked="#closeAddNewProjectView" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
