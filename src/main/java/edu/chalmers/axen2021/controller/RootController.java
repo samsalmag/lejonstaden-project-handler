@@ -1,5 +1,9 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.Model;
+import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.ProjectManager;
+import edu.chalmers.axen2021.model.SaveManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +33,7 @@ public class RootController implements IViewObserver {
     private AddNewProjectController addNewProjectController;
 
     //Because of singleton pattern.
-    private RootController() {
-    }
+    private RootController() {}
 
     /**
      * Getter for instance of this class.
@@ -74,6 +77,7 @@ public class RootController implements IViewObserver {
         FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
         FXMLLoader addNewProject = new FXMLLoader(getClass().getResource("/fxml/addNewProjectView.fxml"));
 
+        // TODO - Remove 'inputWindow' and related code after implementation is done
         FXMLLoader inputWindow = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
 
         headerController = new HeaderController();
@@ -100,6 +104,7 @@ public class RootController implements IViewObserver {
             sideBarNode = sideBar.load();
             modalWindowNode = modalWindow.load();
             addNewProjectNode = addNewProject.load();
+
             inputWindowNode = inputWindow.load();
         } catch (IOException e) {
             e.printStackTrace();
@@ -113,11 +118,13 @@ public class RootController implements IViewObserver {
         setAnchors(modalAnchorPane, modalWindowNode);
         addNewProjectAnchorPane.getChildren().setAll(addNewProjectNode);
         setAnchors(addNewProjectAnchorPane, addNewProjectNode);
+
         centerStageAnchorPane.getChildren().setAll(inputWindowNode);
         setAnchors(centerStageAnchorPane, inputWindowNode);
 
-        // TODO - projects should preferably be loaded from here (root)
         //ProjectManager.getInstance().setActiveProject("Button");
+
+        // TODO - projects should preferably be loaded from here (root)
     }
 
     /**
@@ -132,13 +139,26 @@ public class RootController implements IViewObserver {
         anchorPane.setBottomAnchor(node, 0.0);
     }
 
+    private void loadProjects() {
+        for (Project project : SaveManager.getInstance().readProjects()) {
+            Node sideBarItem = null;
+            try {
+                sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            sideBarController.getProjectItemVbox().getChildren().add(sideBarItem);
+
+            Model.getInstance().addProject(project); // Add project to 'projects' list during load.
+        }
+    }
+
     /**
      * Method is called when a button that wants to change view/scene is clicked in order to change view
      * @param fxmlName the name of the fxml file that should be changed to
      */
     @Override
     public void update(String fxmlName) {
-
         Node center = null;
         try {
             center = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName));
