@@ -29,7 +29,8 @@ public class RootController implements IViewObserver {
     private InputController inputController;
 
     //Because of singleton pattern.
-    private RootController() {}
+    private RootController() {
+    }
 
     /**
      * Getter for instance of this class.
