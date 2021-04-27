@@ -22,6 +22,12 @@ public class RootController implements IViewObserver {
      */
     private static RootController instance = null;
 
+    private HeaderController headerController;
+
+    private SideBarController sideBarController;
+
+    private ModalController modalController;
+
     //Because of singleton pattern.
     private RootController() {}
 
@@ -58,24 +64,32 @@ public class RootController implements IViewObserver {
      */
     public void initialize() {
 
-        Node header = null;
-        Node sideBar = null;
-        Node modalWindow = null;
+        FXMLLoader header = new FXMLLoader(getClass().getResource("/fxml/header.fxml"));
+        FXMLLoader sideBar = new FXMLLoader(getClass().getResource("/fxml/sideBar.fxml"));
+        FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
+
+        header.setController(headerController);
+        sideBar.setController(sideBarController);
+        modalWindow.setController(modalController);
+
+        Node headerNode = null;
+        Node sideBarNode = null;
+        Node modalWindowNode = null;
 
         try {
-            header = FXMLLoader.load(getClass().getResource("/fxml/header.fxml"));
-            sideBar = FXMLLoader.load(getClass().getResource("/fxml/sideBar.fxml"));
-            modalWindow = FXMLLoader.load(getClass().getResource("/fxml/modalWindow.fxml"));
+            headerNode = header.load();
+            sideBarNode = sideBar.load();
+            modalWindowNode = modalWindow.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        headerAnchorPane.getChildren().setAll(header);
-        setAnchors(headerAnchorPane, header);
-        sideBarAnchorPane.getChildren().setAll(sideBar);
-        setAnchors(sideBarAnchorPane, sideBar);
-        modalAnchorPane.getChildren().setAll(modalWindow);
-        setAnchors(modalAnchorPane, modalWindow);
+        headerAnchorPane.getChildren().setAll(headerNode);
+        setAnchors(headerAnchorPane, headerNode);
+        sideBarAnchorPane.getChildren().setAll(sideBarNode);
+        setAnchors(sideBarAnchorPane, sideBarNode);
+        modalAnchorPane.getChildren().setAll(modalWindowNode);
+        setAnchors(modalAnchorPane, modalWindowNode);
 
         // TODO - projects should preferably be loaded from here (root)
     }
@@ -115,5 +129,17 @@ public class RootController implements IViewObserver {
      */
     public AnchorPane getModalAnchorPane() {
         return modalAnchorPane;
+    }
+
+    public HeaderController getHeaderController() {
+        return headerController;
+    }
+
+    public SideBarController getSideBarController() {
+        return sideBarController;
+    }
+
+    public ModalController getModalController() {
+        return modalController;
     }
 }
