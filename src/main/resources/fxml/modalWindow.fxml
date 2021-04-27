@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.ModalController">
+<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
