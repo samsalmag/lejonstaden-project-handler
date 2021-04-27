@@ -1,6 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Model;
+import edu.chalmers.axen2021.model.ProjectManager;
 import edu.chalmers.axen2021.observers.IViewObservable;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.event.ActionEvent;
@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 public class SummaryViewController implements IViewObservable {
 
-    Model model = Model.getInstance();
+    private ProjectManager projectManager = ProjectManager.getInstance();
 
     //Variables connected to text fields in SummaryView.fxml
     @FXML private TextField projektkostnadMedStod;
@@ -44,20 +44,20 @@ public class SummaryViewController implements IViewObservable {
         updateProjektvinstProcent();
     }
     private void updateProjektkostnad() {
-        projektkostnadMedStod.setText("" + model.getProjects().get(0).getProjektkostnadKkrMedStod());
-        projektkostnadUtanStod.setText("" + model.getProjects().get(0).getProjektkostnadKkr());
+        projektkostnadMedStod.setText("" + projectManager.getActiveProject().getProjektkostnadKkrMedStod());
+        projektkostnadUtanStod.setText("" + projectManager.getActiveProject().getProjektkostnadKkr());
     }
     private void updateMarknadsvarde() {
-        marknadsvardeMedStod.setText("" + model.getProjects().get(0).getMarknadsvardeMedStod());
-        marknadsvardeUtanStod.setText("" + model.getProjects().get(0).getMarknadsvardeUtanStod());
+        marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
+        marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
     }
     private void updateProjektvinst() {
-        projektvinstMedStod.setText("" + model.getProjects().get(0).getProjektvinstMedStod());
-        projektvinstUtanStod.setText("" + model.getProjects().get(0).getProjektvinstUtanStod());
+        projektvinstMedStod.setText("" + projectManager.getActiveProject().getProjektvinstMedStod());
+        projektvinstUtanStod.setText("" + projectManager.getActiveProject().getProjektvinstUtanStod());
     }
     private void updateProjektvinstProcent() {
-        projektvinstProcentMedStod.setText("" + model.getProjects().get(0).getProjektvinstProcentMedStod());
-        projektvinstProcentUtanStod.setText("" + model.getProjects().get(0).getProjektvinstProcentUtanStod());
+        projektvinstProcentMedStod.setText("" + projectManager.getActiveProject().getProjektvinstProcentMedStod());
+        projektvinstProcentUtanStod.setText("" + projectManager.getActiveProject().getProjektvinstProcentUtanStod());
     }
     /**
      * Method for addNewLagenhetstyp button clicked.
