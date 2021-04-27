@@ -34,6 +34,7 @@ public class ModalController {
     @FXML
     private void closeModalWindow(Event event) {
         rootController.getModalAnchorPane().toBack();
+        clearTilePane();
     }
 
     /**
@@ -46,5 +47,13 @@ public class ModalController {
     private void addNewModalWindowItem(Event event) throws IOException {
         Node modalWindowItem = FXMLLoader.load(getClass().getResource("/fxml/modalWindowItem.fxml"));
         modalWindowItemTilePane.getChildren().add(modalWindowItem);
+    }
+
+    private void clearTilePane(){
+        modalWindowItemTilePane.getChildren().clear();
+    }
+
+    public void populateTilePane(){
+
     }
 }
