@@ -1,13 +1,11 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
-
 import java.io.IOException;
 
 /**
@@ -15,6 +13,7 @@ import java.io.IOException;
  * Handles all event triggered in the modalWindow.
  * @author Oscar Arvidson
  * @author Erik Wetter
+ * @author Malte Åkvist
  */
 public class ModalController {
     private ProjectManager projectManager = ProjectManager.getInstance();

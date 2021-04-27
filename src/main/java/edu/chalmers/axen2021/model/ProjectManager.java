@@ -11,44 +11,11 @@ import java.util.HashMap;
  * @author Malte Åkvist
  */
 public class ProjectManager implements Serializable {
-    private Project activeProject;
-    private String activeCategory;
-
-    private HashMap<String, ArrayList<String>> categoryListMap = new HashMap<>();
 
     /**
-     * Getter method to get the categoryListMap used for getting the category array from a category
-     * @return the categoryListMap
+     * The instance of this class.
      */
-    public HashMap<String, ArrayList<String>> getCategoryListMap() { return categoryListMap; }
-
-    /**
-     * Getter method to get current categoryList that is visible on screen
-     * @return arraylist of the cost categories
-     */
-    public ArrayList<String> getActiveCategoryList() {
-        return categoryListMap.get(getActiveCategory());
-    }
-
-    /**
-     * Set method for activeCategory
-     * @param category category to set
-     */
-    public void setActiveCategory(String category) {
-        activeCategory = category;
-    }
-
-    /**
-     * Get method for the active category
-     * @return current active category
-     */
-    public String getActiveCategory() { return activeCategory; }
-
-    /**
-     * Getter method used to get active project
-     * @return current active project
-     */
-    public Project getActiveProject() { return activeProject; }
+    private static ProjectManager instance = null;
 
     /**
      * A list of all projects during runtime.
@@ -56,11 +23,56 @@ public class ProjectManager implements Serializable {
      */
     private ArrayList<Project> projects = new ArrayList<>();
 
+    private Project activeProject;
+    private String activeCategory;
+
+    private HashMap<String, ArrayList<String>> categoryListMap = new HashMap<>();
+
+    private ArrayList<String> tomtKostnader = new ArrayList<>();
+    private ArrayList<String> nedlagdaByggherre = new ArrayList<>();
+    private ArrayList<String> anslutningar = new ArrayList<>();
+    private ArrayList<String> byggherrekostnader = new ArrayList<>();
+    private ArrayList<String> entrepenad = new ArrayList<>();
+    private ArrayList<String> oförutsett = new ArrayList<>();
+    private ArrayList<String> finansiellakostnader = new ArrayList<>();
+    private ArrayList<String> mervärdeskatt = new ArrayList<>();
+    private ArrayList<String> investeringsstöd = new ArrayList<>();
+    private ArrayList<String> hyresintäkter = new ArrayList<>();
+    private ArrayList<String> driftOchUnderhåll = new ArrayList<>();
+    private ArrayList<String> tomträttsAvgäld = new ArrayList<>();
+    private ArrayList<String> driftNetto = new ArrayList<>();
+    private ArrayList<String> yield = new ArrayList<>();
+
+    // Private constructor because Singleton class. Use getInstance() instead.
+    private ProjectManager(){
+
+        // Put all categories names in categoryListMap with the corresponding arraylist
+        categoryListMap.put("Tomtkostnader", tomtKostnader);
+        categoryListMap.put("Nedlagda bygherre", nedlagdaByggherre);
+        categoryListMap.put("Anslutningar", anslutningar);
+        categoryListMap.put("Byggherrekostnader", byggherrekostnader);
+        categoryListMap.put("Entrepenad", entrepenad);
+        categoryListMap.put("Oförutsett", oförutsett);
+        categoryListMap.put("Finansiella kostnader", finansiellakostnader);
+        categoryListMap.put("Investeringsstöd", investeringsstöd);
+        categoryListMap.put("Hyresintäkter", hyresintäkter);
+        categoryListMap.put("Drift & Underhåll", driftOchUnderhåll);
+        categoryListMap.put("Tomträttsavgäld", tomträttsAvgäld);
+        categoryListMap.put("Driftnetto", driftNetto);
+        categoryListMap.put("Yield", yield);
+    }
+
     /**
-     * Getter for the 'projects' list.
-     * @return The 'projects' list.
+     * This class acts as a Singleton.
+     * Returns the instance of the class.
+     * @return Instance of class.
      */
-    public ArrayList<Project> getProjects() { return projects; }
+    public static ProjectManager getInstance() {
+        if(instance == null) {
+            instance = new ProjectManager();
+        }
+        return instance;
+    }
 
     /**
      * Setter method used to set activeProject variable
@@ -81,20 +93,45 @@ public class ProjectManager implements Serializable {
         }
     }
 
-    private ArrayList<String> tomtKostnader = new ArrayList<>();
-    private ArrayList<String> nedlagdaByggherre = new ArrayList<>();
-    private ArrayList<String> anslutningar = new ArrayList<>();
-    private ArrayList<String> byggherrekostnader = new ArrayList<>();
-    private ArrayList<String> entrepenad = new ArrayList<>();
-    private ArrayList<String> oförutsett = new ArrayList<>();
-    private ArrayList<String> finansiellakostnader = new ArrayList<>();
-    private ArrayList<String> mervärdeskatt = new ArrayList<>();
-    private ArrayList<String> investeringsstöd = new ArrayList<>();
-    private ArrayList<String> hyresintäkter = new ArrayList<>();
-    private ArrayList<String> driftOchUnderhåll = new ArrayList<>();
-    private ArrayList<String> tomträttsAvgäld = new ArrayList<>();
-    private ArrayList<String> driftNetto = new ArrayList<>();
-    private ArrayList<String> yield = new ArrayList<>();
+    /**
+     * Getter for the 'projects' list.
+     * @return The 'projects' list.
+     */
+    public ArrayList<Project> getProjects() { return projects; }
+
+    /**
+     * Getter method used to get active project
+     * @return current active project
+     */
+    public Project getActiveProject() { return activeProject; }
+
+    /**
+     * Get method for the active category
+     * @return current active category
+     */
+    public String getActiveCategory() { return activeCategory; }
+
+    /**
+     * Set method for activeCategory
+     * @param category category to set
+     */
+    public void setActiveCategory(String category) {
+        activeCategory = category;
+    }
+
+    /**
+     * Getter method to get the categoryListMap used for getting the category array from a category
+     * @return the categoryListMap
+     */
+    public HashMap<String, ArrayList<String>> getCategoryListMap() { return categoryListMap; }
+
+    /**
+     * Getter method to get current categoryList that is visible on screen
+     * @return arraylist of the cost categories
+     */
+    public ArrayList<String> getActiveCategoryList() {
+        return categoryListMap.get(getActiveCategory());
+    }
 
     /**
      * Getter for the 'tomtKostnader' list.
@@ -198,41 +235,5 @@ public class ProjectManager implements Serializable {
      */
     public ArrayList<String> getYield() {
         return yield;
-    }
-
-    /**
-     * The instance of this class.
-     */
-    private static ProjectManager instance = null;
-
-    // Private constructor because Singleton class. Use getInstance() instead.
-    private ProjectManager(){
-        // Put all categories names in categoryListMap with the corresponding arraylist
-        categoryListMap.put("Tomtkostnader", tomtKostnader);
-        categoryListMap.put("Nedlagda bygherre", nedlagdaByggherre);
-        categoryListMap.put("Anslutningar", anslutningar);
-        categoryListMap.put("Byggherrekostnader", byggherrekostnader);
-        categoryListMap.put("Entrepenad", entrepenad);
-        categoryListMap.put("Oförutsett", oförutsett);
-        categoryListMap.put("Finansiella kostnader", finansiellakostnader);
-        categoryListMap.put("Investeringsstöd", investeringsstöd);
-        categoryListMap.put("Hyresintäkter", hyresintäkter);
-        categoryListMap.put("Drift & Underhåll", driftOchUnderhåll);
-        categoryListMap.put("Tomträttsavgäld", tomträttsAvgäld);
-        categoryListMap.put("Driftnetto", driftNetto);
-        categoryListMap.put("Yield", yield);
-
-    }
-
-    /**
-     * This class acts as a Singleton.
-     * Returns the instance of the class.
-     * @return Instance of class.
-     */
-    public static ProjectManager getInstance() {
-        if(instance == null) {
-            instance = new ProjectManager();
-        }
-        return instance;
     }
 }
