@@ -1,25 +1,19 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
 
 /**
  * Controller class for the applications sideBar.fxml.
  * Handles all event triggered in the sideBar.
  * @author Oscar Arvidson
  * @author Erik Wetter
+ * @author Sam Salek
  */
-public class SideBarController implements Initializable {
+public class SideBarController {
 
     private RootController rootController = RootController.getInstance();
 
@@ -34,40 +28,28 @@ public class SideBarController implements Initializable {
     }
 
     /**
-     * Method for on addProject button clicked.
-     * Adds sideBarItem to the VBox for the new project.
-     * @param event of action.
+     * Adds a new SideBarItem (new Project) to the SideBar with the given name.
+     * @param projectName Name of project
      */
-    protected void addNewProject() throws IOException {
-        //TODO - add functionality: Fill in input for new project and show it in the centerStage view.
-        Node sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
-        projectItemVbox.getChildren().add(sideBarItem);
+    public void addNewSideBarItem(String projectName) {
+        FXMLLoader sideBarItem = new FXMLLoader(getClass().getResource("/fxml/sideBarItem.fxml"));
+        SideBarItemController sideBarItemController = new SideBarItemController(projectName);
+        sideBarItem.setController(sideBarItemController);
+        Node sideBarItemNode = null;
 
-
-
-        // TODO - replace 'String.valueOf(new Date().getTime())' with the name given to the project when it was created.
-        //SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
-        SaveManager.getInstance().saveProject(new Project("Button"));
-        SaveManager.getInstance().saveProjectManager();
-    }
-
-    // TODO - temporary position for this method (?). Should preferably be in RootController (must find way to reach this class from there..)
-    private void loadProjects() {
-        for (Project project : SaveManager.getInstance().readProjects()) {
-            Node sideBarItem = null;
-            try {
-                sideBarItem = FXMLLoader.load(getClass().getResource("/fxml/sideBarItem.fxml"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            projectItemVbox.getChildren().add(sideBarItem);
-
-            Model.getInstance().addProject(project); // Add project to 'projects' list during load.
+        try {
+            sideBarItemNode = sideBarItem.load();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        projectItemVbox.getChildren().add(sideBarItemNode);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadProjects();
+    /**
+     * Getter for projectItemVbox.
+     * @return projectItemVbox
+     */
+    public VBox getProjectItemVbox() {
+        return projectItemVbox;
     }
 }

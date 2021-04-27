@@ -33,7 +33,6 @@ public class AXEN2021 extends Application {
         RootController rootController = RootController.getInstance();
         fxmlLoader.setController(rootController);
         Parent rootFXML = fxmlLoader.load();
-        rootController.initialize();
 
         Scene scene = new Scene(rootFXML, 1280, 720);
         stage.setScene(scene);

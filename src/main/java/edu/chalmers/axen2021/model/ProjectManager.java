@@ -82,6 +82,7 @@ public class ProjectManager implements Serializable {
         for (Project p : projects) {
             if(p.getName().equals(project)) {
                 activeProject = p;
+                System.out.println("Set project \"" + p.getName() + "\" as the active project!");
                 return;
             }
         }
