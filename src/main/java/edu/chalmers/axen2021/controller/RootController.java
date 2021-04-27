@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.ProjectManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,15 +24,14 @@ public class RootController implements IViewObserver {
     private static RootController instance = null;
 
     private HeaderController headerController;
-
     private SideBarController sideBarController;
-
     private ModalController modalController;
-
+    private InputController inputController;
     private addNewProjectController addNewProjectController;
 
     //Because of singleton pattern.
-    private RootController() {}
+    private RootController() {
+    }
 
     /**
      * Getter for instance of this class.
@@ -75,14 +75,25 @@ public class RootController implements IViewObserver {
         FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
         FXMLLoader addNewProject = new FXMLLoader(getClass().getResource("/fxml/addNewProjectView.fxml"));
 
+        FXMLLoader inputWindow = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
+
+        headerController = new HeaderController();
+        sideBarController = new SideBarController();
+        modalController = new ModalController();
+
+        inputController = new InputController();
+
         header.setController(headerController);
         sideBar.setController(sideBarController);
         modalWindow.setController(modalController);
         addNewProject.setController(addNewProjectController);
 
+        inputWindow.setController(inputController);
+
         Node headerNode = null;
         Node sideBarNode = null;
         Node modalWindowNode = null;
+        Node inputWindowNode = null;
         Node addNewProjectNode = null;
 
         try {
@@ -90,6 +101,7 @@ public class RootController implements IViewObserver {
             sideBarNode = sideBar.load();
             modalWindowNode = modalWindow.load();
             addNewProjectNode = addNewProject.load();
+            inputWindowNode = inputWindow.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,8 +114,11 @@ public class RootController implements IViewObserver {
         setAnchors(modalAnchorPane, modalWindowNode);
         addNewProjectAnchorPane.getChildren().setAll(addNewProjectNode);
         setAnchors(addNewProjectAnchorPane, addNewProjectNode);
+        centerStageAnchorPane.getChildren().setAll(inputWindowNode);
+        setAnchors(centerStageAnchorPane, inputWindowNode);
 
         // TODO - projects should preferably be loaded from here (root)
+        //ProjectManager.getInstance().setActiveProject("Button");
     }
 
     /**

@@ -1,12 +1,15 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Model;
+import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -76,7 +79,8 @@ public class InputController implements Initializable {
     /**
      * Instance of model.
      */
-    private Model model = Model.getInstance();
+    private ProjectManager projectManager = ProjectManager.getInstance();
+
 
     /**
      * Parent controller
@@ -142,6 +146,13 @@ public class InputController implements Initializable {
      */
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
+
+        //rootController.clearModal();
+
+        //rootController.getModalAnchorPane().getChildren().removeAll(rootController.getModalAnchorPane().getChildren());
+        ProjectManager.getInstance().setActiveCategory(((Button)event.getSource()).getText());
+        rootController.getModalController().populateTilePane();
+
         rootController.getModalAnchorPane().toFront();
     }
 
@@ -173,78 +184,79 @@ public class InputController implements Initializable {
     }
 
     private void updateTomtkostnader(){
-        tomtkostnaderKkr.setText("" + model.getProjects().get(0).getTomtkostnaderKkr());
-        tomtkostnaderKrBoa.setText("" + model.getProjects().get(0).getTomtkostnaderKrBoa());
-        tomtkostnaderKrBta.setText("" + model.getProjects().get(0).getTomtkostnaderKrBta());
+        tomtkostnaderKkr.setText("" + projectManager.getActiveProject().getTomtkostnaderKkr());
+        tomtkostnaderKkr.setText("" + projectManager.getActiveProject().getTomtkostnaderKkr());
+        tomtkostnaderKrBoa.setText("" + projectManager.getActiveProject().getTomtkostnaderKrBoa());
+        tomtkostnaderKrBta.setText("" + projectManager.getActiveProject().getTomtkostnaderKrBta());
     }
 
     private void updateNedlagadaByggherre(){
-        nedlagdaBygherreKkr.setText("" + model.getProjects().get(0).getNedlagdaByggherreKkr());
-        nedlagdaBygherreKrBoa.setText("" + model.getProjects().get(0).getNedlagdaByggherreKrBoa());
-        nedlagdaBygherreKrBta.setText("" + model.getProjects().get(0).getNedlagdaByggherreKrBta());
+        nedlagdaBygherreKkr.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKkr());
+        nedlagdaBygherreKrBoa.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKrBoa());
+        nedlagdaBygherreKrBta.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKrBta());
     }
 
     private void updateAnslutningar(){
-        anslutningarKkr.setText("" + model.getProjects().get(0).getAnslutningarKkr());
-        anslutningarKrBoa.setText("" + model.getProjects().get(0).getAnslutningarKrBoa());
-        anslutningarKrBta.setText("" + model.getProjects().get(0).getAnslutningarKrBta());
+        anslutningarKkr.setText("" + projectManager.getActiveProject().getAnslutningarKkr());
+        anslutningarKrBoa.setText("" + projectManager.getActiveProject().getAnslutningarKrBoa());
+        anslutningarKrBta.setText("" + projectManager.getActiveProject().getAnslutningarKrBta());
     }
 
     private void updateByggherrekostnader(){
-        byggherrekostnaderKkr.setText("" + model.getProjects().get(0).getByggherrekostnaderKkr());
-        byggherrekostnaderKrBoa.setText("" + model.getProjects().get(0).getByggherrekostnaderKrBoa());
-        byggherrekostnaderKrBta.setText("" + model.getProjects().get(0).getByggherrekostnaderKrBta());
+        byggherrekostnaderKkr.setText("" + projectManager.getActiveProject().getByggherrekostnaderKkr());
+        byggherrekostnaderKrBoa.setText("" + projectManager.getActiveProject().getByggherrekostnaderKrBoa());
+        byggherrekostnaderKrBta.setText("" + projectManager.getActiveProject().getByggherrekostnaderKrBta());
     }
 
     private void updateEntreprenad(){
-        entreprenadKkr.setText("" + model.getProjects().get(0).getEntreprenadKkr());
-        entreprenadKrBoa.setText("" + model.getProjects().get(0).getEntreprenadKrBoa());
-        entreprenadKrBta.setText("" + model.getProjects().get(0).getEntreprenadKrBta());
+        entreprenadKkr.setText("" + projectManager.getActiveProject().getEntreprenadKkr());
+        entreprenadKrBoa.setText("" + projectManager.getActiveProject().getEntreprenadKrBoa());
+        entreprenadKrBta.setText("" + projectManager.getActiveProject().getEntreprenadKrBta());
     }
 
     private void updateOforutsett(){
-        oforutsettKkr.setText("" + model.getProjects().get(0).getOforutsettKkr());
-        oforutsettKrBoa.setText("" + model.getProjects().get(0).getOforutsettKrBoa());
-        oforutsettKrBta.setText("" + model.getProjects().get(0).getOforutsettKrBta());
+        oforutsettKkr.setText("" + projectManager.getActiveProject().getOforutsettKkr());
+        oforutsettKrBoa.setText("" + projectManager.getActiveProject().getOforutsettKrBoa());
+        oforutsettKrBta.setText("" + projectManager.getActiveProject().getOforutsettKrBta());
     }
 
     private void updateFinansiellaKostnader(){
-        finanisellaKostnaderKkr.setText("" + model.getProjects().get(0).getFinansiellaKostnaderKkr());
-        finanisellaKostnaderKrBoa.setText("" + model.getProjects().get(0).getFinansiellaKostnaderKrBoa());
-        finanisellaKostnaderKrBta.setText("" + model.getProjects().get(0).getFinansiellaKostnaderKrBta());
+        finanisellaKostnaderKkr.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKkr());
+        finanisellaKostnaderKrBoa.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKrBoa());
+        finanisellaKostnaderKrBta.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKrBta());
     }
 
     private void updateMervardeskatt(){
-        mervardeskattKkr.setText("" + model.getProjects().get(0).getMervardeskattKkr());
-        mervardeskattKrBoa.setText("" + model.getProjects().get(0).getMervardeskattKrBoa());
-        mervardeskattKrBta.setText("" + model.getProjects().get(0).getMervardeskattKrBta());
+        mervardeskattKkr.setText("" + projectManager.getActiveProject().getMervardeskattKkr());
+        mervardeskattKrBoa.setText("" + projectManager.getActiveProject().getMervardeskattKrBoa());
+        mervardeskattKrBta.setText("" + projectManager.getActiveProject().getMervardeskattKrBta());
     }
 
     private void updateInvesteringsstod(){
-        investeringsstodKkr.setText("" + model.getProjects().get(0).getInvesteringsstodKkr());
-        investeringsstodKrBoa.setText("" + model.getProjects().get(0).getInvesteringsstodKrBoa());
-        investeringsstodKrBta.setText("" + model.getProjects().get(0).getInvesteringsstodKrBta());
+        investeringsstodKkr.setText("" + projectManager.getActiveProject().getInvesteringsstodKkr());
+        investeringsstodKrBoa.setText("" + projectManager.getActiveProject().getInvesteringsstodKrBoa());
+        investeringsstodKrBta.setText("" + projectManager.getActiveProject().getInvesteringsstodKrBta());
     }
 
     private void updateProjektkostnad(){
-        projektkostnadKkr.setText("" + model.getProjects().get(0).getProjektkostnadKkr());
-        projektkostnadKrBoa.setText("" + model.getProjects().get(0).getProjektkostnadKrBoa());
-        projektkostnadKrBta.setText("" + model.getProjects().get(0).getProjektkostnadKrBta());
+        projektkostnadKkr.setText("" + projectManager.getActiveProject().getProjektkostnadKkr());
+        projektkostnadKrBoa.setText("" + projectManager.getActiveProject().getProjektkostnadKrBoa());
+        projektkostnadKrBta.setText("" + projectManager.getActiveProject().getProjektkostnadKrBta());
     }
 
     private void updateFastighetsvardeOchResultat(){
-        hyresintakterMedStod.setText("" + model.getProjects().get(0).getHyresintakterMedStod());
-        hyresintakterUtanStod.setText("" + model.getProjects().get(0).getHyresintakterUtanStod());
-        driftUnderhallMedStod.setText("" + model.getProjects().get(0).getDriftUnderhallMedStod());
-        driftUnderhallUtanStod.setText("" + model.getProjects().get(0).getDriftUnderhallUtanStod());
-        tomtrattsavgaldMedStod.setText("" + model.getProjects().get(0).getTomtrattsavgaldMedStod());
-        tomtrattsavgaldUtanStod.setText("" + model.getProjects().get(0).getTomtrattsavgaldUtanStod());
-        driftnettoMedStod.setText("" + model.getProjects().get(0).getDriftnettoMedStod());
-        driftnettoUtanStod.setText("" + model.getProjects().get(0).getDriftnettoUtanStod());
-        yieldMedStod.setText("" + model.getProjects().get(0).getYieldMedStod());
-        yieldUtanStod.setText("" + model.getProjects().get(0).getYieldUtanStod());
-        marknadsvardeMedStod.setText("" + model.getProjects().get(0).getMarknadsvardeMedStod());
-        marknadsvardeUtanStod.setText("" + model.getProjects().get(0).getMarknadsvardeUtanStod());
+        hyresintakterMedStod.setText("" + projectManager.getActiveProject().getHyresintakterMedStod());
+        hyresintakterUtanStod.setText("" + projectManager.getActiveProject().getHyresintakterUtanStod());
+        driftUnderhallMedStod.setText("" + projectManager.getActiveProject().getDriftUnderhallMedStod());
+        driftUnderhallUtanStod.setText("" + projectManager.getActiveProject().getDriftUnderhallUtanStod());
+        tomtrattsavgaldMedStod.setText("" + projectManager.getActiveProject().getTomtrattsavgaldMedStod());
+        tomtrattsavgaldUtanStod.setText("" + projectManager.getActiveProject().getTomtrattsavgaldUtanStod());
+        driftnettoMedStod.setText("" + projectManager.getActiveProject().getDriftnettoMedStod());
+        driftnettoUtanStod.setText("" + projectManager.getActiveProject().getDriftnettoUtanStod());
+        yieldMedStod.setText("" + projectManager.getActiveProject().getYieldMedStod());
+        yieldUtanStod.setText("" + projectManager.getActiveProject().getYieldUtanStod());
+        marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
+        marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
     }
 
 }

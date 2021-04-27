@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -9,6 +10,44 @@ import java.util.HashMap;
  * @author Sam Salek
  */
 public class Project implements Serializable {
+
+    private ArrayList<CostItem> tomtKostnader = new ArrayList<>();
+    private ArrayList<CostItem> nedlagdaByggherre = new ArrayList<>();
+    private ArrayList<CostItem> anslutningar = new ArrayList<>();
+    private ArrayList<CostItem> byggherrekostnader = new ArrayList<>();
+    private ArrayList<CostItem> entrepenad = new ArrayList<>();
+    private ArrayList<CostItem> oförutsett = new ArrayList<>();
+    private ArrayList<CostItem> finansiellakostnader = new ArrayList<>();
+    private ArrayList<CostItem> mervärdeskatt = new ArrayList<>();
+    private ArrayList<CostItem> investeringsstöd = new ArrayList<>();
+    private ArrayList<CostItem> hyresintäkter = new ArrayList<>();
+    private ArrayList<CostItem> driftOchUnderhåll = new ArrayList<>();
+    private ArrayList<CostItem> tomträttsAvgäld = new ArrayList<>();
+    private ArrayList<CostItem> driftNetto = new ArrayList<>();
+    private ArrayList<CostItem> yield = new ArrayList<>();
+
+    /**
+     * Method that creates a costItem used for the categories (contains name, comment etc)
+     */
+    public void addCostItem() {
+        if(ProjectManager.getInstance().getActiveCategory().equals("Tomtkostnader")) {
+            CostItem costItem = new CostItem("test1");
+            tomtKostnader.add(costItem);
+            ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
+        }
+
+        // TODO add for all lists
+    }
+
+/*     Tetstst
+    private ArrayList<ArrayList<String>> costs;
+
+    public void updateCost() {
+        for (ArrayList<String> list : costs) {
+            if(variabel.)
+        }
+    }*/
+
 
     /**
      * Name of the project. Is set through the Constructor.
@@ -106,6 +145,7 @@ public class Project implements Serializable {
      * @param name Name of the project.
      */
     public Project(String name) {
+
         this.name = name;
         Model.getInstance().addProject(this);
 
