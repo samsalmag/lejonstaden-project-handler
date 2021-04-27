@@ -29,7 +29,8 @@ public class RootController implements IViewObserver {
     private ModalController modalController;
 
     //Because of singleton pattern.
-    private RootController() {}
+    private RootController() {
+    }
 
     /**
      * Getter for instance of this class.
@@ -67,6 +68,10 @@ public class RootController implements IViewObserver {
         FXMLLoader header = new FXMLLoader(getClass().getResource("/fxml/header.fxml"));
         FXMLLoader sideBar = new FXMLLoader(getClass().getResource("/fxml/sideBar.fxml"));
         FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
+
+        headerController = new HeaderController();
+        sideBarController = new SideBarController();
+        modalController = new ModalController();
 
         header.setController(headerController);
         sideBar.setController(sideBarController);
