@@ -8,8 +8,14 @@ import java.util.HashMap;
  * A class for the projects created in the application.
  * Implements the 'Serializable' interface to allow serialization (saving) of this classes data.
  * @author Sam Salek
+ * @author Malte Åkvist
  */
 public class Project implements Serializable {
+
+    /**
+     * Name of the project. Is set through the Constructor.
+     */
+    private String name;
 
     private ArrayList<CostItem> tomtKostnader = new ArrayList<>();
     private ArrayList<CostItem> nedlagdaByggherre = new ArrayList<>();
@@ -25,39 +31,6 @@ public class Project implements Serializable {
     private ArrayList<CostItem> tomträttsAvgäld = new ArrayList<>();
     private ArrayList<CostItem> driftNetto = new ArrayList<>();
     private ArrayList<CostItem> yield = new ArrayList<>();
-
-    /**
-     * Method that creates a costItem used for the categories (contains name, comment etc)
-     */
-    public void addCostItem() {
-        if(ProjectManager.getInstance().getActiveCategory().equals("Tomtkostnader")) {
-            CostItem costItem = new CostItem("test1");
-            tomtKostnader.add(costItem);
-            ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
-        }
-
-        // TODO add for all lists
-    }
-
-/*     Tetstst
-    private ArrayList<ArrayList<String>> costs;
-
-    public void updateCost() {
-        for (ArrayList<String> list : costs) {
-            if(variabel.)
-        }
-    }*/
-
-
-    /**
-     * Name of the project. Is set through the Constructor.
-     */
-    private String name;
-
-    /**
-     * A map containing all input fields and their corresponding values.
-     */
-    private HashMap<String, String> inputsMap = new HashMap<>();
 
     //Tomtkostnader
     private double tomtkostnaderKkr;
@@ -145,28 +118,21 @@ public class Project implements Serializable {
      * @param name Name of the project.
      */
     public Project(String name) {
-
         this.name = name;
         Model.getInstance().addProject(this);
-
-        // TODO - Remove when input values from the view can be read.
-        // TEST VALUES
-        addInput("test1", "1");
-        addInput("test2", "2");
-        addInput("test3", "3");
-        addInput("test4", "4");
-        addInput("test5", "5");
-        addInput("test6", "6");
-        addInput("test7", "7");
     }
 
     /**
-     * Method used for adding new input fields (and their values) to the 'inputsMap' map.
-     * @param inputId The input fields id.
-     * @param value The input fields value
+     * Method that creates a costItem used for the categories (contains name, comment, etc.)
      */
-    public void addInput(String inputId, String value){
-        inputsMap.put(inputId, value);
+    public void addCostItem() {
+        if(ProjectManager.getInstance().getActiveCategory().equals("Tomtkostnader")) {
+            CostItem costItem = new CostItem("test1");
+            tomtKostnader.add(costItem);
+            ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
+        }
+
+        // TODO add for all lists
     }
 
     // ------------------ GETTERS ------------------ //
@@ -178,12 +144,60 @@ public class Project implements Serializable {
         return name;
     }
 
-    /**
-     * Getter for the 'inputsMap' map.
-     * @return The 'inputsMap' map.
-     */
-    public HashMap<String, String> getInputsMap() {
-        return inputsMap;
+    public ArrayList<CostItem> getTomtKostnader() {
+        return tomtKostnader;
+    }
+
+    public ArrayList<CostItem> getNedlagdaByggherre() {
+        return nedlagdaByggherre;
+    }
+
+    public ArrayList<CostItem> getAnslutningar() {
+        return anslutningar;
+    }
+
+    public ArrayList<CostItem> getByggherrekostnader() {
+        return byggherrekostnader;
+    }
+
+    public ArrayList<CostItem> getEntrepenad() {
+        return entrepenad;
+    }
+
+    public ArrayList<CostItem> getOförutsett() {
+        return oförutsett;
+    }
+
+    public ArrayList<CostItem> getFinansiellakostnader() {
+        return finansiellakostnader;
+    }
+
+    public ArrayList<CostItem> getMervärdeskatt() {
+        return mervärdeskatt;
+    }
+
+    public ArrayList<CostItem> getInvesteringsstöd() {
+        return investeringsstöd;
+    }
+
+    public ArrayList<CostItem> getHyresintäkter() {
+        return hyresintäkter;
+    }
+
+    public ArrayList<CostItem> getDriftOchUnderhåll() {
+        return driftOchUnderhåll;
+    }
+
+    public ArrayList<CostItem> getTomträttsAvgäld() {
+        return tomträttsAvgäld;
+    }
+
+    public ArrayList<CostItem> getDriftNetto() {
+        return driftNetto;
+    }
+
+    public ArrayList<CostItem> getYield() {
+        return yield;
     }
 
     public double getTomtkostnaderKkr() {

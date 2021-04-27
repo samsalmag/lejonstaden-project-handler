@@ -1,7 +1,5 @@
 package edu.chalmers.axen2021.model;
 
-import java.util.ArrayList;
-
 /**
  * The main class for access to the applications model.
  * @author Sam Salek
@@ -10,9 +8,6 @@ public class Model {
 
     private static Model instance = null;
 
-
-
-    // TODO - maybe make classes below Singleton? and then use getInstance() instead of 'new ...'?.
     private static ApartmentData apartmentData = new ApartmentData();
     private static ProjectCosts projectCosts = new ProjectCosts();
     private static SaboTable saboTable = new SaboTable();
