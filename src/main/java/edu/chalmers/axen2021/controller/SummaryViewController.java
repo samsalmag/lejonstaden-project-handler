@@ -1,11 +1,13 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.Model;
 import edu.chalmers.axen2021.observers.IViewObservable;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -18,11 +20,45 @@ import java.io.IOException;
  */
 public class SummaryViewController implements IViewObservable {
 
+    Model model = Model.getInstance();
+
+    //Variables connected to text fields in SummaryView.fxml
+    @FXML private TextField projektkostnadMedStod;
+    @FXML private TextField projektkostnadUtanStod;
+    @FXML private TextField marknadsvardeMedStod;
+    @FXML private TextField marknadsvardeUtanStod;
+    @FXML private TextField projektvinstMedStod;
+    @FXML private TextField projektvinstUtanStod;
+    @FXML private TextField projektvinstProcentMedStod;
+    @FXML private TextField projektvinstProcentUtanStod;
+
     /**
      * VBox in the SummaryView.
      */
     @FXML private VBox lagenhetsTypVbox;
 
+    public void updateTextFields() {
+        updateProjektkostnad();
+        updateMarknadsvarde();
+        updateProjektvinst();
+        updateProjektvinstProcent();
+    }
+    private void updateProjektkostnad() {
+        projektkostnadMedStod.setText("" + model.getProjects().get(0).getProjektkostnadKkrMedStod());
+        projektkostnadUtanStod.setText("" + model.getProjects().get(0).getProjektkostnadKkr());
+    }
+    private void updateMarknadsvarde() {
+        marknadsvardeMedStod.setText("" + model.getProjects().get(0).getMarknadsvardeMedStod());
+        marknadsvardeUtanStod.setText("" + model.getProjects().get(0).getMarknadsvardeUtanStod());
+    }
+    private void updateProjektvinst() {
+        projektvinstMedStod.setText("" + model.getProjects().get(0).getProjektvinstMedStod());
+        projektvinstUtanStod.setText("" + model.getProjects().get(0).getProjektvinstUtanStod());
+    }
+    private void updateProjektvinstProcent() {
+        projektvinstProcentMedStod.setText("" + model.getProjects().get(0).getProjektvinstProcentMedStod());
+        projektvinstProcentUtanStod.setText("" + model.getProjects().get(0).getProjektvinstProcentUtanStod());
+    }
     /**
      * Method for addNewLagenhetstyp button clicked.
      * Adds a new LagenhetsDataSummaryItem to the VBox.

@@ -68,7 +68,7 @@
                         </HBox>
                         <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER_RIGHT" prefWidth="200.0" text="Marknadsvärde:">
+                              <Label alignment="CENTER_RIGHT" prefWidth="200.0" text="Projektkostnad:">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -76,7 +76,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="projektkostnadMedStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -87,7 +87,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="projektkostnadUtanStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -102,7 +102,7 @@
                         </HBox>
                         <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER_RIGHT" prefWidth="200.0" text="Projektkostnad:">
+                              <Label alignment="CENTER_RIGHT" prefWidth="200.0" text="Marknadsvärde:">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -110,7 +110,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="marknadsvardeMedStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -121,7 +121,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="marknadsvardeUtanStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -144,7 +144,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="projektvinstMedStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -155,7 +155,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="projektvinstUtanStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -178,7 +178,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="projektvinstProcentMedStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -189,7 +189,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
+                              <TextField fx:id="projektvinstProcentUtanStod" alignment="CENTER" editable="false" maxWidth="150.0" minWidth="150.0" style="-fx-background-color: lightgrey;">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>

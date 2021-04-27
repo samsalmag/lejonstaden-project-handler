@@ -69,6 +69,7 @@ public class Project implements Serializable {
     private double projektkostnadKkr;
     private double projektkostnadKrBoa;
     private double projektkostnadKrBta;
+    private double projektkostnadKkrMedStod;
 
     //Hyresintakter
     private double hyresintakterMedStod;
@@ -93,6 +94,12 @@ public class Project implements Serializable {
     //Marknadsvarde
     private double marknadsvardeMedStod;
     private double marknadsvardeUtanStod;
+
+    //Projektvinst
+    private double projektvinstMedStod;
+    private double projektvinstUtanStod;
+    private double projektvinstProcentMedStod;
+    private double projektvinstProcentUtanStod;
 
     /**
      * Class Constructor. Is used when a new instance of this class is created.
@@ -259,6 +266,10 @@ public class Project implements Serializable {
         return projektkostnadKrBta;
     }
 
+    public double getProjektkostnadKkrMedStod() {
+        return projektkostnadKkrMedStod;
+    }
+
     public double getHyresintakterMedStod() {
         return hyresintakterMedStod;
     }
@@ -305,5 +316,21 @@ public class Project implements Serializable {
 
     public double getMarknadsvardeUtanStod() {
         return marknadsvardeUtanStod;
+    }
+
+    public double getProjektvinstMedStod() {
+        return projektvinstMedStod;
+    }
+
+    public double getProjektvinstUtanStod() {
+        return projektvinstUtanStod;
+    }
+
+    public double getProjektvinstProcentMedStod() {
+        return projektvinstProcentMedStod;
+    }
+
+    public double getProjektvinstProcentUtanStod() {
+        return projektvinstProcentUtanStod;
     }
 }
