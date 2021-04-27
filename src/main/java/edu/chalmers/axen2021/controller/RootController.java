@@ -80,8 +80,8 @@ public class RootController implements IViewObserver {
         headerController = new HeaderController();
         sideBarController = new SideBarController();
         modalController = new ModalController();
-
         inputController = new InputController();
+        addNewProjectController = new addNewProjectController();
 
         header.setController(headerController);
         sideBar.setController(sideBarController);
