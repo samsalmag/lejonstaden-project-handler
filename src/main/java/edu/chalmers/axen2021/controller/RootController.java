@@ -28,6 +28,8 @@ public class RootController implements IViewObserver {
 
     private ModalController modalController;
 
+    private addNewProjectController addNewProjectController;
+
     //Because of singleton pattern.
     private RootController() {}
 
@@ -58,6 +60,10 @@ public class RootController implements IViewObserver {
      * Modal AnchorPane in root.fxml
      */
     @FXML private AnchorPane modalAnchorPane;
+    /**
+     * AnchorPane for addNewProjectView.fxml in root.fxml
+     */
+    @FXML private AnchorPane addNewProjectAnchorPane;
 
     /**
      * Initialize method that starts up the first scene and all its children.
@@ -67,19 +73,23 @@ public class RootController implements IViewObserver {
         FXMLLoader header = new FXMLLoader(getClass().getResource("/fxml/header.fxml"));
         FXMLLoader sideBar = new FXMLLoader(getClass().getResource("/fxml/sideBar.fxml"));
         FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
+        FXMLLoader addNewProject = new FXMLLoader(getClass().getResource("/fxml/addNewProjectView.fxml"));
 
         header.setController(headerController);
         sideBar.setController(sideBarController);
         modalWindow.setController(modalController);
+        addNewProject.setController(addNewProjectController);
 
         Node headerNode = null;
         Node sideBarNode = null;
         Node modalWindowNode = null;
+        Node addNewProjectNode = null;
 
         try {
             headerNode = header.load();
             sideBarNode = sideBar.load();
             modalWindowNode = modalWindow.load();
+            addNewProjectNode = addNewProject.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,6 +100,8 @@ public class RootController implements IViewObserver {
         setAnchors(sideBarAnchorPane, sideBarNode);
         modalAnchorPane.getChildren().setAll(modalWindowNode);
         setAnchors(modalAnchorPane, modalWindowNode);
+        addNewProjectAnchorPane.getChildren().setAll(addNewProjectNode);
+        setAnchors(addNewProjectAnchorPane, addNewProjectNode);
 
         // TODO - projects should preferably be loaded from here (root)
     }
@@ -130,6 +142,8 @@ public class RootController implements IViewObserver {
     public AnchorPane getModalAnchorPane() {
         return modalAnchorPane;
     }
+
+    public AnchorPane getAddNewProjectAnchorPane() { return addNewProjectAnchorPane; }
 
     public HeaderController getHeaderController() {
         return headerController;
