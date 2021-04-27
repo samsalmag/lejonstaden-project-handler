@@ -38,7 +38,9 @@ public class SideBarController implements Initializable {
         projectItemVbox.getChildren().add(sideBarItem);
 
         // TODO - replace 'String.valueOf(new Date().getTime())' with the name given to the project when it was created.
-        SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
+        //SaveManager.getInstance().saveProject(new Project(String.valueOf(new Date().getTime())));
+        SaveManager.getInstance().saveProject(new Project("Button"));
+        SaveManager.getInstance().saveProjectManager();
     }
 
     // TODO - temporary position for this method (?). Should preferably be in RootController (must find way to reach this class from there..)

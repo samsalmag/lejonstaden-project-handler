@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,5 +47,7 @@ public class ModalController {
     private void addNewModalWindowItem(Event event) throws IOException {
         Node modalWindowItem = FXMLLoader.load(getClass().getResource("/fxml/modalWindowItem.fxml"));
         modalWindowItemTilePane.getChildren().add(modalWindowItem);
+
+        ProjectManager.getInstance().getActiveProject().addCostItem();
     }
 }

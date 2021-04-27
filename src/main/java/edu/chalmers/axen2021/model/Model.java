@@ -10,11 +10,7 @@ public class Model {
 
     private static Model instance = null;
 
-    /**
-     * A list of all projects during runtime.
-     * Is updated when a new Project is created, and also when program startup.
-     */
-    private static ArrayList<Project> projects = new ArrayList<>();
+
 
     // TODO - maybe make classes below Singleton? and then use getInstance() instead of 'new ...'?.
     private static ApartmentData apartmentData = new ApartmentData();
@@ -41,17 +37,10 @@ public class Model {
      * @param project The project to be added.
      */
     public void addProject(Project project) {
-        projects.add(project);
+        ProjectManager.getInstance().getProjects().add(project);
     }
 
     // ------------------ GETTERS ------------------ //
-    /**
-     * Getter for the 'projects' list.
-     * @return The 'projects' list.
-     */
-    public ArrayList<Project> getProjects() {
-        return projects;
-    }
 
     /**
      * Getter for the 'ApartmentData' class.

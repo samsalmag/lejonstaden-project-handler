@@ -48,6 +48,14 @@ public class SaveManager {
      * @return The directory.
      */
     private static String getSaveDirectory() {
+        return getDirectory() + File.separatorChar + "projects";
+    }
+
+    /**
+     * The path directory for where all data for the application is saved.
+     * @return The directory.
+     */
+    private static String getDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".axen2021";
     }
 
@@ -61,6 +69,7 @@ public class SaveManager {
             if (!directory.exists()) {
                 directory.mkdir();
             }
+
         } catch (Exception e) {
             System.out.println("SaveManager class creating directory: " + e);
         }
@@ -100,6 +109,23 @@ public class SaveManager {
             oos.close();
             fileOut.close();
             System.out.println("Serialized data is saved for project " + project.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Saves the projectManager and its values to a .axen file.
+     */
+    public static void saveProjectManager()  {
+        String filename = getDirectory() + File.separatorChar + "ProjectManager" + fileType;
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            ObjectOutputStream oos = new ObjectOutputStream(fileOut);
+            oos.writeObject(ProjectManager.getInstance());
+            oos.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved for project " + "ProjectManager");
         } catch (Exception e) {
             e.printStackTrace();
         }

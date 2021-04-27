@@ -1,9 +1,11 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.io.IOException;
  * @author Erik Wetter
  */
 public class InputController {
+
 
     /**
      * Parent controller
@@ -34,6 +37,7 @@ public class InputController {
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
         rootController.getModalAnchorPane().toFront();
+        ProjectManager.getInstance().setActiveCategory(((Button)event.getSource()).getText());
     }
 
     /**

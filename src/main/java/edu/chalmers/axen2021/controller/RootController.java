@@ -62,10 +62,13 @@ public class RootController implements IViewObserver {
         Node sideBar = null;
         Node modalWindow = null;
 
+        Node test = null;
+
         try {
             header = FXMLLoader.load(getClass().getResource("/fxml/header.fxml"));
             sideBar = FXMLLoader.load(getClass().getResource("/fxml/sideBar.fxml"));
             modalWindow = FXMLLoader.load(getClass().getResource("/fxml/modalWindow.fxml"));
+            test = FXMLLoader.load(getClass().getResource("/fxml/inputView.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,6 +79,10 @@ public class RootController implements IViewObserver {
         setAnchors(sideBarAnchorPane, sideBar);
         modalAnchorPane.getChildren().setAll(modalWindow);
         setAnchors(modalAnchorPane, modalWindow);
+
+        centerStageAnchorPane.getChildren().setAll(test);
+        setAnchors(centerStageAnchorPane, test);
+
 
         // TODO - projects should preferably be loaded from here (root)
     }
