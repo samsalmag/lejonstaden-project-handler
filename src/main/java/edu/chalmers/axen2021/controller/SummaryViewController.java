@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 /**
- * Controller class for the applications SummaryView.fxml.
+ * Controller class for the applications summaryView.fxml.
  * Handles all event triggered in the SummaryView.
  * @author Erik Wetter
  * @author Oscar Arvidson
@@ -22,7 +22,7 @@ public class SummaryViewController implements IViewObservable {
 
     private ProjectManager projectManager = ProjectManager.getInstance();
 
-    //Variables connected to text fields in SummaryView.fxml
+    //Variables connected to text fields in summaryView.fxml
     @FXML private TextField projektkostnadMedStod;
     @FXML private TextField projektkostnadUtanStod;
     @FXML private TextField marknadsvardeMedStod;
@@ -66,7 +66,7 @@ public class SummaryViewController implements IViewObservable {
      */
     @FXML
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
-        Node LagenhetsDataSummaryItem = FXMLLoader.load(getClass().getResource("/fxml/LagenhetsDataSummaryItem.fxml"));
+        Node LagenhetsDataSummaryItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
         lagenhetsTypVbox.getChildren().add(LagenhetsDataSummaryItem);
     }
 

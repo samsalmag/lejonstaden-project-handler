@@ -1,6 +1,5 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -164,7 +162,7 @@ public class InputController implements Initializable {
      */
     @FXML
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
-        Node lagenhetsDataItem = FXMLLoader.load(getClass().getResource("/fxml/LagenhetsDataSummaryItem.fxml"));
+        Node lagenhetsDataItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
         lagenhetsTypVbox.getChildren().add(lagenhetsDataItem);
         updateAllLabels();
     }

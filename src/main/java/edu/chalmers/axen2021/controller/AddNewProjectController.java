@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class addNewProjectController {
+public class AddNewProjectController {
 
     private RootController rootController = RootController.getInstance();
 

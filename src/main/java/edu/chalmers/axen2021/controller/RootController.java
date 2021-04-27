@@ -1,6 +1,5 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.ProjectManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +26,7 @@ public class RootController implements IViewObserver {
     private SideBarController sideBarController;
     private ModalController modalController;
     private InputController inputController;
-    private addNewProjectController addNewProjectController;
+    private AddNewProjectController addNewProjectController;
 
     //Because of singleton pattern.
     private RootController() {
@@ -81,7 +80,7 @@ public class RootController implements IViewObserver {
         sideBarController = new SideBarController();
         modalController = new ModalController();
         inputController = new InputController();
-        addNewProjectController = new addNewProjectController();
+        addNewProjectController = new AddNewProjectController();
 
         header.setController(headerController);
         sideBar.setController(sideBarController);
