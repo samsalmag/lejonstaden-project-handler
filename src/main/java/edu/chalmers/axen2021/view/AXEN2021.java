@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.view;
 
 import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +30,7 @@ public class AXEN2021 extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/root.fxml"));
         RootController rootController = RootController.getInstance();
         fxmlLoader.setController(rootController);

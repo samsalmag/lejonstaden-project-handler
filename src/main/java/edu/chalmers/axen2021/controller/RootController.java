@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.ProjectManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +54,8 @@ public class RootController implements IViewObserver {
      */
     @FXML private AnchorPane modalAnchorPane;
 
+    private ModalController modalController;
+
     /**
      * Initialize method that starts up the first scene and all its children.
      */
@@ -67,7 +70,11 @@ public class RootController implements IViewObserver {
         try {
             header = FXMLLoader.load(getClass().getResource("/fxml/header.fxml"));
             sideBar = FXMLLoader.load(getClass().getResource("/fxml/sideBar.fxml"));
-            modalWindow = FXMLLoader.load(getClass().getResource("/fxml/modalWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            modalWindow = fxmlLoader.load(getClass().getResource("/fxml/modalWindow.fxml"));
+            modalController = fxmlLoader.getController();
+
+
             test = FXMLLoader.load(getClass().getResource("/fxml/inputView.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,6 +92,7 @@ public class RootController implements IViewObserver {
 
 
         // TODO - projects should preferably be loaded from here (root)
+        ProjectManager.getInstance().setActiveProject("Button");
     }
 
     /**

@@ -2,6 +2,12 @@ package edu.chalmers.axen2021.model;
 
 import java.io.Serializable;
 
+/**
+ * Class used to store values for costs for the different categories in the application.
+ * Implements the 'Serializable' interface to allow serialization (saving) of this classes data.
+ * @author Sam Salek
+ * @author Malte Åkvist
+ */
 public class CostItem implements Serializable {
     private String comment;
     private double value;
@@ -17,6 +23,7 @@ public class CostItem implements Serializable {
         moms = true;
     }
 
+    // Getter and setter methods for all variables
     public String getComment() { return comment; }
 
     public void setComment(String comment) { this.comment = comment; }

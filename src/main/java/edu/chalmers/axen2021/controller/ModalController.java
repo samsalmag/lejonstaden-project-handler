@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @author Erik Wetter
  */
 public class ModalController {
+    private ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * Parent controller
@@ -35,6 +37,7 @@ public class ModalController {
     @FXML
     private void closeModalWindow(Event event) {
         rootController.getModalAnchorPane().toBack();
+        modalWindowItemTilePane.getChildren().clear();
     }
 
     /**
