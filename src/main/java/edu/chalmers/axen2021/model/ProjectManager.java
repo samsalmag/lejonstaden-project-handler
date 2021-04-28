@@ -29,9 +29,9 @@ public class ProjectManager implements Serializable {
     private transient ArrayList<Project> projects = new ArrayList<>();
 
     private transient Project activeProject;
-    private transient String activeCategory;
+    private transient Category activeCategory;
 
-    private HashMap<String, ArrayList<String>> categoryListMap = new HashMap<>();
+    private HashMap<Category, ArrayList<String>> categoryListMap = new HashMap<>();
 
     private ArrayList<String> tomtKostnader = new ArrayList<>();
     private ArrayList<String> nedlagdaByggherre = new ArrayList<>();
@@ -52,19 +52,19 @@ public class ProjectManager implements Serializable {
     private ProjectManager(){
 
         // Put all categories names in categoryListMap with the corresponding arraylist
-        categoryListMap.put("Tomtkostnader", tomtKostnader);
-        categoryListMap.put("Nedlagda bygherre", nedlagdaByggherre);
-        categoryListMap.put("Anslutningar", anslutningar);
-        categoryListMap.put("Byggherrekostnader", byggherrekostnader);
-        categoryListMap.put("Entrepenad", entrepenad);
-        categoryListMap.put("Oförutsett", oförutsett);
-        categoryListMap.put("Finansiella kostnader", finansiellakostnader);
-        categoryListMap.put("Investeringsstöd", investeringsstöd);
-        categoryListMap.put("Hyresintäkter", hyresintäkter);
-        categoryListMap.put("Drift & Underhåll", driftOchUnderhåll);
-        categoryListMap.put("Tomträttsavgäld", tomträttsAvgäld);
-        categoryListMap.put("Driftnetto", driftNetto);
-        categoryListMap.put("Yield", yield);
+        categoryListMap.put(Category.TOMTKOSTNADER, tomtKostnader);
+        categoryListMap.put(Category.NEDLAGDABYGGHERRE, nedlagdaByggherre);
+        categoryListMap.put(Category.ANSLUTNINGAR, anslutningar);
+        categoryListMap.put(Category.BYGGHERREKOSTNADER, byggherrekostnader);
+        categoryListMap.put(Category.ENTREPENAD, entrepenad);
+        categoryListMap.put(Category.OFÖRUTSETT, oförutsett);
+        categoryListMap.put(Category.FINANSIELLAKOSTNADER, finansiellakostnader);
+        categoryListMap.put(Category.INVESTERINGSSTÖD, investeringsstöd);
+        categoryListMap.put(Category.HYRESINTÄKTER, hyresintäkter);
+        categoryListMap.put(Category.DRIFTOCHUNDERHÅLL, driftOchUnderhåll);
+        categoryListMap.put(Category.TOMTRÄTTSAVGÄLD, tomträttsAvgäld);
+        categoryListMap.put(Category.DRIFTNETTO, driftNetto);
+        categoryListMap.put(Category.YIELD, yield);
     }
 
     /**
@@ -123,13 +123,13 @@ public class ProjectManager implements Serializable {
      * Get method for the active category
      * @return current active category
      */
-    public String getActiveCategory() { return activeCategory; }
+    public Category getActiveCategory() { return activeCategory; }
 
     /**
      * Set method for activeCategory
      * @param category category to set
      */
-    public void setActiveCategory(String category) {
+    public void setActiveCategory(Category category) {
         activeCategory = category;
     }
 
@@ -137,14 +137,14 @@ public class ProjectManager implements Serializable {
      * Getter method to get the categoryListMap used for getting the category array from a category
      * @return the categoryListMap
      */
-    public HashMap<String, ArrayList<String>> getCategoryListMap() { return categoryListMap; }
+    public HashMap<Category, ArrayList<String>> getCategoryListMap() { return categoryListMap; }
 
     /**
      * Getter method to get current categoryList that is visible on screen
      * @return arraylist of the cost categories
      */
     public ArrayList<String> getActiveCategoryList() {
-        return categoryListMap.get(getActiveCategory());
+        return categoryListMap.get(activeCategory);
     }
 
     /**

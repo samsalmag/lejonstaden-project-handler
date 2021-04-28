@@ -126,7 +126,7 @@ public class Project implements Serializable {
      * Method that creates a costItem used for the categories (contains name, comment, etc.)
      */
     public void addCostItem() {
-        if(ProjectManager.getInstance().getActiveCategory().equals("Tomtkostnader")) {
+        if(ProjectManager.getInstance().getActiveCategory() == Category.TOMTKOSTNADER) {
             CostItem costItem = new CostItem("test1");
             tomtKostnader.add(costItem);
             ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());

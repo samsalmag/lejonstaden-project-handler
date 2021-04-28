@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.ProjectManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -146,12 +147,14 @@ public class InputController implements Initializable {
     private void categoryButtonClicked(ActionEvent event) {
 
         //rootController.clearModal();
-
         //rootController.getModalAnchorPane().getChildren().removeAll(rootController.getModalAnchorPane().getChildren());
-        ProjectManager.getInstance().setActiveCategory(((Button)event.getSource()).getText());
-        rootController.getModalController().populateTilePane();
 
+        Category category = Category.fromString(((Button)event.getSource()).getText());
+        ProjectManager.getInstance().setActiveCategory(category);
+        rootController.getModalController().populateTilePane();
         rootController.getModalAnchorPane().toFront();
+
+        System.out.println(category);
     }
 
     /**
@@ -256,5 +259,4 @@ public class InputController implements Initializable {
         marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
         marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
     }
-
 }
