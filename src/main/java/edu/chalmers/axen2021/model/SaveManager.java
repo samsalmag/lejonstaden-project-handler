@@ -67,12 +67,27 @@ public class SaveManager {
         try {
             directory = new File(getSaveDirectory());
             if (!directory.exists()) {
-                directory.mkdir();
+                directory.mkdirs();
             }
-
         } catch (Exception e) {
             System.out.println("SaveManager class creating directory: " + e);
         }
+    }
+
+    public boolean projectManagerExists() {
+        File projectManager;
+        try {
+            projectManager = new File(getDirectory() + File.separatorChar + "ProjectManager" + fileType);
+            if(!projectManager.exists()) {
+                System.out.println("ProjectManager" + fileType + " is missing!");
+                return false;
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        System.out.println("Found ProjectManager" + fileType + "!");
+        return true;
     }
 
     /**
@@ -165,6 +180,26 @@ public class SaveManager {
         }
 
         return project;
+    }
+
+    /**
+     * Reads the ProjectManager file from directory.
+     * @return Returns the read ProjectManager.
+     */
+    public ProjectManager readProjectManager()  {
+        String filename = getDirectory() + File.separatorChar + "ProjectManager" + fileType;
+        ProjectManager projectManager = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(fileIn);
+            projectManager = (ProjectManager) ois.readObject();
+            ois.close();
+            fileIn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return projectManager;
     }
 
     /**

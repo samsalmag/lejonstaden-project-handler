@@ -26,7 +26,7 @@ public class ProjectManager implements Serializable {
      * A list of all projects during runtime.
      * Is updated when a new Project is created, and also when program startup.
      */
-    private transient ArrayList<Project> projects = new ArrayList<>();
+    private transient static ArrayList<Project> projects;
 
     private transient Project activeProject;
     private transient Category activeCategory;
@@ -51,6 +51,8 @@ public class ProjectManager implements Serializable {
     // Private constructor because Singleton class. Use getInstance() instead.
     private ProjectManager(){
 
+        projects = new ArrayList<>();
+
         // Put all categories names in categoryListMap with the corresponding arraylist
         categoryListMap.put(Category.TOMTKOSTNADER, tomtKostnader);
         categoryListMap.put(Category.NEDLAGDABYGGHERRE, nedlagdaByggherre);
@@ -59,6 +61,7 @@ public class ProjectManager implements Serializable {
         categoryListMap.put(Category.ENTREPENAD, entrepenad);
         categoryListMap.put(Category.OFÖRUTSETT, oförutsett);
         categoryListMap.put(Category.FINANSIELLAKOSTNADER, finansiellakostnader);
+        categoryListMap.put(Category.MERVÄRDESKATT, mervärdeskatt);
         categoryListMap.put(Category.INVESTERINGSSTÖD, investeringsstöd);
         categoryListMap.put(Category.HYRESINTÄKTER, hyresintäkter);
         categoryListMap.put(Category.DRIFTOCHUNDERHÅLL, driftOchUnderhåll);
@@ -74,17 +77,17 @@ public class ProjectManager implements Serializable {
      */
     public static ProjectManager getInstance() {
         if(instance == null) {
-            instance = new ProjectManager();
+
+            if(!SaveManager.getInstance().projectManagerExists()) {
+                instance = new ProjectManager();
+            } else {
+                instance = SaveManager.getInstance().readProjectManager();
+                projects = new ArrayList<>();
+            }
+
+            //instance = new ProjectManager();
         }
         return instance;
-    }
-
-    /**
-     * Used by the 'Serializable' interface when deserializing.
-     * Makes sure the Singleton pattern is kept.
-     */
-    protected Object readResolve() {
-        return getInstance();
     }
 
     /**

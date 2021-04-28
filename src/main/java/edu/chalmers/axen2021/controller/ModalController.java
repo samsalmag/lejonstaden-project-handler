@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.ProjectManager;
+import edu.chalmers.axen2021.model.SaveManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +52,7 @@ public class ModalController {
         modalWindowItemTilePane.getChildren().add(modalWindowItem);
 
         ProjectManager.getInstance().getActiveProject().addCostItem();
+        SaveManager.getInstance().saveProjectManager();
     }
 
     private void clearTilePane() {

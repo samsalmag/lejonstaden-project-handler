@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.ProjectManager;
 import edu.chalmers.axen2021.model.SaveManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -29,6 +30,14 @@ public class AddNewProjectController {
      */
     @FXML
     private void addNewProject() {
+
+        // Name cant be same as existing project
+        for (Project project : ProjectManager.getInstance().getProjects()) {
+            if (project.getName().equals(projectNameTextField.getText())) {
+                return;
+            }
+        }
+
         createNewProject();
         rootController.getAddNewProjectAnchorPane().toBack();
         projectNameTextField.clear();

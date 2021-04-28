@@ -2,7 +2,6 @@ package edu.chalmers.axen2021.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A class for the projects created in the application.
@@ -126,13 +125,78 @@ public class Project implements Serializable {
      * Method that creates a costItem used for the categories (contains name, comment, etc.)
      */
     public void addCostItem() {
+
+        // TODO - please improve
         if(ProjectManager.getInstance().getActiveCategory() == Category.TOMTKOSTNADER) {
             CostItem costItem = new CostItem("test1");
             tomtKostnader.add(costItem);
             ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
         }
-
-        // TODO add for all lists
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.NEDLAGDABYGGHERRE) {
+            CostItem costItem = new CostItem("test1");
+            nedlagdaByggherre.add(costItem);
+            ProjectManager.getInstance().getNedlagdaByggherre().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.ANSLUTNINGAR) {
+            CostItem costItem = new CostItem("test1");
+            anslutningar.add(costItem);
+            ProjectManager.getInstance().getAnslutningar().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.BYGGHERREKOSTNADER) {
+            CostItem costItem = new CostItem("test1");
+            byggherrekostnader.add(costItem);
+            ProjectManager.getInstance().getByggherrekostnader().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.ENTREPENAD) {
+            CostItem costItem = new CostItem("test1");
+            entrepenad.add(costItem);
+            ProjectManager.getInstance().getEntrepenad().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.OFÖRUTSETT) {
+            CostItem costItem = new CostItem("test1");
+            oförutsett.add(costItem);
+            ProjectManager.getInstance().getOförutsett().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.FINANSIELLAKOSTNADER) {
+            CostItem costItem = new CostItem("test1");
+            finansiellakostnader.add(costItem);
+            ProjectManager.getInstance().getFinansiellakostnader().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.MERVÄRDESKATT) {
+            CostItem costItem = new CostItem("test1");
+            mervärdeskatt.add(costItem);
+            ProjectManager.getInstance().getMervärdeskatt().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.INVESTERINGSSTÖD) {
+            CostItem costItem = new CostItem("test1");
+            investeringsstöd.add(costItem);
+            ProjectManager.getInstance().getInvesteringsstöd().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.HYRESINTÄKTER) {
+            CostItem costItem = new CostItem("test1");
+            hyresintäkter.add(costItem);
+            ProjectManager.getInstance().getHyresintäkter().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.DRIFTOCHUNDERHÅLL) {
+            CostItem costItem = new CostItem("test1");
+            driftOchUnderhåll.add(costItem);
+            ProjectManager.getInstance().getDriftOchUnderhåll().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.TOMTRÄTTSAVGÄLD) {
+            CostItem costItem = new CostItem("test1");
+            tomträttsAvgäld.add(costItem);
+            ProjectManager.getInstance().getTomträttsAvgäld().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.DRIFTNETTO) {
+            CostItem costItem = new CostItem("test1");
+            driftNetto.add(costItem);
+            ProjectManager.getInstance().getDriftNetto().add(costItem.getName());
+        }
+        else if(ProjectManager.getInstance().getActiveCategory() == Category.YIELD) {
+            CostItem costItem = new CostItem("test1");
+            yield.add(costItem);
+            ProjectManager.getInstance().getYield().add(costItem.getName());
+        }
     }
 
     // ------------------ GETTERS ------------------ //
