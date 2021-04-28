@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test class for SaveManager class.
  * @author Malte Åkvist
+ * @author Sam Salek
  */
 public class SaveManagerTest {
     private static SaveManager saveManager = SaveManager.getInstance();

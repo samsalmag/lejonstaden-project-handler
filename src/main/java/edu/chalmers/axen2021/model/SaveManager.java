@@ -223,16 +223,20 @@ public class SaveManager {
             return false;
         }
 
+        // Removes all project save files
         if (saveDirectory.isDirectory()) {
             for (File currentFile : saveDirectory.listFiles()) {
                 currentFile.delete();
             }
+            System.out.println("Deleted all project files!");
         }
 
+        // Removes all files (and 'projects' folder) from main directory
         if (directory.isDirectory()) {
             for (File currentFile : directory.listFiles()) {
                 currentFile.delete();
             }
+            System.out.println("Deleted all files and folders in the main directory!");
         }
 
         return directory.delete();

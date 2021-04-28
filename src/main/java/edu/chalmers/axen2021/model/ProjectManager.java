@@ -84,8 +84,6 @@ public class ProjectManager implements Serializable {
                 instance = SaveManager.getInstance().readProjectManager();
                 projects = new ArrayList<>();
             }
-
-            //instance = new ProjectManager();
         }
         return instance;
     }
