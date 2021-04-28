@@ -20,6 +20,11 @@ public class SaveManager {
      */
     private static String fileType = ".axen";
 
+    /**
+     * Main directory for all save files for the application.
+     */
+    private static String directory = System.getProperty("user.home") + File.separatorChar + ".axen2021";;
+
     // Private constructor because Singleton class. Use getInstance() instead.
     private SaveManager(){}
 
@@ -48,7 +53,7 @@ public class SaveManager {
      * @return The directory.
      */
     private String getSaveDirectory() {
-        return getDirectory() + File.separatorChar + "projects";
+        return directory + File.separatorChar + "projects";
     }
 
     /**
@@ -56,13 +61,13 @@ public class SaveManager {
      * @return The directory.
      */
     private String getDirectory() {
-        return System.getProperty("user.home") + File.separatorChar + ".axen2021";
+        return directory;
     }
 
     /**
      * Checks if the save directory exists. One is created if not.
      */
-    private void verifyDirectory() {
+    public void verifyDirectory() {
         File directory;
         try {
             directory = new File(getSaveDirectory());
@@ -135,9 +140,10 @@ public class SaveManager {
     public void saveProjectManager()  {
         String filename = getDirectory() + File.separatorChar + "ProjectManager" + fileType;
         try {
+            ProjectManager projectManager = ProjectManager.getInstance();
             FileOutputStream fileOut = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fileOut);
-            oos.writeObject(ProjectManager.getInstance());
+            oos.writeObject(projectManager);
             oos.close();
             fileOut.close();
             System.out.println("Serialized data is saved for project " + "ProjectManager");
@@ -200,6 +206,36 @@ public class SaveManager {
         }
 
         return projectManager;
+    }
+
+    /**
+     * Removes the directory.
+     * @return Boolean if the remove was successful.
+     */
+    public boolean removeDirectory() {
+        File directory;
+        File saveDirectory;
+
+        try{
+            directory = new File(getDirectory());
+            saveDirectory = new File(getSaveDirectory());
+        } catch (Exception e) {
+            return false;
+        }
+
+        if (saveDirectory.isDirectory()) {
+            for (File currentFile : saveDirectory.listFiles()) {
+                currentFile.delete();
+            }
+        }
+
+        if (directory.isDirectory()) {
+            for (File currentFile : directory.listFiles()) {
+                currentFile.delete();
+            }
+        }
+
+        return directory.delete();
     }
 
     /**

@@ -53,6 +53,22 @@
             <scope>test</scope>
         </dependency>
 
+        <!--
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.2.RELEASE</version>
+        </dependency>
+        -->
+
+        <!-- Springframework test (used for reflection during unit testing) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.1.2.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 	
 	<build>
