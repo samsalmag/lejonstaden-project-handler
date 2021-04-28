@@ -8,9 +8,6 @@ package edu.chalmers.axen2021.model;
 
 public class ProjectCosts {
 
-    // Can only be accessed within 'model' package. Use 'Model' class to get access to this class outside of package.
-    ProjectCosts(){}
-
     /**
      * Calculates and returns the Connection costs.
      * @param krPerApt cost in kr per apartment.
@@ -53,12 +50,30 @@ public class ProjectCosts {
     }
 
     /**
-     * Calculates and returns the Finantial costs.
+     * Calculates and returns the Financial costs.
      * @param totBoa total BOA of the project.
      * @param krPerSqm cost in kr per square meter.
-     * @return Finantial costs of the project.
+     * @return Financial costs of the project.
      */
     public double getFinancialCost(int totBoa, int krPerSqm) {
         return (totBoa * krPerSqm) / 1000;
     }
+
+    public double getSiteCost(int groundRent){
+        return groundRent;
+    }
+
+    public double getDisusedDeveloperCost(int disusedDeveloperCost){
+        return disusedDeveloperCost;
+    }
+
+    public double getCostPerBoa(int variable, int totBoa){
+        return variable/(totBoa*1000);
+    }
+
+    public double getCostPerBta(int variable, int totBta){
+        return variable/(totBta*1000);
+    }
+
 }
+
