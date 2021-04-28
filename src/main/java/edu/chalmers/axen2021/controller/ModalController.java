@@ -40,16 +40,28 @@ public class ModalController {
         clearTilePane();
     }
 
+    @FXML
+    private void openAddNewCostView() {
+        rootController.getAddNewCostAnchorPane().toFront();
+    }
+
     /**
      * Method for adding a new modalWindowItem.
      * Adds modalWindowItem to the TilePane in modalWindow.
-     * @param event that triggered the method.
      * @throws IOException if unrecognized wrong file name.
      */
-    @FXML
-    private void addNewModalWindowItem(Event event) throws IOException {
-        Node modalWindowItem = FXMLLoader.load(getClass().getResource("/fxml/modalWindowItem.fxml"));
-        modalWindowItemTilePane.getChildren().add(modalWindowItem);
+    public void addNewModalWindowItem(String name) {
+        FXMLLoader costItem = new FXMLLoader(getClass().getResource("/fxml/modalWindowItem.fxml"));
+        CostItemController costItemController = new CostItemController(name);
+        costItem.setController(costItemController);
+        Node costItemNode = null;
+
+        try {
+            costItemNode = costItem.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        modalWindowItemTilePane.getChildren().add(costItemNode);
 
         ProjectManager.getInstance().getActiveProject().addCostItem();
         SaveManager.getInstance().saveProjectManager();

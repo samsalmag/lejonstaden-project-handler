@@ -30,8 +30,10 @@ public class RootController implements IViewObserver {
     private HeaderController headerController;
     private SideBarController sideBarController;
     private ModalController modalController;
-    private InputController inputController;
     private AddNewProjectController addNewProjectController;
+    private AddNewCostController addNewCostController;
+
+    private InputController inputController;
 
     //Because of singleton pattern.
     private RootController() {}
@@ -67,6 +69,10 @@ public class RootController implements IViewObserver {
      * AnchorPane for addNewProjectView.fxml in root.fxml
      */
     @FXML private AnchorPane addNewProjectAnchorPane;
+    /**
+     * AnchorPane for addNewCostView.fxml in root.fxml
+     */
+    @FXML private AnchorPane addNewCostAnchorPane;
 
     /**
      * Initialize method that starts up the first scene and all its children.
@@ -77,6 +83,7 @@ public class RootController implements IViewObserver {
         FXMLLoader sideBar = new FXMLLoader(getClass().getResource("/fxml/sideBar.fxml"));
         FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
         FXMLLoader addNewProject = new FXMLLoader(getClass().getResource("/fxml/addNewProjectView.fxml"));
+        FXMLLoader addNewCost = new FXMLLoader(getClass().getResource("/fxml/addNewCostView.fxml"));
 
         // TODO - Remove 'inputWindow' and related code after implementation is done
         FXMLLoader inputWindow = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
@@ -84,13 +91,16 @@ public class RootController implements IViewObserver {
         headerController = new HeaderController();
         sideBarController = new SideBarController();
         modalController = new ModalController();
-        inputController = new InputController();
         addNewProjectController = new AddNewProjectController();
+        addNewCostController = new AddNewCostController();
+
+        inputController = new InputController();
 
         header.setController(headerController);
         sideBar.setController(sideBarController);
         modalWindow.setController(modalController);
         addNewProject.setController(addNewProjectController);
+        addNewCost.setController(addNewCostController);
 
         inputWindow.setController(inputController);
 
@@ -99,12 +109,14 @@ public class RootController implements IViewObserver {
         Node modalWindowNode = null;
         Node inputWindowNode = null;
         Node addNewProjectNode = null;
+        Node addNewCostNode = null;
 
         try {
             headerNode = header.load();
             sideBarNode = sideBar.load();
             modalWindowNode = modalWindow.load();
             addNewProjectNode = addNewProject.load();
+            addNewCostNode = addNewCost.load();
 
             inputWindowNode = inputWindow.load();
         } catch (IOException e) {
@@ -119,6 +131,8 @@ public class RootController implements IViewObserver {
         setAnchors(modalAnchorPane, modalWindowNode);
         addNewProjectAnchorPane.getChildren().setAll(addNewProjectNode);
         setAnchors(addNewProjectAnchorPane, addNewProjectNode);
+        addNewCostAnchorPane.getChildren().setAll(addNewCostNode);
+        setAnchors(addNewCostAnchorPane, addNewCostNode);
 
         centerStageAnchorPane.getChildren().setAll(inputWindowNode);
         setAnchors(centerStageAnchorPane, inputWindowNode);
@@ -194,5 +208,9 @@ public class RootController implements IViewObserver {
 
     public ModalController getModalController() {
         return modalController;
+    }
+
+    public AnchorPane getAddNewCostAnchorPane() {
+        return addNewCostAnchorPane;
     }
 }
