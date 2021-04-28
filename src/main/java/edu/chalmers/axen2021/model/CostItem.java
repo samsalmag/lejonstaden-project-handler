@@ -19,10 +19,6 @@ public class CostItem implements Serializable {
         moms = true;
     }
 
-    public CostItem() {
-        moms = true;
-    }
-
     // Getter and setter methods for all variables
     public String getComment() { return comment; }
 

@@ -38,7 +38,8 @@ public class AddNewProjectController {
             }
         }
 
-        createNewProject();
+        Project newProject = createNewProject();
+        ProjectManager.getInstance().setActiveProject(newProject.getName());
         rootController.getAddNewProjectAnchorPane().toBack();
         projectNameTextField.clear();
     }
@@ -47,11 +48,14 @@ public class AddNewProjectController {
      * Creates a new project (sidebarItem) and adds it to the SideBar.
      * Also creates a save-file for the project.
      */
-    private void createNewProject() {
+    private Project createNewProject() {
         rootController.getSideBarController().addNewSideBarItem(projectNameTextField.getText());
-        SaveManager.getInstance().saveProject(new Project(projectNameTextField.getText()));
+        Project newProject = new Project(projectNameTextField.getText());
+        SaveManager.getInstance().saveProject(newProject);
 
         // TODO - Move this somewhere else..?
         SaveManager.getInstance().saveProjectManager();
+
+        return newProject;
     }
 }

@@ -28,7 +28,7 @@ public class AddNewCostController {
      */
     @FXML
     private void addNewCost() {
-        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText());
+        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText() + ":");
 
         rootController.getAddNewCostAnchorPane().toBack();
         costNameTextField.clear();

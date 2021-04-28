@@ -63,7 +63,7 @@ public class ModalController {
         }
         modalWindowItemTilePane.getChildren().add(costItemNode);
 
-        ProjectManager.getInstance().getActiveProject().addCostItem();
+        ProjectManager.getInstance().getActiveProject().addCostItem(name);
         SaveManager.getInstance().saveProjectManager();
     }
 
@@ -73,14 +73,18 @@ public class ModalController {
 
     public void populateTilePane() {
         // For every cost in a category add a cost to the specified category
-        for(int i = 0; i < projectManager.getActiveCategoryList().size(); i++) {
-            Node modalWindowItem = null;
+        for(String costItemName : projectManager.getActiveCategoryList()) {
+            FXMLLoader costItem = new FXMLLoader(getClass().getResource("/fxml/modalWindowItem.fxml"));
+            CostItemController costItemController = new CostItemController(costItemName);
+            costItem.setController(costItemController);
+            Node costItemNode = null;
+
             try {
-                modalWindowItem = FXMLLoader.load(getClass().getResource("/fxml/modalWindowItem.fxml"));
+                costItemNode = costItem.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            modalWindowItemTilePane.getChildren().add(modalWindowItem);
+            modalWindowItemTilePane.getChildren().add(costItemNode);
         }
     }
 }

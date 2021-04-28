@@ -146,7 +146,7 @@ public class SaveManager {
             oos.writeObject(projectManager);
             oos.close();
             fileOut.close();
-            System.out.println("Serialized data is saved for project " + "ProjectManager");
+            System.out.println("Serialized data is saved for the ProjectManager!");
         } catch (Exception e) {
             e.printStackTrace();
         }
