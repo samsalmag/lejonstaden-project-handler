@@ -47,7 +47,7 @@ public class SaveManager {
      * The path directory for where project are saved.
      * @return The directory.
      */
-    private static String getSaveDirectory() {
+    private String getSaveDirectory() {
         return getDirectory() + File.separatorChar + "projects";
     }
 
@@ -55,7 +55,7 @@ public class SaveManager {
      * The path directory for where all data for the application is saved.
      * @return The directory.
      */
-    private static String getDirectory() {
+    private String getDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".axen2021";
     }
 
@@ -79,7 +79,7 @@ public class SaveManager {
      * Get the names of all projects that exists in save directory.
      * @return Project names.
      */
-    public static ArrayList<String> getProjectNames() {
+    public ArrayList<String> getProjectNames() {
         ArrayList<String> projects = new ArrayList<>();
 
         File projectDir = new File(getSaveDirectory());
@@ -100,7 +100,7 @@ public class SaveManager {
      * Saves the given project and its values to a .axen file.
      * @param project The project to save.
      */
-    public static void saveProject(Project project)  {
+    public void saveProject(Project project)  {
         String filename = getSaveDirectory() + File.separatorChar + project.getName() + fileType;
         try {
             FileOutputStream fileOut = new FileOutputStream(filename);
@@ -117,7 +117,7 @@ public class SaveManager {
     /**
      * Saves the projectManager and its values to a .axen file.
      */
-    public static void saveProjectManager()  {
+    public void saveProjectManager()  {
         String filename = getDirectory() + File.separatorChar + "ProjectManager" + fileType;
         try {
             FileOutputStream fileOut = new FileOutputStream(filename);
@@ -135,7 +135,7 @@ public class SaveManager {
      * Reads all projects in the save directory.
      * @return Returns a list of all read projects.
      */
-    public static ArrayList<Project> readProjects()  {
+    public ArrayList<Project> readProjects()  {
         ArrayList<Project> projects = new ArrayList<>();
 
         for (String projectName : getProjectNames()) {
@@ -151,7 +151,7 @@ public class SaveManager {
      * @param projectName Project name.
      * @return Returns the read project.
      */
-    public static Project readProject(String projectName)  {
+    public Project readProject(String projectName)  {
         String filename = getSaveDirectory() + File.separatorChar + projectName + fileType;
         Project project = null;
         try {
@@ -172,60 +172,8 @@ public class SaveManager {
      * @param projectName Name of the project to remove
      * @return Boolean if remove file was successful
      */
-    public static boolean removeProjectFile(String projectName) {
+    public boolean removeProjectFile(String projectName) {
         File projectFile = new File(getSaveDirectory() + File.separatorChar + projectName + fileType);
         return projectFile.delete();
     }
-
-    // --------------------------- OLD SAVE SYSTEM BELOW --------------------------- //
-    // TODO - Remove or uncomment when save system is set
-
-    /*
-    /**
-     * Maps for input values and their comments.
-
-    private HashMap<String, Double> valuesMap = new HashMap<>();
-    private HashMap<String, String> commentsMap = new HashMap<>();
-    */
-
-    /*
-    /**
-     * Saves the project and its input values to a .txt file
-
-    public void saveProject()  {
-
-        // TODO - filename should be replaced with the correct project name.
-        Date date = new Date();
-        String filename = saveDirectory() + File.separatorChar + "project_" + date.getTime() +".txt";
-        try {
-            FileOutputStream fos = new FileOutputStream(filename);
-            OutputStreamWriter osw = new OutputStreamWriter(fos, "ISO-8859-1");
-
-            valuesMap.forEach((key, value) -> writeToFile(osw, key, value));
-            osw.write("\n");
-            commentsMap.forEach((key, value) -> writeToFile(osw, key, value));
-            osw.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Writes given key and its value to the given OutputStreamWriter.
-     * @param osw OutputStreamWriter.
-     * @param key Key Object.
-     * @param value Value Object.
-
-    private void writeToFile(OutputStreamWriter osw, Object key, Object value) {
-        String line;
-        line = "" + key + ":" + value + "\n";
-        try {
-            osw.write(line);
-            osw.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 }

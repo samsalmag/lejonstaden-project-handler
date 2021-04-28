@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -142,7 +143,14 @@ public class RootController implements IViewObserver {
      * Loads the projects existing in the save directory into the application.
      */
     private void loadProjects() {
-        for (Project project : SaveManager.getInstance().readProjects()) {
+        ArrayList<Project> projects = SaveManager.getInstance().readProjects();
+
+        // If no projects were read then don't continue.
+        if(projects.size() == 0) {
+            return;
+        }
+
+        for (Project project : projects) {
             sideBarController.addNewSideBarItem(project.getName());
             Model.getInstance().addProject(project);      // Add project to 'projects' list during load.
         }

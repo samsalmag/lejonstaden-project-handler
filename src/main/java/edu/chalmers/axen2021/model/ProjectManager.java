@@ -13,18 +13,23 @@ import java.util.HashMap;
 public class ProjectManager implements Serializable {
 
     /**
+     * Used when deserializing, acts as this class' ID.
+     */
+    private static final long serialVersionUID = 10L;
+
+    /**
      * The instance of this class.
      */
-    private static ProjectManager instance = null;
+    private transient static ProjectManager instance = null;
 
     /**
      * A list of all projects during runtime.
      * Is updated when a new Project is created, and also when program startup.
      */
-    private ArrayList<Project> projects = new ArrayList<>();
+    private transient ArrayList<Project> projects = new ArrayList<>();
 
-    private Project activeProject;
-    private String activeCategory;
+    private transient Project activeProject;
+    private transient String activeCategory;
 
     private HashMap<String, ArrayList<String>> categoryListMap = new HashMap<>();
 
@@ -72,6 +77,14 @@ public class ProjectManager implements Serializable {
             instance = new ProjectManager();
         }
         return instance;
+    }
+
+    /**
+     * Used by the 'Serializable' interface when deserializing.
+     * Makes sure the Singleton pattern is kept.
+     */
+    protected Object readResolve() {
+        return getInstance();
     }
 
     /**
