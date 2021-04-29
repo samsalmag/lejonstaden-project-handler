@@ -7,18 +7,29 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the applications modalWindowItem.fxml.
+ * Handles all event triggered in the modalWindowItem (cost item).
+ * @author Sam Salek
+ */
 public class CostItemController implements Initializable {
 
-    @FXML
-    Label nameLabel;
-    private String projectName;
+    /**
+     * The name label in the .fxml file.
+     */
+    @FXML Label nameLabel;
+
+    /**
+     * Name of the cost item
+     */
+    private String name;
 
     public CostItemController(String name) {
-        projectName = name;
+        this.name = name;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameLabel.setText(projectName);
+        nameLabel.setText(name);
     }
 }

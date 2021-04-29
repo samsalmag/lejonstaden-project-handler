@@ -15,6 +15,9 @@ import java.io.IOException;
  */
 public class SideBarController {
 
+    /**
+     * The parent controller
+     */
     private RootController rootController = RootController.getInstance();
 
     /**
@@ -22,6 +25,9 @@ public class SideBarController {
      */
     @FXML private VBox projectItemVbox;
 
+    /**
+     * Opens the addNewProject view.
+     */
     @FXML
     private void openAddNewProjectView() {
         rootController.getAddNewProjectAnchorPane().toFront();
@@ -43,13 +49,5 @@ public class SideBarController {
             e.printStackTrace();
         }
         projectItemVbox.getChildren().add(sideBarItemNode);
-    }
-
-    /**
-     * Getter for projectItemVbox.
-     * @return projectItemVbox
-     */
-    public VBox getProjectItemVbox() {
-        return projectItemVbox;
     }
 }

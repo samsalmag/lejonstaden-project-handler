@@ -145,10 +145,6 @@ public class InputController implements Initializable {
      */
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
-
-        //rootController.clearModal();
-        //rootController.getModalAnchorPane().getChildren().removeAll(rootController.getModalAnchorPane().getChildren());
-
         Category category = Category.fromString(((Button)event.getSource()).getText());
         ProjectManager.getInstance().setActiveCategory(category);
         rootController.getModalController().populateTilePane();

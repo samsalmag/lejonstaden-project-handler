@@ -1,6 +1,5 @@
 package edu.chalmers.axen2021.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -97,6 +96,4 @@ public class ProjectCosts {
     public double getCostPerBta(int variable, int totBta){
         return variable/(totBta*1000);
     }
-
 }
-

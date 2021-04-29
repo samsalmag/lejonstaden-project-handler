@@ -15,12 +15,12 @@ import java.io.IOException;
  * @author Oscar Arvidson
  * @author Erik Wetter
  * @author Malte Åkvist
+ * @author Sam Salek
  */
 public class ModalController {
-    private ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
-     * Parent controller
+     * Parent controller.
      */
     private RootController rootController = RootController.getInstance();
 
@@ -40,6 +40,9 @@ public class ModalController {
         clearTilePane();
     }
 
+    /**
+     * Opens the addNewCostView based on addNewCostVoew.fxml.
+     */
     @FXML
     private void openAddNewCostView() {
         rootController.getAddNewCostAnchorPane().toFront();
@@ -48,9 +51,38 @@ public class ModalController {
     /**
      * Method for adding a new modalWindowItem.
      * Adds modalWindowItem to the TilePane in modalWindow.
-     * @throws IOException if unrecognized wrong file name.
      */
     public void addNewModalWindowItem(String name) {
+        addModalItem(name);
+
+        ProjectManager.getInstance().getActiveProject().addCostItem(name);
+        SaveManager.getInstance().saveProjectManager();
+    }
+
+    /**
+     * Removes all cost items in the modal window.
+     */
+    private void clearTilePane() {
+        modalWindowItemTilePane.getChildren().clear();
+    }
+
+    /**
+     * This method populates the active category modal window with cost items,
+     * based on the number of saved cost items for that specific category.
+     */
+    public void populateTilePane() {
+        // For every cost in the active category: add a cost item
+        for(String costItemName : ProjectManager.getInstance().getActiveCategoryList()) {
+            addModalItem(costItemName);
+        }
+    }
+
+    /**
+     * Adds a new cost item view to the modal window.
+     * Uses modalWindowItem.fxml to create the view.
+     * @param name
+     */
+    private void addModalItem(String name) {
         FXMLLoader costItem = new FXMLLoader(getClass().getResource("/fxml/modalWindowItem.fxml"));
         CostItemController costItemController = new CostItemController(name);
         costItem.setController(costItemController);
@@ -62,29 +94,5 @@ public class ModalController {
             e.printStackTrace();
         }
         modalWindowItemTilePane.getChildren().add(costItemNode);
-
-        ProjectManager.getInstance().getActiveProject().addCostItem(name);
-        SaveManager.getInstance().saveProjectManager();
-    }
-
-    private void clearTilePane() {
-        modalWindowItemTilePane.getChildren().clear();
-    }
-
-    public void populateTilePane() {
-        // For every cost in a category add a cost to the specified category
-        for(String costItemName : projectManager.getActiveCategoryList()) {
-            FXMLLoader costItem = new FXMLLoader(getClass().getResource("/fxml/modalWindowItem.fxml"));
-            CostItemController costItemController = new CostItemController(costItemName);
-            costItem.setController(costItemController);
-            Node costItemNode = null;
-
-            try {
-                costItemNode = costItem.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            modalWindowItemTilePane.getChildren().add(costItemNode);
-        }
     }
 }

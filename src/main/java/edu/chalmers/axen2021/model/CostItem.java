@@ -9,9 +9,25 @@ import java.io.Serializable;
  * @author Malte Åkvist
  */
 public class CostItem implements Serializable {
-    private String comment;
-    private double value;
+
+    /**
+     * Name of the cost item.
+     */
     private String name;
+
+    /**
+     * The value inputted to the cost item.
+     */
+    private double value;
+
+    /**
+     * The comment inputted to the cost item.
+     */
+    private String comment;
+
+    /**
+     * If moms should be considered for the cost item.
+     */
     private boolean moms;
 
     public CostItem(String name) {
@@ -20,17 +36,17 @@ public class CostItem implements Serializable {
     }
 
     // Getter and setter methods for all variables
-    public String getComment() { return comment; }
+    public String getName() { return name; }
 
-    public void setComment(String comment) { this.comment = comment; }
+    public void setName(String name) { this.name = name; }
 
     public double getValue() { return value; }
 
     public void setValue(double value) { this.value = value; }
 
-    public String getName() { return name; }
+    public String getComment() { return comment; }
 
-    public void setName(String name) { this.name = name; }
+    public void setComment(String comment) { this.comment = comment; }
 
     public boolean getMoms() { return moms; }
 

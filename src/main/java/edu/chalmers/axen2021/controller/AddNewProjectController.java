@@ -7,15 +7,27 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller class for the applications addNewProjectView.fxml.
+ * Handles all event triggered in the addNewProjectView.
+ * @author Erik Wetter
+ * @author Sam Salek
+ */
 public class AddNewProjectController {
 
+    /**
+     * The parent controller
+     */
     private RootController rootController = RootController.getInstance();
 
+    /**
+     * The input text field.
+     */
     @FXML private TextField projectNameTextField;
 
     /**
-     * Method for closing the modalWindow.
-     * Puts the modalWindowAnchorPane to back in scene.
+     * Method for closing the addNewProjectView.
+     * Puts the addNewProjectView to back in scene.
      * @param event that triggered the method.
      */
     @FXML

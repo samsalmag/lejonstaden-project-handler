@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for the applications sideBarItem.fxml.
- * Handles all event triggered in the sideBarItem.
+ * Handles all event triggered in the sideBarItem (project item).
  * @author Oscar Arvidson
  * @author Erik Wetter
  * @author Sam Salek
@@ -19,7 +19,14 @@ import java.util.ResourceBundle;
  */
 public class SideBarItemController implements Initializable {
 
+    /**
+     * The button in the .fxml file
+     */
     @FXML Button button;
+
+    /**
+     * The project name
+     */
     private String projectName;
 
     public SideBarItemController(String projectName) {

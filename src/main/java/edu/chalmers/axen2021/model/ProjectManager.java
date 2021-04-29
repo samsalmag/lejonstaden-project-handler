@@ -28,11 +28,22 @@ public class ProjectManager implements Serializable {
      */
     private transient static ArrayList<Project> projects;
 
+    /**
+     * The active project.
+     */
     private transient Project activeProject;
+
+    /**
+     * The active category.
+     */
     private transient Category activeCategory;
 
+    /**
+     * A map containing all category lists
+     */
     private HashMap<Category, ArrayList<String>> categoryListMap = new HashMap<>();
 
+    // Category lists.
     private ArrayList<String> tomtKostnader = new ArrayList<>();
     private ArrayList<String> nedlagdaByggherre = new ArrayList<>();
     private ArrayList<String> anslutningar = new ArrayList<>();
@@ -50,7 +61,6 @@ public class ProjectManager implements Serializable {
 
     // Private constructor because Singleton class. Use getInstance() instead.
     private ProjectManager(){
-
         projects = new ArrayList<>();
 
         // Put all categories names in categoryListMap with the corresponding arraylist
@@ -101,6 +111,7 @@ public class ProjectManager implements Serializable {
             }
         }
 
+        // Throws exception if it did not return in the if-statement above.
         try {
             throw new Exception("Could not set active project from project button name (button name is not a project)");
         } catch (Exception e) {

@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Saves projects within the application to files on the local computer.
+ * This class manages serialization (saving) throughout the application.
+ * Saves projects and other data to files on the local computer.
  * @author Sam Salek
  * @author Malte Åkvist
  */
@@ -79,6 +80,10 @@ public class SaveManager {
         }
     }
 
+    /**
+     * Checks if the ProjectManager file exists in directory.
+     * @return True if it exists, False if not.
+     */
     public boolean projectManagerExists() {
         File projectManager;
         try {
