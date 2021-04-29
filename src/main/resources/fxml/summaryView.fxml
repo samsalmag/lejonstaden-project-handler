@@ -10,9 +10,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1440.0" maxWidth="2560.0" minHeight="391.0" minWidth="729.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.axen2021.controller.SummaryViewController">
+<VBox alignment="TOP_CENTER" maxHeight="1440.0" maxWidth="2560.0" minHeight="391.0" minWidth="729.0" styleClass="white-background" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Projektnamn + Sammanfattning">
+      <VBox alignment="TOP_RIGHT">
+         <children>
+            <Button mnemonicParsing="false" onAction="#switchToInputView" text="Detalj Vy" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets right="20.0" top="20.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+      <Label fx:id="titleLabel" text="Projektnamn + Sammanfattning">
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />
          </VBox.margin>
@@ -211,5 +219,6 @@
             </VBox>
          </children>
       </HBox>
+      <Button mnemonicParsing="false" text="Button" />
    </children>
 </VBox>

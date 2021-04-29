@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -20,7 +21,15 @@ import java.io.IOException;
  */
 public class SummaryViewController implements IViewObservable {
 
+    /**
+     * Instance of Project Manager.
+     */
     private ProjectManager projectManager = ProjectManager.getInstance();
+
+    /**
+     * Instance of parent controller.
+     */
+    private RootController rootController = RootController.getInstance();
 
     //Variables connected to text fields in summaryView.fxml
     @FXML private TextField projektkostnadMedStod;
@@ -32,33 +41,69 @@ public class SummaryViewController implements IViewObservable {
     @FXML private TextField projektvinstProcentMedStod;
     @FXML private TextField projektvinstProcentUtanStod;
 
+    @FXML private Label titleLabel;
+
     /**
      * VBox in the SummaryView.
      */
     @FXML private VBox lagenhetsTypVbox;
 
+    /**
+     * Updates title on the page.
+     */
+    public void updateTitle(){
+        titleLabel.setText("Sammanfattning: " + projectManager.getActiveProject().getName());
+    }
+
+    /**
+     * Switches view to InputView.
+     */
+    @FXML private void switchToInputView(){
+        rootController.updateInputView();
+    }
+
+    /**
+     * Updates all TextFields.
+     */
     public void updateTextFields() {
         updateProjektkostnad();
         updateMarknadsvarde();
         updateProjektvinst();
         updateProjektvinstProcent();
     }
+
+    /**
+     * Updates all TextFields related to Projektkostnad.
+     */
     private void updateProjektkostnad() {
         projektkostnadMedStod.setText("" + projectManager.getActiveProject().getProjektkostnadKkrMedStod());
         projektkostnadUtanStod.setText("" + projectManager.getActiveProject().getProjektkostnadKkr());
     }
+
+    /**
+     * Updates all TextFields related to Marknadsvarde.
+     */
     private void updateMarknadsvarde() {
         marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
         marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
     }
+
+    /**
+     * Updates all TextFields related to Projektvinst.
+     */
     private void updateProjektvinst() {
         projektvinstMedStod.setText("" + projectManager.getActiveProject().getProjektvinstMedStod());
         projektvinstUtanStod.setText("" + projectManager.getActiveProject().getProjektvinstUtanStod());
     }
+
+    /**
+     * Updates all TextFields related to ProjektvinstProcent.
+     */
     private void updateProjektvinstProcent() {
         projektvinstProcentMedStod.setText("" + projectManager.getActiveProject().getProjektvinstProcentMedStod());
         projektvinstProcentUtanStod.setText("" + projectManager.getActiveProject().getProjektvinstProcentUtanStod());
     }
+
     /**
      * Method for addNewLagenhetstyp button clicked.
      * Adds a new LagenhetsDataSummaryItem to the VBox.
