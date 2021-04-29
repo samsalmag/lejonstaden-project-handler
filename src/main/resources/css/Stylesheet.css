@@ -24,3 +24,7 @@
 .modal-window-shadow{
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }
+
+.white-background{
+    -fx-background-color: white;
+}
