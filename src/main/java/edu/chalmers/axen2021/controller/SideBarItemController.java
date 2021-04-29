@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for the applications sideBarItem.fxml.
- * Handles all event triggered in the sideBarItem (project item).
+ * Handles all event triggered in the sideBarItem.
  * @author Oscar Arvidson
  * @author Erik Wetter
  * @author Sam Salek
@@ -20,15 +20,24 @@ import java.util.ResourceBundle;
 public class SideBarItemController implements Initializable {
 
     /**
-     * The button in the .fxml file
+     * Parent Controller.
+     */
+    private RootController rootController = RootController.getInstance();
+
+    /**
+     * Button for opening an existing project.
      */
     @FXML Button button;
 
     /**
-     * The project name
+     * Name of the project bound to the button.
      */
     private String projectName;
 
+    /**
+     * Constructor that initialize the project name.
+     * @param projectName name of the project.
+     */
     public SideBarItemController(String projectName) {
         this.projectName = projectName;
     }
@@ -45,5 +54,6 @@ public class SideBarItemController implements Initializable {
     @FXML
     private void onClick(ActionEvent event) {
         ProjectManager.getInstance().setActiveProject(button.getText());
+        rootController.updateSummaryView();
     }
 }

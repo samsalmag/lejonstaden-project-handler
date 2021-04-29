@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -75,6 +76,8 @@ public class InputController implements Initializable {
     @FXML private TextField totalLjusBta;
     @FXML private TextField totalBoa;
 
+    @FXML private Label titleLabel;
+
     /**
      * Instance of model.
      */
@@ -122,7 +125,7 @@ public class InputController implements Initializable {
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue){
                     //ToDo add methods to run when focus lost.
-                    updateAllLabels();
+                    updateAllTextFields();
                 }
             });
         }
@@ -137,6 +140,21 @@ public class InputController implements Initializable {
         inputFields.add(normHyraMedStod);
         inputFields.add(totalLjusBta);
     }
+
+    /**
+     * Updates title label of the page to the name of the current project.
+     */
+    public void updateTitle(){
+        titleLabel.setText("Detaljer: " + projectManager.getActiveProject().getName());
+    }
+
+    /**
+     * Change view to summaryView.
+     */
+    @FXML private void switchToSummaryView(){
+        rootController.updateSummaryView();
+    }
+
 
     /**
      * Method for opening the modalWindow.
@@ -163,10 +181,13 @@ public class InputController implements Initializable {
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
         Node lagenhetsDataItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
         lagenhetsTypVbox.getChildren().add(lagenhetsDataItem);
-        updateAllLabels();
+        updateAllTextFields();
     }
 
-    public void updateAllLabels(){
+    /**
+     * Updates all TextFields.
+     */
+    public void updateAllTextFields(){
         updateTomtkostnader();
         updateNedlagadaByggherre();
         updateAnslutningar();
@@ -180,6 +201,9 @@ public class InputController implements Initializable {
         updateFastighetsvardeOchResultat();
     }
 
+    /**
+     * Update all TextFields related to Tomtkostnader.
+     */
     private void updateTomtkostnader(){
         tomtkostnaderKkr.setText("" + projectManager.getActiveProject().getTomtkostnaderKkr());
         tomtkostnaderKkr.setText("" + projectManager.getActiveProject().getTomtkostnaderKkr());
@@ -187,60 +211,90 @@ public class InputController implements Initializable {
         tomtkostnaderKrBta.setText("" + projectManager.getActiveProject().getTomtkostnaderKrBta());
     }
 
+    /**
+     * Update all TextFields related to NedlagdaByggherre.
+     */
     private void updateNedlagadaByggherre(){
         nedlagdaBygherreKkr.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKkr());
         nedlagdaBygherreKrBoa.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKrBoa());
         nedlagdaBygherreKrBta.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKrBta());
     }
 
+    /**
+     * Update all TextFields related to Ansultningar.
+     */
     private void updateAnslutningar(){
         anslutningarKkr.setText("" + projectManager.getActiveProject().getAnslutningarKkr());
         anslutningarKrBoa.setText("" + projectManager.getActiveProject().getAnslutningarKrBoa());
         anslutningarKrBta.setText("" + projectManager.getActiveProject().getAnslutningarKrBta());
     }
 
+    /**
+     * Update all TextFields related to Byggherrekostnader.
+     */
     private void updateByggherrekostnader(){
         byggherrekostnaderKkr.setText("" + projectManager.getActiveProject().getByggherrekostnaderKkr());
         byggherrekostnaderKrBoa.setText("" + projectManager.getActiveProject().getByggherrekostnaderKrBoa());
         byggherrekostnaderKrBta.setText("" + projectManager.getActiveProject().getByggherrekostnaderKrBta());
     }
 
+    /**
+     * Update all TextFields related to Entreprenad.
+     */
     private void updateEntreprenad(){
         entreprenadKkr.setText("" + projectManager.getActiveProject().getEntreprenadKkr());
         entreprenadKrBoa.setText("" + projectManager.getActiveProject().getEntreprenadKrBoa());
         entreprenadKrBta.setText("" + projectManager.getActiveProject().getEntreprenadKrBta());
     }
 
+    /**
+     * Update all TextFields related to Oforutsett.
+     */
     private void updateOforutsett(){
         oforutsettKkr.setText("" + projectManager.getActiveProject().getOforutsettKkr());
         oforutsettKrBoa.setText("" + projectManager.getActiveProject().getOforutsettKrBoa());
         oforutsettKrBta.setText("" + projectManager.getActiveProject().getOforutsettKrBta());
     }
 
+    /**
+     * Update all TextFields related to FinansiellaKostnader.
+     */
     private void updateFinansiellaKostnader(){
         finanisellaKostnaderKkr.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKkr());
         finanisellaKostnaderKrBoa.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKrBoa());
         finanisellaKostnaderKrBta.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKrBta());
     }
 
+    /**
+     * Update all TextFields related to Mervardeskatt.
+     */
     private void updateMervardeskatt(){
         mervardeskattKkr.setText("" + projectManager.getActiveProject().getMervardeskattKkr());
         mervardeskattKrBoa.setText("" + projectManager.getActiveProject().getMervardeskattKrBoa());
         mervardeskattKrBta.setText("" + projectManager.getActiveProject().getMervardeskattKrBta());
     }
 
+    /**
+     * Update all TextFields related to Investeringsstod.
+     */
     private void updateInvesteringsstod(){
         investeringsstodKkr.setText("" + projectManager.getActiveProject().getInvesteringsstodKkr());
         investeringsstodKrBoa.setText("" + projectManager.getActiveProject().getInvesteringsstodKrBoa());
         investeringsstodKrBta.setText("" + projectManager.getActiveProject().getInvesteringsstodKrBta());
     }
 
+    /**
+     * Update all TextFields related to Projektkostnad.
+     */
     private void updateProjektkostnad(){
         projektkostnadKkr.setText("" + projectManager.getActiveProject().getProjektkostnadKkr());
         projektkostnadKrBoa.setText("" + projectManager.getActiveProject().getProjektkostnadKrBoa());
         projektkostnadKrBta.setText("" + projectManager.getActiveProject().getProjektkostnadKrBta());
     }
 
+    /**
+     * Update all TextFields related to Fastighetsvarde and Resultat.
+     */
     private void updateFastighetsvardeOchResultat(){
         hyresintakterMedStod.setText("" + projectManager.getActiveProject().getHyresintakterMedStod());
         hyresintakterUtanStod.setText("" + projectManager.getActiveProject().getHyresintakterUtanStod());

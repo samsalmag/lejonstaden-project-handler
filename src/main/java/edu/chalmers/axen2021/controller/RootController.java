@@ -33,7 +33,12 @@ public class RootController implements IViewObserver {
     private AddNewProjectController addNewProjectController;
     private AddNewCostController addNewCostController;
 
+    private SummaryViewController summaryViewController;
     private InputController inputController;
+
+    //Private accessible nodes.
+    private Node inputWindowNode = null;
+    private Node summaryViewNode = null;
 
     //Because of singleton pattern.
     private RootController() {}
@@ -75,6 +80,11 @@ public class RootController implements IViewObserver {
     @FXML private AnchorPane addNewCostAnchorPane;
 
     /**
+     * AnchorPane for default background of centerStage AnchorPane.
+     */
+    @FXML private AnchorPane defaultCenterStageAnchorPane;
+
+    /**
      * Initialize method that starts up the first scene and all its children.
      */
     public void initialize() {
@@ -87,6 +97,7 @@ public class RootController implements IViewObserver {
 
         // TODO - Remove 'inputWindow' and related code after implementation is done
         FXMLLoader inputWindow = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
+        FXMLLoader summaryView = new FXMLLoader(getClass().getResource("/fxml/summaryView.fxml"));
 
         headerController = new HeaderController();
         sideBarController = new SideBarController();
@@ -94,6 +105,7 @@ public class RootController implements IViewObserver {
         addNewProjectController = new AddNewProjectController();
         addNewCostController = new AddNewCostController();
 
+        summaryViewController = new SummaryViewController();
         inputController = new InputController();
 
         header.setController(headerController);
@@ -103,11 +115,11 @@ public class RootController implements IViewObserver {
         addNewCost.setController(addNewCostController);
 
         inputWindow.setController(inputController);
+        summaryView.setController(summaryViewController);
 
         Node headerNode = null;
         Node sideBarNode = null;
         Node modalWindowNode = null;
-        Node inputWindowNode = null;
         Node addNewProjectNode = null;
         Node addNewCostNode = null;
 
@@ -119,6 +131,7 @@ public class RootController implements IViewObserver {
             addNewCostNode = addNewCost.load();
 
             inputWindowNode = inputWindow.load();
+            summaryViewNode = summaryView.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,8 +147,12 @@ public class RootController implements IViewObserver {
         addNewCostAnchorPane.getChildren().setAll(addNewCostNode);
         setAnchors(addNewCostAnchorPane, addNewCostNode);
 
-        centerStageAnchorPane.getChildren().setAll(inputWindowNode);
+        centerStageAnchorPane.getChildren().add(inputWindowNode);
         setAnchors(centerStageAnchorPane, inputWindowNode);
+        centerStageAnchorPane.getChildren().add(summaryViewNode);
+        setAnchors(centerStageAnchorPane, summaryViewNode);
+        defaultCenterStageAnchorPane.toFront();
+
 
         loadProjects();
     }
@@ -150,6 +167,25 @@ public class RootController implements IViewObserver {
         anchorPane.setRightAnchor(node, 0.0);
         anchorPane.setLeftAnchor(node, 0.0);
         anchorPane.setBottomAnchor(node, 0.0);
+    }
+
+    /**
+     * Puts current projects inputView to front in centerStage.
+     */
+    public void updateInputView(){
+        inputController.updateAllTextFields();
+        inputController.updateTitle();
+        inputWindowNode.toFront();
+    }
+
+    /**
+     * Puts current projects summaryView to front in centerStage.
+     */
+    public void updateSummaryView(){
+        summaryViewController.updateTextFields();
+        summaryViewController.updateTitle();
+        summaryViewNode.toFront();
+
     }
 
     /**
