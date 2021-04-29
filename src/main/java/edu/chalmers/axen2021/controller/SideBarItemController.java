@@ -19,9 +19,25 @@ import java.util.ResourceBundle;
  */
 public class SideBarItemController implements Initializable {
 
+    /**
+     * Parent Controller.
+     */
+    private RootController rootController = RootController.getInstance();
+
+    /**
+     * Button for opening an existing project.
+     */
     @FXML Button button;
+
+    /**
+     * Name of the project bound to the button.
+     */
     private String projectName;
 
+    /**
+     * Constructor that initialize the project name.
+     * @param projectName name of the project.
+     */
     public SideBarItemController(String projectName) {
         this.projectName = projectName;
     }
@@ -38,5 +54,6 @@ public class SideBarItemController implements Initializable {
     @FXML
     private void onClick(ActionEvent event) {
         ProjectManager.getInstance().setActiveProject(button.getText());
+        rootController.updateSummaryView();
     }
 }
