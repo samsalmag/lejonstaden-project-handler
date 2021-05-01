@@ -28,6 +28,7 @@ public class ProjectManager implements Serializable {
     /**
      * A list of all projects during runtime.
      * Is updated when a new Project is created, and also when program startup.
+     * Should not contain duplicates.
      */
     private transient static ArrayList<Project> projects;
 
@@ -84,6 +85,10 @@ public class ProjectManager implements Serializable {
      * @param project The project to be added.
      */
     public void addProject(Project project) {
+        if(projects.contains(project)) {
+            throw new IllegalArgumentException("This project already exists in the 'projects' list!");
+        }
+
         projects.add(project);
     }
 

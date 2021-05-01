@@ -1,6 +1,6 @@
-package edu.chalmers.axen2021.model;
+package edu.chalmers.axen2021.managers;
 
-import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.model.Project;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +15,6 @@ public class ProjectManagerTest {
     @Test
     public void setActiveProjectTest() {
         Project project = new Project("test");
-        projectManager.addProject(project);
 
         projectManager.setActiveProject(project.getName());
         assertEquals(projectManager.getActiveProject(), project);
