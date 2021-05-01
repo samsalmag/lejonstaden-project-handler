@@ -2,6 +2,7 @@ package edu.chalmers.axen2021.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A class for the projects created in the application.
@@ -16,20 +17,10 @@ public class Project implements Serializable {
      */
     private String name;
 
-    private ArrayList<CostItem> tomtKostnader = new ArrayList<>();
-    private ArrayList<CostItem> nedlagdaByggherre = new ArrayList<>();
-    private ArrayList<CostItem> anslutningar = new ArrayList<>();
-    private ArrayList<CostItem> byggherrekostnader = new ArrayList<>();
-    private ArrayList<CostItem> entrepenad = new ArrayList<>();
-    private ArrayList<CostItem> oförutsett = new ArrayList<>();
-    private ArrayList<CostItem> finansiellakostnader = new ArrayList<>();
-    private ArrayList<CostItem> mervärdeskatt = new ArrayList<>();
-    private ArrayList<CostItem> investeringsstöd = new ArrayList<>();
-    private ArrayList<CostItem> hyresintäkter = new ArrayList<>();
-    private ArrayList<CostItem> driftOchUnderhåll = new ArrayList<>();
-    private ArrayList<CostItem> tomträttsAvgäld = new ArrayList<>();
-    private ArrayList<CostItem> driftNetto = new ArrayList<>();
-    private ArrayList<CostItem> yield = new ArrayList<>();
+    /**
+     * A map containing all category lists.
+     */
+    private HashMap<Category, ArrayList<CostItem>> categoryMap = new HashMap<>();
 
     //Tomtkostnader
     private double tomtkostnaderKkr;
@@ -118,7 +109,18 @@ public class Project implements Serializable {
      */
     public Project(String name) {
         this.name = name;
+        initCategoryMap();
+
         Model.getInstance().addProject(this);
+    }
+
+    /**
+     * Initializes the category map by creating an ArrayList for each category.
+     */
+    private void initCategoryMap() {
+        for (Category category : Category.values()) {
+            categoryMap.put(category, new ArrayList<>());
+        }
     }
 
     /**
@@ -126,144 +128,86 @@ public class Project implements Serializable {
      */
     public void addCostItem(String name) {
 
-        // TODO - please improve
-        if(ProjectManager.getInstance().getActiveCategory() == Category.TOMTKOSTNADER) {
-            CostItem costItem = new CostItem(name);
-            tomtKostnader.add(costItem);
-            ProjectManager.getInstance().getTomtKostnader().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.NEDLAGDABYGGHERRE) {
-            CostItem costItem = new CostItem(name);
-            nedlagdaByggherre.add(costItem);
-            ProjectManager.getInstance().getNedlagdaByggherre().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.ANSLUTNINGAR) {
-            CostItem costItem = new CostItem(name);
-            anslutningar.add(costItem);
-            ProjectManager.getInstance().getAnslutningar().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.BYGGHERREKOSTNADER) {
-            CostItem costItem = new CostItem(name);
-            byggherrekostnader.add(costItem);
-            ProjectManager.getInstance().getByggherrekostnader().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.ENTREPENAD) {
-            CostItem costItem = new CostItem(name);
-            entrepenad.add(costItem);
-            ProjectManager.getInstance().getEntrepenad().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.OFÖRUTSETT) {
-            CostItem costItem = new CostItem(name);
-            oförutsett.add(costItem);
-            ProjectManager.getInstance().getOförutsett().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.FINANSIELLAKOSTNADER) {
-            CostItem costItem = new CostItem(name);
-            finansiellakostnader.add(costItem);
-            ProjectManager.getInstance().getFinansiellakostnader().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.MERVÄRDESKATT) {
-            CostItem costItem = new CostItem(name);
-            mervärdeskatt.add(costItem);
-            ProjectManager.getInstance().getMervärdeskatt().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.INVESTERINGSSTÖD) {
-            CostItem costItem = new CostItem(name);
-            investeringsstöd.add(costItem);
-            ProjectManager.getInstance().getInvesteringsstöd().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.HYRESINTÄKTER) {
-            CostItem costItem = new CostItem(name);
-            hyresintäkter.add(costItem);
-            ProjectManager.getInstance().getHyresintäkter().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.DRIFTOCHUNDERHÅLL) {
-            CostItem costItem = new CostItem(name);
-            driftOchUnderhåll.add(costItem);
-            ProjectManager.getInstance().getDriftOchUnderhåll().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.TOMTRÄTTSAVGÄLD) {
-            CostItem costItem = new CostItem(name);
-            tomträttsAvgäld.add(costItem);
-            ProjectManager.getInstance().getTomträttsAvgäld().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.DRIFTNETTO) {
-            CostItem costItem = new CostItem(name);
-            driftNetto.add(costItem);
-            ProjectManager.getInstance().getDriftNetto().add(costItem.getName());
-        }
-        else if(ProjectManager.getInstance().getActiveCategory() == Category.YIELD) {
-            CostItem costItem = new CostItem(name);
-            yield.add(costItem);
-            ProjectManager.getInstance().getYield().add(costItem.getName());
+        CostItem costItem = new CostItem(name);
+
+        for (Category category : Category.values()) {
+
+            // Add the cost item to the correct category lists
+            if(ProjectManager.getInstance().getActiveCategory() == category) {
+                categoryMap.get(category).add(costItem);
+                ProjectManager.getInstance().getActiveCategoryList().add(name);
+                return;
+            }
         }
     }
 
     // ------------------ GETTERS ------------------ //
     /**
-     * Getter for the 'name' variable.
-     * @return The 'name' variable.
+     * Getter for the name of the project.
+     * @return Name of the project.
      */
     public String getName() {
         return name;
     }
 
+    // GETTERS FOR CATEGORY LISTS
     public ArrayList<CostItem> getTomtKostnader() {
-        return tomtKostnader;
+        return categoryMap.get(Category.TOMTKOSTNADER);
     }
 
     public ArrayList<CostItem> getNedlagdaByggherre() {
-        return nedlagdaByggherre;
+        return categoryMap.get(Category.NEDLAGDABYGGHERRE);
     }
 
     public ArrayList<CostItem> getAnslutningar() {
-        return anslutningar;
+        return categoryMap.get(Category.ANSLUTNINGAR);
     }
 
     public ArrayList<CostItem> getByggherrekostnader() {
-        return byggherrekostnader;
+        return categoryMap.get(Category.BYGGHERREKOSTNADER);
     }
 
     public ArrayList<CostItem> getEntrepenad() {
-        return entrepenad;
+        return categoryMap.get(Category.ENTREPENAD);
     }
 
     public ArrayList<CostItem> getOförutsett() {
-        return oförutsett;
+        return categoryMap.get(Category.OFÖRUTSETT);
     }
 
     public ArrayList<CostItem> getFinansiellakostnader() {
-        return finansiellakostnader;
+        return categoryMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
     public ArrayList<CostItem> getMervärdeskatt() {
-        return mervärdeskatt;
+        return categoryMap.get(Category.MERVÄRDESKATT);
     }
 
     public ArrayList<CostItem> getInvesteringsstöd() {
-        return investeringsstöd;
+        return categoryMap.get(Category.INVESTERINGSSTÖD);
     }
 
     public ArrayList<CostItem> getHyresintäkter() {
-        return hyresintäkter;
+        return categoryMap.get(Category.HYRESINTÄKTER);
     }
 
     public ArrayList<CostItem> getDriftOchUnderhåll() {
-        return driftOchUnderhåll;
+        return categoryMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
 
     public ArrayList<CostItem> getTomträttsAvgäld() {
-        return tomträttsAvgäld;
+        return categoryMap.get(Category.TOMTRÄTTSAVGÄLD);
     }
 
     public ArrayList<CostItem> getDriftNetto() {
-        return driftNetto;
+        return categoryMap.get(Category.DRIFTNETTO);
     }
 
     public ArrayList<CostItem> getYield() {
-        return yield;
+        return categoryMap.get(Category.YIELD);
     }
 
+    // GETTERS FOR ALL THOSE VARIABLES...
     public double getTomtkostnaderKkr() {
         return tomtkostnaderKkr;
     }

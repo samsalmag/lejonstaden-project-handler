@@ -167,8 +167,6 @@ public class InputController implements Initializable {
         ProjectManager.getInstance().setActiveCategory(category);
         rootController.getModalController().populateTilePane();
         rootController.getModalAnchorPane().toFront();
-
-        System.out.println(category);
     }
 
     /**

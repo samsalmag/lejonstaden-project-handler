@@ -41,43 +41,12 @@ public class ProjectManager implements Serializable {
     /**
      * A map containing all category lists
      */
-    private HashMap<Category, ArrayList<String>> categoryListMap = new HashMap<>();
-
-    // Category lists.
-    private ArrayList<String> tomtKostnader = new ArrayList<>();
-    private ArrayList<String> nedlagdaByggherre = new ArrayList<>();
-    private ArrayList<String> anslutningar = new ArrayList<>();
-    private ArrayList<String> byggherrekostnader = new ArrayList<>();
-    private ArrayList<String> entrepenad = new ArrayList<>();
-    private ArrayList<String> oförutsett = new ArrayList<>();
-    private ArrayList<String> finansiellakostnader = new ArrayList<>();
-    private ArrayList<String> mervärdeskatt = new ArrayList<>();
-    private ArrayList<String> investeringsstöd = new ArrayList<>();
-    private ArrayList<String> hyresintäkter = new ArrayList<>();
-    private ArrayList<String> driftOchUnderhåll = new ArrayList<>();
-    private ArrayList<String> tomträttsAvgäld = new ArrayList<>();
-    private ArrayList<String> driftNetto = new ArrayList<>();
-    private ArrayList<String> yield = new ArrayList<>();
+    private HashMap<Category, ArrayList<String>> categoryMap = new HashMap<>();
 
     // Private constructor because Singleton class. Use getInstance() instead.
     private ProjectManager(){
         projects = new ArrayList<>();
-
-        // Put all categories names in categoryListMap with the corresponding arraylist
-        categoryListMap.put(Category.TOMTKOSTNADER, tomtKostnader);
-        categoryListMap.put(Category.NEDLAGDABYGGHERRE, nedlagdaByggherre);
-        categoryListMap.put(Category.ANSLUTNINGAR, anslutningar);
-        categoryListMap.put(Category.BYGGHERREKOSTNADER, byggherrekostnader);
-        categoryListMap.put(Category.ENTREPENAD, entrepenad);
-        categoryListMap.put(Category.OFÖRUTSETT, oförutsett);
-        categoryListMap.put(Category.FINANSIELLAKOSTNADER, finansiellakostnader);
-        categoryListMap.put(Category.MERVÄRDESKATT, mervärdeskatt);
-        categoryListMap.put(Category.INVESTERINGSSTÖD, investeringsstöd);
-        categoryListMap.put(Category.HYRESINTÄKTER, hyresintäkter);
-        categoryListMap.put(Category.DRIFTOCHUNDERHÅLL, driftOchUnderhåll);
-        categoryListMap.put(Category.TOMTRÄTTSAVGÄLD, tomträttsAvgäld);
-        categoryListMap.put(Category.DRIFTNETTO, driftNetto);
-        categoryListMap.put(Category.YIELD, yield);
+        initCategoryMap();
     }
 
     /**
@@ -96,6 +65,15 @@ public class ProjectManager implements Serializable {
             }
         }
         return instance;
+    }
+
+    /**
+     * Initializes the category map by creating an ArrayList for each category.
+     */
+    private void initCategoryMap() {
+        for (Category category : Category.values()) {
+            categoryMap.put(category, new ArrayList<>());
+        }
     }
 
     /**
@@ -146,120 +124,73 @@ public class ProjectManager implements Serializable {
     }
 
     /**
-     * Getter method to get the categoryListMap used for getting the category array from a category
-     * @return the categoryListMap
+     * Getter method for the categoryMap, used for getting an category ArrayList.
+     * @return The categoryMap
      */
-    public HashMap<Category, ArrayList<String>> getCategoryListMap() { return categoryListMap; }
+    public HashMap<Category, ArrayList<String>> getCategoryMap() { return categoryMap; }
 
     /**
      * Getter method to get current categoryList that is visible on screen
      * @return arraylist of the cost categories
      */
     public ArrayList<String> getActiveCategoryList() {
-        return categoryListMap.get(activeCategory);
+        return categoryMap.get(activeCategory);
     }
 
-    /**
-     * Getter for the 'tomtKostnader' list.
-     * @return The 'tomtKostnader' list.
-     */
-    public ArrayList<String> getTomtKostnader() { return tomtKostnader; }
+    // GETTERS FOR CATEGORY LISTS
+    public ArrayList<String> getTomtKostnader() {
+        return categoryMap.get(Category.TOMTKOSTNADER);
+    }
 
-    /**
-     * Getter for the 'nedlagdaByggherre' list.
-     * @return The 'nedlagdaByggherre' list.
-     */
-    public ArrayList<String> getNedlagdaByggherre() { return nedlagdaByggherre; }
+    public ArrayList<String> getNedlagdaByggherre() {
+        return categoryMap.get(Category.NEDLAGDABYGGHERRE);
+    }
 
-    /**
-     * Getter for the 'anslutningar' list.
-     * @return The 'anslutningar' list.
-     */
-    public ArrayList<String> getAnslutningar() { return anslutningar; }
+    public ArrayList<String> getAnslutningar() {
+        return categoryMap.get(Category.ANSLUTNINGAR);
+    }
 
-    /**
-     * Getter for the 'byggherrekostnader' list.
-     * @return The 'byggherrekostnader' list.
-     */
-    public ArrayList<String> getByggherrekostnader() { return byggherrekostnader; }
+    public ArrayList<String> getByggherrekostnader() {
+        return categoryMap.get(Category.BYGGHERREKOSTNADER);
+    }
 
-    /**
-     * Getter for the 'entrepenad' list.
-     * @return The 'entrepenad' list.
-     */
     public ArrayList<String> getEntrepenad() {
-        return entrepenad;
+        return categoryMap.get(Category.ENTREPENAD);
     }
 
-    /**
-     * Getter for the 'oförutsett' list.
-     * @return The 'oförutsett' list.
-     */
     public ArrayList<String> getOförutsett() {
-        return oförutsett;
+        return categoryMap.get(Category.OFÖRUTSETT);
     }
 
-    /**
-     * Getter for the 'finansiellakostnader' list.
-     * @return The 'finansiellakostnader' list.
-     */
     public ArrayList<String> getFinansiellakostnader() {
-        return finansiellakostnader;
+        return categoryMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
-    /**
-     * Getter for the 'mervärdeskatt' list.
-     * @return The 'mervärdeskatt' list.
-     */
     public ArrayList<String> getMervärdeskatt() {
-        return mervärdeskatt;
+        return categoryMap.get(Category.MERVÄRDESKATT);
     }
 
-    /**
-     * Getter for the 'investeringsstöd' list.
-     * @return The 'investeringsstöd' list.
-     */
     public ArrayList<String> getInvesteringsstöd() {
-        return investeringsstöd;
+        return categoryMap.get(Category.INVESTERINGSSTÖD);
     }
 
-    /**
-     * Getter for the 'hyresintäkter' list.
-     * @return The 'hyresintäkter' list.
-     */
     public ArrayList<String> getHyresintäkter() {
-        return hyresintäkter;
+        return categoryMap.get(Category.HYRESINTÄKTER);
     }
 
-    /**
-     * Getter for the 'driftOchUnderhåll' list.
-     * @return The 'driftOchUnderhåll' list.
-     */
     public ArrayList<String> getDriftOchUnderhåll() {
-        return driftOchUnderhåll;
+        return categoryMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
 
-    /**
-     * Getter for the 'tomträttsAvgäld' list.
-     * @return The 'tomträttsAvgäld' list.
-     */
     public ArrayList<String> getTomträttsAvgäld() {
-        return tomträttsAvgäld;
+        return categoryMap.get(Category.TOMTRÄTTSAVGÄLD);
     }
 
-    /**
-     * Getter for the 'driftNetto' list.
-     * @return The 'driftNetto' list.
-     */
     public ArrayList<String> getDriftNetto() {
-        return driftNetto;
+        return categoryMap.get(Category.DRIFTNETTO);
     }
 
-    /**
-     * Getter for the 'yield' list.
-     * @return The 'yield' list.
-     */
     public ArrayList<String> getYield() {
-        return yield;
+        return categoryMap.get(Category.YIELD);
     }
 }
