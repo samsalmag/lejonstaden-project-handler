@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.model;
 
+import edu.chalmers.axen2021.managers.ProjectManager;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,8 +112,7 @@ public class Project implements Serializable {
     public Project(String name) {
         this.name = name;
         initCategoryMap();
-
-        Model.getInstance().addProject(this);
+        ProjectManager.getInstance().addProject(this);
     }
 
     /**

@@ -1,4 +1,6 @@
-package edu.chalmers.axen2021.model;
+package edu.chalmers.axen2021.managers;
+
+import edu.chalmers.axen2021.model.Project;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -27,14 +27,6 @@ public class Model {
         return instance;
     }
 
-    /**
-     * Used to add a project to the 'projects' list.
-     * @param project The project to be added.
-     */
-    public void addProject(Project project) {
-        ProjectManager.getInstance().getProjects().add(project);
-    }
-
     // ------------------ GETTERS ------------------ //
 
     /**

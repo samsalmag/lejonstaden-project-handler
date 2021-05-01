@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.model;
 
+import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.managers.SaveManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

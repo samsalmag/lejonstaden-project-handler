@@ -1,4 +1,7 @@
-package edu.chalmers.axen2021.model;
+package edu.chalmers.axen2021.managers;
+
+import edu.chalmers.axen2021.model.Category;
+import edu.chalmers.axen2021.model.Project;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -74,6 +77,14 @@ public class ProjectManager implements Serializable {
         for (Category category : Category.values()) {
             categoryMap.put(category, new ArrayList<>());
         }
+    }
+
+    /**
+     * Used to add a project to the 'projects' list.
+     * @param project The project to be added.
+     */
+    public void addProject(Project project) {
+        projects.add(project);
     }
 
     /**

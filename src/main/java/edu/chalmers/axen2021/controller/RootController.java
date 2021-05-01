@@ -1,9 +1,8 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Model;
 import edu.chalmers.axen2021.model.Project;
-import edu.chalmers.axen2021.model.ProjectManager;
-import edu.chalmers.axen2021.model.SaveManager;
+import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.managers.SaveManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -201,7 +200,7 @@ public class RootController implements IViewObserver {
 
         for (Project project : projects) {
             sideBarController.addNewSideBarItem(project.getName());
-            Model.getInstance().addProject(project);      // Add project to 'projects' list during load.
+            ProjectManager.getInstance().addProject(project);      // Add project to 'projects' list during load.
         }
 
         // TODO - Remove line below...maybe? Depends on if a project should be 'chosen' on startup.
