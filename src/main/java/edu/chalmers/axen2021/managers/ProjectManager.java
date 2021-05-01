@@ -101,11 +101,7 @@ public class ProjectManager implements Serializable {
         }
 
         // Throws exception if it did not return in the if-statement above.
-        try {
-            throw new Exception("Could not set active project from project button name (button name is not a project)");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        throw new IllegalArgumentException("Could not set active project from project button name (button name is not a project)");
     }
 
     /**
