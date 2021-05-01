@@ -152,7 +152,7 @@ public class Project implements Serializable {
     }
 
     // GETTERS FOR CATEGORY LISTS
-    public ArrayList<CostItem> getTomtKostnader() {
+    public ArrayList<CostItem> getTomtkostnader() {
         return categoryMap.get(Category.TOMTKOSTNADER);
     }
 
@@ -176,7 +176,7 @@ public class Project implements Serializable {
         return categoryMap.get(Category.OFÖRUTSETT);
     }
 
-    public ArrayList<CostItem> getFinansiellakostnader() {
+    public ArrayList<CostItem> getFinansiellaKostnader() {
         return categoryMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
@@ -196,11 +196,11 @@ public class Project implements Serializable {
         return categoryMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
 
-    public ArrayList<CostItem> getTomträttsAvgäld() {
+    public ArrayList<CostItem> getTomträttsavgäld() {
         return categoryMap.get(Category.TOMTRÄTTSAVGÄLD);
     }
 
-    public ArrayList<CostItem> getDriftNetto() {
+    public ArrayList<CostItem> getDriftnetto() {
         return categoryMap.get(Category.DRIFTNETTO);
     }
 

@@ -150,7 +150,7 @@ public class ProjectManager implements Serializable {
     }
 
     // GETTERS FOR CATEGORY LISTS
-    public ArrayList<String> getTomtKostnader() {
+    public ArrayList<String> getTomtkostnader() {
         return categoryMap.get(Category.TOMTKOSTNADER);
     }
 
@@ -174,7 +174,7 @@ public class ProjectManager implements Serializable {
         return categoryMap.get(Category.OFÖRUTSETT);
     }
 
-    public ArrayList<String> getFinansiellakostnader() {
+    public ArrayList<String> getFinansiellaKostnader() {
         return categoryMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
@@ -194,11 +194,11 @@ public class ProjectManager implements Serializable {
         return categoryMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
 
-    public ArrayList<String> getTomträttsAvgäld() {
+    public ArrayList<String> getTomträttsavgäld() {
         return categoryMap.get(Category.TOMTRÄTTSAVGÄLD);
     }
 
-    public ArrayList<String> getDriftNetto() {
+    public ArrayList<String> getDriftnetto() {
         return categoryMap.get(Category.DRIFTNETTO);
     }
 
