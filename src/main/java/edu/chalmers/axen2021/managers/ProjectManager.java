@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.managers;
 
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.Project;
 
@@ -81,6 +82,26 @@ public class ProjectManager implements Serializable {
     }
 
     /**
+     * Loads the projects existing in the save directory into the application.
+     */
+    public void loadProjects() {
+        ArrayList<Project> readProjects = SaveManager.getInstance().readProjects();
+
+        // If no projects were read then don't continue.
+        if(readProjects.size() == 0) {
+            return;
+        }
+
+        for (Project project : readProjects) {
+            RootController.getInstance().getSideBarController().addNewSideBarItem(project.getName());
+            addProject(project);      // Add project to 'projects' list during load.
+        }
+
+        // TODO - Remove line below...maybe? Depends on if a project should be 'chosen' on startup.
+        setActiveProject(getProjects().get(0).getName());     // Sets first loaded project as the active project.
+    }
+
+    /**
      * Used to add a project to the 'projects' list.
      * @param project The project to be added.
      */
@@ -90,6 +111,20 @@ public class ProjectManager implements Serializable {
         }
 
         projects.add(project);
+    }
+
+    /**
+     * Removes a project from the application.
+     * @param project The project to remove.
+     * @return Returns True if remove was successful, False if not.
+     */
+    public boolean removeProject(Project project) {
+        if(!projects.contains(project)) {
+            throw new IllegalArgumentException("This project does not exist in 'projects' list!");
+        }
+
+        projects.remove(project);
+        return SaveManager.getInstance().removeProjectFile(project);
     }
 
     /**

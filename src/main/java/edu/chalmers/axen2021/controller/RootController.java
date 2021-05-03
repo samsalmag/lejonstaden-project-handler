@@ -1,8 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.managers.ProjectManager;
-import edu.chalmers.axen2021.managers.SaveManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -152,8 +149,7 @@ public class RootController implements IViewObserver {
         setAnchors(centerStageAnchorPane, summaryViewNode);
         defaultCenterStageAnchorPane.toFront();
 
-
-        loadProjects();
+        ProjectManager.getInstance().loadProjects();
     }
 
     /**
@@ -184,27 +180,6 @@ public class RootController implements IViewObserver {
         summaryViewController.updateTextFields();
         summaryViewController.updateTitle();
         summaryViewNode.toFront();
-
-    }
-
-    /**
-     * Loads the projects existing in the save directory into the application.
-     */
-    private void loadProjects() {
-        ArrayList<Project> projects = SaveManager.getInstance().readProjects();
-
-        // If no projects were read then don't continue.
-        if(projects.size() == 0) {
-            return;
-        }
-
-        for (Project project : projects) {
-            sideBarController.addNewSideBarItem(project.getName());
-            ProjectManager.getInstance().addProject(project);      // Add project to 'projects' list during load.
-        }
-
-        // TODO - Remove line below...maybe? Depends on if a project should be 'chosen' on startup.
-        ProjectManager.getInstance().setActiveProject(ProjectManager.getInstance().getProjects().get(0).getName());     // Sets first loaded project as the active project.
     }
 
     /**

@@ -250,12 +250,12 @@ public class SaveManager {
     }
 
     /**
-     * Remove a project file by inputting the project name to be removed
-     * @param projectName Name of the project to remove
-     * @return Boolean if remove file was successful
+     * Removes the project save file for the inputted project.
+     * @param project Project to remove.
+     * @return Boolean if remove file was successful.
      */
-    public boolean removeProjectFile(String projectName) {
-        File projectFile = new File(getSaveDirectory() + File.separatorChar + projectName + fileType);
+    public boolean removeProjectFile(Project project) {
+        File projectFile = new File(getSaveDirectory() + File.separatorChar + project.getName() + fileType);
         return projectFile.delete();
     }
 }

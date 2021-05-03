@@ -14,7 +14,7 @@ public class ProjectManagerTest {
 
     @Test
     public void setActiveProjectTest() {
-        Project project = new Project("test");
+        Project project = new Project("testActive");
 
         projectManager.setActiveProject(project.getName());
         assertEquals(projectManager.getActiveProject(), project);
