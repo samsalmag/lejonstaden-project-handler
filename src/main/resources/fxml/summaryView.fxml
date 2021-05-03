@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1440.0" maxWidth="2560.0" minHeight="391.0" minWidth="729.0" styleClass="white-background" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" minHeight="391.0" minWidth="850.0" styleClass="white-background" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_RIGHT">
          <children>
@@ -27,7 +27,7 @@
       </Label>
       <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" minWidth="350.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" minWidth="300.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Lägenhetsdata">
                      <VBox.margin>
@@ -219,6 +219,5 @@
             </VBox>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Button" />
    </children>
 </VBox>

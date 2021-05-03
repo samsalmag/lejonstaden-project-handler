@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -33,11 +33,7 @@
                   </HBox>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="240.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
                      <content>
-                        <TilePane fx:id="modalWindowItemTilePane" alignment="TOP_CENTER" prefColumns="2" tileAlignment="TOP_CENTER" vgap="50.0">
-                           <padding>
-                              <Insets top="40.0" />
-                           </padding>
-                        </TilePane>
+                        <VBox fx:id="modalWindowItemVBox" alignment="TOP_CENTER" spacing="20.0" />
                      </content>
                   </ScrollPane>
                   <HBox alignment="CENTER" maxHeight="100.0" minHeight="50.0" VBox.vgrow="ALWAYS">
