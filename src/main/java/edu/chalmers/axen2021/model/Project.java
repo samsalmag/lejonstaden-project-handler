@@ -131,19 +131,35 @@ public class Project implements Serializable {
 
         CostItem costItem = new CostItem(name);
 
-        for (Category category : Category.values()) {
+        // Add the cost item to the correct category lists
+        Category activeCategory = ProjectManager.getInstance().getActiveCategory();
+        costItemsMap.get(activeCategory).add(costItem);
+        ProjectManager.getInstance().getActiveCostItemNames().add(name);
 
-            // Add the cost item to the correct category lists
-            if(ProjectManager.getInstance().getActiveCategory() == category) {
-                costItemsMap.get(category).add(costItem);
-                ProjectManager.getInstance().getActiveCostItemNames().add(name);
+        // Sort the list to alphabetical order.
+        ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
+    }
 
-                // Sort the list to alphabetical order.
-                ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
+    /**
+     * Removes a cost item.
+     * @param category Category where cost item resides.
+     * @param name Name of the cost item
+     * @return Returns True if removal was successful, False if not.
+     */
+    public boolean removeCostItem(Category category, String name) {
 
-                return;
+        // For every cost item in the given category...if its name is same as given name...
+        for (CostItem costItem : costItemsMap.get(category)) {
+            if(costItem.getName().equals(name)) {
+
+                // Remove cost item from project, remove cost item name from project manager.
+                costItemsMap.get(category).remove(costItem);
+                ProjectManager.getInstance().getCostItemNamesMap().get(category).remove(costItem.getName());
+                return true;
             }
         }
+
+        throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getName());
     }
 
     // ------------------ GETTERS ------------------ //
