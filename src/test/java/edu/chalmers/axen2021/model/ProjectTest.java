@@ -18,7 +18,7 @@ public class ProjectTest {
         projectManager.setActiveCategory(Category.TOMTKOSTNADER);
         project.addCostItem("testCost");
 
-        assertEquals(projectManager.getActiveCategoryList().get(0), "testCost");
-        assertNotEquals(projectManager.getActiveCategoryList().get(0), "fakeTestCost");
+        assertEquals(projectManager.getActiveCostItemNames().get(0), "testCost");
+        assertNotEquals(projectManager.getActiveCostItemNames().get(0), "fakeTestCost");
     }
 }

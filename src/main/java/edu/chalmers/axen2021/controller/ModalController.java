@@ -72,7 +72,7 @@ public class ModalController {
      */
     public void populateTilePane() {
         // For every cost in the active category: add a cost item
-        for(String costItemName : ProjectManager.getInstance().getActiveCategoryList()) {
+        for(String costItemName : ProjectManager.getInstance().getActiveCostItemNames()) {
             addModalItem(costItemName);
         }
     }

@@ -22,7 +22,7 @@ public class Project implements Serializable {
     /**
      * A map containing all category lists.
      */
-    private HashMap<Category, ArrayList<CostItem>> categoryMap = new HashMap<>();
+    private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
     //Tomtkostnader
     private double tomtkostnaderKkr;
@@ -111,16 +111,16 @@ public class Project implements Serializable {
      */
     public Project(String name) {
         this.name = name;
-        initCategoryMap();
+        initCostItemsMap();
         ProjectManager.getInstance().addProject(this);
     }
 
     /**
      * Initializes the category map by creating an ArrayList for each category.
      */
-    private void initCategoryMap() {
+    private void initCostItemsMap() {
         for (Category category : Category.values()) {
-            categoryMap.put(category, new ArrayList<>());
+            costItemsMap.put(category, new ArrayList<>());
         }
     }
 
@@ -135,8 +135,8 @@ public class Project implements Serializable {
 
             // Add the cost item to the correct category lists
             if(ProjectManager.getInstance().getActiveCategory() == category) {
-                categoryMap.get(category).add(costItem);
-                ProjectManager.getInstance().getActiveCategoryList().add(name);
+                costItemsMap.get(category).add(costItem);
+                ProjectManager.getInstance().getActiveCostItemNames().add(name);
                 return;
             }
         }
@@ -151,61 +151,69 @@ public class Project implements Serializable {
         return name;
     }
 
-    // GETTERS FOR CATEGORY LISTS
+    /**
+     * Getter for the map of all cost items in the project.
+     * @return Map of all cost items.
+     */
+    public HashMap<Category, ArrayList<CostItem>> getCostItemsMap() {
+        return costItemsMap;
+    }
+
+    // GETTERS FOR COST ITEM LISTS
     public ArrayList<CostItem> getTomtkostnader() {
-        return categoryMap.get(Category.TOMTKOSTNADER);
+        return costItemsMap.get(Category.TOMTKOSTNADER);
     }
 
     public ArrayList<CostItem> getNedlagdaByggherre() {
-        return categoryMap.get(Category.NEDLAGDABYGGHERRE);
+        return costItemsMap.get(Category.NEDLAGDABYGGHERRE);
     }
 
     public ArrayList<CostItem> getAnslutningar() {
-        return categoryMap.get(Category.ANSLUTNINGAR);
+        return costItemsMap.get(Category.ANSLUTNINGAR);
     }
 
     public ArrayList<CostItem> getByggherrekostnader() {
-        return categoryMap.get(Category.BYGGHERREKOSTNADER);
+        return costItemsMap.get(Category.BYGGHERREKOSTNADER);
     }
 
     public ArrayList<CostItem> getEntrepenad() {
-        return categoryMap.get(Category.ENTREPENAD);
+        return costItemsMap.get(Category.ENTREPENAD);
     }
 
     public ArrayList<CostItem> getOförutsett() {
-        return categoryMap.get(Category.OFÖRUTSETT);
+        return costItemsMap.get(Category.OFÖRUTSETT);
     }
 
     public ArrayList<CostItem> getFinansiellaKostnader() {
-        return categoryMap.get(Category.FINANSIELLAKOSTNADER);
+        return costItemsMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
     public ArrayList<CostItem> getMervärdeskatt() {
-        return categoryMap.get(Category.MERVÄRDESKATT);
+        return costItemsMap.get(Category.MERVÄRDESKATT);
     }
 
     public ArrayList<CostItem> getInvesteringsstöd() {
-        return categoryMap.get(Category.INVESTERINGSSTÖD);
+        return costItemsMap.get(Category.INVESTERINGSSTÖD);
     }
 
     public ArrayList<CostItem> getHyresintäkter() {
-        return categoryMap.get(Category.HYRESINTÄKTER);
+        return costItemsMap.get(Category.HYRESINTÄKTER);
     }
 
     public ArrayList<CostItem> getDriftOchUnderhåll() {
-        return categoryMap.get(Category.DRIFTOCHUNDERHÅLL);
+        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
 
     public ArrayList<CostItem> getTomträttsavgäld() {
-        return categoryMap.get(Category.TOMTRÄTTSAVGÄLD);
+        return costItemsMap.get(Category.TOMTRÄTTSAVGÄLD);
     }
 
     public ArrayList<CostItem> getDriftnetto() {
-        return categoryMap.get(Category.DRIFTNETTO);
+        return costItemsMap.get(Category.DRIFTNETTO);
     }
 
     public ArrayList<CostItem> getYield() {
-        return categoryMap.get(Category.YIELD);
+        return costItemsMap.get(Category.YIELD);
     }
 
     // GETTERS FOR ALL THOSE VARIABLES...
