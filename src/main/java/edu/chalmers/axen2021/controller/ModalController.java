@@ -6,7 +6,9 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
+
 import java.io.IOException;
 
 /**
@@ -28,6 +30,11 @@ public class ModalController {
      * TilePane in the modalWindow containing modalWindowItems.
      */
     @FXML private TilePane modalWindowItemTilePane;
+
+    /**
+     * Label for the category name.
+     */
+    @FXML private Label categoryNameLabel;
 
     /**
      * Method for closing the modalWindow.
@@ -94,5 +101,13 @@ public class ModalController {
             e.printStackTrace();
         }
         modalWindowItemTilePane.getChildren().add(costItemNode);
+    }
+
+    /**
+     * Sets the category name label text.
+     * @param text Input string.
+     */
+    public void setCategoryNameLabelText(String text) {
+        categoryNameLabel.setText(text);
     }
 }

@@ -165,6 +165,8 @@ public class InputController implements Initializable {
     private void categoryButtonClicked(ActionEvent event) {
         Category category = Category.fromString(((Button)event.getSource()).getText());
         ProjectManager.getInstance().setActiveCategory(category);
+
+        rootController.getModalController().setCategoryNameLabelText(category.getName());
         rootController.getModalController().populateTilePane();
         rootController.getModalAnchorPane().toFront();
     }

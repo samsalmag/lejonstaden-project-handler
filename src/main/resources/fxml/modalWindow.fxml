@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -21,7 +21,7 @@
                      <children>
                         <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Knapp namn">
+                              <Label fx:id="categoryNameLabel" text="Knapp namn">
                                  <padding>
                                     <Insets left="50.0" />
                                  </padding>
