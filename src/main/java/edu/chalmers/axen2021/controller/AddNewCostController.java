@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.managers.ProjectManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 
@@ -45,6 +46,13 @@ public class AddNewCostController {
         // Cost item name input can't be empty.
         if(costNameTextField.getText().equals("") || costNameTextField.getText().equals(null)) {
             return;
+        }
+
+        // Name can't be same as existing cost item in the same category
+        for (String costItemName : ProjectManager.getInstance().getActiveCostItemNames()) {
+            if (costItemName.toLowerCase().equals(costNameTextField.getText().toLowerCase() + ":")) {
+                return;
+            }
         }
 
         rootController.getModalController().addNewModalWindowItem(costNameTextField.getText() + ":");

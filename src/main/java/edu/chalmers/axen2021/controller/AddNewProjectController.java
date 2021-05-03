@@ -51,7 +51,7 @@ public class AddNewProjectController {
 
         // Name cant be same as existing project
         for (Project project : ProjectManager.getInstance().getProjects()) {
-            if (project.getName().equals(projectNameTextField.getText())) {
+            if (project.getName().toLowerCase().equals(projectNameTextField.getText().toLowerCase())) {
                 return;
             }
         }
