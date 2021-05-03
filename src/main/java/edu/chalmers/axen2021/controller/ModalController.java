@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 
 /**
@@ -27,7 +29,7 @@ public class ModalController {
     /**
      * TilePane in the modalWindow containing modalWindowItems.
      */
-    @FXML private TilePane modalWindowItemTilePane;
+    @FXML private VBox modalWindowItemVBox;
 
     /**
      * Method for closing the modalWindow.
@@ -63,7 +65,7 @@ public class ModalController {
      * Removes all cost items in the modal window.
      */
     private void clearTilePane() {
-        modalWindowItemTilePane.getChildren().clear();
+        modalWindowItemVBox.getChildren().clear();
     }
 
     /**
@@ -93,6 +95,6 @@ public class ModalController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        modalWindowItemTilePane.getChildren().add(costItemNode);
+        modalWindowItemVBox.getChildren().add(costItemNode);
     }
 }
