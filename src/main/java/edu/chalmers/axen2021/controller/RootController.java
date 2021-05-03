@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -106,7 +107,10 @@ public class RootController implements IViewObserver {
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
 
         defaultCenterStageAnchorPane.toFront();
+
+        // Load all projects from save files and create views for them.
         ProjectManager.getInstance().loadProjects();
+        initLoadedProjects();
     }
 
     /**
@@ -139,6 +143,15 @@ public class RootController implements IViewObserver {
         setAnchors(anchorPane, fxmlNode);
 
         return fxmlNode;
+    }
+
+    /**
+     * Initializes all loaded projects by creating a new view for it and adding it to the sidebar.
+     */
+    private void initLoadedProjects() {
+        for (Project project : ProjectManager.getInstance().getProjects()) {
+            sideBarController.addNewSideBarItem(project.getName());
+        }
     }
 
     /**

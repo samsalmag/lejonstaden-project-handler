@@ -49,6 +49,8 @@ public class ModalController {
      */
     @FXML
     private void closeModalWindow(Event event) {
+        SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
+
         rootController.getModalAnchorPane().toBack();
         clearTilePane();
     }
@@ -67,8 +69,9 @@ public class ModalController {
      */
     public void addNewModalWindowItem(String name) {
         addModalItem(name);
-
         projectManager.getActiveProject().addCostItem(name);
+
+        SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
         SaveManager.getInstance().saveProjectManager();
     }
 

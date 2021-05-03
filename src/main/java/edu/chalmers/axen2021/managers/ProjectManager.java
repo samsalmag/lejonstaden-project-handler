@@ -1,6 +1,5 @@
 package edu.chalmers.axen2021.managers;
 
-import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.Project;
 
@@ -93,7 +92,6 @@ public class ProjectManager implements Serializable {
         }
 
         for (Project project : readProjects) {
-            RootController.getInstance().getSideBarController().addNewSideBarItem(project.getName());
             addProject(project);      // Add project to 'projects' list during load.
         }
 
