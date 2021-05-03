@@ -30,7 +30,7 @@ public class AddNewCostController {
      */
     @FXML
     private void closeAddNewCostView(Event event) {
-        rootController.getAddNewProjectAnchorPane().toBack();
+        rootController.getAddNewCostAnchorPane().toBack();
         costNameTextField.clear();
     }
 
@@ -40,8 +40,13 @@ public class AddNewCostController {
      */
     @FXML
     private void addNewCost() {
-        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText() + ":");
 
+        // Cost item name input can't be empty.
+        if(costNameTextField.getText().equals("") || costNameTextField.getText().equals(null)) {
+            return;
+        }
+
+        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText() + ":");
         rootController.getAddNewCostAnchorPane().toBack();
         costNameTextField.clear();
     }

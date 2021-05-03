@@ -43,6 +43,11 @@ public class AddNewProjectController {
     @FXML
     private void addNewProject() {
 
+        // Project name input can't be empty.
+        if(projectNameTextField.getText().equals("") || projectNameTextField.getText().equals(null)) {
+            return;
+        }
+
         // Name cant be same as existing project
         for (Project project : ProjectManager.getInstance().getProjects()) {
             if (project.getName().equals(projectNameTextField.getText())) {

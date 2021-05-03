@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane minHeight="170.0" onMouseClicked="#closeAddNewCostView" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
       <HBox alignment="CENTER" maxHeight="250.0" minHeight="200.0" VBox.vgrow="ALWAYS">
