@@ -27,6 +27,11 @@ public class ModalController {
     private RootController rootController = RootController.getInstance();
 
     /**
+     * Instance of the project manager.
+     */
+    private ProjectManager projectManager = ProjectManager.getInstance();
+
+    /**
      * TilePane in the modalWindow containing modalWindowItems.
      */
     @FXML private TilePane modalWindowItemTilePane;
@@ -62,7 +67,7 @@ public class ModalController {
     public void addNewModalWindowItem(String name) {
         addModalItem(name);
 
-        ProjectManager.getInstance().getActiveProject().addCostItem(name);
+        projectManager.getActiveProject().addCostItem(name);
         SaveManager.getInstance().saveProjectManager();
     }
 
@@ -79,7 +84,7 @@ public class ModalController {
      */
     public void populateTilePane() {
         // For every cost in the active category: add a cost item
-        for(String costItemName : ProjectManager.getInstance().getActiveCostItemNames()) {
+        for(String costItemName : projectManager.getActiveCostItemNames()) {
             addModalItem(costItemName);
         }
     }

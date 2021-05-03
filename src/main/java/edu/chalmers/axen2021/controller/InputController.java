@@ -79,7 +79,7 @@ public class InputController implements Initializable {
     @FXML private Label titleLabel;
 
     /**
-     * Instance of model.
+     * Instance of the project manager.
      */
     private ProjectManager projectManager = ProjectManager.getInstance();
 

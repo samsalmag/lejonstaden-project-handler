@@ -137,6 +137,10 @@ public class Project implements Serializable {
             if(ProjectManager.getInstance().getActiveCategory() == category) {
                 costItemsMap.get(category).add(costItem);
                 ProjectManager.getInstance().getActiveCostItemNames().add(name);
+
+                // Sort the list to alphabetical order.
+                ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
+
                 return;
             }
         }
