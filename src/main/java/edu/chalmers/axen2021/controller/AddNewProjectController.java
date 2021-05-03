@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
  * @author Erik Wetter
  * @author Sam Salek
  */
+@FXMLController
 public class AddNewProjectController {
 
     /**

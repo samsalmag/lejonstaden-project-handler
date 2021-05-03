@@ -19,6 +19,7 @@ import java.io.IOException;
  * @author Erik Wetter
  * @author Oscar Arvidson
  */
+@FXMLController
 public class SummaryViewController implements IViewObservable {
 
     /**

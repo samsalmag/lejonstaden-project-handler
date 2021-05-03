@@ -85,71 +85,60 @@ public class RootController implements IViewObserver {
      */
     public void initialize() {
 
-        FXMLLoader header = new FXMLLoader(getClass().getResource("/fxml/header.fxml"));
-        FXMLLoader sideBar = new FXMLLoader(getClass().getResource("/fxml/sideBar.fxml"));
-        FXMLLoader modalWindow = new FXMLLoader(getClass().getResource("/fxml/modalWindow.fxml"));
-        FXMLLoader addNewProject = new FXMLLoader(getClass().getResource("/fxml/addNewProjectView.fxml"));
-        FXMLLoader addNewCost = new FXMLLoader(getClass().getResource("/fxml/addNewCostView.fxml"));
-
-        // TODO - Remove 'inputWindow' and related code after implementation is done
-        FXMLLoader inputWindow = new FXMLLoader(getClass().getResource("/fxml/inputView.fxml"));
-        FXMLLoader summaryView = new FXMLLoader(getClass().getResource("/fxml/summaryView.fxml"));
-
+        // Init all controllers.
         headerController = new HeaderController();
         sideBarController = new SideBarController();
         modalController = new ModalController();
         addNewProjectController = new AddNewProjectController();
         addNewCostController = new AddNewCostController();
 
-        summaryViewController = new SummaryViewController();
+        // Init the fxml code.
+        initFXML(headerAnchorPane, "header.fxml", headerController);
+        initFXML(sideBarAnchorPane, "sideBar.fxml", sideBarController);
+        initFXML(modalAnchorPane, "modalWindow.fxml", modalController);
+        initFXML(addNewProjectAnchorPane, "addNewProjectView.fxml", addNewProjectController);
+        initFXML(addNewCostAnchorPane, "addNewCostView.fxml", addNewCostController);
+
+        // TODO - remove lines below and associated values later..?
         inputController = new InputController();
+        summaryViewController = new SummaryViewController();
+        inputWindowNode = initFXML(centerStageAnchorPane, "inputView.fxml", inputController);
+        summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
 
-        header.setController(headerController);
-        sideBar.setController(sideBarController);
-        modalWindow.setController(modalController);
-        addNewProject.setController(addNewProjectController);
-        addNewCost.setController(addNewCostController);
+        defaultCenterStageAnchorPane.toFront();
+        ProjectManager.getInstance().loadProjects();
+    }
 
-        inputWindow.setController(inputController);
-        summaryView.setController(summaryViewController);
+    /**
+     * Initializes and loads an fxml file.
+     * Attaches the newly created node to 'anchorPane' and uses 'controller' as the Controller.
+     * @param anchorPane The anchor pane to attach the newly created node to.
+     * @param fxmlName Name of the .fxml file.
+     * @param controller The controller for the node.
+     * @return The node created from the .fxml file
+     */
+    private Node initFXML(AnchorPane anchorPane, String fxmlName, Object controller) {
 
-        Node headerNode = null;
-        Node sideBarNode = null;
-        Node modalWindowNode = null;
-        Node addNewProjectNode = null;
-        Node addNewCostNode = null;
+        // Give exception if given class is not a controller (not annotated with @FXMLController).
+        if(!controller.getClass().isAnnotationPresent(FXMLController.class)) {
+            throw new IllegalArgumentException(controller + " is not a controller class! (not annotated with @FXMLController)");
+        }
 
+        // Load fxml and create a node for it.
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxml/" + fxmlName));
+        fxml.setController(controller);
+        Node fxmlNode = null;
         try {
-            headerNode = header.load();
-            sideBarNode = sideBar.load();
-            modalWindowNode = modalWindow.load();
-            addNewProjectNode = addNewProject.load();
-            addNewCostNode = addNewCost.load();
-
-            inputWindowNode = inputWindow.load();
-            summaryViewNode = summaryView.load();
+            fxmlNode = fxml.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        headerAnchorPane.getChildren().setAll(headerNode);
-        setAnchors(headerAnchorPane, headerNode);
-        sideBarAnchorPane.getChildren().setAll(sideBarNode);
-        setAnchors(sideBarAnchorPane, sideBarNode);
-        modalAnchorPane.getChildren().setAll(modalWindowNode);
-        setAnchors(modalAnchorPane, modalWindowNode);
-        addNewProjectAnchorPane.getChildren().setAll(addNewProjectNode);
-        setAnchors(addNewProjectAnchorPane, addNewProjectNode);
-        addNewCostAnchorPane.getChildren().setAll(addNewCostNode);
-        setAnchors(addNewCostAnchorPane, addNewCostNode);
+        // Anchor the node to its anchor pane.
+        anchorPane.getChildren().add(fxmlNode);
+        setAnchors(anchorPane, fxmlNode);
 
-        centerStageAnchorPane.getChildren().add(inputWindowNode);
-        setAnchors(centerStageAnchorPane, inputWindowNode);
-        centerStageAnchorPane.getChildren().add(summaryViewNode);
-        setAnchors(centerStageAnchorPane, summaryViewNode);
-        defaultCenterStageAnchorPane.toFront();
-
-        ProjectManager.getInstance().loadProjects();
+        return fxmlNode;
     }
 
     /**

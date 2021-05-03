@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
  * Handles all event triggered in the addNewCostView.
  * @author Sam Salek
  */
+@FXMLController
 public class AddNewCostController {
 
     /**

@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
+@FXMLController
 public class HeaderController{
 
     /**

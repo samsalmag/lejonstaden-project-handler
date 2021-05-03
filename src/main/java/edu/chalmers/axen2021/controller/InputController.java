@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
+@FXMLController
 public class InputController implements Initializable {
 
     //FXML fx:id for all the TextFields.

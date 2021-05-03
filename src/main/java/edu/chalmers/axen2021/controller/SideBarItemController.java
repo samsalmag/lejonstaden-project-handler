@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
  * @author Sam Salek
  * @author Malte Åkvist
  */
+@FXMLController
 public class SideBarItemController implements Initializable {
 
     /**

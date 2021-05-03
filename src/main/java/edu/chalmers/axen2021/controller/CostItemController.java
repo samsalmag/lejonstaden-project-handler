@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
  * Handles all event triggered in the modalWindowItem (cost item).
  * @author Sam Salek
  */
+@FXMLController
 public class CostItemController implements Initializable {
 
     /**

@@ -13,6 +13,7 @@ import java.io.IOException;
  * @author Erik Wetter
  * @author Sam Salek
  */
+@FXMLController
 public class SideBarController {
 
     /**
