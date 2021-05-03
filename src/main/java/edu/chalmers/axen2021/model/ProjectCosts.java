@@ -61,14 +61,30 @@ public class ProjectCosts {
         return (totBoa * krPerSqm) / 1000;
     }
 
+    /**
+     *
+     * @param groundRent the ground rent for the project.
+     * @return Site cost for the project.
+     */
     public double getSiteCost(int groundRent){
         return groundRent;
     }
 
+    /**
+     *
+     * @param disusedDeveloperCost disused developer cost (nedlagda byggherre).
+     * @return The disused developer cost for the project.
+     */
     public double getDisusedDeveloperCost(int disusedDeveloperCost){
         return disusedDeveloperCost;
     }
 
+    /**
+     * Checks for every Cost Item in the project if moms should be applied to the Cost Item.
+     * If true then the Cost Item's value is multiplied with 0.25 (the tax) and added to the tax sum.
+     * @param matrix An ArrayList containing all of the projects ArrayLists of Cost Items.
+     * @return The tax sum for the project (mervärdesskatt)
+     */
     public double getMervardesskatt(ArrayList<ArrayList<CostItem>> matrix) {
         double moms = 0.0;
         for (ArrayList<CostItem> list : matrix) {
@@ -81,6 +97,11 @@ public class ProjectCosts {
         return moms / 1000;
     }
 
+    /**
+     * Summarizes the total cost of a specified Cost Item in the project.
+     * @param list List of Cost Items
+     * @return The sum of the Cost Items
+     */
     public double getTotalCost(ArrayList<CostItem> list) {
         double total = 0.0;
         for (CostItem c : list) {
@@ -89,10 +110,22 @@ public class ProjectCosts {
         return total / 1000;
     }
 
+    /**
+     * Calculates cost per BOA for a specified cost.
+     * @param variable The specified cost.
+     * @param totBoa The total BOA for the project.
+     * @return The cost per BOA for the specified cost.
+     */
     public double getCostPerBoa(int variable, int totBoa){
         return variable/(totBoa*1000);
     }
 
+    /**
+     * Calculates cost per BTA for a specified cost.
+     * @param variable The specified cost.
+     * @param totBta The total BTA for the project.
+     * @return
+     */
     public double getCostPerBta(int variable, int totBta){
         return variable/(totBta*1000);
     }
