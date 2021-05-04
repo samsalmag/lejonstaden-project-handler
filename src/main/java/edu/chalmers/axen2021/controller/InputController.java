@@ -145,6 +145,7 @@ public class InputController implements Initializable {
         inputFields.add(normHyraMedStod);
         inputFields.add(totalLjusBta);
         inputFields.add(yieldMedStod);
+        inputFields.add(yieldUtanStod);
     }
 
     /**
@@ -336,6 +337,7 @@ public class InputController implements Initializable {
         projectManager.getActiveProject().setAntagenPresumtionshyra(Double.parseDouble(antagenPresumtionshyra.getText()));
         projectManager.getActiveProject().setTotalLjusBta(Double.parseDouble(totalLjusBta.getText()));
         projectManager.getActiveProject().setYieldMedStod(Double.parseDouble(yieldMedStod.getText()));
+        projectManager.getActiveProject().setYieldUtanStod(Double.parseDouble(yieldUtanStod.getText()));
 
     }
 }
