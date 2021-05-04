@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.model;
 
+import edu.chalmers.axen2021.managers.CalculationsManager;
 import edu.chalmers.axen2021.managers.ProjectManager;
 
 import java.io.Serializable;
@@ -25,6 +26,10 @@ public class Project implements Serializable {
     private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
     private ArrayList<ApartmentType> apartmentTypes = new ArrayList<>();
+
+    private CalculationsManager calculationsManager = CalculationsManager.getInstance();
+
+    private double numOfApt;
 
     //Tomtkostnader
     private double tomtkostnaderKkr;
@@ -487,17 +492,48 @@ public class Project implements Serializable {
         this.yieldUtanStod = yieldUtanStod;
     }
 
-    public void setTomtkostnaderKkr() {
-        for(CostItem costItem: getTomtkostnader()) {
-            tomtkostnaderKkr += costItem.getValue();
-        }
+    //Update methods
+
+    public void updateAllVariables() {
+        updateNumOfApt();
+        updateTotalBoa();
+
     }
 
-    public void setTomtkostnaderKrBoa(double tomtkostnaderKrBoa) {
-        this.tomtkostnaderKrBoa = tomtkostnaderKrBoa;
+    private void updateNumOfApt() {
+        numOfApt = calculationsManager.updateNumberOfApt(getApartmentTypes());
+    }
+    private void updateTotalBoa() {
+        totalBoa = calculationsManager.updateTotalBoa(getApartmentTypes());
     }
 
-    public void setTomtkostnaderKrBta(double tomtkostnaderKrBta) {
-        this.tomtkostnaderKrBta = tomtkostnaderKrBta;
+    private void updateTomtkostnaderKkr() {
+        tomtkostnaderKkr = calculationsManager.updatedTomtkostnaderKkr(getTomtkostnader());
+    }
+    private void updateTomtkostnaderKrBoa() {
+        tomtkostnaderKrBoa = calculationsManager.updatedTomtkostnaderKrBoa(tomtkostnaderKkr, totalBoa);
+    }
+    private void updateTomtkostnaderKrBta() {
+        tomtkostnaderKrBta = calculationsManager.updatedTomtkostnaderKrBta(tomtkostnaderKkr, totalLjusBta);
+    }
+
+    private void updateNeglagdaBygherreKkr() {
+        nedlagdaByggherreKkr = calculationsManager.updatedNedlagdaKkr(getNedlagdaByggherre());
+    }
+    private void updateNeglagdaBygherreKrBoa() {
+        nedlagdaByggherreKrBoa = calculationsManager.updatedNedlagdaKrBoa(nedlagdaByggherreKkr, totalBoa);
+    }
+    private void updateNeglagdaBygherreKrBta() {
+        nedlagdaByggherreKrBta = calculationsManager.updatedNedlagdaKrBta(nedlagdaByggherreKkr, totalLjusBta);
+    }
+
+    private void updateAnslutningarKkr() {
+        anslutningarKkr = calculationsManager.updatedAnslutningarKkr(getAnslutningar(), numOfApt);
+    }
+    private void updateAnslutningarKrBoa() {
+        anslutningarKrBoa = calculationsManager.updatedAnslutningarKrBoa(anslutningarKkr, totalBoa);
+    }
+    private void updateAnslutningarKrBta() {
+        anslutningarKrBta = calculationsManager.updatedAnslutningarKrBta(anslutningarKkr, totalLjusBta);
     }
 }
