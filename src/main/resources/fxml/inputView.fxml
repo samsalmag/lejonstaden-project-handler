@@ -84,7 +84,7 @@
                                                 <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                                                    <children>
                                                       <Label alignment="CENTER" text="Total BOA" />
-                                                      <TextField alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                      <TextField fx:id="totalBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
                                                          <cursor>
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
@@ -154,19 +154,19 @@
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Mervärdeskatt">
+                                                      <Label text="Mervärdeskatt">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="27.0" top="5.0" />
                                                          </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Investeringsstöd">
+                                                      </Label>
+                                                      <Label text="Investeringsstöd">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="27.0" />
                                                          </VBox.margin>
-                                                      </Button>
+                                                      </Label>
                                                       <Label text="Projektkostnad">
                                                          <VBox.margin>
-                                                            <Insets left="5.0" right="5.0" top="5.0" />
+                                                            <Insets left="5.0" right="5.0" />
                                                          </VBox.margin></Label>
                                                    </children>
                                                 </VBox>
@@ -458,24 +458,24 @@
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Tomträttsavgäld">
+                                                      <Label text="Tomträttsavgäld">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="27.0" top="5.0" />
                                                          </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Driftnetto">
+                                                      </Label>
+                                                      <Label text="Driftnetto">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="27.0" />
                                                          </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Yield">
+                                                      </Label>
+                                                      <Label text="Yield">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="27.0" />
                                                          </VBox.margin>
-                                                      </Button>
+                                                      </Label>
                                                       <Label text="Marknadsvärde">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
+                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin></Label>
                                                    </children>
                                                 </VBox>
@@ -518,7 +518,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                       </TextField>
-                                                      <TextField fx:id="yieldMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                      <TextField fx:id="yieldMedStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0">
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
@@ -572,7 +572,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                       </TextField>
-                                                      <TextField fx:id="yieldUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                      <TextField fx:id="yieldUtanStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0">
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>

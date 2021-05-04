@@ -86,7 +86,6 @@ public class InputController implements Initializable {
      */
     private ProjectManager projectManager = ProjectManager.getInstance();
 
-
     /**
      * Parent controller
      */
@@ -111,23 +110,28 @@ public class InputController implements Initializable {
     /**
      * Init method for input TextFields properties.
      * Adds focus lost property.
-     * Adds only allowing digits property.
+     * Adds only allowing doubles property.
      */
     private void initTextFieldProperties(){
 
         for(TextField textField: inputFields){
 
-            //Adds property to TextField allowing users to only input numbers.
+            //Adds property to TextField allowing users to only input numbers and ".".
             textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                if(!newValue.matches("\\d*")){
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
+                if(!newValue.matches("[0-9]*" + "[.]?" + "[0-9]*")){
+                    textField.setText(oldValue);
                 }
             });
 
             //Adds focus lost property to textFields.
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue){
-                    //ToDo add methods to run when focus lost.
+                    //Make sure that the textField has a readable value.
+                    if(textField.getText().equals("") || textField.getText().equals(".")){
+                        textField.setText("0.0");
+                    }
+                    setInputFields();
+                    //ToDo add method for running calculations.
                     updateAllTextFields();
                 }
             });
@@ -142,6 +146,8 @@ public class InputController implements Initializable {
         inputFields.add(antagenPresumtionshyra);
         inputFields.add(normHyraMedStod);
         inputFields.add(totalLjusBta);
+        inputFields.add(yieldMedStod);
+        inputFields.add(yieldUtanStod);
     }
 
     /**
@@ -157,7 +163,6 @@ public class InputController implements Initializable {
     @FXML private void switchToSummaryView(){
         rootController.updateSummaryView();
     }
-
 
     /**
      * Method for opening the modalWindow.
@@ -218,6 +223,7 @@ public class InputController implements Initializable {
      * Updates all TextFields.
      */
     public void updateAllTextFields(){
+        updateGrundforutsattingar();
         updateTomtkostnader();
         updateNedlagadaByggherre();
         updateAnslutningar();
@@ -229,6 +235,17 @@ public class InputController implements Initializable {
         updateInvesteringsstod();
         updateProjektkostnad();
         updateFastighetsvardeOchResultat();
+    }
+
+    /**
+     * Updates all TextFields related to Grundforutsattningar.
+     */
+    private void updateGrundforutsattingar(){
+        normHyraMedStod.setText("" + projectManager.getActiveProject().getNormhyraMedStod());
+        investeringsstod.setText("" + projectManager.getActiveProject().getInvesteringsstod());
+        antagenPresumtionshyra.setText("" + projectManager.getActiveProject().getAntagenPresumtionshyra());
+        totalBoa.setText("" + projectManager.getActiveProject().getTotalBoa());
+        totalLjusBta.setText("" + projectManager.getActiveProject().getTotalLjusBta());
     }
 
     /**
@@ -338,5 +355,17 @@ public class InputController implements Initializable {
         yieldUtanStod.setText("" + projectManager.getActiveProject().getYieldUtanStod());
         marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
         marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
+    }
+
+    /**
+     * Set all new values from the inputFields.
+     */
+    private void setInputFields(){
+        projectManager.getActiveProject().setNormhyraMedStod(Double.parseDouble(normHyraMedStod.getText()));
+        projectManager.getActiveProject().setInvesteringsstod(Double.parseDouble(investeringsstod.getText()));
+        projectManager.getActiveProject().setAntagenPresumtionshyra(Double.parseDouble(antagenPresumtionshyra.getText()));
+        projectManager.getActiveProject().setTotalLjusBta(Double.parseDouble(totalLjusBta.getText()));
+        projectManager.getActiveProject().setYieldMedStod(Double.parseDouble(yieldMedStod.getText()));
+        projectManager.getActiveProject().setYieldUtanStod(Double.parseDouble(yieldUtanStod.getText()));
     }
 }

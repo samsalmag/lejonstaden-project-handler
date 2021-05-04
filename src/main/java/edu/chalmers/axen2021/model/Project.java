@@ -107,6 +107,14 @@ public class Project implements Serializable {
     private double projektvinstProcentMedStod;
     private double projektvinstProcentUtanStod;
 
+    //ToDo add variable below in correct list..?
+    //Grundforutsattningar
+    private double normhyraMedStod;
+    private double investeringsstod;
+    private double antagenPresumtionshyra;
+    private double totalBoa;
+    private double totalLjusBta;
+
     /**
      * Class Constructor. Is used when a new instance of this class is created.
      * @param name Name of the project.
@@ -431,5 +439,51 @@ public class Project implements Serializable {
 
     public double getProjektvinstProcentUtanStod() {
         return projektvinstProcentUtanStod;
+    }
+
+    public double getNormhyraMedStod() {
+        return normhyraMedStod;
+    }
+
+    public double getInvesteringsstod() {
+        return investeringsstod;
+    }
+
+    public double getAntagenPresumtionshyra() {
+        return antagenPresumtionshyra;
+    }
+
+    public double getTotalBoa() {
+        return totalBoa;
+    }
+
+    public double getTotalLjusBta() {
+        return totalLjusBta;
+    }
+
+
+    // SETTERS FOR INPUT VARIABLES
+    public void setYieldMedStod(double yieldMedStod) {
+        this.yieldMedStod = yieldMedStod;
+    }
+
+    public void setNormhyraMedStod(double normhyraMedStod) {
+        this.normhyraMedStod = normhyraMedStod;
+    }
+
+    public void setInvesteringsstod(double investeringsstod) {
+        this.investeringsstod = investeringsstod;
+    }
+
+    public void setAntagenPresumtionshyra(double antagenPresumtionshyra) {
+        this.antagenPresumtionshyra = antagenPresumtionshyra;
+    }
+
+    public void setTotalLjusBta(double totalLjusBta) {
+        this.totalLjusBta = totalLjusBta;
+    }
+
+    public void setYieldUtanStod(double yieldUtanStod) {
+        this.yieldUtanStod = yieldUtanStod;
     }
 }
