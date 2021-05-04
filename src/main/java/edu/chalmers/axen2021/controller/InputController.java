@@ -184,7 +184,7 @@ public class InputController implements Initializable {
      */
     @FXML
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
-        Node lagenhetsDataItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
+        Node lagenhetsDataItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));
         lagenhetsTypVbox.getChildren().add(lagenhetsDataItem);
         updateAllTextFields();
     }
