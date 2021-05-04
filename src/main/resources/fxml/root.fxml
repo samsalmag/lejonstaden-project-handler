@@ -18,7 +18,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Dev">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#deleteDirectory" text="Remove directory" />
+                    <MenuItem mnemonicParsing="false" onAction="#deleteDirectory" text="Remove directory (closes program)" />
                   </items>
                 </Menu>
               </menus>
