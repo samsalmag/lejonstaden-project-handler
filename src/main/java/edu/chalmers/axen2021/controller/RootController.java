@@ -1,6 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.fxml.FXML;

@@ -1,7 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.managers.ProjectManager;
-import edu.chalmers.axen2021.model.CostItem;
+import edu.chalmers.axen2021.model.managers.ProjectManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 

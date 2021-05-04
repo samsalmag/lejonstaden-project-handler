@@ -1,9 +1,9 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.managers.SaveManager;
+import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.ApartmentType;
 import edu.chalmers.axen2021.model.Category;
-import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.model.managers.ProjectManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

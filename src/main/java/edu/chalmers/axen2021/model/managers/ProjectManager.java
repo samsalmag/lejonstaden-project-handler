@@ -1,4 +1,4 @@
-package edu.chalmers.axen2021.managers;
+package edu.chalmers.axen2021.model.managers;
 
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.Project;

@@ -1,8 +1,8 @@
 package edu.chalmers.axen2021.view;
 
 import edu.chalmers.axen2021.controller.RootController;
-import edu.chalmers.axen2021.managers.ProjectManager;
-import edu.chalmers.axen2021.managers.SaveManager;
+import edu.chalmers.axen2021.model.managers.ProjectManager;
+import edu.chalmers.axen2021.model.managers.SaveManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
