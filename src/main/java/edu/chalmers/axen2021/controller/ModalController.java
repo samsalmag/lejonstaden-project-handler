@@ -52,6 +52,8 @@ public class ModalController {
     private void closeModalWindow(Event event) {
         SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
 
+        projectManager.getActiveProject().updateAllVariables();
+        rootController.updateInputView();
         rootController.getModalAnchorPane().toBack();
         clearTilePane();
     }
