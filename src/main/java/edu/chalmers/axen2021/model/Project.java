@@ -498,6 +498,18 @@ public class Project implements Serializable {
         updateNumOfApt();
         updateTotalBoa();
 
+        updateTomtkostnaderKkr();
+        updateTomtkostnaderKrBoa();
+        updateTomtkostnaderKrBta();
+
+        updateNedlagdaBygherreKkr();
+        updateNedlagdaBygherreKrBoa();
+        updateNedlagdaBygherreKrBta();
+
+        updateAnslutningarKkr();
+        updateAnslutningarKrBoa();
+        updateAnslutningarKrBta();
+
     }
 
     private void updateNumOfApt() {
@@ -517,13 +529,13 @@ public class Project implements Serializable {
         tomtkostnaderKrBta = calculationsManager.updatedTomtkostnaderKrBta(tomtkostnaderKkr, totalLjusBta);
     }
 
-    private void updateNeglagdaBygherreKkr() {
+    private void updateNedlagdaBygherreKkr() {
         nedlagdaByggherreKkr = calculationsManager.updatedNedlagdaKkr(getNedlagdaByggherre());
     }
-    private void updateNeglagdaBygherreKrBoa() {
+    private void updateNedlagdaBygherreKrBoa() {
         nedlagdaByggherreKrBoa = calculationsManager.updatedNedlagdaKrBoa(nedlagdaByggherreKkr, totalBoa);
     }
-    private void updateNeglagdaBygherreKrBta() {
+    private void updateNedlagdaBygherreKrBta() {
         nedlagdaByggherreKrBta = calculationsManager.updatedNedlagdaKrBta(nedlagdaByggherreKkr, totalLjusBta);
     }
 
