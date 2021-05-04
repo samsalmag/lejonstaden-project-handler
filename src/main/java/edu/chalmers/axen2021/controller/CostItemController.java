@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.CostItem;
+import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -45,13 +46,11 @@ public class CostItemController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameLabel.setText(costItem.getName());
 
-        //DecimalFormat df = new DecimalFormat("###");
-        valueTextField.setText(String.valueOf(costItem.getValue()));
+        valueTextField.setText(StringUtils.removeTrailingZeros(costItem.getValue()));
 
         commentTextArea.setText(costItem.getComment());
         initTextFieldProperties();
     }
-
 
     /**
      * Init method for input TextFields properties.
