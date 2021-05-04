@@ -67,8 +67,6 @@ public class ApartmentTypeController implements Initializable {
                 if(BOATextField.getText().equals("") || BOATextField.getText().equals(".")){
                     BOATextField.setText("0.0");
                 }
-                // ToDo remove comment when method implemented.
-                // BOATextField.setText(StringUtils.removeTrailingZeros(BOATextField.getText()));
                 apartmentType.setBOA(Double.parseDouble(BOATextField.getText()));
             }
         });
@@ -87,8 +85,6 @@ public class ApartmentTypeController implements Initializable {
                 if(amountTextField.getText().equals("")){
                     amountTextField.setText("0");
                 }
-                // ToDo remove comment when method implemented.
-                // amountTextField.setText(StringUtils.removeTrailingZeros(amountTextField.getText()));
                 apartmentType.setAmount(Integer.parseInt(amountTextField.getText()));
 
             }
