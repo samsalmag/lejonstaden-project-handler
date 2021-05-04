@@ -227,6 +227,7 @@ public class SaveManager {
             directory = new File(getDirectory());
             saveDirectory = new File(getSaveDirectory());
         } catch (Exception e) {
+            System.out.println("Could not find directories!");
             return false;
         }
 

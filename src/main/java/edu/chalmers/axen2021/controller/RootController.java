@@ -2,7 +2,9 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.observers.IViewObserver;
+import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -189,8 +191,6 @@ public class RootController implements IViewObserver {
         summaryViewController.clearLagenhetstyper();
         summaryViewController.populateLagenhetstyper();
 
-        Project project = ProjectManager.getInstance().getActiveProject();
-
         summaryViewNode.toFront();
     }
 
@@ -208,6 +208,17 @@ public class RootController implements IViewObserver {
         }
 
         centerStageAnchorPane.getChildren().setAll(center);
+    }
+
+    /**
+     * This method removes the applications save directory and closes the program.
+     * Is called from the MenuBar in root.
+     */
+    @FXML
+    public void deleteDirectory() {
+        ProjectManager.getInstance().setActiveProject(null);
+        SaveManager.getInstance().removeDirectory();
+        AXEN2021.terminate();
     }
 
     /**

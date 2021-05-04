@@ -4,6 +4,7 @@ import edu.chalmers.axen2021.model.ApartmentType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -26,6 +27,10 @@ public class ApartmentTypeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if(apartmentType.getApartmentType() != null) {
+            apartmentTypeMenuButton.setText(apartmentType.getApartmentType());
+        }
         BOATextField.setText(String.valueOf(apartmentType.getBOA()));
         amountTextField.setText(String.valueOf(apartmentType.getAmount()));
 
@@ -33,6 +38,18 @@ public class ApartmentTypeController implements Initializable {
     }
 
     private void initListeners() {
+
+        for (MenuItem menuItem : apartmentTypeMenuButton.getItems()) {
+            menuItem.setOnAction(actionEvent -> {
+                apartmentTypeMenuButton.setText(menuItem.getText());
+                apartmentType.setApartmentType(menuItem.getText());
+            });
+        }
+
+        apartmentTypeMenuButton.setOnAction(actionEvent -> {
+            System.out.println("HEJ");
+        });
+
         BOATextField.textProperty().addListener(((observableValue, oldValue, newValue) -> {
 
             if(!newValue.matches("\\d*")){

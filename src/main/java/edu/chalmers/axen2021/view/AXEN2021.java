@@ -4,6 +4,7 @@ import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,5 +49,12 @@ public class AXEN2021 extends Application {
                 SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
             }
         }));
+    }
+
+    /**
+     * This method terminates the application.
+     */
+    public static void terminate() {
+        Platform.exit();
     }
 }

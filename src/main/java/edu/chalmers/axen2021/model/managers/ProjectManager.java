@@ -130,6 +130,11 @@ public class ProjectManager implements Serializable {
      * @param project the project that should be active
      */
     public void setActiveProject(String project) {
+        if(project == null) {
+            activeProject = null;
+            return;
+        }
+
         for (Project p : projects) {
             if(p.getName().equals(project)) {
                 activeProject = p;
