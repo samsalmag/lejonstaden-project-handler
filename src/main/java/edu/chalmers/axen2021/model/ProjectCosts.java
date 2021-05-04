@@ -16,7 +16,7 @@ public class ProjectCosts {
      * @param totQuantity total quantity of apartments.
      * @return Connection costs of the project.
      */
-    public double getConnectionsCost(int krPerApt, int totQuantity) {
+    public double getConnectionsCost(double krPerApt, double totQuantity) {
         return (krPerApt * totQuantity) / 1000;
     }
 
