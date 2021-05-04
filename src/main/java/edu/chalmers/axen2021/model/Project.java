@@ -474,4 +474,18 @@ public class Project implements Serializable {
     public void setTotalLjusBta(double totalLjusBta) {
         this.totalLjusBta = totalLjusBta;
     }
+
+    public void setTomtkostnaderKkr() {
+        for(CostItem costItem: getTomtkostnader()) {
+            tomtkostnaderKkr += costItem.getValue();
+        }
+    }
+
+    public void setTomtkostnaderKrBoa(double tomtkostnaderKrBoa) {
+        this.tomtkostnaderKrBoa = tomtkostnaderKrBoa;
+    }
+
+    public void setTomtkostnaderKrBta(double tomtkostnaderKrBta) {
+        this.tomtkostnaderKrBta = tomtkostnaderKrBta;
+    }
 }
