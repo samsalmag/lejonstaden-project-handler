@@ -2,41 +2,35 @@ package edu.chalmers.axen2021.managers;
 
 import edu.chalmers.axen2021.model.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * The main class for access to the applications model.
  * @author Sam Salek
  */
-public class CalculationsManager {
+public class CalculationsManager implements Serializable {
 
-    private static CalculationsManager instance = null;
+    private static CalculationsManager calculationsManager = null;
+
+    private CalculationsManager() {}
+
+    public static CalculationsManager getInstance() {
+        if(calculationsManager == null) {
+            calculationsManager = new CalculationsManager();
+        }
+        return calculationsManager;
+    }
 
     private static ApartmentData apartmentData = new ApartmentData();
     private static ProjectCosts projectCosts = new ProjectCosts();
-
-
-    // Singleton class. Use getInstance() to get access.
-    private CalculationsManager(){}
-
-    /**
-     * This class acts as a Singleton.
-     * Returns the instance of the class.
-     * @return Instance of class.
-     */
-    public static CalculationsManager getInstance() {
-        if(instance == null) {
-            instance = new CalculationsManager();
-        }
-        return instance;
-    }
 
     //Update methods
     public double updateTotalBoa(ArrayList<ApartmentType> apartments) {
         double totalBoa = 0;
 
         for(ApartmentType apartmentType: apartments) {
-            totalBoa += apartmentType.getBOA();
+            totalBoa += (apartmentType.getBOA()*apartmentType.getAmount());
         }
 
         return totalBoa;
@@ -63,11 +57,11 @@ public class CalculationsManager {
     }
 
     public double updatedTomtkostnaderKrBoa(double tomtkostnaderKkr, double numOfApt) {
-        return tomtkostnaderKkr/numOfApt;
+        return (tomtkostnaderKkr*1000)/numOfApt;
     }
 
     public double updatedTomtkostnaderKrBta(double tomtkostnaderKkr, double totalBta) {
-        return tomtkostnaderKkr/totalBta;
+        return (tomtkostnaderKkr*1000)/totalBta;
     }
 
     public double updatedNedlagdaKkr(ArrayList<CostItem> nedlagda) {
@@ -81,11 +75,11 @@ public class CalculationsManager {
     }
 
     public double updatedNedlagdaKrBoa(double nedlagdaKkr, double numOfApt) {
-        return nedlagdaKkr/numOfApt;
+        return (nedlagdaKkr*1000)/numOfApt;
     }
 
     public double updatedNedlagdaKrBta(double nedlagdaKkr, double totalBta) {
-        return nedlagdaKkr/totalBta;
+        return (nedlagdaKkr*1000)/totalBta;
     }
 
     public double updatedAnslutningarKkr(ArrayList<CostItem> anslutningar, double numOfApt) {
@@ -97,11 +91,11 @@ public class CalculationsManager {
     }
 
     public double updatedAnslutningarKrBoa(double anslutningarKkr, double totalBoa) {
-        return anslutningarKkr/totalBoa;
+        return (anslutningarKkr*1000)/totalBoa;
     }
 
     public double updatedAnslutningarKrBta(double anslutningarKkr, double totalBta) {
-        return anslutningarKkr/totalBta;
+        return (anslutningarKkr*1000)/totalBta;
     }
 
     // ------------------ GETTERS ------------------ //
