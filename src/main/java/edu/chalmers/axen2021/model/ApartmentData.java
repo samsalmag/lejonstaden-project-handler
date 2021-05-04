@@ -8,7 +8,7 @@ package edu.chalmers.axen2021.model;
  */
 public class ApartmentData {
     private SaboTable sabo;
-    private int rh = 121; // Swedish standard value
+    private final int rh = 121; // Swedish standard value
 
     public ApartmentData() {
         this.sabo = new SaboTable();
@@ -21,8 +21,8 @@ public class ApartmentData {
      * @param boa living area of the apartment
      * @return high or low monthly rent depending on the rent
      */
-    public double getMonthlyRent(String type, int rent, double boa) {
-        return (sabo.getRE(type)+boa)*rh/12;
+    public double getMonthlyRent(String type, double rent, double boa) {
+        return (sabo.getRE(type)+boa)*((rent*77)/rh)/12;
     }
 
     /**

@@ -26,6 +26,10 @@ public class Project implements Serializable {
 
     private ArrayList<ApartmentType> apartmentTypes = new ArrayList<>();
 
+    private CalculationsManager calculationsManager = CalculationsManager.getInstance();
+
+    private double numOfApt;
+
     //Tomtkostnader
     private double tomtkostnaderKkr;
     private double tomtkostnaderKrBoa;
@@ -485,5 +489,50 @@ public class Project implements Serializable {
 
     public void setYieldUtanStod(double yieldUtanStod) {
         this.yieldUtanStod = yieldUtanStod;
+    }
+
+    //Update methods
+
+    public void updateAllVariables() {
+        updateNumOfApt();
+        updateTotalBoa();
+
+    }
+
+    private void updateNumOfApt() {
+        numOfApt = calculationsManager.updateNumberOfApt(getApartmentTypes());
+    }
+    private void updateTotalBoa() {
+        totalBoa = calculationsManager.updateTotalBoa(getApartmentTypes());
+    }
+
+    private void updateTomtkostnaderKkr() {
+        tomtkostnaderKkr = calculationsManager.updatedTomtkostnaderKkr(getTomtkostnader());
+    }
+    private void updateTomtkostnaderKrBoa() {
+        tomtkostnaderKrBoa = calculationsManager.updatedTomtkostnaderKrBoa(tomtkostnaderKkr, totalBoa);
+    }
+    private void updateTomtkostnaderKrBta() {
+        tomtkostnaderKrBta = calculationsManager.updatedTomtkostnaderKrBta(tomtkostnaderKkr, totalLjusBta);
+    }
+
+    private void updateNeglagdaBygherreKkr() {
+        nedlagdaByggherreKkr = calculationsManager.updatedNedlagdaKkr(getNedlagdaByggherre());
+    }
+    private void updateNeglagdaBygherreKrBoa() {
+        nedlagdaByggherreKrBoa = calculationsManager.updatedNedlagdaKrBoa(nedlagdaByggherreKkr, totalBoa);
+    }
+    private void updateNeglagdaBygherreKrBta() {
+        nedlagdaByggherreKrBta = calculationsManager.updatedNedlagdaKrBta(nedlagdaByggherreKkr, totalLjusBta);
+    }
+
+    private void updateAnslutningarKkr() {
+        anslutningarKkr = calculationsManager.updatedAnslutningarKkr(getAnslutningar(), numOfApt);
+    }
+    private void updateAnslutningarKrBoa() {
+        anslutningarKrBoa = calculationsManager.updatedAnslutningarKrBoa(anslutningarKkr, totalBoa);
+    }
+    private void updateAnslutningarKrBta() {
+        anslutningarKrBta = calculationsManager.updatedAnslutningarKrBta(anslutningarKkr, totalLjusBta);
     }
 }
