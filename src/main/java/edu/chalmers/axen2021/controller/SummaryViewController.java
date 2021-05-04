@@ -1,6 +1,8 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.managers.SaveManager;
+import edu.chalmers.axen2021.model.ApartmentType;
 import edu.chalmers.axen2021.observers.IViewObservable;
 import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.event.ActionEvent;
@@ -112,8 +114,35 @@ public class SummaryViewController implements IViewObservable {
      */
     @FXML
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
-        Node LagenhetsDataSummaryItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
-        lagenhetsTypVbox.getChildren().add(LagenhetsDataSummaryItem);
+        ApartmentType newApartmentType = new ApartmentType();
+        createNewLagenhetstypView(newApartmentType);
+
+        projectManager.getActiveProject().getApartmentTypes().add(newApartmentType);
+        SaveManager.getInstance().saveProject(projectManager.getActiveProject());
+    }
+
+    public void populateLagenhetstyper() {
+        for (ApartmentType apartmentType : projectManager.getActiveProject().getApartmentTypes()) {
+            createNewLagenhetstypView(apartmentType);
+        }
+    }
+
+    public void clearLagenhetstyper() {
+        lagenhetsTypVbox.getChildren().clear();
+    }
+
+    private void createNewLagenhetstypView(ApartmentType newApartmentType) {
+        FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
+        ApartmentTypeController apartmentTypeController = new ApartmentTypeController(newApartmentType);
+        apartmentTypeFXML.setController(apartmentTypeController);
+        Node apartmentTypeNode = null;
+
+        try {
+            apartmentTypeNode = apartmentTypeFXML.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        lagenhetsTypVbox.getChildren().add(apartmentTypeNode);
     }
 
     /**

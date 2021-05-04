@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxWidth="750.0" minWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" maxWidth="750.0" minWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="nameLabel" alignment="CENTER_RIGHT" text="Kostnad:" wrapText="true">
          <HBox.margin>
@@ -17,7 +17,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField minWidth="50.0">
+      <TextField fx:id="valueTextField" minWidth="50.0">
          <HBox.margin>
             <Insets bottom="10.0" top="10.0" />
          </HBox.margin>
@@ -25,7 +25,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextArea maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar">
+      <TextArea fx:id="commentTextArea" maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar">
          <HBox.margin>
             <Insets bottom="10.0" top="10.0" />
          </HBox.margin>

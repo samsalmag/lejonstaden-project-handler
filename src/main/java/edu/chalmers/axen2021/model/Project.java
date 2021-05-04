@@ -24,6 +24,8 @@ public class Project implements Serializable {
      */
     private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
+    private ArrayList<ApartmentType> apartmentTypes = new ArrayList<>();
+
     //Tomtkostnader
     private double tomtkostnaderKkr;
     private double tomtkostnaderKrBoa;
@@ -127,7 +129,7 @@ public class Project implements Serializable {
     /**
      * Method that creates a costItem used for the categories (contains name, comment, etc.)
      */
-    public void addCostItem(String name) {
+    public CostItem addCostItem(String name) {
 
         CostItem costItem = new CostItem(name);
 
@@ -138,6 +140,8 @@ public class Project implements Serializable {
 
         // Sort the list to alphabetical order.
         ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
+
+        return costItem;
     }
 
     /**
@@ -177,6 +181,10 @@ public class Project implements Serializable {
      */
     public HashMap<Category, ArrayList<CostItem>> getCostItemsMap() {
         return costItemsMap;
+    }
+
+    public ArrayList<ApartmentType> getApartmentTypes() {
+        return apartmentTypes;
     }
 
     // GETTERS FOR COST ITEM LISTS

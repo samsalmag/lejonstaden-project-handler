@@ -172,6 +172,10 @@ public class RootController implements IViewObserver {
     public void updateInputView(){
         inputController.updateAllTextFields();
         inputController.updateTitle();
+
+        inputController.clearLagenhetstyper();
+        inputController.populateLagenhetstyper();
+
         inputWindowNode.toFront();
     }
 
@@ -181,6 +185,12 @@ public class RootController implements IViewObserver {
     public void updateSummaryView(){
         summaryViewController.updateTextFields();
         summaryViewController.updateTitle();
+
+        summaryViewController.clearLagenhetstyper();
+        summaryViewController.populateLagenhetstyper();
+
+        Project project = ProjectManager.getInstance().getActiveProject();
+
         summaryViewNode.toFront();
     }
 

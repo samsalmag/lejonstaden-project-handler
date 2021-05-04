@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.managers.SaveManager;
+import edu.chalmers.axen2021.model.ApartmentType;
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.managers.ProjectManager;
 import javafx.event.ActionEvent;
@@ -180,9 +182,36 @@ public class InputController implements Initializable {
      */
     @FXML
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
-        Node lagenhetsDataItem = FXMLLoader.load(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
-        lagenhetsTypVbox.getChildren().add(lagenhetsDataItem);
+        ApartmentType newApartmentType = new ApartmentType();
+        createNewLagenhetstypView(newApartmentType);
         updateAllTextFields();
+
+        projectManager.getActiveProject().getApartmentTypes().add(newApartmentType);
+        SaveManager.getInstance().saveProject(projectManager.getActiveProject());
+    }
+
+    public void populateLagenhetstyper() {
+        for (ApartmentType apartmentType : projectManager.getActiveProject().getApartmentTypes()) {
+            createNewLagenhetstypView(apartmentType);
+        }
+    }
+
+    public void clearLagenhetstyper() {
+        lagenhetsTypVbox.getChildren().clear();
+    }
+
+    private void createNewLagenhetstypView(ApartmentType newApartmentType) {
+        FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
+        ApartmentTypeController apartmentTypeController = new ApartmentTypeController(newApartmentType);
+        apartmentTypeFXML.setController(apartmentTypeController);
+        Node apartmentTypeNode = null;
+
+        try {
+            apartmentTypeNode = apartmentTypeFXML.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        lagenhetsTypVbox.getChildren().add(apartmentTypeNode);
     }
 
     /**

@@ -1,6 +1,8 @@
 package edu.chalmers.axen2021.view;
 
 import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.managers.SaveManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,5 +42,11 @@ public class AXEN2021 extends Application {
         String title = "AXE-N 2021";
         stage.setTitle(title);
         stage.show();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if(ProjectManager.getInstance().getActiveProject() != null) {
+                SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
+            }
+        }));
     }
 }

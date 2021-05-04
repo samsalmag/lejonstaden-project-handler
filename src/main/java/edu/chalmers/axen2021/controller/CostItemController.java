@@ -1,10 +1,14 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.CostItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -18,19 +22,48 @@ public class CostItemController implements Initializable {
     /**
      * The name label in the .fxml file.
      */
-    @FXML Label nameLabel;
+    @FXML private Label nameLabel;
+
+    @FXML private TextField valueTextField;
+
+    @FXML private TextArea commentTextArea;
 
     /**
-     * Name of the cost item
+     * The cost item
      */
-    private String name;
+    private CostItem costItem;
 
-    public CostItemController(String name) {
-        this.name = name;
+    public CostItemController(CostItem costItem) {
+        this.costItem = costItem;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameLabel.setText(name);
+        nameLabel.setText(costItem.getName());
+
+        DecimalFormat df = new DecimalFormat("###");
+        valueTextField.setText(df.format(costItem.getValue()));
+
+        commentTextArea.setText(costItem.getComment());
+        initListeners();
+    }
+
+    private void initListeners() {
+        valueTextField.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+
+            if(!newValue.matches("\\d*")){
+                valueTextField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+
+            if(!valueTextField.getText().isEmpty()) {
+                costItem.setValue(Double.parseDouble(valueTextField.getText()));
+            }
+        }));
+
+        commentTextArea.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if(!commentTextArea.getText().isEmpty()) {
+                costItem.setComment(commentTextArea.getText());
+            }
+        }));
     }
 }

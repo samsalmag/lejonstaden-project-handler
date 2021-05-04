@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.managers.ProjectManager;
+import edu.chalmers.axen2021.managers.SaveManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,6 +55,11 @@ public class SideBarItemController implements Initializable {
      */
     @FXML
     private void onClick(ActionEvent event) {
+        //Save the previously active project
+        if(ProjectManager.getInstance().getActiveProject() != null) {
+            SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
+        }
+
         ProjectManager.getInstance().setActiveProject(button.getText());
         rootController.updateSummaryView();
     }
