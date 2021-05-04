@@ -474,4 +474,8 @@ public class Project implements Serializable {
     public void setTotalLjusBta(double totalLjusBta) {
         this.totalLjusBta = totalLjusBta;
     }
+
+    public void setYieldUtanStod(double yieldUtanStod) {
+        this.yieldUtanStod = yieldUtanStod;
+    }
 }
