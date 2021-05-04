@@ -45,8 +45,8 @@ public class CostItemController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameLabel.setText(costItem.getName());
 
-        DecimalFormat df = new DecimalFormat("###");
-        valueTextField.setText(df.format(costItem.getValue()));
+        //DecimalFormat df = new DecimalFormat("###");
+        valueTextField.setText(String.valueOf(costItem.getValue()));
 
         commentTextArea.setText(costItem.getComment());
         initTextFieldProperties();
@@ -76,14 +76,17 @@ public class CostItemController implements Initializable {
                 }
 
                 costItem.setValue(Double.parseDouble(valueTextField.getText()));
-                }
-            });
+            }
+        });
 
         commentTextArea.focusedProperty().addListener(((observableValue, oldValue, newValue) -> {
-            if(!commentTextArea.getText().isEmpty()) {
+            if(!newValue){
+                if(commentTextArea.getText() == null ) {
+                    commentTextArea.setText("");
+                }
+
                 costItem.setComment(commentTextArea.getText());
             }
         }));
     }
-
 }
