@@ -49,6 +49,11 @@ public class AddNewProjectController {
             return;
         }
 
+        // If project name input has illegal characters then don't continue.
+        if(!projectNameTextField.getText().matches("^[0-9a-zA-Z\\^\\&\\'\\@\\{\\}\\[\\]\\,\\$\\=\\!\\-\\#\\(\\)\\%\\+\\~\\_ ]+$")) {
+            return;
+        }
+
         // Name cant be same as existing project
         for (Project project : ProjectManager.getInstance().getProjects()) {
             if (project.getName().toLowerCase().equals(projectNameTextField.getText().toLowerCase())) {
