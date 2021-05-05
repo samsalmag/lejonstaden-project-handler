@@ -25,7 +25,7 @@ public class Project implements Serializable {
      */
     private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
-    private ArrayList<ApartmentType> apartmentTypes = new ArrayList<>();
+    private ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
 
     private CalculationsManager calculationsManager = CalculationsManager.getInstance();
 
@@ -196,8 +196,8 @@ public class Project implements Serializable {
         return costItemsMap;
     }
 
-    public ArrayList<ApartmentType> getApartmentTypes() {
-        return apartmentTypes;
+    public ArrayList<ApartmentItem> getApartmentTypes() {
+        return apartmentItems;
     }
 
     // GETTERS FOR COST ITEM LISTS

@@ -1,6 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.ApartmentType;
+import edu.chalmers.axen2021.model.ApartmentItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  * @author Sam Salek
  */
 @FXMLController
-public class ApartmentTypeController implements Initializable {
+public class ApartmentItemController implements Initializable {
 
     @FXML private MenuButton apartmentTypeMenuButton;
 
@@ -27,24 +27,24 @@ public class ApartmentTypeController implements Initializable {
     /**
      * The type of apartment for the object instance.
      */
-    private ApartmentType apartmentType;
+    private ApartmentItem apartmentItem;
 
     /**
      * Constructor for ApartmentTypeController.
-     * @param apartmentType type of apartment.
+     * @param apartmentItem type of apartment.
      */
-    public ApartmentTypeController(ApartmentType apartmentType) {
-        this.apartmentType = apartmentType;
+    public ApartmentItemController(ApartmentItem apartmentItem) {
+        this.apartmentItem = apartmentItem;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if(apartmentType.getApartmentType() != null) {
-            apartmentTypeMenuButton.setText(apartmentType.getApartmentType());
+        if(apartmentItem.getApartmentType() != null) {
+            apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         }
-        BOATextField.setText(String.valueOf(apartmentType.getBOA()));
-        amountTextField.setText(String.valueOf(apartmentType.getAmount()));
+        BOATextField.setText(String.valueOf(apartmentItem.getBOA()));
+        amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
 
         initTextFieldProperties();
     }
@@ -60,7 +60,7 @@ public class ApartmentTypeController implements Initializable {
         for (MenuItem menuItem : apartmentTypeMenuButton.getItems()) {
             menuItem.setOnAction(actionEvent -> {
                 apartmentTypeMenuButton.setText(menuItem.getText());
-                apartmentType.setApartmentType(menuItem.getText());
+                apartmentItem.setApartmentType(menuItem.getText());
             });
         }
 
@@ -78,7 +78,7 @@ public class ApartmentTypeController implements Initializable {
                 if(BOATextField.getText().equals("") || BOATextField.getText().equals(".")){
                     BOATextField.setText("0.0");
                 }
-                apartmentType.setBOA(Double.parseDouble(BOATextField.getText()));
+                apartmentItem.setBOA(Double.parseDouble(BOATextField.getText()));
             }
         });
 
@@ -96,7 +96,7 @@ public class ApartmentTypeController implements Initializable {
                 if(amountTextField.getText().equals("")){
                     amountTextField.setText("0");
                 }
-                apartmentType.setAmount(Integer.parseInt(amountTextField.getText()));
+                apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
 
             }
         });

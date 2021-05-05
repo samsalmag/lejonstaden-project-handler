@@ -2,7 +2,7 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
-import edu.chalmers.axen2021.model.ApartmentType;
+import edu.chalmers.axen2021.model.ApartmentItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,10 +112,10 @@ public class SummaryViewController {
      */
     @FXML
     private void addNewLagenhetstyp(ActionEvent event) throws IOException {
-        ApartmentType newApartmentType = new ApartmentType();
-        createNewLagenhetstypView(newApartmentType);
+        ApartmentItem newApartmentItem = new ApartmentItem();
+        createNewLagenhetstypView(newApartmentItem);
 
-        projectManager.getActiveProject().getApartmentTypes().add(newApartmentType);
+        projectManager.getActiveProject().getApartmentTypes().add(newApartmentItem);
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
@@ -123,8 +123,8 @@ public class SummaryViewController {
      * Populates apartmentTypes for the active project.
      */
     public void populateLagenhetstyper() {
-        for (ApartmentType apartmentType : projectManager.getActiveProject().getApartmentTypes()) {
-            createNewLagenhetstypView(apartmentType);
+        for (ApartmentItem apartmentItem : projectManager.getActiveProject().getApartmentTypes()) {
+            createNewLagenhetstypView(apartmentItem);
         }
     }
 
@@ -137,12 +137,12 @@ public class SummaryViewController {
 
     /**
      * Creates new lagenhetsDataItem and adds i to the current view.
-     * @param newApartmentType
+     * @param newApartmentItem
      */
-    private void createNewLagenhetstypView(ApartmentType newApartmentType) {
+    private void createNewLagenhetstypView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
-        ApartmentTypeController apartmentTypeController = new ApartmentTypeController(newApartmentType);
-        apartmentTypeFXML.setController(apartmentTypeController);
+        ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
+        apartmentTypeFXML.setController(apartmentItemController);
         Node apartmentTypeNode = null;
 
         try {
