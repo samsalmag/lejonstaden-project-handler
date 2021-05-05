@@ -4,12 +4,12 @@ import edu.chalmers.axen2021.model.CostItem;
 import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -33,10 +33,17 @@ public class CostItemController implements Initializable {
 
     @FXML private TextArea commentTextArea;
 
+    @FXML private CheckBox momsCheckBox;
+
     /**
      * The cost item.
      */
     private CostItem costItem;
+
+    /**
+     * Boolean for including moms.
+     */
+    private Boolean includeMoms;
 
     public CostItemController(CostItem costItem) {
         this.costItem = costItem;
@@ -49,15 +56,14 @@ public class CostItemController implements Initializable {
         valueTextField.setText(StringUtils.removeTrailingZeros(costItem.getValue()));
 
         commentTextArea.setText(costItem.getComment());
-        initTextFieldProperties();
+        initInputProperties();
     }
 
     /**
-     * Init method for input TextFields properties.
-     * Adds focus lost property.
-     * Adds only allowing doubles property.
+     * Init method for input fields properties.
+     * Adds listener properties.
      */
-    private void initTextFieldProperties(){
+    private void initInputProperties(){
 
         //Adds property to TextField allowing users to only input numbers and ".".
         valueTextField.textProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -78,6 +84,7 @@ public class CostItemController implements Initializable {
             }
         });
 
+        //Make sure a comment field is not null.
         commentTextArea.focusedProperty().addListener(((observableValue, oldValue, newValue) -> {
             if(!newValue){
                 if(commentTextArea.getText() == null ) {
@@ -87,5 +94,13 @@ public class CostItemController implements Initializable {
                 costItem.setComment(commentTextArea.getText());
             }
         }));
+    }
+
+    /**
+     * Is selected method for moms CheckBox.
+     * @return Boolean result of is selected.
+     */
+    public Boolean momsIsSelected() {
+        return momsCheckBox.isSelected();
     }
 }

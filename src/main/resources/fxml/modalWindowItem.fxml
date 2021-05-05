@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -25,6 +26,14 @@
             <Font size="14.0" />
          </font>
       </TextField>
+      <CheckBox fx:id="momsCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" selected="true" text="Moms">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <HBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </HBox.margin>
+      </CheckBox>
       <TextArea fx:id="commentTextArea" maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar">
          <HBox.margin>
             <Insets bottom="10.0" top="10.0" />
