@@ -1,6 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.ApartmentItem;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -14,24 +14,34 @@ import java.util.ResourceBundle;
  * Controller class for the applications lagenhetsDataItem.
  * @author Oscar Arvidson
  * @author Sam Salek
+ * @author Malte Åkvist
  */
 @FXMLController
 public class ApartmentItemController implements Initializable {
 
+    /**
+     * MenuButton in the .fxml for choosing apartment type.
+     */
     @FXML private MenuButton apartmentTypeMenuButton;
 
+    /**
+     * TextField in the .fxml for BOA input.
+     */
     @FXML private TextField BOATextField;
 
+    /**
+     * TextField in the .fxml for amount input.
+     */
     @FXML private TextField amountTextField;
 
     /**
-     * The type of apartment for the object instance.
+     * Apartment for this controller's instance.
      */
     private ApartmentItem apartmentItem;
 
     /**
-     * Constructor for ApartmentTypeController.
-     * @param apartmentItem type of apartment.
+     * Constructor for ApartmentItemController.
+     * @param apartmentItem Apartment.
      */
     public ApartmentItemController(ApartmentItem apartmentItem) {
         this.apartmentItem = apartmentItem;
@@ -39,31 +49,41 @@ public class ApartmentItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setInitialValues();
+        initMenuButtonProperties();
+        initBOATextField();
+        initAmountTextField();
+    }
 
+    /**
+     * Sets the initial values for the .fxml nodes.
+     */
+    private void setInitialValues() {
+        // Set its value to the one from the model if it isn't null.
         if(apartmentItem.getApartmentType() != null) {
             apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         }
         BOATextField.setText(String.valueOf(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
-
-        initTextFieldProperties();
     }
 
-
     /**
-     * Init method for input TextFields properties.
-     * Adds focus lost property.
-     * Adds only allowing doubles property.
+     * Init method for the MenuButtons properties.
+     * Makes it possible to switch between apartment types.
      */
-    private void initTextFieldProperties(){
-
+    private void initMenuButtonProperties() {
         for (MenuItem menuItem : apartmentTypeMenuButton.getItems()) {
             menuItem.setOnAction(actionEvent -> {
                 apartmentTypeMenuButton.setText(menuItem.getText());
                 apartmentItem.setApartmentType(menuItem.getText());
             });
         }
+    }
 
+    /**
+     * Initializes the BOATextField by adding listeners.
+     */
+    private void initBOATextField() {
         //Adds property to TextField allowing users to only input numbers and ".".
         BOATextField.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue.matches("[0-9]*" + "[.]?" + "[0-9]*")){
@@ -71,7 +91,7 @@ public class ApartmentItemController implements Initializable {
             }
         });
 
-        //Adds focus lost property to textFields.
+        // Adds focus lost property to textFields.
         BOATextField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue){
                 //Make sure that the textField has a readable value.
@@ -81,15 +101,20 @@ public class ApartmentItemController implements Initializable {
                 apartmentItem.setBOA(Double.parseDouble(BOATextField.getText()));
             }
         });
+    }
 
-        //Adds property to TextField allowing users to only input numbers and.
+    /**
+     * Initializes the amountTextField by adding listeners.
+     */
+    private void initAmountTextField() {
+        // Adds property to TextField allowing users to only input numbers and.
         amountTextField.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue.matches("\\d*")){
                 amountTextField.setText(oldValue);
             }
         });
 
-        //Adds focus lost property to textFields.
+        // Adds focus lost property to textFields.
         amountTextField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue){
                 //Make sure that the textField has a readable value.
@@ -97,7 +122,6 @@ public class ApartmentItemController implements Initializable {
                     amountTextField.setText("0");
                 }
                 apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
-
             }
         });
     }
