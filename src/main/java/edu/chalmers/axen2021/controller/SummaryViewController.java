@@ -115,7 +115,7 @@ public class SummaryViewController {
         ApartmentItem newApartmentItem = new ApartmentItem();
         createNewLagenhetstypView(newApartmentItem);
 
-        projectManager.getActiveProject().getApartmentTypes().add(newApartmentItem);
+        projectManager.getActiveProject().addApartmentItem(newApartmentItem);
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
@@ -123,7 +123,7 @@ public class SummaryViewController {
      * Populates apartmentTypes for the active project.
      */
     public void populateLagenhetstyper() {
-        for (ApartmentItem apartmentItem : projectManager.getActiveProject().getApartmentTypes()) {
+        for (ApartmentItem apartmentItem : projectManager.getActiveProject().getApartmentItems()) {
             createNewLagenhetstypView(apartmentItem);
         }
     }

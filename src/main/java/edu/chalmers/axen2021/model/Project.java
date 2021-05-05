@@ -25,6 +25,9 @@ public class Project implements Serializable {
      */
     private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
+    /**
+     * A list of all apartmentItems
+     */
     private ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
 
     private CalculationsManager calculationsManager = CalculationsManager.getInstance();
@@ -112,7 +115,6 @@ public class Project implements Serializable {
     private double projektvinstProcentMedStod;
     private double projektvinstProcentUtanStod;
 
-    //ToDo add variable below in correct list..?
     //Grundforutsattningar
     private double normhyraMedStod;
     private double investeringsstod;
@@ -164,6 +166,14 @@ public class Project implements Serializable {
     }
 
     /**
+     * Adds a new apartmentItem to this project.
+     * @param apartmentItem The apartmentItem to add.
+     */
+    public void addApartmentItem(ApartmentItem apartmentItem) {
+        apartmentItems.add(apartmentItem);
+    }
+
+    /**
      * Removes a cost item.
      * @param category Category where cost item resides.
      * @param name Name of the cost item
@@ -185,6 +195,21 @@ public class Project implements Serializable {
         throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getName());
     }
 
+    /**
+     * Removes an apartmentItem
+     * @param apartmentItem The apartmentItem to remove.
+     * @return Returns True if removal was successful, False if not.
+     */
+    public boolean removeApartmentItem(ApartmentItem apartmentItem) {
+        // Only remove apartmentItem if it exists in project.
+        if(apartmentItems.contains(apartmentItem)) {
+            apartmentItems.remove(apartmentItem);
+            return true;
+        } else {
+            throw new IllegalArgumentException(apartmentItem + " does not exist in this project!");
+        }
+    }
+
     // ------------------ GETTERS ------------------ //
     /**
      * Getter for the name of the project.
@@ -202,7 +227,11 @@ public class Project implements Serializable {
         return costItemsMap;
     }
 
-    public ArrayList<ApartmentItem> getApartmentTypes() {
+    /**
+     * Getter for the list of all apartmentItems in the project.
+     * @return List of all apartmentItems.
+     */
+    public ArrayList<ApartmentItem> getApartmentItems() {
         return apartmentItems;
     }
 
@@ -235,32 +264,12 @@ public class Project implements Serializable {
         return costItemsMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
-    public ArrayList<CostItem> getMervärdeskatt() {
-        return costItemsMap.get(Category.MERVÄRDESKATT);
-    }
-
-    public ArrayList<CostItem> getInvesteringsstöd() {
-        return costItemsMap.get(Category.INVESTERINGSSTÖD);
-    }
-
     public ArrayList<CostItem> getHyresintäkter() {
         return costItemsMap.get(Category.HYRESINTÄKTER);
     }
 
     public ArrayList<CostItem> getDriftOchUnderhåll() {
         return costItemsMap.get(Category.DRIFTOCHUNDERHÅLL);
-    }
-
-    public ArrayList<CostItem> getTomträttsavgäld() {
-        return costItemsMap.get(Category.TOMTRÄTTSAVGÄLD);
-    }
-
-    public ArrayList<CostItem> getDriftnetto() {
-        return costItemsMap.get(Category.DRIFTNETTO);
-    }
-
-    public ArrayList<CostItem> getYield() {
-        return costItemsMap.get(Category.YIELD);
     }
 
     // GETTERS FOR ALL THOSE VARIABLES...
@@ -472,7 +481,6 @@ public class Project implements Serializable {
         return totalLjusBta;
     }
 
-
     // SETTERS FOR INPUT VARIABLES
     public void setYieldMedStod(double yieldMedStod) {
         this.yieldMedStod = yieldMedStod;
@@ -515,14 +523,13 @@ public class Project implements Serializable {
         updateAnslutningarKkr();
         updateAnslutningarKrBoa();
         updateAnslutningarKrBta();
-
     }
 
     private void updateNumOfApt() {
-        numOfApt = calculationsManager.updateNumberOfApt(getApartmentTypes());
+        numOfApt = calculationsManager.updateNumberOfApt(getApartmentItems());
     }
     private void updateTotalBoa() {
-        totalBoa = calculationsManager.updateTotalBoa(getApartmentTypes());
+        totalBoa = calculationsManager.updateTotalBoa(getApartmentItems());
     }
 
     private void updateTomtkostnaderKkr() {

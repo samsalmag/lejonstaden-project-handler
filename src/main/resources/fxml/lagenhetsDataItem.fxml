@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" minWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" minWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
@@ -19,7 +19,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <MenuButton alignment="CENTER" maxWidth="150.0" minWidth="105.0" mnemonicParsing="false" text="Lägenhetstyp">
+                  <MenuButton fx:id="apartmentTypeMenuButton" alignment="CENTER" maxWidth="150.0" minWidth="105.0" mnemonicParsing="false" text="Lägenhetstyp">
                      <items>
                         <MenuItem mnemonicParsing="false" text="1rks" />
                         <MenuItem mnemonicParsing="false" text="1rokv" />
@@ -50,7 +50,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField maxWidth="100.0" minWidth="100.0">
+                  <TextField fx:id="BOATextField" maxWidth="100.0" minWidth="100.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -64,7 +64,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField maxWidth="100.0" minWidth="100.0">
+                  <TextField fx:id="amountTextField" maxWidth="100.0" minWidth="100.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

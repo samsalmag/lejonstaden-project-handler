@@ -12,13 +12,13 @@ public enum Category {
     ENTREPENAD("Entrepenad"),
     OFÖRUTSETT("Oförutsett"),
     FINANSIELLAKOSTNADER("Finansiella kostnader"),
-    MERVÄRDESKATT("Mervärdeskatt"),
-    INVESTERINGSSTÖD("Investeringsstöd"),
+    //MERVÄRDESKATT("Mervärdeskatt"),
+    //INVESTERINGSSTÖD("Investeringsstöd"),
     HYRESINTÄKTER("Hyresintäkter"),
-    DRIFTOCHUNDERHÅLL("Drift & Underhåll"),
-    TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),
-    DRIFTNETTO("Driftnetto"),
-    YIELD("Yield");
+    DRIFTOCHUNDERHÅLL("Drift & Underhåll");
+    //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),
+    //DRIFTNETTO("Driftnetto"),
+    //YIELD("Yield");
 
     /**
      * String name of the category. Must be the same as the string on the category buttons in the input view.

@@ -13,7 +13,6 @@ public class ApartmentItem implements Serializable {
     private double hyraPerMånadHög;
     private double krPerKvmHög;
 
-
     public String getApartmentType() {
         return apartmentType;
     }
