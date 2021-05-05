@@ -149,13 +149,14 @@ public class CalculationsManager implements Serializable {
         return  projectCosts.getCostPerBta(mervardesskattKkr, totalBta);
     }
 
-    public double updateProjectCostKkr(ArrayList<ArrayList<CostItem>> costsKkr) {
+/** Måste fixas, vill ta ArrayList<ArrayList<CostItem>> men det gick inte
+    public double updateProjectCostKkr(ArrayList<CostItem> costsKkr) {
         double projectCosts = 0.0;
         for(CostItem costItem : costsKkr)
             projectCosts += costItem.getValue();
 
         return projectCosts;
-    }
+    }*/
 
 
     // ------------------ GETTERS ------------------ //
