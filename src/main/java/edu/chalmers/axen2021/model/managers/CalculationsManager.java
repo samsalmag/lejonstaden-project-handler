@@ -47,55 +47,39 @@ public class CalculationsManager implements Serializable {
     }
 
     public double updatedTomtkostnaderKkr(ArrayList<CostItem> tomtkostnader) {
-        double tomtkostnaderKkr = 0;
-
-        for(CostItem costItem: tomtkostnader) {
-            tomtkostnaderKkr += costItem.getValue();
-        }
-
-        return tomtkostnaderKkr;
+        return projectCosts.getTotalCost(tomtkostnader);
     }
 
-    public double updatedTomtkostnaderKrBoa(double tomtkostnaderKkr, double numOfApt) {
-        return (tomtkostnaderKkr*1000)/numOfApt;
+    public double updatedTomtkostnaderKrBoa(double tomtkostnaderKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(tomtkostnaderKkr, totalBoa);
     }
 
     public double updatedTomtkostnaderKrBta(double tomtkostnaderKkr, double totalBta) {
-        return (tomtkostnaderKkr*1000)/totalBta;
+        return projectCosts.getCostPerBta(tomtkostnaderKkr, totalBta);
     }
 
     public double updatedNedlagdaKkr(ArrayList<CostItem> nedlagda) {
-        double nedlagdaKkr = 0;
-
-        for(CostItem costItem: nedlagda) {
-            nedlagdaKkr += costItem.getValue();
-        }
-
-        return nedlagdaKkr;
+        return projectCosts.getTotalCost(nedlagda);
     }
 
-    public double updatedNedlagdaKrBoa(double nedlagdaKkr, double numOfApt) {
-        return (nedlagdaKkr*1000)/numOfApt;
+    public double updatedNedlagdaKrBoa(double nedlagdaKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(nedlagdaKkr, totalBoa);
     }
 
     public double updatedNedlagdaKrBta(double nedlagdaKkr, double totalBta) {
-        return (nedlagdaKkr*1000)/totalBta;
+        return projectCosts.getCostPerBta(nedlagdaKkr, totalBta);
     }
 
     public double updatedAnslutningarKkr(ArrayList<CostItem> anslutningar, double numOfApt) {
-        double anslutningarPerApt = 0;
-        for(CostItem costItem: anslutningar) {
-            anslutningarPerApt += costItem.getValue();
-        }
-        return projectCosts.getConnectionsCost(anslutningarPerApt, numOfApt);
+        return projectCosts.getConnectionsCost(projectCosts.getTotalCost(anslutningar), numOfApt);
     }
 
     public double updatedAnslutningarKrBoa(double anslutningarKkr, double totalBoa) {
-        return (anslutningarKkr*1000)/totalBoa;
+        return projectCosts.getCostPerBoa(anslutningarKkr, totalBoa);
     }
 
     public double updatedAnslutningarKrBta(double anslutningarKkr, double totalBta) {
-        return (anslutningarKkr*1000)/totalBta;
+        return projectCosts.getCostPerBta(anslutningarKkr, totalBta);
     }
 
     // ------------------ GETTERS ------------------ //

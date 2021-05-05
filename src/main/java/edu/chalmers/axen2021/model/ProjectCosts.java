@@ -26,7 +26,7 @@ public class ProjectCosts {
      * @param totBoa total BOA of the project.
      * @return Client costs of the project.
      */
-    public double getClientCost(int clientBoa, int totBoa) {
+    public double getClientCost(double clientBoa, double totBoa) {
         return (clientBoa * totBoa) / 1000;
     }
 
@@ -36,7 +36,7 @@ public class ProjectCosts {
      * @param totBoa total BOA of the project.
      * @return Contract costs of the project.
      */
-    public double getContractCost(int contractBoa, int totBoa) {
+    public double getContractCost(double contractBoa, double totBoa) {
         return (contractBoa * totBoa) / 1000;
     }
 
@@ -47,7 +47,7 @@ public class ProjectCosts {
      * @param contractPercent percentage of the contract.
      * @return Unforseen costs of the project.
      */
-    public double getUnforseenCost(int contractBoa, int totBoa, double contractPercent) {
+    public double getUnforseenCost(double contractBoa, double totBoa, double contractPercent) {
         return getContractCost(contractBoa, totBoa) * contractPercent;
     }
 
@@ -57,7 +57,7 @@ public class ProjectCosts {
      * @param krPerSqm cost in kr per square meter.
      * @return Financial costs of the project.
      */
-    public double getFinancialCost(int totBoa, int krPerSqm) {
+    public double getFinancialCost(double totBoa, double krPerSqm) {
         return (totBoa * krPerSqm) / 1000;
     }
 
@@ -66,7 +66,7 @@ public class ProjectCosts {
      * @param groundRent the ground rent for the project.
      * @return Site cost for the project.
      */
-    public double getSiteCost(int groundRent){
+    public double getSiteCost(double groundRent){
         return groundRent;
     }
 
@@ -75,7 +75,7 @@ public class ProjectCosts {
      * @param disusedDeveloperCost disused developer cost (nedlagda byggherre).
      * @return The disused developer cost for the project.
      */
-    public double getDisusedDeveloperCost(int disusedDeveloperCost){
+    public double getDisusedDeveloperCost(double disusedDeveloperCost){
         return disusedDeveloperCost;
     }
 
@@ -116,9 +116,11 @@ public class ProjectCosts {
      * @param totBoa The total BOA for the project.
      * @return The cost per BOA for the specified cost.
      */
-    public double getCostPerBoa(int variable, int totBoa){
-        return variable/(totBoa*1000);
+
+    public double getCostPerBoa(double variable, double totBoa){
+        return variable/totBoa*1000;
     }
+
 
     /**
      * Calculates cost per BTA for a specified cost.
@@ -126,7 +128,9 @@ public class ProjectCosts {
      * @param totBta The total BTA for the project.
      * @return
      */
-    public double getCostPerBta(int variable, int totBta){
-        return variable/(totBta*1000);
+
+    public double getCostPerBta(double variable, double totBta){
+        return variable/totBta*1000;
     }
+
 }
