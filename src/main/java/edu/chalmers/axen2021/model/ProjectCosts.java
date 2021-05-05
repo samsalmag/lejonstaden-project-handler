@@ -1,6 +1,9 @@
 package edu.chalmers.axen2021.model;
 
+import edu.chalmers.axen2021.model.projectdata.CostItem;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Tilda Grönlund
@@ -83,12 +86,12 @@ public class ProjectCosts {
     /**
      * Checks for every Cost Item in the project if moms should be applied to the Cost Item.
      * If true then the Cost Item's value is multiplied with 0.25 (the tax) and added to the tax sum.
-     * @param matrix An ArrayList containing all of the projects ArrayLists of Cost Items.
+     * @param costItems A map containing all of the projects ArrayLists of Cost Items.
      * @return The tax sum for the project (mervärdesskatt)
      */
-    public double getMervardesskatt(ArrayList<ArrayList<CostItem>> matrix) {
+    public double getMervardesskatt(HashMap<Category, ArrayList<CostItem>> costItems) {
         double moms = 0.0;
-        for (ArrayList<CostItem> list : matrix) {
+        for (ArrayList<CostItem> list : costItems.values()) {
             for (CostItem c : list) {
                 if (c.getMoms()) {
                     moms += c.getValue()*0.25;

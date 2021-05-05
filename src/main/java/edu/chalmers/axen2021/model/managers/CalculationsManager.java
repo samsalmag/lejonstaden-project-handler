@@ -1,9 +1,12 @@
 package edu.chalmers.axen2021.model.managers;
 
 import edu.chalmers.axen2021.model.*;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
+import edu.chalmers.axen2021.model.projectdata.CostItem;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The main class for access to the applications model.
@@ -119,8 +122,8 @@ public class CalculationsManager implements Serializable {
         return  projectCosts.getCostPerBta(oforutsettKkr, totalBta);
     }
 
-    public double updatedMervardesskattKkr(ArrayList<ArrayList<CostItem>> mervardesskatt) {
-        return projectCosts.getMervardesskatt(mervardesskatt);
+    public double updatedMervardesskattKkr(HashMap<Category, ArrayList<CostItem>> costItems) {
+        return projectCosts.getMervardesskatt(costItems);
     }
 
     public double updatedMervardesskattKrBoa(double mervardesskattKkr, double totalBoa) {
