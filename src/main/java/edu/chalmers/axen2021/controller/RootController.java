@@ -2,7 +2,7 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
-import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.fxml.FXML;
@@ -173,8 +173,8 @@ public class RootController {
         inputController.updateAllTextFields();
         inputController.updateTitle();
 
-        inputController.clearLagenhetstyper();
-        inputController.populateLagenhetstyper();
+        inputController.clearApartmentItems();
+        inputController.populateApartmentItems();
 
         inputWindowNode.toFront();
     }
@@ -186,8 +186,8 @@ public class RootController {
         summaryViewController.updateTextFields();
         summaryViewController.updateTitle();
 
-        summaryViewController.clearLagenhetstyper();
-        summaryViewController.populateLagenhetstyper();
+        summaryViewController.clearApartmentItems();
+        summaryViewController.populateApartmentItems();
 
         summaryViewNode.toFront();
     }

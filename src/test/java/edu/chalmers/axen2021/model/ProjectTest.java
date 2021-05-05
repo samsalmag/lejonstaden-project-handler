@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.model;
 
 import edu.chalmers.axen2021.model.managers.ProjectManager;
+import edu.chalmers.axen2021.model.projectdata.Project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,14 +41,14 @@ public class ProjectTest {
         Project project1 = new Project("test");
         projectManager.setActiveCategory(Category.ANSLUTNINGAR);
         project1.addCostItem("costItem1");
-        assertEquals(project1.getAnslutningar().get(0).getName(), "costItem1");
+        assertEquals(project1.getAnslutningarCostItems().get(0).getName(), "costItem1");
         assertEquals(projectManager.getAnslutningar().get(0), "costItem1");
 
         assertThrows(IllegalArgumentException.class, () -> project1.removeCostItem(Category.TOMTKOSTNADER, "costItem1"));
         assertThrows(IllegalArgumentException.class, () -> project1.removeCostItem(Category.ANSLUTNINGAR, "costItem100"));
 
         project1.removeCostItem(Category.ANSLUTNINGAR, "costItem1");
-        assertEquals(project1.getAnslutningar().size(), 0);
+        assertEquals(project1.getAnslutningarCostItems().size(), 0);
         assertEquals(projectManager.getAnslutningar().size(), 0);
     }
 }

@@ -2,7 +2,7 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
-import edu.chalmers.axen2021.model.CostItem;
+import edu.chalmers.axen2021.model.projectdata.CostItem;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +56,7 @@ public class ModalController {
         projectManager.getActiveProject().updateAllVariables();
         rootController.updateInputView();
         rootController.getModalAnchorPane().toBack();
-        clearTilePane();
+        clearCostItems();
     }
 
     /**
@@ -82,7 +82,7 @@ public class ModalController {
     /**
      * Removes all cost items in the modal window.
      */
-    private void clearTilePane() {
+    private void clearCostItems() {
         modalWindowItemVBox.getChildren().clear();
     }
 
@@ -90,14 +90,14 @@ public class ModalController {
      * This method populates the active category modal window with cost items,
      * based on the number of saved cost items for that specific category.
      */
-    public void populateTilePane() {
+    public void populateCostItems() {
         // For every cost in the active category: add a cost item
         ArrayList<String> activeCostItemNamesCopy = new ArrayList<>(projectManager.getActiveCostItemNames());
         for(String costItemName : activeCostItemNamesCopy) {
 
             // If cost item already exists in active project then just create a view.
             // If not then create a new cost item and add it to the active project before creating a view.
-            CostItem costItem = getCostItemFromActive(costItemName);
+            CostItem costItem = projectManager.getActiveProject().getActiveCostItem(costItemName);
             if(costItem != null) {
                 addModalItem(costItem);
             } else {
@@ -105,17 +105,6 @@ public class ModalController {
                 addModalItem(newCostItem);
             }
         }
-    }
-
-    //ToDo add javaDoc.
-    private CostItem getCostItemFromActive(String name) {
-        for(CostItem costItem : projectManager.getActiveProject().getCostItemsMap().get(projectManager.getActiveCategory())) {
-            if(costItem.getName().equals(name)) {
-                return costItem;
-            }
-        }
-
-        return null;
     }
 
     /**

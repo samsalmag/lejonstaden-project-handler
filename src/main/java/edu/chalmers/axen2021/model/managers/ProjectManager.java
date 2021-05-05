@@ -1,7 +1,7 @@
 package edu.chalmers.axen2021.model.managers;
 
 import edu.chalmers.axen2021.model.Category;
-import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.projectdata.Project;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package edu.chalmers.axen2021.model;
+package edu.chalmers.axen2021.model.projectdata;
 
 import java.io.Serializable;
 
