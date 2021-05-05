@@ -25,7 +25,7 @@ public class Project implements Serializable {
      */
     private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
-    private ArrayList<ApartmentType> apartmentTypes = new ArrayList<>();
+    private ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
 
     private CalculationsManager calculationsManager = CalculationsManager.getInstance();
 
@@ -141,15 +141,21 @@ public class Project implements Serializable {
 
     /**
      * Method that creates a costItem used for the categories (contains name, comment, etc.)
+     * @return Returns the cost item that was created.
      */
     public CostItem addCostItem(String name) {
-
         CostItem costItem = new CostItem(name);
 
         // Add the cost item to the correct category lists
         Category activeCategory = ProjectManager.getInstance().getActiveCategory();
         costItemsMap.get(activeCategory).add(costItem);
-        ProjectManager.getInstance().getActiveCostItemNames().add(name);
+
+        // Only add cost item name to ProjectManager if ProjectManager doesn't already contain it in the active category.
+        // Used to avoid duplicate cost item names in the same categories,
+        // hence avoiding duplicate cost items when populating the category window.
+        if(!ProjectManager.getInstance().getActiveCostItemNames().contains(name)) {
+            ProjectManager.getInstance().getActiveCostItemNames().add(name);
+        }
 
         // Sort the list to alphabetical order.
         ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
@@ -196,8 +202,8 @@ public class Project implements Serializable {
         return costItemsMap;
     }
 
-    public ArrayList<ApartmentType> getApartmentTypes() {
-        return apartmentTypes;
+    public ArrayList<ApartmentItem> getApartmentTypes() {
+        return apartmentItems;
     }
 
     // GETTERS FOR COST ITEM LISTS

@@ -26,21 +26,21 @@ public class CalculationsManager implements Serializable {
     private static ProjectCosts projectCosts = new ProjectCosts();
 
     //Update methods
-    public double updateTotalBoa(ArrayList<ApartmentType> apartments) {
+    public double updateTotalBoa(ArrayList<ApartmentItem> apartments) {
         double totalBoa = 0;
 
-        for(ApartmentType apartmentType: apartments) {
-            totalBoa += (apartmentType.getBOA()*apartmentType.getAmount());
+        for(ApartmentItem apartmentItem : apartments) {
+            totalBoa += (apartmentItem.getBOA()* apartmentItem.getAmount());
         }
 
         return totalBoa;
     }
 
-    public double updateNumberOfApt(ArrayList<ApartmentType> apartments) {
+    public double updateNumberOfApt(ArrayList<ApartmentItem> apartments) {
         double numOfApt = 0;
 
-        for(ApartmentType apartmentType: apartments) {
-            numOfApt += apartmentType.getAmount();
+        for(ApartmentItem apartmentItem : apartments) {
+            numOfApt += apartmentItem.getAmount();
         }
 
         return numOfApt;

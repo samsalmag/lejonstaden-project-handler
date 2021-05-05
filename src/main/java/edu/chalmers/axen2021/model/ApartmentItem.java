@@ -2,7 +2,7 @@ package edu.chalmers.axen2021.model;
 
 import java.io.Serializable;
 
-public class ApartmentType implements Serializable {
+public class ApartmentItem implements Serializable {
 
     private String apartmentType;
     private double BOA;

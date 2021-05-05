@@ -49,10 +49,10 @@ public class CostItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameLabel.setText(costItem.getName());
-
         valueTextField.setText(StringUtils.removeTrailingZeros(costItem.getValue()));
-
+        momsCheckBox.setSelected(costItem.getMoms());
         commentTextArea.setText(costItem.getComment());
+
         initInputProperties();
     }
 
@@ -79,6 +79,11 @@ public class CostItemController implements Initializable {
 
                 costItem.setValue(Double.parseDouble(valueTextField.getText()));
             }
+        });
+
+        // Adds changeListener to the momsCheckBox to update the cost item's value in model.
+        momsCheckBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+            costItem.setMoms(momsCheckBox.isSelected());
         });
 
         //Make sure a comment field is not null.
