@@ -38,16 +38,16 @@ public class ProjectTest {
     @Test
     public void removeCostItemTest() {
         Project project1 = new Project("test");
-        projectManager.setActiveCategory(Category.YIELD);
+        projectManager.setActiveCategory(Category.ANSLUTNINGAR);
         project1.addCostItem("costItem1");
-        assertEquals(project1.getYield().get(0).getName(), "costItem1");
-        assertEquals(projectManager.getYield().get(0), "costItem1");
+        assertEquals(project1.getAnslutningar().get(0).getName(), "costItem1");
+        assertEquals(projectManager.getAnslutningar().get(0), "costItem1");
 
         assertThrows(IllegalArgumentException.class, () -> project1.removeCostItem(Category.TOMTKOSTNADER, "costItem1"));
-        assertThrows(IllegalArgumentException.class, () -> project1.removeCostItem(Category.YIELD, "costItem100"));
+        assertThrows(IllegalArgumentException.class, () -> project1.removeCostItem(Category.ANSLUTNINGAR, "costItem100"));
 
-        project1.removeCostItem(Category.YIELD, "costItem1");
-        assertEquals(project1.getYield().size(), 0);
-        assertEquals(projectManager.getYield().size(), 0);
+        project1.removeCostItem(Category.ANSLUTNINGAR, "costItem1");
+        assertEquals(project1.getAnslutningar().size(), 0);
+        assertEquals(projectManager.getAnslutningar().size(), 0);
     }
 }

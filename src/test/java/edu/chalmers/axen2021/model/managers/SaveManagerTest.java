@@ -76,11 +76,11 @@ public class SaveManagerTest {
 
     @Test
     public void readProjectManagerTest() {
-        ProjectManager.getInstance().getYield().add("test");
+        ProjectManager.getInstance().getAnslutningar().add("test");
         saveManager.saveProjectManager();
 
-        ProjectManager.getInstance().getYield().remove(0);
+        ProjectManager.getInstance().getAnslutningar().remove(0);
         ProjectManager projectManager = SaveManager.getInstance().readProjectManager();
-        assertEquals(projectManager.getYield().get(0), "test");
+        assertEquals(projectManager.getAnslutningar().get(0), "test");
     }
 }
