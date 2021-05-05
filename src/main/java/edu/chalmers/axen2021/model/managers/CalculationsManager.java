@@ -82,6 +82,56 @@ public class CalculationsManager implements Serializable {
         return projectCosts.getCostPerBta(anslutningarKkr, totalBta);
     }
 
+    public double updatedByggherreKkr(ArrayList<CostItem> byggherre, double totalBoa) {
+        return projectCosts.getClientCost(projectCosts.getTotalCost(byggherre), totalBoa);
+    }
+
+    public double updatedByggherreKrBoa(double byggherreKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(byggherreKkr, totalBoa);
+    }
+
+    public double updatedByggherreKrBta(double byggherreKkr, double totalBta) {
+        return projectCosts.getCostPerBta(byggherreKkr, totalBta);
+    }
+
+    public double updatedEntreprenadKkr(ArrayList<CostItem> entreprenad, double totalBoa) {
+        return projectCosts.getContractCost(projectCosts.getTotalCost(entreprenad), totalBoa);
+    }
+
+    public double updatedEntreprenadKrBoa(double entreprenadKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(entreprenadKkr, totalBoa) ;
+    }
+
+    public double updatedEntreprenadKrBta(double entreprenadKkr, double totalBta) {
+        return projectCosts.getCostPerBta(entreprenadKkr, totalBta);
+    }
+
+    public double updatedOforutsettKkr(ArrayList<CostItem> entreprenad, double totalBoa, double contractPercent) {
+        double entreprenadKkr = projectCosts.getContractCost(projectCosts.getTotalCost(entreprenad), totalBoa);
+        return projectCosts.getUnforseenCost(entreprenadKkr, totalBoa, contractPercent);
+    }
+
+    public double updatedOforutsettKrBoa(double oforutsettKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(oforutsettKkr, totalBoa);
+    }
+
+    public double updatedOforutsettKrBta(double oforutsettKkr, double totalBta) {
+        return  projectCosts.getCostPerBta(oforutsettKkr, totalBta);
+    }
+
+    public double updatedMervardesskattKkr(ArrayList<ArrayList<CostItem>> mervardesskatt) {
+        return projectCosts.getMervardesskatt(mervardesskatt);
+    }
+
+    public double updatedMervardesskattKrBoa(double mervardesskattKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(mervardesskattKkr, totalBoa);
+    }
+
+    public double updatedMervardesskattKrBta(double mervardesskattKkr, double totalBta) {
+        return  projectCosts.getCostPerBta(mervardesskattKkr, totalBta);
+    }
+
+
     // ------------------ GETTERS ------------------ //
 
     /**
