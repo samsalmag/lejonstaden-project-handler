@@ -55,7 +55,7 @@ public class SaveManager {
      * The path directory for where project are saved.
      * @return The directory.
      */
-    private String getSaveDirectory() {
+    public String getSaveDirectory() {
         return directory + File.separatorChar + "projects";
     }
 
@@ -63,7 +63,7 @@ public class SaveManager {
      * The path directory for where all data for the application is saved.
      * @return The directory.
      */
-    private String getDirectory() {
+    public String getDirectory() {
         return directory;
     }
 
