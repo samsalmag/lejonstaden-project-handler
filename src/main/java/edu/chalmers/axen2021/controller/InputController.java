@@ -1,7 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.SaveManager;
-import edu.chalmers.axen2021.model.ApartmentItem;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import javafx.event.ActionEvent;
@@ -24,6 +24,8 @@ import java.util.ResourceBundle;
  * Handles all event triggered in the inputView.
  * @author Oscar Arvidson
  * @author Erik Wetter
+ * @author Sam Salek
+ * @author Malte Åkvist
  */
 @FXMLController
 public class InputController implements Initializable {
@@ -175,7 +177,7 @@ public class InputController implements Initializable {
         ProjectManager.getInstance().setActiveCategory(category);
 
         rootController.getModalController().setCategoryNameLabelText(category.getName());
-        rootController.getModalController().populateTilePane();
+        rootController.getModalController().populateCostItems();
         rootController.getModalAnchorPane().toFront();
     }
 
@@ -183,10 +185,9 @@ public class InputController implements Initializable {
      * Method for adding a new lagenhetsDataSummaryItem.
      * Adds lagenhetsDataSummaryItem to Vbox in inputView.
      * @param event that triggered the method.
-     * @throws IOException if unrecognized wrong file name.
      */
     @FXML
-    private void addNewLagenhetstyp(ActionEvent event) throws IOException {
+    private void addNewApartmentItem(ActionEvent event) {
         ApartmentItem newApartmentItem = new ApartmentItem();
         createNewLagenhetstypView(newApartmentItem);
         updateAllTextFields();
@@ -196,24 +197,24 @@ public class InputController implements Initializable {
     }
 
     /**
-     * Populates the apartmentTypes view with the items of the current project.
+     * Populates the input view with apartmentItems views from the current project.
      */
-    public void populateLagenhetstyper() {
+    public void populateApartmentItems() {
         for (ApartmentItem apartmentItem : projectManager.getActiveProject().getApartmentItems()) {
             createNewLagenhetstypView(apartmentItem);
         }
     }
 
     /**
-     * Remove all children in the apartmentTypesView of the window.
+     * Remove all apartmentItems in the apartmentTypesView of the window.
      */
-    public void clearLagenhetstyper() {
+    public void clearApartmentItems() {
         lagenhetsTypVbox.getChildren().clear();
     }
 
     /**
-     * Creates new apartment object and adds i to the view.
-     * @param newApartmentItem type of apartment.
+     * Creates new apartment object and adds it to the view.
+     * @param newApartmentItem The apartmentItem.
      */
     private void createNewLagenhetstypView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));

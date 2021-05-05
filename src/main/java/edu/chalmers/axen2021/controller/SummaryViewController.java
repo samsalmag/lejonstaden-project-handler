@@ -2,7 +2,7 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
-import edu.chalmers.axen2021.model.ApartmentItem;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +18,8 @@ import java.io.IOException;
  * Handles all event triggered in the SummaryView.
  * @author Erik Wetter
  * @author Oscar Arvidson
+ * @author Sam Salek
+ * @author Malte Åkvist
  */
 @FXMLController
 public class SummaryViewController {
@@ -111,27 +113,27 @@ public class SummaryViewController {
      * @param event of action.
      */
     @FXML
-    private void addNewLagenhetstyp(ActionEvent event) throws IOException {
+    private void addNewApartmentItem(ActionEvent event) {
         ApartmentItem newApartmentItem = new ApartmentItem();
-        createNewLagenhetstypView(newApartmentItem);
+        createNewApartmentItemView(newApartmentItem);
 
         projectManager.getActiveProject().addApartmentItem(newApartmentItem);
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
     /**
-     * Populates apartmentTypes for the active project.
+     * Populates apartmentItems for the active project.
      */
-    public void populateLagenhetstyper() {
+    public void populateApartmentItems() {
         for (ApartmentItem apartmentItem : projectManager.getActiveProject().getApartmentItems()) {
-            createNewLagenhetstypView(apartmentItem);
+            createNewApartmentItemView(apartmentItem);
         }
     }
 
     /**
-     * Remove all children of apartmentTypes from view.
+     * Remove all apartmentItems from view.
      */
-    public void clearLagenhetstyper() {
+    public void clearApartmentItems() {
         lagenhetsTypVbox.getChildren().clear();
     }
 
@@ -139,7 +141,7 @@ public class SummaryViewController {
      * Creates new lagenhetsDataItem and adds i to the current view.
      * @param newApartmentItem
      */
-    private void createNewLagenhetstypView(ApartmentItem newApartmentItem) {
+    private void createNewApartmentItemView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
         ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
         apartmentTypeFXML.setController(apartmentItemController);
