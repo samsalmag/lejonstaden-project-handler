@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.managers.SaveManager;
@@ -25,12 +26,12 @@ public class RootController {
      */
     private static RootController instance = null;
 
+    // Controllers for the views.
     private HeaderController headerController;
     private SideBarController sideBarController;
     private ModalController modalController;
     private AddNewProjectController addNewProjectController;
     private AddNewCostController addNewCostController;
-
     private SummaryViewController summaryViewController;
     private InputController inputController;
 
@@ -93,6 +94,8 @@ public class RootController {
         modalController = new ModalController();
         addNewProjectController = new AddNewProjectController();
         addNewCostController = new AddNewCostController();
+        inputController = new InputController();
+        summaryViewController = new SummaryViewController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -100,10 +103,6 @@ public class RootController {
         initFXML(modalAnchorPane, "modalWindow.fxml", modalController);
         initFXML(addNewProjectAnchorPane, "addNewProjectView.fxml", addNewProjectController);
         initFXML(addNewCostAnchorPane, "addNewCostView.fxml", addNewCostController);
-
-        // TODO - possibly implement in initFXML.
-        inputController = new InputController();
-        summaryViewController = new SummaryViewController();
         inputWindowNode = initFXML(centerStageAnchorPane, "inputView.fxml", inputController);
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
 
@@ -191,6 +190,23 @@ public class RootController {
         summaryViewController.populateLagenhetstyper();
 
         summaryViewNode.toFront();
+    }
+
+    /**
+     * Starts the 'create PDF' process.
+     * Opens a dialog window to chose save directory.
+     * Creates a PDF if a directory is chosen.
+     */
+    @FXML
+    public void createPdf() {
+        // Don't continue if a active project isn't set.
+        if(ProjectManager.getInstance().getActiveProject() == null) {
+            System.out.println("No active project exists! Either create a new project or choose one from the sidebar!");
+            return;
+        }
+
+        String initialName = ProjectManager.getInstance().getActiveProject().getName();
+        PdfManager.getInstance().makePdf(initialName);
     }
 
     /**

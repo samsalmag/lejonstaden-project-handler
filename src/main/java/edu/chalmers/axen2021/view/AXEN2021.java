@@ -17,6 +17,8 @@ import javafx.stage.Stage;
  */
 public class AXEN2021 extends Application {
 
+    private static Stage mainStage;
+
     /**
      * Runs the view configured in the 'start' method.
      * @param args
@@ -44,6 +46,14 @@ public class AXEN2021 extends Application {
         stage.setTitle(title);
         stage.show();
 
+        mainStage = stage;
+        initShutdownHook();
+    }
+
+    /**
+     * Initializes the Shutdown Hook AKA what should happen on application shutdown.
+     */
+    private void initShutdownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             if(ProjectManager.getInstance().getActiveProject() != null) {
                 SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
@@ -56,5 +66,13 @@ public class AXEN2021 extends Application {
      */
     public static void terminate() {
         Platform.exit();
+    }
+
+    /**
+     * Returns the main stage for this application.
+     * @return Main stage.
+     */
+    public static Stage getMainStage() {
+        return mainStage;
     }
 }

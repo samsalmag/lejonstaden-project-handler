@@ -19,6 +19,7 @@
                 <Menu mnemonicParsing="false" text="Dev">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#deleteDirectory" text="Remove directory (closes program)" />
+                        <MenuItem mnemonicParsing="false" onAction="#createPdf" text="Create PDF" />
                   </items>
                 </Menu>
               </menus>
