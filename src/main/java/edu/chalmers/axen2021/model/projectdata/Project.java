@@ -1,5 +1,6 @@
-package edu.chalmers.axen2021.model;
+package edu.chalmers.axen2021.model.projectdata;
 
+import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.managers.CalculationsManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 
@@ -142,6 +143,21 @@ public class Project implements Serializable {
     }
 
     /**
+     * Returns a cost item from this project in the active category.
+     * Returns null when none with the given name was found.
+     * @param name The name of a cost item to find.
+     * @return The cost item if found, or null if not.
+     */
+    public CostItem getActiveCostItem(String name) {
+        for(CostItem costItem : costItemsMap.get(ProjectManager.getInstance().getActiveCategory())) {
+            if(costItem.getName().equals(name)) {
+                return costItem;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Method that creates a costItem used for the categories (contains name, comment, etc.)
      * @return Returns the cost item that was created.
      */
@@ -236,39 +252,39 @@ public class Project implements Serializable {
     }
 
     // GETTERS FOR COST ITEM LISTS
-    public ArrayList<CostItem> getTomtkostnader() {
+    public ArrayList<CostItem> getTomtkostnaderCostItems() {
         return costItemsMap.get(Category.TOMTKOSTNADER);
     }
 
-    public ArrayList<CostItem> getNedlagdaByggherre() {
+    public ArrayList<CostItem> getNedlagdaByggherreCostItems() {
         return costItemsMap.get(Category.NEDLAGDABYGGHERRE);
     }
 
-    public ArrayList<CostItem> getAnslutningar() {
+    public ArrayList<CostItem> getAnslutningarCostItems() {
         return costItemsMap.get(Category.ANSLUTNINGAR);
     }
 
-    public ArrayList<CostItem> getByggherrekostnader() {
+    public ArrayList<CostItem> getByggherrekostnaderCostItems() {
         return costItemsMap.get(Category.BYGGHERREKOSTNADER);
     }
 
-    public ArrayList<CostItem> getEntrepenad() {
+    public ArrayList<CostItem> getEntrepenadCostItems() {
         return costItemsMap.get(Category.ENTREPENAD);
     }
 
-    public ArrayList<CostItem> getOförutsett() {
+    public ArrayList<CostItem> getOförutsettCostItems() {
         return costItemsMap.get(Category.OFÖRUTSETT);
     }
 
-    public ArrayList<CostItem> getFinansiellaKostnader() {
+    public ArrayList<CostItem> getFinansiellaKostnaderCostItems() {
         return costItemsMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
-    public ArrayList<CostItem> getHyresintäkter() {
+    public ArrayList<CostItem> getHyresintäkterCostItems() {
         return costItemsMap.get(Category.HYRESINTÄKTER);
     }
 
-    public ArrayList<CostItem> getDriftOchUnderhåll() {
+    public ArrayList<CostItem> getDriftOchUnderhållCostItems() {
         return costItemsMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
 
@@ -533,7 +549,7 @@ public class Project implements Serializable {
     }
 
     private void updateTomtkostnaderKkr() {
-        tomtkostnaderKkr = calculationsManager.updatedTomtkostnaderKkr(getTomtkostnader());
+        tomtkostnaderKkr = calculationsManager.updatedTomtkostnaderKkr(getTomtkostnaderCostItems());
     }
     private void updateTomtkostnaderKrBoa() {
         tomtkostnaderKrBoa = calculationsManager.updatedTomtkostnaderKrBoa(tomtkostnaderKkr, totalBoa);
@@ -543,7 +559,7 @@ public class Project implements Serializable {
     }
 
     private void updateNedlagdaBygherreKkr() {
-        nedlagdaByggherreKkr = calculationsManager.updatedNedlagdaKkr(getNedlagdaByggherre());
+        nedlagdaByggherreKkr = calculationsManager.updatedNedlagdaKkr(getNedlagdaByggherreCostItems());
     }
     private void updateNedlagdaBygherreKrBoa() {
         nedlagdaByggherreKrBoa = calculationsManager.updatedNedlagdaKrBoa(nedlagdaByggherreKkr, totalBoa);
@@ -553,7 +569,7 @@ public class Project implements Serializable {
     }
 
     private void updateAnslutningarKkr() {
-        anslutningarKkr = calculationsManager.updatedAnslutningarKkr(getAnslutningar(), numOfApt);
+        anslutningarKkr = calculationsManager.updatedAnslutningarKkr(getAnslutningarCostItems(), numOfApt);
     }
     private void updateAnslutningarKrBoa() {
         anslutningarKrBoa = calculationsManager.updatedAnslutningarKrBoa(anslutningarKkr, totalBoa);
