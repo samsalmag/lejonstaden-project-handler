@@ -3,7 +3,6 @@ package edu.chalmers.axen2021.controller;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.managers.SaveManager;
-import edu.chalmers.axen2021.observers.IViewObserver;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,7 @@ import java.io.IOException;
  * @author Oscar Arvidson
  * @author Erik Wetter
  */
-public class RootController implements IViewObserver {
+public class RootController {
 
     /**
      * Instance of RootController class.
@@ -102,7 +101,7 @@ public class RootController implements IViewObserver {
         initFXML(addNewProjectAnchorPane, "addNewProjectView.fxml", addNewProjectController);
         initFXML(addNewCostAnchorPane, "addNewCostView.fxml", addNewCostController);
 
-        // TODO - remove lines below and associated values later..?
+        // TODO - possibly implement in initFXML.
         inputController = new InputController();
         summaryViewController = new SummaryViewController();
         inputWindowNode = initFXML(centerStageAnchorPane, "inputView.fxml", inputController);
@@ -192,22 +191,6 @@ public class RootController implements IViewObserver {
         summaryViewController.populateLagenhetstyper();
 
         summaryViewNode.toFront();
-    }
-
-    /**
-     * Method is called when a button that wants to change view/scene is clicked in order to change view
-     * @param fxmlName the name of the fxml file that should be changed to
-     */
-    @Override
-    public void update(String fxmlName) {
-        Node center = null;
-        try {
-            center = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        centerStageAnchorPane.getChildren().setAll(center);
     }
 
     /**

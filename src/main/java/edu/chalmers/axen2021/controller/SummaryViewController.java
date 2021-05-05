@@ -3,8 +3,6 @@ package edu.chalmers.axen2021.controller;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.ApartmentType;
-import edu.chalmers.axen2021.observers.IViewObservable;
-import edu.chalmers.axen2021.observers.IViewObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +20,7 @@ import java.io.IOException;
  * @author Oscar Arvidson
  */
 @FXMLController
-public class SummaryViewController implements IViewObservable {
+public class SummaryViewController {
 
     /**
      * Instance of Project Manager.
@@ -121,16 +119,26 @@ public class SummaryViewController implements IViewObservable {
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
+    /**
+     * Populates apartmentTypes for the active project.
+     */
     public void populateLagenhetstyper() {
         for (ApartmentType apartmentType : projectManager.getActiveProject().getApartmentTypes()) {
             createNewLagenhetstypView(apartmentType);
         }
     }
 
+    /**
+     * Remove all children of apartmentTypes from view.
+     */
     public void clearLagenhetstyper() {
         lagenhetsTypVbox.getChildren().clear();
     }
 
+    /**
+     * Creates new lagenhetsDataItem and adds i to the current view.
+     * @param newApartmentType
+     */
     private void createNewLagenhetstypView(ApartmentType newApartmentType) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
         ApartmentTypeController apartmentTypeController = new ApartmentTypeController(newApartmentType);
@@ -143,24 +151,5 @@ public class SummaryViewController implements IViewObservable {
             e.printStackTrace();
         }
         lagenhetsTypVbox.getChildren().add(apartmentTypeNode);
-    }
-
-    /**
-     * Notifies observers of the view that is clicked
-     */
-    @Override
-    public void notifyObservers() {
-        for (IViewObserver IViewObserver : IViewObservers) {
-            //IViewObserver.update(fxmlName);
-        }
-    }
-
-    /**
-     * Adds an observer to the viewObserver list
-     * @param iViewObserver a viewObserver
-     */
-    @Override
-    public void addObserver(IViewObserver iViewObserver) {
-        IViewObservers.add(iViewObserver);
     }
 }
