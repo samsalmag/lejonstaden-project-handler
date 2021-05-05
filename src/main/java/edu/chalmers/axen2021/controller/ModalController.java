@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Controller class for the applications modalWindow.fxml.
@@ -74,7 +75,6 @@ public class ModalController {
         CostItem newCostItem = projectManager.getActiveProject().addCostItem(name);
         addModalItem(newCostItem);
 
-
         SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
         SaveManager.getInstance().saveProjectManager();
     }
@@ -92,13 +92,16 @@ public class ModalController {
      */
     public void populateTilePane() {
         // For every cost in the active category: add a cost item
-        for(String costItemName : projectManager.getActiveCostItemNames()) {
+        ArrayList<String> activeCostItemNamesCopy = new ArrayList<>(projectManager.getActiveCostItemNames());
+        for(String costItemName : activeCostItemNamesCopy) {
 
+            // If cost item already exists in active project then just create a view.
+            // If not then create a new cost item and add it to the active project before creating a view.
             CostItem costItem = getCostItemFromActive(costItemName);
             if(costItem != null) {
                 addModalItem(costItem);
             } else {
-                CostItem newCostItem = new CostItem(costItemName);
+                CostItem newCostItem = projectManager.getActiveProject().addCostItem(costItemName);
                 addModalItem(newCostItem);
             }
         }
