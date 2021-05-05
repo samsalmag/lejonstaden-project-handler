@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.model.managers;
 import edu.chalmers.axen2021.model.*;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +28,7 @@ public class CalculationsManager implements Serializable {
 
     //Update methods
     public double updateTotalBoa(ArrayList<ApartmentItem> apartments) {
-        double totalBoa = 0;
+        double totalBoa = 0.0;
 
         for(ApartmentItem apartmentItem : apartments) {
             totalBoa += (apartmentItem.getBOA()* apartmentItem.getAmount());
@@ -37,7 +38,7 @@ public class CalculationsManager implements Serializable {
     }
 
     public double updateNumberOfApt(ArrayList<ApartmentItem> apartments) {
-        double numOfApt = 0;
+        double numOfApt = 0.0;
 
         for(ApartmentItem apartmentItem : apartments) {
             numOfApt += apartmentItem.getAmount();
@@ -45,6 +46,23 @@ public class CalculationsManager implements Serializable {
 
         return numOfApt;
     }
+
+    public double updateKrPerKvm(ArrayList<ApartmentItem> apartments, double rent) {
+        double krPerKvm = 0.0;
+        for(ApartmentItem apartmentItem : apartments)
+            krPerKvm += apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
+
+        return krPerKvm;
+    }
+
+    public double updateSubsidyKKr(ArrayList<ApartmentItem> apartments, double investmentSub) {
+        double subsidy = 0.0;
+        for(ApartmentItem apartmentItem : apartments)
+            subsidy += apartmentData.getSubsidy(investmentSub, apartmentItem.getAmount(), apartmentItem.getBOA());
+
+        return subsidy;
+    }
+
 
     public double updatedTomtkostnaderKkr(ArrayList<CostItem> tomtkostnader) {
         return projectCosts.getTotalCost(tomtkostnader);
@@ -129,6 +147,14 @@ public class CalculationsManager implements Serializable {
 
     public double updatedMervardesskattKrBta(double mervardesskattKkr, double totalBta) {
         return  projectCosts.getCostPerBta(mervardesskattKkr, totalBta);
+    }
+
+    public double updateProjectCostKkr(ArrayList<ArrayList<CostItem>> costsKkr) {
+        double projectCosts = 0.0;
+        for(CostItem costItem : costsKkr)
+            projectCosts += costItem.getValue();
+
+        return projectCosts;
     }
 
 
