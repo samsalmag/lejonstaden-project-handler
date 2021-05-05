@@ -195,16 +195,26 @@ public class InputController implements Initializable {
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
+    /**
+     * Populates the apartmentTypes view with the items of the current project.
+     */
     public void populateLagenhetstyper() {
         for (ApartmentType apartmentType : projectManager.getActiveProject().getApartmentTypes()) {
             createNewLagenhetstypView(apartmentType);
         }
     }
 
+    /**
+     * Remove all children in the apartmentTypesView of the window.
+     */
     public void clearLagenhetstyper() {
         lagenhetsTypVbox.getChildren().clear();
     }
 
+    /**
+     * Creates new apartment object and adds i to the view.
+     * @param newApartmentType type of apartment.
+     */
     private void createNewLagenhetstypView(ApartmentType newApartmentType) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
         ApartmentTypeController apartmentTypeController = new ApartmentTypeController(newApartmentType);

@@ -1,7 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.ApartmentType;
-import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -11,6 +10,11 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the applications lagenhetsDataItem.
+ * @author Oscar Arvidson
+ * @author Sam Salek
+ */
 @FXMLController
 public class ApartmentTypeController implements Initializable {
 
@@ -20,8 +24,15 @@ public class ApartmentTypeController implements Initializable {
 
     @FXML private TextField amountTextField;
 
+    /**
+     * The type of apartment for the object instance.
+     */
     private ApartmentType apartmentType;
 
+    /**
+     * Constructor for ApartmentTypeController.
+     * @param apartmentType type of apartment.
+     */
     public ApartmentTypeController(ApartmentType apartmentType) {
         this.apartmentType = apartmentType;
     }

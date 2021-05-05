@@ -104,6 +104,7 @@ public class ModalController {
         }
     }
 
+    //ToDo add javaDoc.
     private CostItem getCostItemFromActive(String name) {
         for(CostItem costItem : projectManager.getActiveProject().getCostItemsMap().get(projectManager.getActiveCategory())) {
             if(costItem.getName().equals(name)) {
