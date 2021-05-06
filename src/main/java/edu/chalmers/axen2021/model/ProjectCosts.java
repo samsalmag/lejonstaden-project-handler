@@ -95,7 +95,7 @@ public class ProjectCosts {
             Category key = entry.getKey();
             ArrayList<CostItem> value = matrix.get(key);
             for(CostItem cost : value)
-                moms += cost.getValue();
+                moms += 0.25*cost.getValue();
             }
         return moms / 1000;
     }
