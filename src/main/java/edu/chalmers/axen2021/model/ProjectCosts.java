@@ -1,6 +1,9 @@
 package edu.chalmers.axen2021.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Tilda Grönlund
@@ -86,15 +89,14 @@ public class ProjectCosts {
      * @param matrix An ArrayList containing all of the projects ArrayLists of Cost Items.
      * @return The tax sum for the project (mervärdesskatt)
      */
-    public double getMervardesskatt(ArrayList<ArrayList<CostItem>> matrix) {
+    public double getMervardesskatt(HashMap<Category, ArrayList<CostItem>> matrix) {
         double moms = 0.0;
-        for (ArrayList<CostItem> list : matrix) {
-            for (CostItem c : list) {
-                if (c.getMoms()) {
-                    moms += c.getValue()*0.25;
-                }
+        for (Map.Entry<Category, ArrayList<CostItem>> entry : matrix.entrySet()) {
+            Category key = entry.getKey();
+            ArrayList<CostItem> value = matrix.get(key);
+            for(CostItem cost : value)
+                moms += cost.getValue();
             }
-        }
         return moms / 1000;
     }
 
