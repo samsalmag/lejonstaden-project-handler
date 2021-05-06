@@ -580,7 +580,7 @@ public class Project implements Serializable {
     }
 
     private void updateByggherreKkr() {
-        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnader(), totalBoa);
+        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems(), totalBoa);
     }
 
     private void updateByggherreKrBoa() {
@@ -592,7 +592,7 @@ public class Project implements Serializable {
     }
 
     private void updateEntreprenadKkr() {
-        entreprenadKkr = calculationsManager.updatedEntreprenadKkr(getEntrepenad(), totalBoa);
+        entreprenadKkr = calculationsManager.updatedEntreprenadKkr(getEntrepenadCostItems(), totalBoa);
     }
 
     private void updateEntreprenadKrBoa() {
@@ -604,7 +604,7 @@ public class Project implements Serializable {
     }
 
     private void updateOforutsettKkr() {
-        oforutsettKkr = calculationsManager.updatedOforutsettKkr(getOförutsett(), totalBoa, contractPercent);
+        oforutsettKkr = calculationsManager.updatedOforutsettKkr(getOförutsettCostItems(), totalBoa, contractPercent);
     }
 
     private void updateOforutsettKrBoa() {

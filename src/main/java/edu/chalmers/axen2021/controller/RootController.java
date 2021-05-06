@@ -218,7 +218,7 @@ public class RootController {
      */
     public void removeCostItem(String costItemName){
         projectManager.getActiveProject().removeCostItem(projectManager.getActiveCategory(),costItemName);
-        modalController.getModalWindowItemVBox().getChildren().clear();
+        modalController.clearCostItems();
         modalController.populateCostItems();
         saveProjectData();
     }
