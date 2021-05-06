@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 @FXMLController
 public class CostItemController implements Initializable {
 
+    private RootController rootController = RootController.getInstance();
+
     /**
      * The name label in the .fxml file.
      */
@@ -115,5 +117,21 @@ public class CostItemController implements Initializable {
                 costItem.setComment(commentTextArea.getText());
             }
         }));
+    }
+
+    /**
+     * Is selected method for moms CheckBox.
+     * @return Boolean result of is selected.
+     */
+    public Boolean momsIsSelected() {
+        return momsCheckBox.isSelected();
+    }
+
+    /**
+     * Removes cost item.
+     */
+    @FXML
+    private void removeCostItem(){
+        rootController.removeCostItem(costItem.getName());
     }
 }

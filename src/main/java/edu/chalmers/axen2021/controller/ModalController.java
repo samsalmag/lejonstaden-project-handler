@@ -133,4 +133,12 @@ public class ModalController {
     public void setCategoryNameLabelText(String text) {
         categoryNameLabel.setText(text);
     }
+
+    /**
+     * Getter for modalWindowItemVBox.
+     * @return modalWindowItemBox
+     */
+    public VBox getModalWindowItemVBox() {
+        return modalWindowItemVBox;
+    }
 }

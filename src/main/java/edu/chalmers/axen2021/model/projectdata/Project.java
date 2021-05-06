@@ -64,6 +64,7 @@ public class Project implements Serializable {
     private double oforutsettKkr;
     private double oforutsettKrBoa;
     private double oforutsettKrBta;
+    private double contractPercent; // Måste nog vara någon annanstans men la här nu för att slippa errors
 
     //Finansiella kostnader
     private double finansiellaKostnaderKkr;
@@ -577,4 +578,41 @@ public class Project implements Serializable {
     private void updateAnslutningarKrBta() {
         anslutningarKrBta = calculationsManager.updatedAnslutningarKrBta(anslutningarKkr, totalLjusBta);
     }
+
+    private void updateByggherreKkr() {
+        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnader(), totalBoa);
+    }
+
+    private void updateByggherreKrBoa() {
+        byggherrekostnaderKrBoa = calculationsManager.updatedByggherreKrBoa(byggherrekostnaderKkr, totalBoa);
+    }
+
+    private void updateByggherreKrBta() {
+        byggherrekostnaderKrBta = calculationsManager.updatedByggherreKrBta(byggherrekostnaderKkr, totalLjusBta);
+    }
+
+    private void updateEntreprenadKkr() {
+        entreprenadKkr = calculationsManager.updatedEntreprenadKkr(getEntrepenad(), totalBoa);
+    }
+
+    private void updateEntreprenadKrBoa() {
+        entreprenadKrBoa = calculationsManager.updatedEntreprenadKrBoa(entreprenadKkr, totalBoa);
+    }
+
+    private void updateEntreprenadKrBta() {
+        entreprenadKrBta = calculationsManager.updatedEntreprenadKrBta(entreprenadKkr, totalLjusBta);
+    }
+
+    private void updateOforutsettKkr() {
+        oforutsettKkr = calculationsManager.updatedOforutsettKkr(getOförutsett(), totalBoa, contractPercent);
+    }
+
+    private void updateOforutsettKrBoa() {
+        oforutsettKrBoa = calculationsManager.updatedOforutsettKrBoa(oforutsettKkr, totalBoa);
+    }
+
+    private void updateOforutsettKrBta() {
+        oforutsettKrBta = calculationsManager.updatedOforutsettKrBta(oforutsettKkr, totalLjusBta);
+    }
+
 }

@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.model;
 
+import java.util.ArrayList;
+
 /**
  * Class for calculating the apartment data.
  * @author Ahmad Al-Aref
@@ -32,7 +34,7 @@ public class ApartmentData {
      * @param boa living area of the apartment
      * @return kr per sqm of the apartment
      */
-    public double getKrPerSqm(String type, int rent, double boa) {
+    public double getKrPerSqm(String type, double rent, double boa) {
         return getMonthlyRent(type, rent, boa)*12/boa;
     }
 
@@ -43,7 +45,7 @@ public class ApartmentData {
      * @param boa living area of the apartment
      * @return subsidy for specified apartment type
      */
-    public double getSubsidy(double investmentSub, int quantity, double boa) {
+    public double getSubsidy(double investmentSub, double quantity, double boa) {
         double x;
         if(boa > 70)
             x = 35*investmentSub+(35*investmentSub)/2;

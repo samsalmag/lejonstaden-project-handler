@@ -26,6 +26,9 @@ public class RootController {
      */
     private static RootController instance = null;
 
+    private ProjectManager projectManager = ProjectManager.getInstance();
+    private SaveManager saveManager = SaveManager.getInstance();
+
     // Controllers for the views.
     private HeaderController headerController;
     private SideBarController sideBarController;
@@ -207,6 +210,25 @@ public class RootController {
 
         String initialName = ProjectManager.getInstance().getActiveProject().getName();
         PdfManager.getInstance().makePdf(initialName);
+    }
+
+    /**
+     * Remove CostItem and reload new view.
+     * @param costItemName Name of cost item to remove.
+     */
+    public void removeCostItem(String costItemName){
+        projectManager.getActiveProject().removeCostItem(projectManager.getActiveCategory(),costItemName);
+        modalController.getModalWindowItemVBox().getChildren().clear();
+        modalController.populateCostItems();
+        saveProjectData();
+    }
+
+    /**
+     * Save all data in the project.
+     */
+    public void saveProjectData(){
+        saveManager.saveProject(projectManager.getActiveProject());
+        saveManager.saveProjectManager();
     }
 
     /**
