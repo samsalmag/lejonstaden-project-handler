@@ -71,9 +71,9 @@ public class CostItemController implements Initializable {
 
         //Adds focus lost property to textFields.
         valueTextField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-            if(!newValue){
+            if(!newValue) {
                 //Make sure that the textField has a readable value.
-                if(valueTextField.getText().equals("") || valueTextField.getText().equals(".")){
+                if(valueTextField.getText().equals("") || valueTextField.getText().equals(".")) {
                     valueTextField.setText("0.0");
                 }
 

@@ -46,7 +46,7 @@ public class ApartmentItemController implements Initializable {
         if(apartmentItem.getApartmentType() != null) {
             apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         }
-        BOATextField.setText(String.valueOf(apartmentItem.getBOA()));
+        BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
 
         initTextFieldProperties();
