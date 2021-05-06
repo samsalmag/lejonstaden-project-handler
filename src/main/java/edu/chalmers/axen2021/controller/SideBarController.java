@@ -51,4 +51,8 @@ public class SideBarController {
         }
         projectItemVbox.getChildren().add(sideBarItemNode);
     }
+
+    public void clearAllProjectsButtons(){
+        projectItemVbox.getChildren().clear();
+    }
 }

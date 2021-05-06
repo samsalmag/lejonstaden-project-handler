@@ -82,7 +82,7 @@ public class ModalController {
     /**
      * Removes all cost items in the modal window.
      */
-    private void clearTilePane() {
+    public void clearTilePane() {
         modalWindowItemVBox.getChildren().clear();
     }
 

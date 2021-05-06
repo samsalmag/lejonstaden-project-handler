@@ -113,16 +113,17 @@ public class ProjectManager implements Serializable {
 
     /**
      * Removes a project from the application.
-     * @param project The project to remove.
+     * @param projectName The name of the project to remove.
      * @return Returns True if remove was successful, False if not.
      */
-    public boolean removeProject(Project project) {
-        if(!projects.contains(project)) {
-            throw new IllegalArgumentException("This project does not exist in 'projects' list!");
+    public boolean removeProject(String projectName) {
+        for(Project p: projects){
+            if(p.getName().equals(projectName)){
+                projects.remove(p);
+                return SaveManager.getInstance().removeProjectFile(p);
+            }
         }
-
-        projects.remove(project);
-        return SaveManager.getInstance().removeProjectFile(project);
+        throw new IllegalArgumentException("This project does not exist in 'projects' list!");
     }
 
     /**

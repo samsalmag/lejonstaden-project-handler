@@ -48,7 +48,7 @@ public class CostItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameLabel.setText(costItem.getName());
+        nameLabel.setText(costItem.getName() + ":");
         valueTextField.setText(StringUtils.removeTrailingZeros(costItem.getValue()));
         momsCheckBox.setSelected(costItem.getMoms());
         commentTextArea.setText(costItem.getComment());
@@ -112,7 +112,7 @@ public class CostItemController implements Initializable {
      * Removes cost item.
      */
     @FXML
-    private void removeCostItem(){
-        rootController.removeCostItem(costItem.getName());
+    private void openRemoveConfirmation(){
+        rootController.openConfirmationView(costItem.getName(), EventHandlerObjects.COST_ITEM);
     }
 }
