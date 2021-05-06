@@ -5,6 +5,7 @@ import edu.chalmers.axen2021.model.projectdata.CostItem;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /**
  * @author Tilda Grönlund
  * @author Ahmad Al-Aref
@@ -86,18 +87,17 @@ public class ProjectCosts {
     /**
      * Checks for every Cost Item in the project if moms should be applied to the Cost Item.
      * If true then the Cost Item's value is multiplied with 0.25 (the tax) and added to the tax sum.
-     * @param costItems A map containing all of the projects ArrayLists of Cost Items.
+     * @param matrix An ArrayList containing all of the projects ArrayLists of Cost Items.
      * @return The tax sum for the project (mervärdesskatt)
      */
-    public double getMervardesskatt(HashMap<Category, ArrayList<CostItem>> costItems) {
+    public double getMervardesskatt(HashMap<Category, ArrayList<CostItem>> matrix) {
         double moms = 0.0;
-        for (ArrayList<CostItem> list : costItems.values()) {
-            for (CostItem c : list) {
-                if (c.getMoms()) {
-                    moms += c.getValue()*0.25;
-                }
+        for (HashMap.Entry<Category, ArrayList<CostItem>> entry : matrix.entrySet()) {
+            Category key = entry.getKey();
+            ArrayList<CostItem> value = matrix.get(key);
+            for(CostItem cost : value)
+                moms += 0.25*cost.getValue();
             }
-        }
         return moms / 1000;
     }
 
@@ -125,7 +125,6 @@ public class ProjectCosts {
         return variable/totBoa*1000;
     }
 
-
     /**
      * Calculates cost per BTA for a specified cost.
      * @param variable The specified cost.
@@ -136,5 +135,4 @@ public class ProjectCosts {
     public double getCostPerBta(double variable, double totBta){
         return variable/totBta*1000;
     }
-
 }

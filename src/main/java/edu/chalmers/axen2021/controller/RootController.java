@@ -37,6 +37,7 @@ public class RootController {
     private AddNewCostController addNewCostController;
     private SummaryViewController summaryViewController;
     private InputController inputController;
+    private confirmationController confirmationController;
 
     //Private accessible nodes.
     private Node inputWindowNode = null;
@@ -86,6 +87,8 @@ public class RootController {
      */
     @FXML private AnchorPane defaultCenterStageAnchorPane;
 
+    @FXML private AnchorPane confirmationAnchorPane;
+
     /**
      * Initialize method that starts up the first scene and all its children.
      */
@@ -99,6 +102,7 @@ public class RootController {
         addNewCostController = new AddNewCostController();
         inputController = new InputController();
         summaryViewController = new SummaryViewController();
+        confirmationController = new confirmationController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -106,6 +110,11 @@ public class RootController {
         initFXML(modalAnchorPane, "modalWindow.fxml", modalController);
         initFXML(addNewProjectAnchorPane, "addNewProjectView.fxml", addNewProjectController);
         initFXML(addNewCostAnchorPane, "addNewCostView.fxml", addNewCostController);
+        initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
+
+        // TODO - possibly implement in initFXML.
+        inputController = new InputController();
+        summaryViewController = new SummaryViewController();
         inputWindowNode = initFXML(centerStageAnchorPane, "inputView.fxml", inputController);
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
 
@@ -223,6 +232,25 @@ public class RootController {
         saveProjectData();
     }
 
+    public void removeApartmentItem(ApartmentItem item){
+        projectManager.getActiveProject().removeApartmentItem(item);
+        inputController.clearLagenhetstyper();
+        inputController.populateLagenhetstyper();
+        summaryViewController.clearLagenhetstyper();
+        summaryViewController.populateLagenhetstyper();
+        saveProjectData();
+    }
+
+    public void removeProject(String projectName){
+        projectManager.removeProject(projectName);
+        sideBarController.clearAllProjectsButtons();
+        initLoadedProjects();
+        if(projectName.equals(projectManager.getActiveProject().getName())){
+            projectManager.setActiveProject(null);
+            defaultCenterStageAnchorPane.toFront();
+        }
+    }
+
     /**
      * Save all data in the project.
      */
@@ -240,6 +268,22 @@ public class RootController {
         ProjectManager.getInstance().setActiveProject(null);
         SaveManager.getInstance().removeDirectory();
         AXEN2021.terminate();
+    }
+
+    public void openConfirmationView(String nameObjectToRemove, EventHandlerObjects type){
+        confirmationController.setItemToRemove(nameObjectToRemove, type);
+        confirmationController.setEventHandler(type);
+        confirmationAnchorPane.toFront();
+    }
+
+    public void openConfirmationView(ApartmentItem item, EventHandlerObjects type){
+        confirmationController.setItemToRemove(item, type);
+        confirmationController.setEventHandler(type);
+        confirmationAnchorPane.toFront();
+    }
+
+    public void closeConfirmationView(){
+        confirmationAnchorPane.toBack();
     }
 
     /**

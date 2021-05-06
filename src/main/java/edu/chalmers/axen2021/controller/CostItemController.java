@@ -64,7 +64,7 @@ public class CostItemController implements Initializable {
      * Sets the initial values for the .fxml nodes.
      */
     private void setInitialValues() {
-        nameLabel.setText(costItem.getName());
+        nameLabel.setText(costItem.getName() + ":");
         valueTextField.setText(StringUtils.removeTrailingZeros(costItem.getValue()));
         momsCheckBox.setSelected(costItem.getMoms());
         commentTextArea.setText(costItem.getComment());
@@ -83,11 +83,14 @@ public class CostItemController implements Initializable {
 
         // Adds focus lost property to textFields.
         valueTextField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-            if(!newValue){
+            if(!newValue) {
                 //Make sure that the textField has a readable value.
-                if(valueTextField.getText().equals("") || valueTextField.getText().equals(".")){
+                if(valueTextField.getText().equals("") || valueTextField.getText().equals(".")) {
                     valueTextField.setText("0.0");
                 }
+
+                // Remove unnecessary zeroes
+                valueTextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(valueTextField.getText())));
                 costItem.setValue(Double.parseDouble(valueTextField.getText()));
             }
         });
@@ -120,18 +123,10 @@ public class CostItemController implements Initializable {
     }
 
     /**
-     * Is selected method for moms CheckBox.
-     * @return Boolean result of is selected.
-     */
-    public Boolean momsIsSelected() {
-        return momsCheckBox.isSelected();
-    }
-
-    /**
      * Removes cost item.
      */
     @FXML
-    private void removeCostItem(){
-        rootController.removeCostItem(costItem.getName());
+    private void openRemoveConfirmation(){
+        rootController.openConfirmationView(costItem.getName(), EventHandlerObjects.COST_ITEM);
     }
 }

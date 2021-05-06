@@ -5,9 +5,9 @@ import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.projectdata.CostItem;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The main class for access to the applications model.
@@ -140,8 +140,8 @@ public class CalculationsManager implements Serializable {
         return  projectCosts.getCostPerBta(oforutsettKkr, totalBta);
     }
 
-    public double updatedMervardesskattKkr(HashMap<Category, ArrayList<CostItem>> costItems) {
-        return projectCosts.getMervardesskatt(costItems);
+    public double updatedMervardesskattKkr(HashMap<Category, ArrayList<CostItem>> mervardesskatt) {
+        return projectCosts.getMervardesskatt(mervardesskatt);
     }
 
     public double updatedMervardesskattKrBoa(double mervardesskattKkr, double totalBoa) {
@@ -152,15 +152,25 @@ public class CalculationsManager implements Serializable {
         return  projectCosts.getCostPerBta(mervardesskattKkr, totalBta);
     }
 
-/** Måste fixas, vill ta ArrayList<ArrayList<CostItem>> men det gick inte
-    public double updateProjectCostKkr(ArrayList<CostItem> costsKkr) {
+    public double updateProjectCostKkr(HashMap<Category, ArrayList<CostItem>> costsKkr) {
         double projectCosts = 0.0;
-        for(CostItem costItem : costsKkr)
-            projectCosts += costItem.getValue();
+        for(Map.Entry<Category, ArrayList<CostItem>> entry : costsKkr.entrySet()) {
+            Category key = entry.getKey();
+            ArrayList<CostItem> value = costsKkr.get(key);
+            for (CostItem costItem : value)
+                projectCosts += costItem.getValue();
+        }
 
-        return projectCosts;
-    }*/
+        return projectCosts/1000;
+    }
 
+    public double updatedProjectCostKrBoa(double projektkostnadKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(projektkostnadKkr, totalBoa);
+    }
+
+    public double updatedProjectCostKrBta(double projektkostnadKkr, double totalBta) {
+        return projectCosts.getCostPerBta(projektkostnadKkr, totalBta);
+    }
 
     // ------------------ GETTERS ------------------ //
 
@@ -179,7 +189,4 @@ public class CalculationsManager implements Serializable {
     public ProjectCosts getProjectCosts() {
         return projectCosts;
     }
-
-
-
 }

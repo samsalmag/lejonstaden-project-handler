@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.utils.StringUtils;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +19,8 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class ApartmentItemController implements Initializable {
+
+    private RootController rootController = RootController.getInstance();
 
     /**
      * MenuButton in the .fxml for choosing apartment type.
@@ -63,7 +66,7 @@ public class ApartmentItemController implements Initializable {
         if(apartmentItem.getApartmentType() != null) {
             apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         }
-        BOATextField.setText(String.valueOf(apartmentItem.getBOA()));
+        BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
     }
 
@@ -98,6 +101,8 @@ public class ApartmentItemController implements Initializable {
                 if(BOATextField.getText().equals("") || BOATextField.getText().equals(".")){
                     BOATextField.setText("0.0");
                 }
+                // Remove unnecessary zeroes
+                BOATextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(BOATextField.getText())));
                 apartmentItem.setBOA(Double.parseDouble(BOATextField.getText()));
             }
         });
@@ -121,8 +126,15 @@ public class ApartmentItemController implements Initializable {
                 if(amountTextField.getText().equals("")){
                     amountTextField.setText("0");
                 }
+                // Remove unnecessary zeroes
+                amountTextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(amountTextField.getText())));
                 apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
             }
         });
+    }
+
+    @FXML
+    private void openRemoveConfirmation(){
+        rootController.openConfirmationView(apartmentItem, EventHandlerObjects.APARTMENT_TYPE);
     }
 }

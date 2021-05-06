@@ -50,12 +50,12 @@ public class AddNewCostController {
 
         // Name can't be same as existing cost item in the same category
         for (String costItemName : ProjectManager.getInstance().getActiveCostItemNames()) {
-            if (costItemName.toLowerCase().equals(costNameTextField.getText().toLowerCase() + ":")) {
+            if (costItemName.toLowerCase().equals(costNameTextField.getText().toLowerCase())) {
                 return;
             }
         }
 
-        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText() + ":");
+        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText());
         rootController.getAddNewCostAnchorPane().toBack();
         costNameTextField.clear();
     }
