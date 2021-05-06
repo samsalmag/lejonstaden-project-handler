@@ -24,6 +24,8 @@ public class ApartmentItemController implements Initializable {
 
     @FXML private TextField amountTextField;
 
+    private RootController rootController = RootController.getInstance();
+
     /**
      * The type of apartment for the object instance.
      */
@@ -101,4 +103,10 @@ public class ApartmentItemController implements Initializable {
             }
         });
     }
+
+    @FXML
+    private void openRemoveConfirmation(){
+        rootController.openConfirmationView(apartmentItem, EventHandlerObjects.APARTMENT_TYPE);
+    }
+
 }

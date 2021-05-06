@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane minHeight="170.0" onMouseClicked="#closeConfirmationView" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
+      <HBox alignment="CENTER" maxHeight="250.0" minHeight="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane minWidth="330.0" onMouseClicked="#closeConfirmationView" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" maxWidth="400.0" minWidth="350.0" spacing="10.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="confirmationBoxLabel" alignment="CENTER" contentDisplay="CENTER" text="Vill du ta bort &quot;blank&quot; från alla projekt?">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="BOTTOM_CENTER" spacing="20.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="confirmButton" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" text="Ja">
+                           <HBox.margin>
+                              <Insets bottom="20.0" />
+                           </HBox.margin></Button>
+                        <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#closeConfirmationView" onMouseClicked="#closeConfirmationView" text="Avbryt">
+                           <HBox.margin>
+                              <Insets bottom="20.0" />
+                           </HBox.margin></Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+            <Pane minWidth="330.0" onMouseClicked="#closeConfirmationView" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <Pane minHeight="170.0" onMouseClicked="#closeConfirmationView" styleClass="modal-window-shadow" VBox.vgrow="ALWAYS" />
+   </children>
+</VBox>

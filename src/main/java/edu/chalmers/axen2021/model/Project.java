@@ -186,6 +186,21 @@ public class Project implements Serializable {
         throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getName());
     }
 
+    /**
+     * Removes an apartmentItem
+     * @param apartmentItem The apartmentItem to remove.
+     * @return Returns True if removal was successful, False if not.
+     */
+    public boolean removeApartmentItem(ApartmentItem apartmentItem) {
+        // Only remove apartmentItem if it exists in project.
+        if(apartmentItems.contains(apartmentItem)) {
+            apartmentItems.remove(apartmentItem);
+            return true;
+        } else {
+            throw new IllegalArgumentException(apartmentItem + " does not exist in this project!");
+        }
+    }
+
     // ------------------ GETTERS ------------------ //
     /**
      * Getter for the name of the project.

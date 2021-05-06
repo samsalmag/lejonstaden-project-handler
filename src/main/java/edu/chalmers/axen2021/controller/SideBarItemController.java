@@ -63,4 +63,12 @@ public class SideBarItemController implements Initializable {
         ProjectManager.getInstance().setActiveProject(button.getText());
         rootController.updateSummaryView();
     }
+
+    /**
+     * Removes cost item.
+     */
+    @FXML
+    private void openRemoveConfirmation(){
+        rootController.openConfirmationView(projectName, EventHandlerObjects.PROJECT);
+    }
 }

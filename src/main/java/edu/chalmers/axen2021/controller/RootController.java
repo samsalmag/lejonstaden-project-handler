@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.ApartmentItem;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.Project;
 import edu.chalmers.axen2021.model.managers.SaveManager;
@@ -34,6 +35,7 @@ public class RootController {
     private ModalController modalController;
     private AddNewProjectController addNewProjectController;
     private AddNewCostController addNewCostController;
+    private confirmationController confirmationController;
 
     private SummaryViewController summaryViewController;
     private InputController inputController;
@@ -86,6 +88,8 @@ public class RootController {
      */
     @FXML private AnchorPane defaultCenterStageAnchorPane;
 
+    @FXML private AnchorPane confirmationAnchorPane;
+
     /**
      * Initialize method that starts up the first scene and all its children.
      */
@@ -97,6 +101,7 @@ public class RootController {
         modalController = new ModalController();
         addNewProjectController = new AddNewProjectController();
         addNewCostController = new AddNewCostController();
+        confirmationController = new confirmationController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -104,6 +109,7 @@ public class RootController {
         initFXML(modalAnchorPane, "modalWindow.fxml", modalController);
         initFXML(addNewProjectAnchorPane, "addNewProjectView.fxml", addNewProjectController);
         initFXML(addNewCostAnchorPane, "addNewCostView.fxml", addNewCostController);
+        initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
 
         // TODO - possibly implement in initFXML.
         inputController = new InputController();
@@ -203,9 +209,28 @@ public class RootController {
      */
     public void removeCostItem(String costItemName){
         projectManager.getActiveProject().removeCostItem(projectManager.getActiveCategory(),costItemName);
-        modalController.getModalWindowItemVBox().getChildren().clear();
+        modalController.clearTilePane();
         modalController.populateTilePane();
         saveProjectData();
+    }
+
+    public void removeApartmentItem(ApartmentItem item){
+        projectManager.getActiveProject().removeApartmentItem(item);
+        inputController.clearLagenhetstyper();
+        inputController.populateLagenhetstyper();
+        summaryViewController.clearLagenhetstyper();
+        summaryViewController.populateLagenhetstyper();
+        saveProjectData();
+    }
+
+    public void removeProject(String projectName){
+        projectManager.removeProject(projectName);
+        sideBarController.clearAllProjectsButtons();
+        initLoadedProjects();
+        if(projectName.equals(projectManager.getActiveProject().getName())){
+            projectManager.setActiveProject(null);
+            defaultCenterStageAnchorPane.toFront();
+        }
     }
 
     /**
@@ -225,6 +250,22 @@ public class RootController {
         ProjectManager.getInstance().setActiveProject(null);
         SaveManager.getInstance().removeDirectory();
         AXEN2021.terminate();
+    }
+
+    public void openConfirmationView(String nameObjectToRemove, EventHandlerObjects type){
+        confirmationController.setItemToRemove(nameObjectToRemove, type);
+        confirmationController.setEventHandler(type);
+        confirmationAnchorPane.toFront();
+    }
+
+    public void openConfirmationView(ApartmentItem item, EventHandlerObjects type){
+        confirmationController.setItemToRemove(item, type);
+        confirmationController.setEventHandler(type);
+        confirmationAnchorPane.toFront();
+    }
+
+    public void closeConfirmationView(){
+        confirmationAnchorPane.toBack();
     }
 
     /**
