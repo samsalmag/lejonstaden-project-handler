@@ -2,7 +2,7 @@ package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
-import edu.chalmers.axen2021.model.projectdata.Project;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.fxml.FXML;
@@ -37,7 +37,7 @@ public class RootController {
     private AddNewCostController addNewCostController;
     private SummaryViewController summaryViewController;
     private InputController inputController;
-    private confirmationController confirmationController;
+    private ConfirmationController confirmationController;
 
     //Private accessible nodes.
     private Node inputWindowNode = null;
@@ -102,7 +102,7 @@ public class RootController {
         addNewCostController = new AddNewCostController();
         inputController = new InputController();
         summaryViewController = new SummaryViewController();
-        confirmationController = new confirmationController();
+        confirmationController = new ConfirmationController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -110,18 +110,13 @@ public class RootController {
         initFXML(modalAnchorPane, "modalWindow.fxml", modalController);
         initFXML(addNewProjectAnchorPane, "addNewProjectView.fxml", addNewProjectController);
         initFXML(addNewCostAnchorPane, "addNewCostView.fxml", addNewCostController);
-        initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
-
-        // TODO - possibly implement in initFXML.
-        inputController = new InputController();
-        summaryViewController = new SummaryViewController();
         inputWindowNode = initFXML(centerStageAnchorPane, "inputView.fxml", inputController);
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
+        initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
 
         defaultCenterStageAnchorPane.toFront();
 
         // Load all projects from save files and create views for them.
-        ProjectManager.getInstance().loadProjects();
         initLoadedProjects();
     }
 
@@ -158,12 +153,11 @@ public class RootController {
     }
 
     /**
-     * Initializes all loaded projects by creating a new view for it and adding it to the sidebar.
+     * Initializes all saved projects by loading them and creating vewis for them
      */
     private void initLoadedProjects() {
-        for (Project project : ProjectManager.getInstance().getProjects()) {
-            sideBarController.addNewSideBarItem(project.getName());
-        }
+        ProjectManager.getInstance().loadProjects();
+        sideBarController.populateProjectButtons();
     }
 
     /**
@@ -234,16 +228,16 @@ public class RootController {
 
     public void removeApartmentItem(ApartmentItem item){
         projectManager.getActiveProject().removeApartmentItem(item);
-        inputController.clearLagenhetstyper();
-        inputController.populateLagenhetstyper();
-        summaryViewController.clearLagenhetstyper();
-        summaryViewController.populateLagenhetstyper();
+        inputController.clearApartmentItems();
+        inputController.populateApartmentItems();
+        summaryViewController.clearApartmentItems();
+        summaryViewController.populateApartmentItems();
         saveProjectData();
     }
 
     public void removeProject(String projectName){
         projectManager.removeProject(projectName);
-        sideBarController.clearAllProjectsButtons();
+        sideBarController.clearAllProjectButtons();
         initLoadedProjects();
         if(projectName.equals(projectManager.getActiveProject().getName())){
             projectManager.setActiveProject(null);

@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.managers.ProjectManager;
+import edu.chalmers.axen2021.model.projectdata.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -52,7 +54,16 @@ public class SideBarController {
         projectItemVbox.getChildren().add(sideBarItemNode);
     }
 
-    public void clearAllProjectsButtons(){
+    public void clearAllProjectButtons(){
         projectItemVbox.getChildren().clear();
+    }
+
+    /**
+     * Initializes all loaded projects by creating a new view for it and adding it to the sidebar.
+     */
+    public void populateProjectButtons() {
+        for (Project project : ProjectManager.getInstance().getProjects()) {
+            addNewSideBarItem(project.getName());
+        }
     }
 }

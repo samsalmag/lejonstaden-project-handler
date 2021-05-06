@@ -1,7 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
-import edu.chalmers.axen2021.model.ApartmentItem;
-import edu.chalmers.axen2021.model.Project;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -10,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 @FXMLController
-public class confirmationController {
+public class ConfirmationController {
 
   private RootController rootController = RootController.getInstance();
 
