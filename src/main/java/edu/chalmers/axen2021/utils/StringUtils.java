@@ -2,8 +2,12 @@ package edu.chalmers.axen2021.utils;
 
 public class StringUtils {
 
-    public static String removeTrailingZeros(Number d) {
+    public static String removeTrailingZeros(Double d) {
         return String.valueOf(d).replaceAll("[0]*$", "").replaceAll("\\.$", "");
+    }
+
+    public static String removeBeginningZeros(int i) {
+        return String.valueOf(i).replaceFirst("^0+(?!$)", "");
     }
 
     public static String removeTrailingZeros(String s) {

@@ -60,7 +60,7 @@ public class ModalController {
     }
 
     /**
-     * Opens the addNewCostView based on addNewCostVoew.fxml.
+     * Opens the addNewCostView based on addNewCostView.fxml.
      */
     @FXML
     private void openAddNewCostView() {

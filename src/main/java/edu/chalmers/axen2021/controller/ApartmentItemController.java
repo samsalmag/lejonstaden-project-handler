@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
 import edu.chalmers.axen2021.model.ApartmentItem;
+import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -78,6 +79,9 @@ public class ApartmentItemController implements Initializable {
                 if(BOATextField.getText().equals("") || BOATextField.getText().equals(".")){
                     BOATextField.setText("0.0");
                 }
+                // Remove unnecessary zeroes
+                BOATextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(BOATextField.getText())));
+
                 apartmentItem.setBOA(Double.parseDouble(BOATextField.getText()));
             }
         });
@@ -96,6 +100,9 @@ public class ApartmentItemController implements Initializable {
                 if(amountTextField.getText().equals("")){
                     amountTextField.setText("0");
                 }
+
+                // Remove unnecessary zeroes
+                amountTextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(amountTextField.getText())));
                 apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
 
             }

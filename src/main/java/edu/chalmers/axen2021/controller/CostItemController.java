@@ -77,6 +77,8 @@ public class CostItemController implements Initializable {
                     valueTextField.setText("0.0");
                 }
 
+                // Remove unnecessary zeroes
+                valueTextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(valueTextField.getText())));
                 costItem.setValue(Double.parseDouble(valueTextField.getText()));
             }
         });
