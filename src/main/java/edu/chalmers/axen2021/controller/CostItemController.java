@@ -40,6 +40,8 @@ public class CostItemController implements Initializable {
      */
     private CostItem costItem;
 
+    private RootController rootController = RootController.getInstance();
+
     public CostItemController(CostItem costItem) {
         this.costItem = costItem;
     }
@@ -102,5 +104,13 @@ public class CostItemController implements Initializable {
      */
     public Boolean momsIsSelected() {
         return momsCheckBox.isSelected();
+    }
+
+    /**
+     * Removes cost item.
+     */
+    @FXML
+    private void removeCostItem(){
+        rootController.removeCostItem(costItem.getName());
     }
 }
