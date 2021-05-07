@@ -537,6 +537,8 @@ public class Project implements Serializable {
         updateProjektkostnadKrBoa();
         updateProjektkostnadKrBta();
 
+        updateInvesteringsstodKkr();
+
     }
 
     private void updateNumOfApt() {
@@ -624,16 +626,22 @@ public class Project implements Serializable {
         mervardeskattKrBta = calculationsManager.updatedMervardesskattKrBta(mervardeskattKkr, totalLjusBta);
     }
 
-    private void updateProjektkostnadKkr() {
-        projektkostnadKkr = calculationsManager.updateProjectCostKkr(costItemsMap);
-    }
-
     private void updateProjektkostnadKrBoa() {
-        projektkostnadKrBoa = calculationsManager.updatedProjectCostKrBoa(projektkostnadKkr, totalBoa);
+        projektkostnadKrBoa = projektkostnadKkr*1000/totalBoa;
     }
 
     private void updateProjektkostnadKrBta() {
-        projektkostnadKrBta = calculationsManager.updatedProjectCostKrBta(projektkostnadKkr, totalLjusBta);
+        projektkostnadKrBta = projektkostnadKkr*1000/totalLjusBta;
+    }
+
+    private void updateProjektkostnadKkr() {
+        projektkostnadKkr = tomtkostnaderKkr+nedlagdaByggherreKkr+anslutningarKkr+
+                byggherrekostnaderKkr+entreprenadKkr+oforutsettKkr+finansiellaKostnaderKkr+
+                mervardeskattKkr+investeringsstodKkr;
+    }
+
+    private void updateInvesteringsstodKkr() {
+        investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstöd(), numOfApt, totalBoa);
     }
 
 }

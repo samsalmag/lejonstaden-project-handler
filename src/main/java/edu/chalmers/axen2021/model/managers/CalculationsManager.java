@@ -57,10 +57,10 @@ public class CalculationsManager implements Serializable {
         return krPerKvm;
     }
 
-    public double updateSubsidyKKr(ArrayList<ApartmentItem> apartments, double investmentSub) {
+    public double updateSubsidyKKr(ArrayList<CostItem> apartments, double quantity, double boa) {
         double subsidy = 0.0;
-        for(ApartmentItem apartmentItem : apartments)
-            subsidy += apartmentData.getSubsidy(investmentSub, apartmentItem.getAmount(), apartmentItem.getBOA());
+        for(CostItem costItem : apartments)
+            subsidy -= apartmentData.getSubsidy(costItem.getValue(), quantity, boa);
 
         return subsidy;
     }
