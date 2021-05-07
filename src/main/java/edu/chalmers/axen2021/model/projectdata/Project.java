@@ -186,11 +186,13 @@ public class Project implements Serializable {
     }
 
     /**
-     * Adds a new apartmentItem to this project.
-     * @param apartmentItem The apartmentItem to add.
+     * Created and adds a new ApartmentItem to this project.
+     * @return The ApartmentItem that was created.
      */
-    public void addApartmentItem(ApartmentItem apartmentItem) {
+    public ApartmentItem addApartmentItem() {
+        ApartmentItem apartmentItem = new ApartmentItem();
         apartmentItems.add(apartmentItem);
+        return apartmentItem;
     }
 
     /**

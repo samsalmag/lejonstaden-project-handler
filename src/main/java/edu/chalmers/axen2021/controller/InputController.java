@@ -188,11 +188,11 @@ public class InputController implements Initializable {
      */
     @FXML
     private void addNewApartmentItem(ActionEvent event) {
-        ApartmentItem newApartmentItem = new ApartmentItem();
+        ApartmentItem newApartmentItem = projectManager.getActiveProject().addApartmentItem();
+
         createNewLagenhetstypView(newApartmentItem);
         updateAllTextFields();
 
-        projectManager.getActiveProject().addApartmentItem(newApartmentItem);
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 

@@ -13,6 +13,9 @@ public class ApartmentItem implements Serializable {
     private double hyraPerMånadHög;
     private double krPerKvmHög;
 
+    // Not instantiable outside 'projectdata' package. Add a ApartmentItem through Project class instead.
+    ApartmentItem() {}
+
     public String getApartmentType() {
         return apartmentType;
     }

@@ -30,7 +30,8 @@ public class CostItem implements Serializable {
      */
     private boolean moms;
 
-    public CostItem(String name) {
+    // Not instantiable outside 'projectdata' package. Add a CostItem through Project class instead.
+    CostItem(String name) {
         this.name = name;
         moms = true;
     }

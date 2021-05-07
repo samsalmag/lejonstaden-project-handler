@@ -114,10 +114,9 @@ public class SummaryViewController {
      */
     @FXML
     private void addNewApartmentItem(ActionEvent event) {
-        ApartmentItem newApartmentItem = new ApartmentItem();
+        ApartmentItem newApartmentItem = projectManager.getActiveProject().addApartmentItem();
         createNewApartmentItemView(newApartmentItem);
 
-        projectManager.getActiveProject().addApartmentItem(newApartmentItem);
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
