@@ -1,6 +1,8 @@
 package edu.chalmers.axen2021.model;
 
 import edu.chalmers.axen2021.model.managers.ProjectManager;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
+import edu.chalmers.axen2021.model.projectdata.CostItem;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,19 @@ public class ProjectTest {
     }
 
     @Test
+    public void getActiveCostItemTest() {
+        Project project = new Project("test");
+        projectManager.setActiveCategory(Category.TOMTKOSTNADER);
+        CostItem costItem = project.addCostItem("testCost");
+
+        assertEquals(project.getActiveCostItem("testCost"), costItem);
+        assertEquals(project.getActiveCostItem("testCostFake"), null);
+
+        projectManager.setActiveCategory(null);
+        assertThrows(NullPointerException.class, () -> project.getActiveCostItem("testCost"));
+    }
+
+    @Test
     public void addCostItemTest() {
         Project project = new Project("test");
         projectManager.setActiveCategory(Category.TOMTKOSTNADER);
@@ -34,6 +49,9 @@ public class ProjectTest {
 
         assertEquals(projectManager.getActiveCostItemNames().get(0), "testCost");
         assertNotEquals(projectManager.getActiveCostItemNames().get(0), "fakeTestCost");
+
+        projectManager.setActiveCategory(null);
+        assertThrows(NullPointerException.class, () -> project.addCostItem("exception"));
     }
 
     @Test
@@ -50,5 +68,27 @@ public class ProjectTest {
         project1.removeCostItem(Category.ANSLUTNINGAR, "costItem1");
         assertEquals(project1.getAnslutningarCostItems().size(), 0);
         assertEquals(projectManager.getAnslutningar().size(), 0);
+    }
+
+    @Test
+    public void addApartmentItemTest() {
+        Project project = new Project("test");
+        assertEquals(project.getApartmentItems().size(), 0);
+
+        ApartmentItem apartmentItem = project.addApartmentItem();
+        assertEquals(project.getApartmentItems().get(0), apartmentItem);
+    }
+
+    @Test
+    public void removeApartmentItemTest() {
+        Project project = new Project("test");
+        ApartmentItem apartmentItem = project.addApartmentItem();
+        assertEquals(project.getApartmentItems().get(0), apartmentItem);
+
+        project.removeApartmentItem(apartmentItem);
+        assertEquals(project.getApartmentItems().size(), 0);
+
+        // Doesn't exist in class anymore, should throw exception.
+        assertThrows(IllegalArgumentException.class, () -> project.removeApartmentItem(apartmentItem));
     }
 }

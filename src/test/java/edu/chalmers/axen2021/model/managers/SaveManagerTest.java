@@ -49,7 +49,7 @@ public class SaveManagerTest {
     }
 
     @Test
-    public void saveProject() {
+    public void saveProjectTest() {
         Project project = new Project("test");
         saveManager.saveProject(project);
         assertEquals(saveManager.getProjectNames().get(0), project.getName());
@@ -82,5 +82,14 @@ public class SaveManagerTest {
         ProjectManager.getInstance().getAnslutningar().remove(0);
         ProjectManager projectManager = SaveManager.getInstance().readProjectManager();
         assertEquals(projectManager.getAnslutningar().get(0), "test");
+    }
+
+    @Test
+    public void removeProjectFileTest() {
+        Project project = new Project("test");
+        assertFalse(saveManager.removeProjectFile(project));
+
+        saveManager.saveProject(project);
+        assertTrue(saveManager.removeProjectFile(project));
     }
 }
