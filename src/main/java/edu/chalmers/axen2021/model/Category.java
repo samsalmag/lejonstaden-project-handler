@@ -13,7 +13,7 @@ public enum Category {
     OFÖRUTSETT("Oförutsett"),
     FINANSIELLAKOSTNADER("Finansiella kostnader"),
     //MERVÄRDESKATT("Mervärdeskatt"),
-    //INVESTERINGSSTÖD("Investeringsstöd"),
+    INVESTERINGSSTÖD("Investeringsstöd"),
     HYRESINTÄKTER("Hyresintäkter"),
     DRIFTOCHUNDERHÅLL("Drift & Underhåll");
     //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),

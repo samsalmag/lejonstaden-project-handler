@@ -52,18 +52,18 @@ public class CalculationsManager implements Serializable {
 
     public double updateKrPerKvm(ArrayList<ApartmentItem> apartments, double rent) {
         double krPerKvm = 0.0;
-        for(ApartmentItem apartmentItem : apartments)
-            krPerKvm += apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
-
+        for(ApartmentItem apartmentItem : apartments) {
+            double rentPerKvm = apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
+            krPerKvm += apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), rentPerKvm, apartmentItem.getBOA());
+        }
         return krPerKvm;
     }
 
-    public double updateSubsidyKKr(ArrayList<CostItem> apartments, double quantity, double boa) {
+    public double updateSubsidyKKr(double investeringsstod, double quantity, double boa) {
         double subsidy = 0.0;
-        for(CostItem costItem : apartments)
-            subsidy -= apartmentData.getSubsidy(costItem.getValue(), quantity, boa);
+        subsidy -= apartmentData.getSubsidy(investeringsstod, quantity, boa);
 
-        return subsidy;
+        return subsidy/1000;
     }
 
 
@@ -140,6 +140,18 @@ public class CalculationsManager implements Serializable {
         return  projectCosts.getCostPerBta(oforutsettKkr, totalBta);
     }
 
+    public double updatedFinansiellaKkr(ArrayList<CostItem> finansiella, double totalBoa) {
+        return projectCosts.getFinancialCost(totalBoa, projectCosts.getTotalCost(finansiella));
+    }
+
+    public double updatedFinansiellaKrBoa(double finansiellaKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(finansiellaKkr, totalBoa);
+    }
+
+    public double updatedFinansiellaKrBta(double finansiellaKkr, double totalBta) {
+        return projectCosts.getCostPerBta(finansiellaKkr, totalBta);
+    }
+
     public double updatedMervardesskattKkr(HashMap<Category, ArrayList<CostItem>> mervardesskatt) {
         return projectCosts.getMervardesskatt(mervardesskatt);
     }
@@ -163,14 +175,14 @@ public class CalculationsManager implements Serializable {
 
         return projectCosts/1000;
     }
-
+/**
     public double updatedProjectCostKrBoa(double projektkostnadKkr, double totalBoa) {
         return projectCosts.getCostPerBoa(projektkostnadKkr, totalBoa);
     }
 
     public double updatedProjectCostKrBta(double projektkostnadKkr, double totalBta) {
         return projectCosts.getCostPerBta(projektkostnadKkr, totalBta);
-    }
+    }*/
 
     // ------------------ GETTERS ------------------ //
 

@@ -7,6 +7,7 @@ import edu.chalmers.axen2021.model.managers.ProjectManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class for the projects created in the application.
@@ -34,6 +35,8 @@ public class Project implements Serializable {
     private CalculationsManager calculationsManager = CalculationsManager.getInstance();
 
     private double numOfApt;
+
+    private double krPerKvm;
 
     //Tomtkostnader
     private double tomtkostnaderKkr;
@@ -288,6 +291,7 @@ public class Project implements Serializable {
     public ArrayList<CostItem> getDriftOchUnderhållCostItems() {
         return costItemsMap.get(Category.DRIFTOCHUNDERHÅLL);
     }
+
 
     // GETTERS FOR ALL THOSE VARIABLES...
     public double getTomtkostnaderKkr() {
@@ -553,6 +557,10 @@ public class Project implements Serializable {
         updateOforutsettKrBoa();
         updateOforutsettKrBta();
 
+        updateFinansiellaKkr();
+        updateFinansiellaKrBoa();
+        updateFinansiellaKrBta();
+
         updateMervardesskattKkr();
         updateMervardesskattKrBoa();
         updateMervardesskattKrBta();
@@ -562,6 +570,9 @@ public class Project implements Serializable {
         updateProjektkostnadKrBta();
 
         updateInvesteringsstodKkr();
+
+        updateHyresintakterBostadMedStod();
+        updateHyresintakterBostadUtanStod();
 
     }
 
@@ -626,8 +637,9 @@ public class Project implements Serializable {
         entreprenadKrBta = calculationsManager.updatedEntreprenadKrBta(entreprenadKkr, totalLjusBta);
     }
 
+    // contractPercent måste få ett värde någonstans?
     private void updateOforutsettKkr() {
-        oforutsettKkr = calculationsManager.updatedOforutsettKkr(getOförutsettCostItems(), totalBoa, contractPercent);
+        oforutsettKkr = entreprenadKkr*contractPercent;
     }
 
     private void updateOforutsettKrBoa() {
@@ -638,8 +650,21 @@ public class Project implements Serializable {
         oforutsettKrBta = calculationsManager.updatedOforutsettKrBta(oforutsettKkr, totalLjusBta);
     }
 
+    private void updateFinansiellaKkr() {
+        finansiellaKostnaderKkr = calculationsManager.updatedFinansiellaKkr(getFinansiellaKostnaderCostItems(), totalBoa);
+    }
+
+    private void updateFinansiellaKrBoa() {
+        finansiellaKostnaderKrBoa = calculationsManager.updatedFinansiellaKrBoa(finansiellaKostnaderKkr, totalBoa);
+    }
+
+    private void updateFinansiellaKrBta() {
+        finansiellaKostnaderKrBta = calculationsManager.updatedFinansiellaKrBta(finansiellaKostnaderKkr, totalLjusBta);
+    }
+
     private void updateMervardesskattKkr() {
-        mervardeskattKkr = calculationsManager.updatedMervardesskattKkr(costItemsMap);
+        mervardeskattKkr = (tomtkostnaderKkr+nedlagdaByggherreKkr+anslutningarKkr+
+                byggherrekostnaderKkr+entreprenadKkr+oforutsettKkr)*0.25;
     }
 
     private void updateMervardesskattKrBoa() {
@@ -650,6 +675,12 @@ public class Project implements Serializable {
         mervardeskattKrBta = calculationsManager.updatedMervardesskattKrBta(mervardeskattKkr, totalLjusBta);
     }
 
+    private void updateProjektkostnadKkr() {
+        projektkostnadKkr = tomtkostnaderKkr+nedlagdaByggherreKkr+anslutningarKkr+
+                byggherrekostnaderKkr+entreprenadKkr+oforutsettKkr+finansiellaKostnaderKkr+
+                mervardeskattKkr+investeringsstodKkr;
+    }
+
     private void updateProjektkostnadKrBoa() {
         projektkostnadKrBoa = projektkostnadKkr*1000/totalBoa;
     }
@@ -658,14 +689,23 @@ public class Project implements Serializable {
         projektkostnadKrBta = projektkostnadKkr*1000/totalLjusBta;
     }
 
-    private void updateProjektkostnadKkr() {
-        projektkostnadKkr = tomtkostnaderKkr+nedlagdaByggherreKkr+anslutningarKkr+
-                byggherrekostnaderKkr+entreprenadKkr+oforutsettKkr+finansiellaKostnaderKkr+
-                mervardeskattKkr+investeringsstodKkr;
+    private void updateInvesteringsstodKkr() {
+       investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstod(), numOfApt, totalBoa);
+    }
+    /**
+    private void updateInvesteringsstodKrBoa() {
+        investeringsstodKrBoa = calculationsManager.update
+    */
+
+
+    private void updateHyresintakterBostadMedStod() {
+        krPerKvm = calculationsManager.updateKrPerKvm(apartmentItems, normhyraMedStod);
+        hyresintakterMedStod = totalBoa*krPerKvm/1000;
     }
 
-    private void updateInvesteringsstodKkr() {
-        investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstöd(), numOfApt, totalBoa);
+    private void updateHyresintakterBostadUtanStod() {
+        krPerKvm = calculationsManager.updateKrPerKvm(apartmentItems, antagenPresumtionshyra);
+        hyresintakterUtanStod = totalBoa*krPerKvm/1000;
     }
 
 }
