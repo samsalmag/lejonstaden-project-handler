@@ -257,6 +257,14 @@ public class SaveManager {
      */
     public boolean removeProjectFile(Project project) {
         File projectFile = new File(getSaveDirectory() + File.separatorChar + project.getName() + fileType);
-        return projectFile.delete();
+        boolean removeSuccessful = projectFile.delete();
+
+        if(removeSuccessful) {
+            System.out.println("Save file for project \"" + project.getName() + "\" was successfully removed!");
+        } else {
+            System.out.println("Something went wrong when removing save file for project \"" + project.getName() + "\"!");
+        }
+
+        return removeSuccessful;
     }
 }

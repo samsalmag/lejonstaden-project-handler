@@ -238,7 +238,7 @@ public class RootController {
     public void removeProject(String projectName){
         projectManager.removeProject(projectName);
         sideBarController.clearAllProjectButtons();
-        initLoadedProjects();
+        sideBarController.populateProjectButtons();
         if(projectName.equals(projectManager.getActiveProject().getName())){
             projectManager.setActiveProject(null);
             defaultCenterStageAnchorPane.toFront();
