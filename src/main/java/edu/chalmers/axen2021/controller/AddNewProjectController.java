@@ -63,6 +63,7 @@ public class AddNewProjectController {
 
         Project newProject = createNewProject();
         ProjectManager.getInstance().setActiveProject(newProject.getName());
+        rootController.updateSummaryView();
         rootController.getAddNewProjectAnchorPane().toBack();
         projectNameTextField.clear();
     }
@@ -74,9 +75,8 @@ public class AddNewProjectController {
     private Project createNewProject() {
         rootController.getSideBarController().addNewSideBarItem(projectNameTextField.getText());
         Project newProject = new Project(projectNameTextField.getText());
-        SaveManager.getInstance().saveProject(newProject);
 
-        // TODO - Move this somewhere else..?
+        SaveManager.getInstance().saveProject(newProject);
         SaveManager.getInstance().saveProjectManager();
 
         return newProject;
