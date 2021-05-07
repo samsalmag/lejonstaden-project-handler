@@ -62,10 +62,11 @@ public class ApartmentItemController implements Initializable {
      * Sets the initial values for the .fxml nodes.
      */
     private void setInitialValues() {
-        // Set its value to the one from the model if it isn't null.
-        if(apartmentItem.getApartmentType() != null) {
-            apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
+        // Set apartmentType to first selectable value in the MenuButton if its null in the model.
+        if(apartmentItem.getApartmentType() == null) {
+            apartmentItem.setApartmentType(apartmentTypeMenuButton.getItems().get(0).getText());
         }
+        apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
     }

@@ -5,6 +5,9 @@ package edu.chalmers.axen2021.model;
  * @author Sam Salek
  */
 public enum Category {
+    // Some of these are commented because they don't have cost items, AKA no button in the inputView.
+    // They should only be uncommented if they have a button.
+    // Their variable values still exists in the Project class.
     TOMTKOSTNADER("Tomtkostnader"),
     NEDLAGDABYGGHERRE("Nedlagda bygherre"),
     ANSLUTNINGAR("Anslutningar"),
@@ -13,7 +16,7 @@ public enum Category {
     OFÖRUTSETT("Oförutsett"),
     FINANSIELLAKOSTNADER("Finansiella kostnader"),
     //MERVÄRDESKATT("Mervärdeskatt"),
-    INVESTERINGSSTÖD("Investeringsstöd"),
+    //INVESTERINGSSTÖD("Investeringsstöd"),
     HYRESINTÄKTER("Hyresintäkter"),
     DRIFTOCHUNDERHÅLL("Drift & Underhåll");
     //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),

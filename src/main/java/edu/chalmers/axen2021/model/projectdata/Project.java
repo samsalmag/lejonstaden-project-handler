@@ -7,7 +7,6 @@ import edu.chalmers.axen2021.model.managers.ProjectManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A class for the projects created in the application.
@@ -153,7 +152,13 @@ public class Project implements Serializable {
      * @return The cost item if found, or null if not.
      */
     public CostItem getActiveCostItem(String name) {
-        for(CostItem costItem : costItemsMap.get(ProjectManager.getInstance().getActiveCategory())) {
+        // Throw exception if activeCategory is null.
+        Category activeCategory = ProjectManager.getInstance().getActiveCategory();
+        if(activeCategory == null) {
+            throw new NullPointerException("The active category is null!");
+        }
+
+        for(CostItem costItem : costItemsMap.get(activeCategory)) {
             if(costItem.getName().equals(name)) {
                 return costItem;
             }
@@ -166,10 +171,15 @@ public class Project implements Serializable {
      * @return Returns the cost item that was created.
      */
     public CostItem addCostItem(String name) {
+        // Throw exception if activeCategory is null.
+        Category activeCategory = ProjectManager.getInstance().getActiveCategory();
+        if(activeCategory == null) {
+            throw new NullPointerException("The active category is null!");
+        }
+
         CostItem costItem = new CostItem(name);
 
         // Add the cost item to the correct category lists
-        Category activeCategory = ProjectManager.getInstance().getActiveCategory();
         costItemsMap.get(activeCategory).add(costItem);
 
         // Only add cost item name to ProjectManager if ProjectManager doesn't already contain it in the active category.
