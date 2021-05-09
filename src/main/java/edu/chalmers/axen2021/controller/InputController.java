@@ -16,7 +16,11 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -83,6 +87,8 @@ public class InputController implements Initializable {
 
     @FXML private Label titleLabel;
 
+    private DecimalFormat df;
+
     /**
      * Instance of the project manager.
      */
@@ -105,8 +111,12 @@ public class InputController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        df = new DecimalFormat("#.##");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+
         initInputFieldsList();
         initTextFieldProperties();
+
     }
 
     /**
@@ -254,7 +264,7 @@ public class InputController implements Initializable {
         normHyraMedStod.setText("" + projectManager.getActiveProject().getNormhyraMedStod());
         investeringsstod.setText("" + projectManager.getActiveProject().getInvesteringsstod());
         antagenPresumtionshyra.setText("" + projectManager.getActiveProject().getAntagenPresumtionshyra());
-        totalBoa.setText("" + projectManager.getActiveProject().getTotalBoa());
+        totalBoa.setText(df.format(projectManager.getActiveProject().getTotalBoa()));
         totalLjusBta.setText("" + projectManager.getActiveProject().getTotalLjusBta());
     }
 
@@ -262,109 +272,108 @@ public class InputController implements Initializable {
      * Update all TextFields related to Tomtkostnader.
      */
     private void updateTomtkostnader(){
-        tomtkostnaderKkr.setText("" + projectManager.getActiveProject().getTomtkostnaderKkr());
-        tomtkostnaderKkr.setText("" + projectManager.getActiveProject().getTomtkostnaderKkr());
-        tomtkostnaderKrBoa.setText("" + projectManager.getActiveProject().getTomtkostnaderKrBoa());
-        tomtkostnaderKrBta.setText("" + projectManager.getActiveProject().getTomtkostnaderKrBta());
+        tomtkostnaderKkr.setText(df.format(projectManager.getActiveProject().getTomtkostnaderKkr()));
+        tomtkostnaderKrBoa.setText(df.format(projectManager.getActiveProject().getTomtkostnaderKrBoa()));
+        tomtkostnaderKrBta.setText(df.format(projectManager.getActiveProject().getTomtkostnaderKrBta()));
     }
 
     /**
      * Update all TextFields related to NedlagdaByggherre.
      */
     private void updateNedlagadaByggherre(){
-        nedlagdaBygherreKkr.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKkr());
-        nedlagdaBygherreKrBoa.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKrBoa());
-        nedlagdaBygherreKrBta.setText("" + projectManager.getActiveProject().getNedlagdaByggherreKrBta());
+        nedlagdaBygherreKkr.setText(df.format(projectManager.getActiveProject().getNedlagdaByggherreKkr()));
+        nedlagdaBygherreKrBoa.setText(df.format(projectManager.getActiveProject().getNedlagdaByggherreKrBoa()));
+        nedlagdaBygherreKrBta.setText(df.format(projectManager.getActiveProject().getNedlagdaByggherreKrBta()));
     }
 
     /**
      * Update all TextFields related to Ansultningar.
      */
     private void updateAnslutningar(){
-        anslutningarKkr.setText("" + projectManager.getActiveProject().getAnslutningarKkr());
-        anslutningarKrBoa.setText("" + projectManager.getActiveProject().getAnslutningarKrBoa());
-        anslutningarKrBta.setText("" + projectManager.getActiveProject().getAnslutningarKrBta());
+        anslutningarKkr.setText(df.format(projectManager.getActiveProject().getAnslutningarKkr()));
+        anslutningarKrBoa.setText(df.format(projectManager.getActiveProject().getAnslutningarKrBoa()));
+        anslutningarKrBta.setText(df.format(projectManager.getActiveProject().getAnslutningarKrBta()));
     }
 
     /**
      * Update all TextFields related to Byggherrekostnader.
      */
     private void updateByggherrekostnader(){
-        byggherrekostnaderKkr.setText("" + projectManager.getActiveProject().getByggherrekostnaderKkr());
-        byggherrekostnaderKrBoa.setText("" + projectManager.getActiveProject().getByggherrekostnaderKrBoa());
-        byggherrekostnaderKrBta.setText("" + projectManager.getActiveProject().getByggherrekostnaderKrBta());
+        byggherrekostnaderKkr.setText(df.format(projectManager.getActiveProject().getByggherrekostnaderKkr()));
+        byggherrekostnaderKrBoa.setText(df.format(projectManager.getActiveProject().getByggherrekostnaderKrBoa()));
+        byggherrekostnaderKrBta.setText(df.format(projectManager.getActiveProject().getByggherrekostnaderKrBta()));
     }
 
     /**
      * Update all TextFields related to Entreprenad.
      */
     private void updateEntreprenad(){
-        entreprenadKkr.setText("" + projectManager.getActiveProject().getEntreprenadKkr());
-        entreprenadKrBoa.setText("" + projectManager.getActiveProject().getEntreprenadKrBoa());
-        entreprenadKrBta.setText("" + projectManager.getActiveProject().getEntreprenadKrBta());
+        entreprenadKkr.setText(df.format(projectManager.getActiveProject().getEntreprenadKkr()));
+        entreprenadKrBoa.setText(df.format(projectManager.getActiveProject().getEntreprenadKrBoa()));
+        entreprenadKrBta.setText(df.format(projectManager.getActiveProject().getEntreprenadKrBta()));
     }
 
     /**
      * Update all TextFields related to Oforutsett.
      */
     private void updateOforutsett(){
-        oforutsettKkr.setText("" + projectManager.getActiveProject().getOforutsettKkr());
-        oforutsettKrBoa.setText("" + projectManager.getActiveProject().getOforutsettKrBoa());
-        oforutsettKrBta.setText("" + projectManager.getActiveProject().getOforutsettKrBta());
+        oforutsettKkr.setText(df.format(projectManager.getActiveProject().getOforutsettKkr()));
+        oforutsettKrBoa.setText(df.format(projectManager.getActiveProject().getOforutsettKrBoa()));
+        oforutsettKrBta.setText(df.format(projectManager.getActiveProject().getOforutsettKrBta()));
     }
 
     /**
      * Update all TextFields related to FinansiellaKostnader.
      */
     private void updateFinansiellaKostnader(){
-        finanisellaKostnaderKkr.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKkr());
-        finanisellaKostnaderKrBoa.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKrBoa());
-        finanisellaKostnaderKrBta.setText("" + projectManager.getActiveProject().getFinansiellaKostnaderKrBta());
+        finanisellaKostnaderKkr.setText(df.format(projectManager.getActiveProject().getFinansiellaKostnaderKkr()));
+        finanisellaKostnaderKrBoa.setText(df.format(projectManager.getActiveProject().getFinansiellaKostnaderKrBoa()));
+        finanisellaKostnaderKrBta.setText(df.format(projectManager.getActiveProject().getFinansiellaKostnaderKrBta()));
     }
 
     /**
      * Update all TextFields related to Mervardeskatt.
      */
     private void updateMervardeskatt(){
-        mervardeskattKkr.setText("" + projectManager.getActiveProject().getMervardeskattKkr());
-        mervardeskattKrBoa.setText("" + projectManager.getActiveProject().getMervardeskattKrBoa());
-        mervardeskattKrBta.setText("" + projectManager.getActiveProject().getMervardeskattKrBta());
+        mervardeskattKkr.setText(df.format(projectManager.getActiveProject().getMervardeskattKkr()));
+        mervardeskattKrBoa.setText(df.format(projectManager.getActiveProject().getMervardeskattKrBoa()));
+        mervardeskattKrBta.setText(df.format(projectManager.getActiveProject().getMervardeskattKrBta()));
     }
 
     /**
      * Update all TextFields related to Investeringsstod.
      */
     private void updateInvesteringsstod(){
-        investeringsstodKkr.setText("" + projectManager.getActiveProject().getInvesteringsstodKkr());
-        investeringsstodKrBoa.setText("" + projectManager.getActiveProject().getInvesteringsstodKrBoa());
-        investeringsstodKrBta.setText("" + projectManager.getActiveProject().getInvesteringsstodKrBta());
+        investeringsstodKkr.setText(df.format(projectManager.getActiveProject().getInvesteringsstodKkr()));
+        investeringsstodKrBoa.setText(df.format(projectManager.getActiveProject().getInvesteringsstodKrBoa()));
+        investeringsstodKrBta.setText(df.format(projectManager.getActiveProject().getInvesteringsstodKrBta()));
     }
 
     /**
      * Update all TextFields related to Projektkostnad.
      */
     private void updateProjektkostnad(){
-        projektkostnadKkr.setText("" + projectManager.getActiveProject().getProjektkostnadKkr());
-        projektkostnadKrBoa.setText("" + projectManager.getActiveProject().getProjektkostnadKrBoa());
-        projektkostnadKrBta.setText("" + projectManager.getActiveProject().getProjektkostnadKrBta());
+        projektkostnadKkr.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkr()));
+        projektkostnadKrBoa.setText(df.format(projectManager.getActiveProject().getProjektkostnadKrBoa()));
+        projektkostnadKrBta.setText(df.format(projectManager.getActiveProject().getProjektkostnadKrBta()));
     }
 
     /**
      * Update all TextFields related to Fastighetsvarde and Resultat.
      */
     private void updateFastighetsvardeOchResultat(){
-        hyresintakterMedStod.setText("" + projectManager.getActiveProject().getHyresintakterMedStod());
-        hyresintakterUtanStod.setText("" + projectManager.getActiveProject().getHyresintakterUtanStod());
-        driftUnderhallMedStod.setText("" + projectManager.getActiveProject().getDriftUnderhallMedStod());
-        driftUnderhallUtanStod.setText("" + projectManager.getActiveProject().getDriftUnderhallUtanStod());
-        tomtrattsavgaldMedStod.setText("" + projectManager.getActiveProject().getTomtrattsavgaldMedStod());
-        tomtrattsavgaldUtanStod.setText("" + projectManager.getActiveProject().getTomtrattsavgaldUtanStod());
-        driftnettoMedStod.setText("" + projectManager.getActiveProject().getDriftnettoMedStod());
-        driftnettoUtanStod.setText("" + projectManager.getActiveProject().getDriftnettoUtanStod());
-        yieldMedStod.setText("" + projectManager.getActiveProject().getYieldMedStod());
-        yieldUtanStod.setText("" + projectManager.getActiveProject().getYieldUtanStod());
-        marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
-        marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
+        hyresintakterMedStod.setText(df.format(projectManager.getActiveProject().getHyresintakterMedStod()));
+        hyresintakterUtanStod.setText(df.format(projectManager.getActiveProject().getHyresintakterUtanStod()));
+        driftUnderhallMedStod.setText(df.format(projectManager.getActiveProject().getDriftUnderhallMedStod()));
+        driftUnderhallUtanStod.setText(df.format(projectManager.getActiveProject().getDriftUnderhallUtanStod()));
+        tomtrattsavgaldMedStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldMedStod()));
+        tomtrattsavgaldUtanStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldUtanStod()));
+        driftnettoMedStod.setText(df.format(projectManager.getActiveProject().getDriftnettoMedStod()));
+        driftnettoUtanStod.setText(df.format(projectManager.getActiveProject().getDriftnettoUtanStod()));
+        yieldMedStod.setText(df.format(projectManager.getActiveProject().getYieldMedStod()));
+        yieldUtanStod.setText(df.format(projectManager.getActiveProject().getYieldUtanStod()));
+        marknadsvardeMedStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeMedStod()));
+        marknadsvardeUtanStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
     }
 
     /**

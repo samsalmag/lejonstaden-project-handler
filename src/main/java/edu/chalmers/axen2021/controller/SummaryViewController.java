@@ -6,12 +6,18 @@ import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Controller class for the applications summaryView.fxml.
@@ -22,7 +28,7 @@ import java.io.IOException;
  * @author Malte Åkvist
  */
 @FXMLController
-public class SummaryViewController {
+public class SummaryViewController implements Initializable {
 
     /**
      * Instance of Project Manager.
@@ -46,10 +52,19 @@ public class SummaryViewController {
 
     @FXML private Label titleLabel;
 
+    private DecimalFormat df;
+
     /**
      * VBox in the SummaryView.
      */
     @FXML private VBox lagenhetsTypVbox;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        df = new DecimalFormat("#.##");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+
+    }
 
     /**
      * Updates title on the page.
@@ -79,32 +94,32 @@ public class SummaryViewController {
      * Updates all TextFields related to Projektkostnad.
      */
     private void updateProjektkostnad() {
-        projektkostnadMedStod.setText("" + projectManager.getActiveProject().getProjektkostnadKkrMedStod());
-        projektkostnadUtanStod.setText("" + projectManager.getActiveProject().getProjektkostnadKkr());
+        projektkostnadMedStod.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkrMedStod()));
+        projektkostnadUtanStod.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkr()));
     }
 
     /**
      * Updates all TextFields related to Marknadsvarde.
      */
     private void updateMarknadsvarde() {
-        marknadsvardeMedStod.setText("" + projectManager.getActiveProject().getMarknadsvardeMedStod());
-        marknadsvardeUtanStod.setText("" + projectManager.getActiveProject().getMarknadsvardeUtanStod());
+        marknadsvardeMedStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeMedStod()));
+        marknadsvardeUtanStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
     }
 
     /**
      * Updates all TextFields related to Projektvinst.
      */
     private void updateProjektvinst() {
-        projektvinstMedStod.setText("" + projectManager.getActiveProject().getProjektvinstMedStod());
-        projektvinstUtanStod.setText("" + projectManager.getActiveProject().getProjektvinstUtanStod());
+        projektvinstMedStod.setText(df.format(projectManager.getActiveProject().getProjektvinstMedStod()));
+        projektvinstUtanStod.setText(df.format(projectManager.getActiveProject().getProjektvinstUtanStod()));
     }
 
     /**
      * Updates all TextFields related to ProjektvinstProcent.
      */
     private void updateProjektvinstProcent() {
-        projektvinstProcentMedStod.setText("" + projectManager.getActiveProject().getProjektvinstProcentMedStod());
-        projektvinstProcentUtanStod.setText("" + projectManager.getActiveProject().getProjektvinstProcentUtanStod());
+        projektvinstProcentMedStod.setText(df.format(projectManager.getActiveProject().getProjektvinstProcentMedStod()));
+        projektvinstProcentUtanStod.setText(df.format(projectManager.getActiveProject().getProjektvinstProcentUtanStod()));
     }
 
     /**
