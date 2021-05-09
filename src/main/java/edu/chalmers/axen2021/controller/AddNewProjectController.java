@@ -63,7 +63,7 @@ public class AddNewProjectController {
 
         Project newProject = createNewProject();
         ProjectManager.getInstance().setActiveProject(newProject.getName());
-        rootController.updateSummaryView();
+        rootController.updateInputView();
         rootController.getAddNewProjectAnchorPane().toBack();
         projectNameTextField.clear();
     }
