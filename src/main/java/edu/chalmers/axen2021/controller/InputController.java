@@ -133,8 +133,7 @@ public class InputController implements Initializable {
                         textField.setText("0.0");
                     }
                     setInputFields();
-                    //ToDo add method for running calculations.
-                    updateAllTextFields();
+                    rootController.updateAllLabels();
                 }
             });
         }

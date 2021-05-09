@@ -198,6 +198,12 @@ public class RootController {
         summaryViewNode.toFront();
     }
 
+    public void updateAllLabels(){
+        projectManager.getActiveProject().updateAllVariables();
+        inputController.updateAllTextFields();
+        summaryViewController.updateTextFields();
+    }
+
     /**
      * Starts the 'create PDF' process.
      * Opens a dialog window to chose save directory.
