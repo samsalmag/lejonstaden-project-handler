@@ -16,7 +16,7 @@
          <children>
             <VBox alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToSummaryView" text="Sammanfattningsvy" VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#switchToSummaryView" text="Till Sammanfattningsvy" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets right="20.0" top="20.0" />
                      </VBox.margin>
@@ -79,6 +79,8 @@
                                                    <children>
                                                       <Label alignment="CENTER" text="Antagen presumtionshyra" />
                                                       <TextField fx:id="antagenPresumtionshyra" alignment="CENTER" maxWidth="100.0" minWidth="50.0" />
+                                                      <Label alignment="CENTER" text="Oförutsett" />
+                                                      <TextField fx:id="oforutsett" alignment="CENTER" maxWidth="100.0" minWidth="50.0" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
@@ -144,11 +146,11 @@
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
                                                          </VBox.margin>
                                                       </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Oförutsett">
+                                                      <Label text="Oförutsett">
                                                          <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                            <Insets bottom="27.0" top="5.0" />
                                                          </VBox.margin>
-                                                      </Button>
+                                                      </Label>
                                                       <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Finansiella kostnader">
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
@@ -167,7 +169,8 @@
                                                       <Label text="Projektkostnad">
                                                          <VBox.margin>
                                                             <Insets left="5.0" right="5.0" />
-                                                         </VBox.margin></Label>
+                                                         </VBox.margin>
+                                                      </Label>
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
@@ -476,7 +479,8 @@
                                                       <Label text="Marknadsvärde">
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin></Label>
+                                                         </VBox.margin>
+                                                      </Label>
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">

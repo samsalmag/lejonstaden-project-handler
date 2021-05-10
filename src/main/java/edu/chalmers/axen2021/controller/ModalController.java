@@ -132,7 +132,7 @@ public class ModalController {
      * @param text Input string.
      */
     public void setCategoryNameLabelText(String text) {
-        categoryNameLabel.setText(text);
+        categoryNameLabel.setText(text + " : " + projectManager.getActiveCategory().getUnit());
     }
 
     /**

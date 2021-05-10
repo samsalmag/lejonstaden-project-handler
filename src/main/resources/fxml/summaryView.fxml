@@ -14,7 +14,7 @@
    <children>
       <VBox alignment="TOP_RIGHT">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToInputView" text="Detalj Vy" VBox.vgrow="ALWAYS">
+            <Button mnemonicParsing="false" onAction="#switchToInputView" text="Till Detalj Vy" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets right="20.0" top="20.0" />
                </VBox.margin></Button>

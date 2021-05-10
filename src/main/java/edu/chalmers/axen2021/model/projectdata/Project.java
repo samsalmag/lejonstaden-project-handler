@@ -66,7 +66,6 @@ public class Project implements Serializable {
     private double oforutsettKkr;
     private double oforutsettKrBoa;
     private double oforutsettKrBta;
-    private double contractPercent; // Måste nog vara någon annanstans men la här nu för att slippa errors
 
     //Finansiella kostnader
     private double finansiellaKostnaderKkr;
@@ -125,6 +124,7 @@ public class Project implements Serializable {
     private double antagenPresumtionshyra;
     private double totalBoa;
     private double totalLjusBta;
+    private double oforutsettPercent;
 
     /**
      * Class Constructor. Is used when a new instance of this class is created.
@@ -287,10 +287,6 @@ public class Project implements Serializable {
 
     public ArrayList<CostItem> getEntrepenadCostItems() {
         return costItemsMap.get(Category.ENTREPENAD);
-    }
-
-    public ArrayList<CostItem> getOforutsettCostItems() {
-        return costItemsMap.get(Category.OFÖRUTSETT);
     }
 
     public ArrayList<CostItem> getFinansiellaKostnaderCostItems() {
@@ -515,6 +511,10 @@ public class Project implements Serializable {
         return totalLjusBta;
     }
 
+    public double getOforutsettPercent() {
+        return oforutsettPercent;
+    }
+
     // SETTERS FOR INPUT VARIABLES
     public void setYieldMedStod(double yieldMedStod) {
         this.yieldMedStod = yieldMedStod;
@@ -538,6 +538,10 @@ public class Project implements Serializable {
 
     public void setYieldUtanStod(double yieldUtanStod) {
         this.yieldUtanStod = yieldUtanStod;
+    }
+
+    public void setOforutsettPercent(double oforutsettPercent) {
+        this.oforutsettPercent = oforutsettPercent;
     }
 
     //Update methods
@@ -652,9 +656,8 @@ public class Project implements Serializable {
         entreprenadKrBta = calculationsManager.updatedEntreprenadKrBta(entreprenadKkr, totalLjusBta);
     }
 
-    // contractPercent måste få ett värde någonstans?
     private void updateOforutsettKkr() {
-        oforutsettKkr = entreprenadKkr*contractPercent;
+        oforutsettKkr = entreprenadKkr*oforutsettPercent;
     }
 
     private void updateOforutsettKrBoa() {
