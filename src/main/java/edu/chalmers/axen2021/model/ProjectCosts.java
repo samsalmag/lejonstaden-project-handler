@@ -24,6 +24,7 @@ public class ProjectCosts {
         return (krPerApt * totQuantity) / 1000;
     }
 
+    // Potentiellt ta bort denna metoden.
     /**
      * Calculates and returns the Client cost
      * @param clientBoa BOA of the client.

@@ -289,7 +289,7 @@ public class Project implements Serializable {
         return costItemsMap.get(Category.ENTREPENAD);
     }
 
-    public ArrayList<CostItem> getOförutsettCostItems() {
+    public ArrayList<CostItem> getOforutsettCostItems() {
         return costItemsMap.get(Category.OFÖRUTSETT);
     }
 
@@ -629,7 +629,7 @@ public class Project implements Serializable {
     }
 
     private void updateByggherreKkr() {
-        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems(), totalBoa);
+        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems());
     }
 
     private void updateByggherreKrBoa() {
