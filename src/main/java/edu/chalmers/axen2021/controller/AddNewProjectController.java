@@ -50,7 +50,7 @@ public class AddNewProjectController {
         }
 
         // If project name input has illegal characters then don't continue.
-        if(!projectNameTextField.getText().matches("^[0-9a-zA-Z\\^\\&\\'\\@\\{\\}\\[\\]\\,\\$\\=\\!\\-\\#\\(\\)\\%\\+\\~\\_ ]+$")) {
+        if(!projectNameTextField.getText().matches("^[0-9a-zA-ZåÅäÄöÖ\\^\\&\\'\\@\\{\\}\\[\\]\\,\\$\\=\\!\\-\\#\\(\\)\\%\\+\\~\\_ ]+$")) {
             return;
         }
 
