@@ -59,13 +59,24 @@ public class CalculationsManager implements Serializable {
         return krPerKvm;
     }
 
-    public double updateSubsidyKKr(double investeringsstod, double quantity, double boa) {
+    public double updateSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {
         double subsidy = 0.0;
-        subsidy -= apartmentData.getSubsidy(investeringsstod, quantity, boa);
+        for (ApartmentItem a : apartments) {
+            subsidy -= apartmentData.getSubsidy(investeringsstod, a.getAmount(), a.getBOA());
+        }
+        //double subsidy = 0.0;
+        //subsidy -= apartmentData.getSubsidy(investeringsstod, quantity, boa);
 
-        return subsidy/1000;
+        return subsidy;
     }
 
+    public double updatedSubsidyKrBoa(double subsidyKkr, double totalBoa) {
+        return projectCosts.getCostPerBoa(subsidyKkr, totalBoa);
+    }
+
+    public double updatedSubsidyKrBta(double subsidyKkr, double totalBta) {
+        return projectCosts.getCostPerBta(subsidyKkr, totalBta);
+    }
 
     public double updatedTomtkostnaderKkr(ArrayList<CostItem> tomtkostnader) {
         return projectCosts.getTotalCost(tomtkostnader);

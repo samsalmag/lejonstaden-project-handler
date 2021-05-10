@@ -583,6 +583,8 @@ public class Project implements Serializable {
         updateProjektkostnadKrBta();
 
         updateInvesteringsstodKkr();
+        updateInvesteringsstodKrBoa();
+        updateInvesteringsstodKrBta();
 
         updateHyresintakterBostadMedStod();
         updateHyresintakterBostadUtanStod();
@@ -703,12 +705,16 @@ public class Project implements Serializable {
     }
 
     private void updateInvesteringsstodKkr() {
-       investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstod(), numOfApt, totalBoa);
+       investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstod(), getApartmentItems());
     }
-    /**
+
     private void updateInvesteringsstodKrBoa() {
-        investeringsstodKrBoa = calculationsManager.update
-    */
+        investeringsstodKrBoa = calculationsManager.updatedSubsidyKrBoa(investeringsstodKkr, totalBoa);
+    }
+
+    private void updateInvesteringsstodKrBta() {
+        investeringsstodKrBta = calculationsManager.updatedSubsidyKrBta(investeringsstodKkr, totalLjusBta);
+    }
 
 
     private void updateHyresintakterBostadMedStod() {
