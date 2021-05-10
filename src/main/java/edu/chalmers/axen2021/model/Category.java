@@ -8,17 +8,17 @@ public enum Category {
     // Some of these are commented because they don't have cost items, AKA no button in the inputView.
     // They should only be uncommented if they have a button.
     // Their variable values still exists in the Project class.
-    TOMTKOSTNADER("Tomtkostnader"),
-    NEDLAGDABYGGHERRE("Nedlagda bygherre"),
-    ANSLUTNINGAR("Anslutningar"),
-    BYGGHERREKOSTNADER("Byggherrekostnader"),
-    ENTREPENAD("Entrepenad"),
-    OFÖRUTSETT("Oförutsett"),
-    FINANSIELLAKOSTNADER("Finansiella kostnader"),
+    TOMTKOSTNADER("Tomtkostnader", ""),
+    NEDLAGDABYGGHERRE("Nedlagda bygherre", ""),
+    ANSLUTNINGAR("Anslutningar", ""),
+    BYGGHERREKOSTNADER("Byggherrekostnader", ""),
+    ENTREPENAD("Entrepenad", ""),
+    OFÖRUTSETT("Oförutsett", ""),
+    FINANSIELLAKOSTNADER("Finansiella kostnader", ""),
     //MERVÄRDESKATT("Mervärdeskatt"),
     //INVESTERINGSSTÖD("Investeringsstöd"),
-    HYRESINTÄKTER("Hyresintäkter"),
-    DRIFTOCHUNDERHÅLL("Drift & Underhåll");
+    HYRESINTÄKTER("Hyresintäkter", ""),
+    DRIFTOCHUNDERHÅLL("Drift & Underhåll", "");
     //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),
     //DRIFTNETTO("Driftnetto"),
     //YIELD("Yield");
@@ -28,8 +28,14 @@ public enum Category {
      */
     private String name;
 
-    Category(String name) {
+    /**
+     * Unit of the category (e.g. "kkr" or "kr/BOA").
+     */
+    private String unit;
+
+    Category(String name, String unit) {
         this.name = name;
+        this.unit = unit;
     }
 
     /**
@@ -52,5 +58,13 @@ public enum Category {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Gets the unit of the Category.
+     * @return unit variable.
+     */
+    public String getUnit() {
+        return unit;
     }
 }
