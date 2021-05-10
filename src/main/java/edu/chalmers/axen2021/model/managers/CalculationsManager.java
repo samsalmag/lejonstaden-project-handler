@@ -163,8 +163,8 @@ public class CalculationsManager implements Serializable {
         return projectCosts.getCostPerBta(finansiellaKkr, totalBta);
     }
 
-    public double updatedMervardesskattKkr(HashMap<Category, ArrayList<CostItem>> mervardesskatt) {
-        return projectCosts.getMervardesskatt(mervardesskatt);
+    public double updatedMervardesskattKkr(HashMap<Category, ArrayList<CostItem>> costItemMap, double totalBoa, double noOfApts) {
+        return projectCosts.getMervardesskatt(costItemMap, totalBoa, noOfApts);
     }
 
     public double updatedMervardesskattKrBoa(double mervardesskattKkr, double totalBoa) {

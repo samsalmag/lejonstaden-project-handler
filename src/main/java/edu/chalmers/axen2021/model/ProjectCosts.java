@@ -14,19 +14,18 @@ import java.util.HashMap;
 
 public class ProjectCosts {
 
-    /**
-     * Calculates and returns the Connection costs.
+    /** Anslutningar
      * @param krPerApt cost in kr per apartment.
      * @param totQuantity total quantity of apartments.
      * @return Connection costs of the project.
      */
     public double getConnectionsCost(double krPerApt, double totQuantity) {
-        return (krPerApt * totQuantity) / 1000;
+        return (krPerApt * totQuantity);
     }
 
     // Potentiellt ta bort denna metoden.
-    /**
-     * Calculates and returns the Client cost
+    /** Byggherre
+     * Calculates and returns the Client cost.
      * @param clientBoa BOA of the client.
      * @param totBoa total BOA of the project.
      * @return Client costs of the project.
@@ -35,14 +34,14 @@ public class ProjectCosts {
         return (clientBoa * totBoa) / 1000;
     }
 
-    /**
+    /** Entreprenad
      * Calculates and returns the Contract costs.
      * @param contract cost per BOA.
      * @param totBoa total BOA of the project.
      * @return Contract costs of the project.
      */
     public double getContractCost(double contract, double totBoa) {
-        return (contract * totBoa) / 1000;
+        return (contract * totBoa) ;
     }
 
     /**
@@ -64,7 +63,7 @@ public class ProjectCosts {
      * @return Financial costs of the project.
      */
     public double getFinancialCost(double totBoa, double krPerSqm) {
-        return (totBoa * krPerSqm) / 1000;
+        return (totBoa * krPerSqm) ;
     }
 
     /**
@@ -88,18 +87,38 @@ public class ProjectCosts {
     /**
      * Checks for every Cost Item in the project if moms should be applied to the Cost Item.
      * If true then the Cost Item's value is multiplied with 0.25 (the tax) and added to the tax sum.
-     * @param matrix An ArrayList containing all of the projects ArrayLists of Cost Items.
+     * @param map An ArrayList containing all of the projects ArrayLists of Cost Items.
      * @return The tax sum for the project (mervärdesskatt)
      */
-    public double getMervardesskatt(HashMap<Category, ArrayList<CostItem>> matrix) {
+    public double getMervardesskatt(HashMap<Category, ArrayList<CostItem>> map, double totBoa, double noOfApts) {
         double moms = 0.0;
-        for (HashMap.Entry<Category, ArrayList<CostItem>> entry : matrix.entrySet()) {
-            Category key = entry.getKey();
-            ArrayList<CostItem> value = matrix.get(key);
-            for(CostItem cost : value)
-                moms += 0.25*cost.getValue();
-            }
-        return moms / 1000;
+        for (HashMap.Entry<Category, ArrayList<CostItem>> entry : map.entrySet()) {
+            Category c = entry.getKey();
+            ArrayList<CostItem> costItems = map.get(c);
+            if (c == Category.TOMTKOSTNADER || c == Category.NEDLAGDABYGGHERRE || c == Category.BYGGHERREKOSTNADER) {
+                for (CostItem item : costItems) {
+                    if (item.getMoms()) {
+                        moms += item.getValue();
+                    }
+                }
+            } else if (c == Category.ENTREPENAD || c == Category.FINANSIELLAKOSTNADER) {
+                for (CostItem item : costItems) {
+                    if (item.getMoms()) {
+                        double value = item.getValue() * totBoa;
+                        moms += value;
+                    }
+                }
+            } else if (c == Category.ANSLUTNINGAR) {
+                for (CostItem item : costItems) {
+                    if (item.getMoms()) {
+                        double value = item.getValue() * noOfApts;
+                        moms += value;
+                    }
+                }
+            } else ;
+
+        }
+        return (moms * 0.25) / 1000;
     }
 
     /**
