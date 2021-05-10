@@ -209,10 +209,6 @@ public class ProjectManager implements Serializable {
         return costItemNamesMap.get(Category.ENTREPENAD);
     }
 
-    public ArrayList<String> getOförutsett() {
-        return costItemNamesMap.get(Category.OFÖRUTSETT);
-    }
-
     public ArrayList<String> getFinansiellaKostnader() {
         return costItemNamesMap.get(Category.FINANSIELLAKOSTNADER);
     }

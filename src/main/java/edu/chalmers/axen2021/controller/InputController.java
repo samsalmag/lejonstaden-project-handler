@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -84,6 +83,7 @@ public class InputController implements Initializable {
     @FXML private TextField normHyraMedStod;
     @FXML private TextField totalLjusBta;
     @FXML private TextField totalBoa;
+    @FXML private TextField oforutsett;
 
     @FXML private Label titleLabel;
 
@@ -159,6 +159,7 @@ public class InputController implements Initializable {
         inputFields.add(totalLjusBta);
         inputFields.add(yieldMedStod);
         inputFields.add(yieldUtanStod);
+        inputFields.add(oforutsett);
     }
 
     /**
@@ -266,6 +267,7 @@ public class InputController implements Initializable {
         antagenPresumtionshyra.setText("" + projectManager.getActiveProject().getAntagenPresumtionshyra());
         totalBoa.setText(df.format(projectManager.getActiveProject().getTotalBoa()));
         totalLjusBta.setText("" + projectManager.getActiveProject().getTotalLjusBta());
+        oforutsett.setText("" + projectManager.getActiveProject().getOforutsettPercent());
     }
 
     /**
@@ -386,5 +388,6 @@ public class InputController implements Initializable {
         projectManager.getActiveProject().setTotalLjusBta(Double.parseDouble(totalLjusBta.getText()));
         projectManager.getActiveProject().setYieldMedStod(Double.parseDouble(yieldMedStod.getText()));
         projectManager.getActiveProject().setYieldUtanStod(Double.parseDouble(yieldUtanStod.getText()));
+        projectManager.getActiveProject().setOforutsettPercent(Double.parseDouble(oforutsett.getText()));
     }
 }

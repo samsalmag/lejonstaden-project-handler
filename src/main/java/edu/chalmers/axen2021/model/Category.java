@@ -13,7 +13,7 @@ public enum Category {
     ANSLUTNINGAR("Anslutningar", "kr/lgh"),
     BYGGHERREKOSTNADER("Byggherrekostnader", "kr"),
     ENTREPENAD("Entrepenad", "kr/BOA"),
-    OFÖRUTSETT("Oförutsett", ""),
+    //OFÖRUTSETT("Oförutsett", ""),
     FINANSIELLAKOSTNADER("Finansiella kostnader", "kr/BOA"),
     //MERVÄRDESKATT("Mervärdeskatt"),
     //INVESTERINGSSTÖD("Investeringsstöd"),
