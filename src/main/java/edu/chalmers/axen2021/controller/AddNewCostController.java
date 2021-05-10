@@ -59,4 +59,8 @@ public class AddNewCostController {
         rootController.getAddNewCostAnchorPane().toBack();
         costNameTextField.clear();
     }
+
+    public TextField getCostNameTextField() {
+        return costNameTextField;
+    }
 }

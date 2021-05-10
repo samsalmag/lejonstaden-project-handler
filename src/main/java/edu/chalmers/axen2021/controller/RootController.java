@@ -286,6 +286,17 @@ public class RootController {
         confirmationAnchorPane.toBack();
     }
 
+    public void focusTextField(EventHandlerObjects type) {
+
+        // Focus on the TextField for the given type.
+        if (type == EventHandlerObjects.PROJECT) {
+            addNewProjectController.getProjectNameTextField().requestFocus();
+
+        } else if(type == EventHandlerObjects.COST_ITEM) {
+            addNewCostController.getCostNameTextField().requestFocus();
+        }
+    }
+
     /**
      * Getter for the modalAnchorPane.
      * @return

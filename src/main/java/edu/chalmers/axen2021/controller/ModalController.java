@@ -65,6 +65,7 @@ public class ModalController {
     @FXML
     private void openAddNewCostView() {
         rootController.getAddNewCostAnchorPane().toFront();
+        rootController.focusTextField(EventHandlerObjects.COST_ITEM);   // Focus the text field for cost item name input.
     }
 
     /**

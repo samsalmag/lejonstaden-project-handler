@@ -81,4 +81,8 @@ public class AddNewProjectController {
 
         return newProject;
     }
+
+    public TextField getProjectNameTextField() {
+        return projectNameTextField;
+    }
 }

@@ -192,6 +192,7 @@ public class Project implements Serializable {
         // Sort the list to alphabetical order.
         ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
 
+        System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getName() + "!");
         return costItem;
     }
 
