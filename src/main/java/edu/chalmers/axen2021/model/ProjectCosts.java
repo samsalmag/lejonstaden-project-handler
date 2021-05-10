@@ -121,9 +121,13 @@ public class ProjectCosts {
      * @param totBoa The total BOA for the project.
      * @return The cost per BOA for the specified cost.
      */
-
     public double getCostPerBoa(double variable, double totBoa){
-        return variable/totBoa*1000;
+        if (totBoa == 0) {
+            return 0;
+        }
+        else {
+            return variable/totBoa*1000;
+        }
     }
 
     /**
@@ -132,8 +136,12 @@ public class ProjectCosts {
      * @param totBta The total BTA for the project.
      * @return
      */
-
     public double getCostPerBta(double variable, double totBta){
-        return variable/totBta*1000;
+        if (totBta == 0) {
+            return 0;
+        }
+        else {
+            return variable / totBta * 1000;
+        }
     }
 }

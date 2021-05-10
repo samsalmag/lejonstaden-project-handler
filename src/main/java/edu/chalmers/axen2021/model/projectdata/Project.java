@@ -691,17 +691,17 @@ public class Project implements Serializable {
     }
 
     private void updateProjektkostnadKkr() {
-        projektkostnadKkr = tomtkostnaderKkr+nedlagdaByggherreKkr+anslutningarKkr+
-                byggherrekostnaderKkr+entreprenadKkr+oforutsettKkr+finansiellaKostnaderKkr+
-                mervardeskattKkr+investeringsstodKkr;
+        projektkostnadKkr = calculationsManager.updatedProjectCostKkr(tomtkostnaderKkr, nedlagdaByggherreKkr,anslutningarKkr,
+                byggherrekostnaderKkr, entreprenadKkr, oforutsettKkr, finansiellaKostnaderKkr,
+                mervardeskattKkr, investeringsstodKkr);
     }
 
     private void updateProjektkostnadKrBoa() {
-        projektkostnadKrBoa = projektkostnadKkr*1000/totalBoa;
+        projektkostnadKrBoa = calculationsManager.updatedProjectCostKrBoa(projektkostnadKkr, totalBoa);
     }
 
     private void updateProjektkostnadKrBta() {
-        projektkostnadKrBta = projektkostnadKkr*1000/totalLjusBta;
+        projektkostnadKrBta = calculationsManager.updatedProjectCostKrBta(projektkostnadKkr, totalLjusBta);
     }
 
     private void updateInvesteringsstodKkr() {

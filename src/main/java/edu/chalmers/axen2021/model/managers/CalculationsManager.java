@@ -175,25 +175,21 @@ public class CalculationsManager implements Serializable {
         return  projectCosts.getCostPerBta(mervardesskattKkr, totalBta);
     }
 
-    public double updateProjectCostKkr(HashMap<Category, ArrayList<CostItem>> costsKkr) {
-        double projectCosts = 0.0;
-        for(Map.Entry<Category, ArrayList<CostItem>> entry : costsKkr.entrySet()) {
-            Category key = entry.getKey();
-            ArrayList<CostItem> value = costsKkr.get(key);
-            for (CostItem costItem : value)
-                projectCosts += costItem.getValue();
-        }
-
-        return projectCosts/1000;
+    public double updatedProjectCostKkr(double tomtkostnaderKkr, double nedlagdaByggherreKkr, double anslutningarKkr,
+                                       double byggherreKkr, double entreprenadKkr, double oforutsettKkr,
+                                       double finansiellaKkr, double mervardesskattKkr, double investeringsstodKkr) {
+        double projectCosts = tomtkostnaderKkr + nedlagdaByggherreKkr + anslutningarKkr + byggherreKkr +
+                entreprenadKkr + oforutsettKkr + finansiellaKkr + mervardesskattKkr + investeringsstodKkr;
+        return projectCosts;
     }
-/**
+
     public double updatedProjectCostKrBoa(double projektkostnadKkr, double totalBoa) {
         return projectCosts.getCostPerBoa(projektkostnadKkr, totalBoa);
     }
 
     public double updatedProjectCostKrBta(double projektkostnadKkr, double totalBta) {
         return projectCosts.getCostPerBta(projektkostnadKkr, totalBta);
-    }*/
+    }
 
     // ------------------ GETTERS ------------------ //
 
