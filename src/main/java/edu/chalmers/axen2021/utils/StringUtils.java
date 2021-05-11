@@ -13,4 +13,9 @@ public class StringUtils {
     public static String removeTrailingZeros(String s) {
         return s.replaceAll("[0]*$", "").replaceAll("\\.$", "");
     }
+
+    public static Double convertToDouble(String s) {
+        s = s.replaceAll(",", ".");
+        return Double.parseDouble(s);
+    }
 }
