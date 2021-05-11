@@ -16,17 +16,23 @@
 
 .project-buttons{
     -fx-background-color: #E8C261;
-    -fx-font-size: 14px;
     -fx-background-radius: 30px;
     -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.project-buttons:hover{
+    -fx-background-color: #DEB756;
 }
 
 .project-buttons:pressed{
-    -fx-background-color: #FAFAFB;
+    -fx-background-color: #D4AD4C;
 }
 
 .project-buttons:selected{
-    -fx-background-color: #000000;
+    -fx-background-color: #C8A140;
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.5) , 3,0,2,2 );
 }
 
 .modal-window-shadow{
@@ -40,4 +46,39 @@
 #defaultanchorpane-background{
     -fx-background-image: url(/images/bakgrund-karta.jpg);
 
+}
+
+.standard-text{
+    -fx-font-size: 18px;
+}
+
+.caption-text{
+    -fx-font-size: 24px;
+}
+
+.title-text{
+    -fx-font-size: 28px;
+}
+
+.category-button{
+    -fx-background-color: #A0D1FA;
+    -fx-background-radius: 30px;
+    -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.category-button:hover{
+
+}
+
+.category-button:pressed{
+
+}
+
+.grey-out-text-field{
+    -fx-background-color: lightgrey;
+    -fx-border-color: #B6C4C3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
