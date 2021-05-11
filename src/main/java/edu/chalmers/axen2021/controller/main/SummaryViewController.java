@@ -66,7 +66,6 @@ public class SummaryViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         df = new DecimalFormat("#.##");
         df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
-
     }
 
     /**
@@ -134,7 +133,6 @@ public class SummaryViewController implements Initializable {
     private void addNewApartmentItem(ActionEvent event) {
         ApartmentItem newApartmentItem = projectManager.getActiveProject().addApartmentItem();
         createNewApartmentItemView(newApartmentItem);
-
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
