@@ -69,6 +69,6 @@ public class SideBarItemController implements Initializable {
      */
     @FXML
     private void openRemoveConfirmation(){
-        rootController.openConfirmationView(projectName, EventHandlerObjects.PROJECT);
+        rootController.openConfirmationView(projectName, ItemType.PROJECT);
     }
 }

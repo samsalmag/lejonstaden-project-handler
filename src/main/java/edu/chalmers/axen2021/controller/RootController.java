@@ -270,13 +270,13 @@ public class RootController {
         AXEN2021.terminate();
     }
 
-    public void openConfirmationView(String nameObjectToRemove, EventHandlerObjects type){
+    public void openConfirmationView(String nameObjectToRemove, ItemType type){
         confirmationController.setItemToRemove(nameObjectToRemove, type);
         confirmationController.setEventHandler(type);
         confirmationAnchorPane.toFront();
     }
 
-    public void openConfirmationView(ApartmentItem item, EventHandlerObjects type){
+    public void openConfirmationView(ApartmentItem item, ItemType type){
         confirmationController.setItemToRemove(item, type);
         confirmationController.setEventHandler(type);
         confirmationAnchorPane.toFront();
@@ -286,13 +286,13 @@ public class RootController {
         confirmationAnchorPane.toBack();
     }
 
-    public void focusTextField(EventHandlerObjects type) {
+    public void focusTextField(ItemType type) {
 
         // Focus on the TextField for the given type.
-        if (type == EventHandlerObjects.PROJECT) {
+        if (type == ItemType.PROJECT) {
             addNewProjectController.getProjectNameTextField().requestFocus();
 
-        } else if(type == EventHandlerObjects.COST_ITEM) {
+        } else if(type == ItemType.COST_ITEM) {
             addNewCostController.getCostNameTextField().requestFocus();
         }
     }

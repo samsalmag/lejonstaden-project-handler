@@ -34,7 +34,7 @@ public class SideBarController {
     @FXML
     private void openAddNewProjectView() {
         rootController.getAddNewProjectAnchorPane().toFront();
-        rootController.focusTextField(EventHandlerObjects.PROJECT);   // Focus the text field for project name input.
+        rootController.focusTextField(ItemType.PROJECT);   // Focus the text field for project name input.
     }
 
     /**

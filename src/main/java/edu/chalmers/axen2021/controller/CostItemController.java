@@ -127,6 +127,6 @@ public class CostItemController implements Initializable {
      */
     @FXML
     private void openRemoveConfirmation(){
-        rootController.openConfirmationView(costItem.getName(), EventHandlerObjects.COST_ITEM);
+        rootController.openConfirmationView(costItem.getName(), ItemType.COST_ITEM);
     }
 }
