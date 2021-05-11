@@ -143,6 +143,6 @@ public class ApartmentItemController implements Initializable {
      */
     @FXML
     private void openRemoveConfirmation(){
-        rootController.openConfirmationView(apartmentItem, ItemType.APARTMENT_ITEM);
+        rootController.openConfirmationView(apartmentItem);
     }
 }

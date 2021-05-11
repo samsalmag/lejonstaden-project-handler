@@ -322,13 +322,11 @@ public class RootController {
 
     public void openConfirmationView(String nameObjectToRemove, ItemType type){
         confirmationController.setItemToRemove(nameObjectToRemove, type);
-        confirmationController.setEventHandler(type);
         confirmationAnchorPane.toFront();
     }
 
-    public void openConfirmationView(ApartmentItem item, ItemType type){
-        confirmationController.setItemToRemove(item, type);
-        confirmationController.setEventHandler(type);
+    public void openConfirmationView(ApartmentItem item){
+        confirmationController.setItemToRemove(item);
         confirmationAnchorPane.toFront();
     }
 

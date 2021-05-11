@@ -60,6 +60,10 @@ public class AddNewCostController {
         rootController.closeAddNewCostView();
     }
 
+    /**
+     * Getter for the TextField for cost item name input.
+     * @return
+     */
     public TextField getCostNameTextField() {
         return costNameTextField;
     }
