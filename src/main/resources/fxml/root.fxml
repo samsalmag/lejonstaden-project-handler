@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="540.0" minWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="480.0" minWidth="1275.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="addNewProjectAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="addNewCostAnchorPane" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="modalAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="confirmationAnchorPane" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuBar prefHeight="25.0" prefWidth="1025.0">
+            <MenuBar maxHeight="25.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Dev">
                   <items>
@@ -25,14 +25,15 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <AnchorPane fx:id="headerAnchorPane" maxHeight="180.0" minHeight="89.0" minWidth="854.0" VBox.vgrow="ALWAYS" />
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <AnchorPane fx:id="headerAnchorPane" maxHeight="180.0" minHeight="89.0" VBox.vgrow="ALWAYS" />
+            <HBox VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane fx:id="sideBarAnchorPane" maxWidth="250.0" minHeight="391.0" minWidth="175.0" HBox.hgrow="ALWAYS" />
-                  <AnchorPane fx:id="centerStageAnchorPane" minHeight="391.0" minWidth="850.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                  <AnchorPane fx:id="centerStageAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="391.0" minWidth="1100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                      <children>
-                        <AnchorPane fx:id="defaultCenterStageAnchorPane" prefHeight="200.0" prefWidth="200.0" styleClass="white-background" stylesheets="@../css/Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children></AnchorPane>
+                        <AnchorPane fx:id="defaultCenterStageAnchorPane" styleClass="white-background" stylesheets="@../css/Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </HBox>
          </children>
