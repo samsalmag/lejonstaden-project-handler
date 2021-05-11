@@ -1,5 +1,8 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.modals;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.items.ItemType;
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -45,37 +48,37 @@ public class ConfirmationController {
         }
     };
 
-    public void setItemToRemove(String nameObjectToRemove, EventHandlerObjects type) {
+    public void setItemToRemove(String nameObjectToRemove, ItemType type) {
         this.nameObjectToRemove = nameObjectToRemove;
         changeConfirmButtonText(type);
     }
 
-    public void setItemToRemove(ApartmentItem item, EventHandlerObjects type) {
+    public void setItemToRemove(ApartmentItem item, ItemType type) {
         this.item = item;
         changeConfirmButtonText(type);
     }
 
-    public void setEventHandler(EventHandlerObjects type){
-        if(type == EventHandlerObjects.COST_ITEM){
+    public void setEventHandler(ItemType type){
+        if(type == ItemType.COST_ITEM){
             confirmButton.setOnAction(removeCostItemHandler);
         }
-        else if (type == EventHandlerObjects.APARTMENT_TYPE){
+        else if (type == ItemType.APARTMENT_ITEM){
             confirmButton.setOnAction(removeLagenhetsTypeHandler);
         }
-        else if (type == EventHandlerObjects.PROJECT){
+        else if (type == ItemType.PROJECT){
             confirmButton.setOnAction(removeProjectHandler);
         }
     }
 
-    private void changeConfirmButtonText(EventHandlerObjects type){
+    private void changeConfirmButtonText(ItemType type){
 
-        if(type == EventHandlerObjects.COST_ITEM){
+        if(type == ItemType.COST_ITEM){
             confirmationBoxLabel.setText("Vill du ta bort " + nameObjectToRemove + "?");
         }
-        else if (type == EventHandlerObjects.APARTMENT_TYPE){
+        else if (type == ItemType.APARTMENT_ITEM){
             confirmationBoxLabel.setText("Vill du ta bort denna lägenhetstypen?");
         }
-        else if (type == EventHandlerObjects.PROJECT){
+        else if (type == ItemType.PROJECT){
             confirmationBoxLabel.setText("Vill du ta bort " + nameObjectToRemove + "?");
         }
 

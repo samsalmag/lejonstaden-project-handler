@@ -1,5 +1,14 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.controller.items.ItemType;
+import edu.chalmers.axen2021.controller.main.HeaderController;
+import edu.chalmers.axen2021.controller.main.InputController;
+import edu.chalmers.axen2021.controller.main.SideBarController;
+import edu.chalmers.axen2021.controller.main.SummaryViewController;
+import edu.chalmers.axen2021.controller.modals.AddNewCostController;
+import edu.chalmers.axen2021.controller.modals.AddNewProjectController;
+import edu.chalmers.axen2021.controller.modals.ConfirmationController;
+import edu.chalmers.axen2021.controller.modals.ModalController;
 import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
@@ -282,13 +291,13 @@ public class RootController {
         AXEN2021.terminate();
     }
 
-    public void openConfirmationView(String nameObjectToRemove, EventHandlerObjects type){
+    public void openConfirmationView(String nameObjectToRemove, ItemType type){
         confirmationController.setItemToRemove(nameObjectToRemove, type);
         confirmationController.setEventHandler(type);
         confirmationAnchorPane.toFront();
     }
 
-    public void openConfirmationView(ApartmentItem item, EventHandlerObjects type){
+    public void openConfirmationView(ApartmentItem item, ItemType type){
         confirmationController.setItemToRemove(item, type);
         confirmationController.setEventHandler(type);
         confirmationAnchorPane.toFront();
@@ -298,13 +307,13 @@ public class RootController {
         confirmationAnchorPane.toBack();
     }
 
-    public void focusTextField(EventHandlerObjects type) {
+    public void focusTextField(ItemType type) {
 
         // Focus on the TextField for the given type.
-        if (type == EventHandlerObjects.PROJECT) {
+        if (type == ItemType.PROJECT) {
             addNewProjectController.getProjectNameTextField().requestFocus();
 
-        } else if(type == EventHandlerObjects.COST_ITEM) {
+        } else if(type == ItemType.COST_ITEM) {
             addNewCostController.getCostNameTextField().requestFocus();
         }
     }

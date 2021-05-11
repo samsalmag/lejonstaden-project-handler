@@ -1,5 +1,8 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.main;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemController;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.Category;

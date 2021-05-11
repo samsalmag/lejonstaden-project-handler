@@ -1,5 +1,9 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.main;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.controller.items.ItemType;
+import edu.chalmers.axen2021.controller.items.SideBarItemController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import javafx.fxml.FXML;
@@ -38,7 +42,7 @@ public class SideBarController {
     @FXML
     private void openAddNewProjectView() {
         rootController.getAddNewProjectAnchorPane().toFront();
-        rootController.focusTextField(EventHandlerObjects.PROJECT);   // Focus the text field for project name input.
+        rootController.focusTextField(ItemType.PROJECT);   // Focus the text field for project name input.
     }
 
     /**

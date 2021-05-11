@@ -1,6 +1,8 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.items;
 
 import edu.chalmers.axen2021.model.managers.PdfManager;
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import javafx.event.ActionEvent;
@@ -87,6 +89,6 @@ public class SideBarItemController implements Initializable {
      */
     @FXML
     private void openRemoveConfirmation(){
-        rootController.openConfirmationView(projectName, EventHandlerObjects.PROJECT);
+        rootController.openConfirmationView(projectName, ItemType.PROJECT);
     }
 }
