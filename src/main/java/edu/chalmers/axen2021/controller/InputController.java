@@ -4,6 +4,7 @@ import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
+import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,6 +90,7 @@ public class InputController implements Initializable {
 
     private DecimalFormat df;
 
+
     /**
      * Instance of the project manager.
      */
@@ -111,12 +113,11 @@ public class InputController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        df = new DecimalFormat("#.##");
-        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        df = new DecimalFormat("#");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
 
         initInputFieldsList();
         initTextFieldProperties();
-
     }
 
     /**
@@ -130,7 +131,7 @@ public class InputController implements Initializable {
 
             //Adds property to TextField allowing users to only input numbers and ".".
             textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                if(!newValue.matches("[0-9]*" + "[.]?" + "[0-9]*")){
+                if(!newValue.matches("[0-9]*" + "[,]?" + "[0-9]*")){
                     textField.setText(oldValue);
                 }
             });
@@ -139,8 +140,8 @@ public class InputController implements Initializable {
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue){
                     //Make sure that the textField has a readable value.
-                    if(textField.getText().equals("") || textField.getText().equals(".")){
-                        textField.setText("0.0");
+                    if(textField.getText().equals("") || textField.getText().equals(",")){
+                        textField.setText("0");
                     }
                     setInputFields();
                     rootController.updateAllLabels();
@@ -382,12 +383,12 @@ public class InputController implements Initializable {
      * Set all new values from the inputFields.
      */
     private void setInputFields(){
-        projectManager.getActiveProject().setNormhyraMedStod(Double.parseDouble(normHyraMedStod.getText()));
-        projectManager.getActiveProject().setInvesteringsstod(Double.parseDouble(investeringsstod.getText()));
-        projectManager.getActiveProject().setAntagenPresumtionshyra(Double.parseDouble(antagenPresumtionshyra.getText()));
-        projectManager.getActiveProject().setTotalLjusBta(Double.parseDouble(totalLjusBta.getText()));
-        projectManager.getActiveProject().setYieldMedStod(Double.parseDouble(yieldMedStod.getText()));
-        projectManager.getActiveProject().setYieldUtanStod(Double.parseDouble(yieldUtanStod.getText()));
-        projectManager.getActiveProject().setOforutsettPercent(Double.parseDouble(oforutsett.getText()));
+        projectManager.getActiveProject().setNormhyraMedStod(StringUtils.convertToDouble(normHyraMedStod.getText()));
+        projectManager.getActiveProject().setInvesteringsstod(StringUtils.convertToDouble(investeringsstod.getText()));
+        projectManager.getActiveProject().setAntagenPresumtionshyra(StringUtils.convertToDouble(antagenPresumtionshyra.getText()));
+        projectManager.getActiveProject().setTotalLjusBta(StringUtils.convertToDouble(totalLjusBta.getText()));
+        projectManager.getActiveProject().setYieldMedStod(StringUtils.convertToDouble(yieldMedStod.getText()));
+        projectManager.getActiveProject().setYieldUtanStod(StringUtils.convertToDouble(yieldUtanStod.getText()));
+        projectManager.getActiveProject().setOforutsettPercent(StringUtils.convertToDouble(oforutsett.getText()));
     }
 }
