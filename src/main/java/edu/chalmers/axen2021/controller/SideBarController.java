@@ -5,6 +5,8 @@ import edu.chalmers.axen2021.model.projectdata.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 
@@ -28,6 +30,8 @@ public class SideBarController {
      */
     @FXML private VBox projectItemVbox;
 
+    private ToggleGroup projectButtonGroup = new ToggleGroup();
+
     /**
      * Opens the addNewProject view.
      */
@@ -43,7 +47,7 @@ public class SideBarController {
      */
     public void addNewSideBarItem(String projectName) {
         FXMLLoader sideBarItem = new FXMLLoader(getClass().getResource("/fxml/sideBarItem.fxml"));
-        SideBarItemController sideBarItemController = new SideBarItemController(projectName);
+        SideBarItemController sideBarItemController = new SideBarItemController(projectName, projectButtonGroup);
         sideBarItem.setController(sideBarItemController);
         Node sideBarItemNode = null;
 
@@ -65,6 +69,14 @@ public class SideBarController {
     public void populateProjectButtons() {
         for (Project project : ProjectManager.getInstance().getProjects()) {
             addNewSideBarItem(project.getName());
+        }
+    }
+
+    public void setActiveButton(String projectName){
+        for(Node button : projectItemVbox.getChildren()){
+            if( ( (ToggleButton) button).getText().equals(projectName)){
+                projectButtonGroup.selectToggle( (ToggleButton) button);
+            }
         }
     }
 }

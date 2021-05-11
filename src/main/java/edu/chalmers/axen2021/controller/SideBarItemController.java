@@ -5,7 +5,8 @@ import edu.chalmers.axen2021.model.managers.SaveManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,24 +30,31 @@ public class SideBarItemController implements Initializable {
     /**
      * Button for opening an existing project.
      */
-    @FXML Button button;
+    @FXML
+    private ToggleButton button;
 
     /**
      * Name of the project bound to the button.
      */
     private String projectName;
 
+    private ToggleGroup projectButtonGroup;
+
     /**
      * Constructor that initialize the project name.
      * @param projectName name of the project.
+     * @param projectButtonGroup
      */
-    public SideBarItemController(String projectName) {
+    public SideBarItemController(String projectName, ToggleGroup projectButtonGroup) {
         this.projectName = projectName;
+        this.projectButtonGroup = projectButtonGroup;
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button.setText(projectName);
+        button.setToggleGroup(projectButtonGroup);
     }
 
     /**
@@ -61,6 +69,7 @@ public class SideBarItemController implements Initializable {
         }
 
         ProjectManager.getInstance().setActiveProject(button.getText());
+        rootController.setActiveProjectButton(projectName);
         rootController.updateSummaryView();
     }
 
