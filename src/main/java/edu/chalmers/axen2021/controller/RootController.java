@@ -9,15 +9,20 @@ import edu.chalmers.axen2021.controller.modals.AddNewCostController;
 import edu.chalmers.axen2021.controller.modals.AddNewProjectController;
 import edu.chalmers.axen2021.controller.modals.ConfirmationController;
 import edu.chalmers.axen2021.controller.modals.ModalController;
+import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.managers.SaveManager;
+import edu.chalmers.axen2021.model.projectdata.CostItem;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.view.AXEN2021;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -229,7 +234,7 @@ public class RootController {
      * @param costItemName Name of cost item to remove.
      */
     public void removeCostItem(String costItemName){
-        projectManager.getActiveProject().removeCostItem(projectManager.getActiveCategory(),costItemName);
+        projectManager.getActiveProject().removeCostItem(projectManager.getActiveCategory(), costItemName);
         modalController.clearCostItems();
         modalController.populateCostItems();
         saveProjectData();
@@ -241,6 +246,7 @@ public class RootController {
         inputController.populateApartmentItems();
         summaryViewController.clearApartmentItems();
         summaryViewController.populateApartmentItems();
+        updateAllLabels();  // Should update labels and variables after an apartmentItem is removed.
         saveProjectData();
     }
 
@@ -268,6 +274,16 @@ public class RootController {
         setActiveProjectButton(projectName);
     }
 
+    /**
+     * Method for adding a new cost item.
+     * Adds modalWindowItem to the TilePane in modalWindow.
+     */
+    public void addCostItem(String name) {
+        CostItem newCostItem = projectManager.getActiveProject().addCostItem(name);
+        modalController.addModalItem(newCostItem);
+        saveProjectData();
+    }
+
     public void setActiveProjectButton(String projectName){
         sideBarController.setActiveButton(projectName);
     }
@@ -281,14 +297,27 @@ public class RootController {
     }
 
     /**
-     * This method removes the applications save directory and closes the program.
-     * Is called from the MenuBar in root.
+     * Method for opening the modalWindow for a category.
+     * Puts the modalWindowAnchorPane to front in scene.
+     * @param clickedCategory The category of the clicked button.
      */
-    @FXML
-    public void deleteDirectory() {
-        ProjectManager.getInstance().setActiveProject(null);
-        SaveManager.getInstance().removeDirectory();
-        AXEN2021.terminate();
+    public void openModalWindow(Category clickedCategory) {
+        ProjectManager.getInstance().setActiveCategory(clickedCategory);
+        modalController.setCategoryNameLabelText(clickedCategory.getName());
+        modalController.populateCostItems();
+        modalAnchorPane.toFront();
+    }
+
+    /**
+     * Method for closing the modalWindow.
+     * Puts the modalWindowAnchorPane back in the scene.
+     */
+    public void closeModalWindow() {
+        saveManager.saveProject(projectManager.getActiveProject());
+        projectManager.getActiveProject().updateAllVariables();
+        updateInputView();
+        modalAnchorPane.toBack();
+        modalController.clearCostItems();
     }
 
     public void openConfirmationView(String nameObjectToRemove, ItemType type){
@@ -319,28 +348,36 @@ public class RootController {
     }
 
     /**
-     * Getter for the modalAnchorPane.
-     * @return
+     * Opens the addNewProject view.
      */
-    public AnchorPane getModalAnchorPane() {
-        return modalAnchorPane;
+    public void openAddNewProjectView() {
+        addNewProjectAnchorPane.toFront();
+        focusTextField(ItemType.PROJECT);   // Focus the text field for project name input.
     }
 
-    public AnchorPane getAddNewProjectAnchorPane() { return addNewProjectAnchorPane; }
-
-    public HeaderController getHeaderController() {
-        return headerController;
+    /**
+     * Method for closing the addNewProjectView.
+     * Puts the addNewProjectView to back in scene.
+     */
+    public void closeAddNewProjectView() {
+        addNewProjectAnchorPane.toBack();
+        addNewProjectController.getProjectNameTextField().clear();
     }
 
-    public SideBarController getSideBarController() {
-        return sideBarController;
+    /**
+     * Opens the addNewCostView based on addNewCostView.fxml.
+     */
+    public void openAddNewCostView() {
+        addNewCostAnchorPane.toFront();
+        focusTextField(ItemType.COST_ITEM);   // Focus the text field for cost item name input.
     }
 
-    public ModalController getModalController() {
-        return modalController;
-    }
-
-    public AnchorPane getAddNewCostAnchorPane() {
-        return addNewCostAnchorPane;
+    /**
+     * Method for closing the addNewCostView.
+     * Puts the addNewCostView to back in scene.
+     */
+    public void closeAddNewCostView() {
+        addNewCostAnchorPane.toBack();
+        addNewCostController.getCostNameTextField().clear();
     }
 }

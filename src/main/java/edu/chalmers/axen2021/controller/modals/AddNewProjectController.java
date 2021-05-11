@@ -46,8 +46,7 @@ public class AddNewProjectController implements Initializable {
      */
     @FXML
     private void closeAddNewProjectView(Event event) {
-        rootController.getAddNewProjectAnchorPane().toBack();
-        projectNameTextField.clear();
+        rootController.closeAddNewProjectView();
     }
 
     /**
@@ -76,8 +75,7 @@ public class AddNewProjectController implements Initializable {
 
         rootController.addProject(projectNameTextField.getText());
         rootController.updateInputView();
-        rootController.getAddNewProjectAnchorPane().toBack();
-        projectNameTextField.clear();
+        rootController.closeAddNewProjectView();
     }
 
     /**

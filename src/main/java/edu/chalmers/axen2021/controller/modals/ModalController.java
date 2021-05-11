@@ -55,12 +55,7 @@ public class ModalController {
      */
     @FXML
     private void closeModalWindow(Event event) {
-        SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
-
-        projectManager.getActiveProject().updateAllVariables();
-        rootController.updateInputView();
-        rootController.getModalAnchorPane().toBack();
-        clearCostItems();
+        rootController.closeModalWindow();
     }
 
     /**
@@ -68,20 +63,7 @@ public class ModalController {
      */
     @FXML
     private void openAddNewCostView() {
-        rootController.getAddNewCostAnchorPane().toFront();
-        rootController.focusTextField(ItemType.COST_ITEM);   // Focus the text field for cost item name input.
-    }
-
-    /**
-     * Method for adding a new modalWindowItem.
-     * Adds modalWindowItem to the TilePane in modalWindow.
-     */
-    public void addNewModalWindowItem(String name) {
-        CostItem newCostItem = projectManager.getActiveProject().addCostItem(name);
-        addModalItem(newCostItem);
-
-        SaveManager.getInstance().saveProject(ProjectManager.getInstance().getActiveProject());
-        SaveManager.getInstance().saveProjectManager();
+        rootController.openAddNewCostView();
     }
 
     /**
@@ -117,7 +99,7 @@ public class ModalController {
      * Uses modalWindowItem.fxml to create the view.
      * @param newCostItem The new cost item to create a view for.
      */
-    private void addModalItem(CostItem newCostItem) {
+    public void addModalItem(CostItem newCostItem) {
         FXMLLoader costItem = new FXMLLoader(getClass().getResource("/fxml/modalWindowItem.fxml"));
         CostItemController costItemController = new CostItemController(newCostItem);
         costItem.setController(costItemController);

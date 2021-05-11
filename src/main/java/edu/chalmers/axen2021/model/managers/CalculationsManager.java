@@ -10,18 +10,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The main class for access to the applications model.
- * @author Sam Salek
+ * A class managing the calculations needed for the different variables in a project.
+ * @author Erik Wetter
  * @author Sara Vardheim
  * @author Tilda Grönlund
  * @author Ahmad Al-Aref
  */
 public class CalculationsManager implements Serializable {
 
+    /**
+     * The instance of this class.
+     */
     private static CalculationsManager calculationsManager = null;
 
+    // Singleton class. Use getInstance().
     private CalculationsManager() {}
 
+    /**
+     * Returns the instance of this class.
+     * @return Instance of this class.
+     */
     public static CalculationsManager getInstance() {
         if(calculationsManager == null) {
             calculationsManager = new CalculationsManager();
@@ -192,23 +200,5 @@ public class CalculationsManager implements Serializable {
 
     public double updatedProjectCostKrBta(double projektkostnadKkr, double totalBta) {
         return projectCosts.getCostPerBta(projektkostnadKkr, totalBta);
-    }
-
-    // ------------------ GETTERS ------------------ //
-
-    /**
-     * Getter for the 'ApartmentData' class.
-     * @return The 'ApartmentData' class.
-     */
-    public ApartmentData getApartmentData() {
-        return apartmentData;
-    }
-
-    /**
-     * Getter for the 'ProjectCosts' class.
-     * @return The 'ProjectCosts' class.
-     */
-    public ProjectCosts getProjectCosts() {
-        return projectCosts;
     }
 }

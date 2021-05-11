@@ -34,8 +34,7 @@ public class AddNewCostController {
      */
     @FXML
     private void closeAddNewCostView(Event event) {
-        rootController.getAddNewCostAnchorPane().toBack();
-        costNameTextField.clear();
+        rootController.closeAddNewCostView();
     }
 
     /**
@@ -57,9 +56,8 @@ public class AddNewCostController {
             }
         }
 
-        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText());
-        rootController.getAddNewCostAnchorPane().toBack();
-        costNameTextField.clear();
+        rootController.addCostItem(costNameTextField.getText());
+        rootController.closeAddNewCostView();
     }
 
     public TextField getCostNameTextField() {
