@@ -138,6 +138,9 @@ public class ApartmentItemController implements Initializable {
         });
     }
 
+    /**
+     * Opens the confirmation window when removing an apartmentItem.
+     */
     @FXML
     private void openRemoveConfirmation(){
         rootController.openConfirmationView(apartmentItem, ItemType.APARTMENT_ITEM);

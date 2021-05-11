@@ -1,6 +1,5 @@
 package edu.chalmers.axen2021.controller.items;
 
-import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
@@ -61,7 +60,7 @@ public class SideBarItemController implements Initializable {
     }
 
     /**
-     * Method for creating Pdf when button is clicked
+     * Method for creating a PDF for the project when a button is clicked.
      */
     @FXML
     private void createPdf() {
@@ -85,7 +84,7 @@ public class SideBarItemController implements Initializable {
     }
 
     /**
-     * Removes cost item.
+     * Opens the confirmation window when removing a project.
      */
     @FXML
     private void openRemoveConfirmation(){
