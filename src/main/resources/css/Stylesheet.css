@@ -82,3 +82,8 @@
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
 }
+
+#cost-item {
+    -fx-background-radius: 20px;
+    -fx-background-color: #D4D4D4;
+}

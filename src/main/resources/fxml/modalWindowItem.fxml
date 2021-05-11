@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" style="-fx-background-radius: 20; -fx-background-color: #d4d4d4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nameLabel" alignment="CENTER" text="Kostnad" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="nameLabel" alignment="CENTER" styleClass="caption-text" text="Kostnad" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <TextField fx:id="valueTextField" minWidth="50.0">
+            <TextField fx:id="valueTextField" minWidth="50.0" styleClass="standard-text">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -27,7 +27,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <CheckBox fx:id="momsCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" selected="true" text="Moms">
+            <CheckBox fx:id="momsCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" selected="true" styleClass="standard-text" text="Moms">
                <font>
                   <Font size="20.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Insets />
                </HBox.margin>
             </CheckBox>
-            <TextArea fx:id="commentTextArea" maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar">
+            <TextArea fx:id="commentTextArea" maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar" styleClass="standard-text">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -43,7 +43,7 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <Button mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort kostnad">
+            <Button mnemonicParsing="false" onAction="#openRemoveConfirmation" styleClass="standard-text" text="Ta bort kostnad">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
