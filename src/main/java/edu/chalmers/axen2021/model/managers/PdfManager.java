@@ -1,14 +1,22 @@
 package edu.chalmers.axen2021.model.managers;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.scenario.effect.ImageData;
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
+import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.stage.FileChooser;
 
+import javax.swing.text.html.ImageView;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -23,6 +31,16 @@ public class PdfManager {
     private static PdfManager instance = null;
 
     /**
+     * The document for pdf
+     */
+    private Document document = null;
+
+    /**
+     * The project to create pdf from
+     */
+    private Project project = null;
+
+    /**
      * The file to save AKA path to the PDF.
      */
     private static File FILE;
@@ -32,6 +50,21 @@ public class PdfManager {
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+
+    private static BaseFont base;
+
+    {
+        try {
+            base = BaseFont.createFont(String.valueOf(getClass().getResource("/fonts/ArialCE.ttf")), BaseFont.WINANSI, true);
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Font arialSmall = new Font(base, 11, Font.NORMAL);
+    private static Font arialNormal = new Font(base, 12, Font.NORMAL);
+    private static Font arialNormalBold = new Font(base, 12, Font.BOLD);
+    private static Font arialBigBold = new Font(base, 16, Font.BOLD);
 
     // Singleton. Use getInstance().
     private PdfManager(){}
@@ -50,11 +83,12 @@ public class PdfManager {
 
     /**
      * Starts the process of making a PDF.
-     * @param initialFileName The initial name that is displayed when choosing the save directory.
+     * @param project The project to create pdf from
      * @return Returns True if creation of the PDF was successful, False if not.
      */
-    public boolean makePdf(String initialFileName) {
-        if(setSavePath(initialFileName)) {
+    public boolean makePdf(Project project) {
+        if(setSavePath(project.getName())) {
+            this.project = project;
             createPdf();
             return true;
         } else {
@@ -73,6 +107,7 @@ public class PdfManager {
         fileChooser.setInitialFileName(initialFileName + ".pdf");
 
         File file = fileChooser.showSaveDialog(AXEN2021.getMainStage());
+        //File file = new File(System.getProperty("user.home") + File.separatorChar + ".axen2021" + File.separatorChar + initialFileName + ".pdf");
         if(file != null) {
             System.out.println("PDF path set!");
             FILE = file;
@@ -93,14 +128,13 @@ public class PdfManager {
         }
 
         try {
-            Document document = new Document();
+            document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
 
             // Add all content and information to the PDF
             addMetaData(document);
             addTitlePage(document);
-            addContent(document);
 
             document.close();
         } catch (Exception e) {
@@ -112,116 +146,282 @@ public class PdfManager {
     // Reader
     // under File -> Properties
     private void addMetaData(Document document) {
-        document.addTitle("My first PDF");
-        document.addSubject("Using iText");
+        document.addTitle(project.getName());
+        document.addSubject("Project");
         document.addKeywords("Lejonstaden AB, PDF");
         document.addAuthor("Lejonstaden AB");
         document.addCreator("Lejonstaden AB");
     }
 
     private void addTitlePage(Document document) throws DocumentException {
-        Paragraph preface = new Paragraph();
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String datum = localDate.getMonthValue() + "/" + localDate.getDayOfMonth() + "/" + localDate.getYear();
 
-        // We add one empty line
-        addEmptyLine(preface, 1);
+        Image image = null;
+        try {
+            image = Image.getInstance(getClass().getResource("/images/lejonstadenLogga.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        image.scalePercent(36);
+        image.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
+        image.setAbsolutePosition(30, PageSize.A4.getHeight() - image.getScaledHeight());
 
-        // Lets write a big header
-        preface.add(new Paragraph("Title of the document", catFont));
-        addEmptyLine(preface, 1);
+        document.add(image);
 
-        // Will create: Report generated by: _name, _date
-        preface.add(new Paragraph("Report generated by: " + System.getProperty("user.name") + ", " + new Date(), smallBold));
-        addEmptyLine(preface, 3);
-        preface.add(new Paragraph("This document describes something which is very important ", smallBold));
-        addEmptyLine(preface, 8);
-        preface.add(new Paragraph("This document is a preliminary version and not subject to your license agreement or any other agreement with vogella.com ;-).", redFont));
-        document.add(preface);
+        Paragraph header = new Paragraph(new Chunk(datum, arialSmall));
+        header.setAlignment(Paragraph.ALIGN_RIGHT);
 
-        // Start a new page
+        Chunk chunk = new Chunk(project.getName(), arialBigBold);
+        Paragraph title = new Paragraph(chunk);
+        addEmptyLine(title, 1);
+        title.setAlignment(Paragraph.ALIGN_CENTER);
+
+        document.add(header);
+        document.add(title);
+        createGrundForutsattningar();
+        createLagenhetsdata();
+        createProjektKostnader();
+        document.newPage();
+        createFastighetsvardeOchResultat();
         document.newPage();
     }
 
-    private void addContent(Document document) throws DocumentException {
-        Anchor anchor = new Anchor("First Chapter", catFont);
-        anchor.setName("First Chapter");
+    private void createProjektKostnader() throws DocumentException {
+        Paragraph projektkostnader = new Paragraph("Projektkostnader:", arialNormalBold);
+        addEmptyLine(projektkostnader, 1);
 
-        // Second parameter is the number of the chapter
-        Chapter catPart = new Chapter(new Paragraph(anchor), 1);
+        PdfPTable table = new PdfPTable(4);
+        table.getDefaultCell().setPadding(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{20,20,20,20});
 
-        Paragraph subPara = new Paragraph("Subcategory 1", subFont);
-        Section subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph("Hello"));
+        table.addCell("");
+        /*PdfPCell emptyCell = new PdfPCell();
+        emptyCell.setPadding(5);
+        emptyCell.setBorderWidthTop(0);
+        emptyCell.setBorderWidthLeft(0);
+        table.addCell(emptyCell);*/
+        table.addCell("kkr");
+        table.addCell("kr/BOA");
+        table.addCell("kr/BTA");
+        table.addCell("Tomtkostnader");
+        table.addCell(String.valueOf(Math.round(project.getTomtkostnaderKkr())));
+        table.addCell(String.valueOf(Math.round(project.getTomtkostnaderKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getTomtkostnaderKrBta())));
 
-        subPara = new Paragraph("Subcategory 2", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph("Paragraph 1"));
-        subCatPart.add(new Paragraph("Paragraph 2"));
-        subCatPart.add(new Paragraph("Paragraph 3"));
+        table.addCell("Nedlagda byggherre");
+        table.addCell(String.valueOf(Math.round(project.getNedlagdaByggherreKkr())));
+        table.addCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBta())));
 
-        // add a list
-        createList(subCatPart);
-        Paragraph paragraph = new Paragraph();
-        addEmptyLine(paragraph, 5);
-        subCatPart.add(paragraph);
+        table.addCell("Anslutningar");
+        table.addCell(String.valueOf(Math.round(project.getAnslutningarKkr())));
+        table.addCell(String.valueOf(Math.round(project.getAnslutningarKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getAnslutningarKrBta())));
 
-        // add a table
-        createTable(subCatPart);
+        table.addCell("Byggherrekostnader");
+        table.addCell(String.valueOf(Math.round(project.getByggherrekostnaderKkr())));
+        table.addCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBta())));
 
-        // now add all this to the document
-        document.add(catPart);
+        table.addCell("Entrepenad");
+        table.addCell(String.valueOf(Math.round(project.getEntreprenadKkr())));
+        table.addCell(String.valueOf(Math.round(project.getEntreprenadKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getEntreprenadKrBta())));
 
-        // Next section
-        anchor = new Anchor("Second Chapter", catFont);
-        anchor.setName("Second Chapter");
+        table.addCell("Oförutsett");
+        table.addCell(String.valueOf(Math.round(project.getOforutsettKkr())));
+        table.addCell(String.valueOf(Math.round(project.getOforutsettKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getOforutsettKrBta())));
 
-        // Second parameter is the number of the chapter
-        catPart = new Chapter(new Paragraph(anchor), 1);
+        table.addCell("Finansiella kostnader");
+        table.addCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKkr())));
+        table.addCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBta())));
 
-        subPara = new Paragraph("Subcategory", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph("This is a very important message"));
+        table.addCell("Mervärdeskatt");
+        table.addCell(String.valueOf(Math.round(project.getMervardeskattKkr())));
+        table.addCell(String.valueOf(Math.round(project.getMervardeskattKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getMervardeskattKrBta())));
 
-        // now add all this to the document
-        document.add(catPart);
+        table.addCell("Investeringsstöd");
+        table.addCell(String.valueOf(Math.round(project.getInvesteringsstodKkr())));
+        table.addCell(String.valueOf(Math.round(project.getInvesteringsstodKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getInvesteringsstodKrBta())));
+
+        //table.getDefaultCell().setBorderWidthTop(2);
+        //table.getDefaultCell().setBorderWidthBottom(2);
+        table.getDefaultCell().setBorderWidthTop(2);
+
+        /*PdfPCell cell1 = new PdfPCell(new Paragraph("Projektkostnad"));
+        cell1.setPadding(5);
+        cell1.setBorderWidthLeft(2);
+        cell1.setBorderWidthTop(2);
+        cell1.setBorderWidthBottom(2);
+        table.addCell(cell1);*/
+
+        table.addCell("Projektkostnad");
+        table.addCell(String.valueOf(Math.round(project.getProjektkostnadKkr())));
+        table.addCell(String.valueOf(Math.round(project.getProjektkostnadKrBoa())));
+        table.addCell(String.valueOf(Math.round(project.getProjektkostnadKrBta())));
+
+        /*PdfPCell cell2 = new PdfPCell(new Paragraph(String.valueOf(Math.round(project.getProjektkostnadKrBta()))));
+        cell2.setPadding(5);
+        cell2.setBorderWidthTop(2);
+        cell2.setBorderWidthRight(2);
+        cell2.setBorderWidthBottom(2);
+        table.addCell(cell2);*/
+
+        document.add(projektkostnader);
+        document.add(table);
+        addEmptyLines(1);
     }
 
-    private void createTable(Section subCatPart) {
+    private void createFastighetsvardeOchResultat() throws DocumentException {
+        Paragraph fastighetsvardeOchResultat = new Paragraph("Fastighetsvärde och resultat:", arialNormalBold);
+        addEmptyLine(fastighetsvardeOchResultat, 1);
+
         PdfPTable table = new PdfPTable(3);
+        table.getDefaultCell().setPadding(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{20,20,20});
 
-        // t.setBorderColor(BaseColor.GRAY);
-        // t.setPadding(4);
-        // t.setSpacing(4);
-        // t.setBorderWidth(1);
 
-        PdfPCell c1 = new PdfPCell(new Phrase("Table Header 1"));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
+        table.addCell("");
+        table.addCell("Med stöd");
+        table.addCell("Utan stöd");
 
-        c1 = new PdfPCell(new Phrase("Table Header 2"));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
+        table.addCell("Hyresintäkter");
+        table.addCell(String.valueOf(Math.round(project.getHyresintakterMedStod())));
+        table.addCell(String.valueOf(Math.round(project.getHyresintakterUtanStod())));
 
-        c1 = new PdfPCell(new Phrase("Table Header 3"));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
-        table.setHeaderRows(1);
+        table.addCell("Drift & Underhåll");
+        table.addCell(String.valueOf(Math.round(project.getDriftUnderhallMedStod())));
+        table.addCell(String.valueOf(Math.round(project.getDriftUnderhallUtanStod())));
 
-        table.addCell("1.0");
-        table.addCell("1.1");
-        table.addCell("1.2");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
+        table.addCell("Tomträttsavgäld");
+        table.addCell(String.valueOf(Math.round(project.getTomtrattsavgaldMedStod())));
+        table.addCell(String.valueOf(Math.round(project.getTomtrattsavgaldUtanStod())));
 
-        subCatPart.add(table);
+
+        table.addCell("Driftnetto");
+        table.addCell(String.valueOf(Math.round(project.getDriftnettoMedStod())));
+        table.addCell(String.valueOf(Math.round(project.getDriftnettoUtanStod())));
+
+        table.addCell("Yield");
+        table.addCell(String.valueOf(Math.round(project.getYieldMedStod())));
+        table.addCell(String.valueOf(Math.round(project.getYieldUtanStod())));
+
+        table.getDefaultCell().setBorderWidthTop(2);
+        table.addCell(new Paragraph("Marknadsvärde", arialNormal));
+        table.addCell(new Paragraph(String.valueOf(Math.round(project.getMarknadsvardeMedStod())), arialNormal));
+        table.addCell(new Paragraph(String.valueOf(Math.round(project.getMarknadsvardeUtanStod())), arialNormal) );
+
+        table.getDefaultCell().setBorderWidthTop(0);
+        table.addCell(new Paragraph("Projektvinst", arialNormalBold));
+        table.addCell(new Paragraph(String.valueOf(Math.round(project.getProjektvinstMedStod())), arialNormalBold));
+        table.addCell(new Paragraph(String.valueOf(Math.round(project.getProjektvinstUtanStod())), arialNormalBold));
+        table.addCell("");
+        table.addCell(new Paragraph(String.valueOf(Math.round(project.getProjektvinstProcentMedStod())), arialNormalBold));
+        table.addCell(new Paragraph(String.valueOf(Math.round(project.getProjektvinstProcentUtanStod())), arialNormalBold));
+
+        document.add(fastighetsvardeOchResultat);
+        document.add(table);
+        addEmptyLines(1);
     }
 
-    private void createList(Section subCatPart) {
-        List list = new List(true, false, 10);
-        list.add(new ListItem("First point"));
-        list.add(new ListItem("Second point"));
-        list.add(new ListItem("Third point"));
-        subCatPart.add(list);
+    private void createLagenhetsdata() throws DocumentException {
+        Paragraph lagenhetsdata = new Paragraph("Lägenhetsdata:", arialNormalBold);
+        addEmptyLine(lagenhetsdata, 1);
+
+        PdfPTable table = new PdfPTable(10);
+        table.getDefaultCell().setPadding(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{22,15,15,22,18,22,18,15,19,18});
+
+        table.addCell("Typ");
+        table.addCell("BOA");
+        table.addCell("Antal");
+        table.addCell("Hyra/mån låg");
+        table.addCell("Kr/kvm");
+        table.addCell("Hyra/mån hög");
+        table.addCell("Kr/kvm");
+        table.addCell("BOA");
+        table.addCell("Procent");
+        table.addCell("Bidrag");
+
+        for(ApartmentItem apartmentItem : project.getApartmentItems()) {
+            createLagenhetsCell(table, apartmentItem);
+        }
+
+        table.getDefaultCell().setBorderWidthTop(2);
+        table.addCell("Totalt");
+        table.addCell(String.valueOf(Math.round(project.getTotalBoa())));
+        table.addCell(String.valueOf(Math.round(project.getNumOfApt())));
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+
+        document.add(lagenhetsdata);
+        document.add(table);
+        addEmptyLines(1);
+    }
+
+    private void createLagenhetsCell(PdfPTable table, ApartmentItem apartmentItem) {
+        table.addCell(apartmentItem.getApartmentType());
+        table.addCell(String.valueOf(Math.round(apartmentItem.getBOA())));
+        table.addCell(String.valueOf(apartmentItem.getAmount()));
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+        table.addCell("TBD");
+    }
+
+    private void createGrundForutsattningar() throws DocumentException {
+        Paragraph grundforutsattningar = new Paragraph("Grundförutsättningar:", arialNormalBold);
+        addEmptyLine(grundforutsattningar, 1);
+
+        PdfPTable table = new PdfPTable(6);
+        table.getDefaultCell().setPadding(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{17,25,28,20,22,20});
+
+        table.addCell("Normhyra");
+        table.addCell("Investeringsstöd");
+        table.addCell("Antagen presumtions hyra");
+        table.addCell("Oförutsett %");
+        table.addCell("Total BOA");
+        table.addCell("Total ljus BTA");
+        table.addCell(String.valueOf(Math.round(project.getNormhyraMedStod())));
+        table.addCell(String.valueOf(Math.round(project.getInvesteringsstod())));
+        table.addCell(String.valueOf(Math.round(project.getAntagenPresumtionshyra())));
+        table.addCell(String.valueOf(Math.round(project.getOforutsettPercent())));
+        table.addCell(String.valueOf(Math.round(project.getTotalBoa())));
+        table.addCell(String.valueOf(Math.round(project.getTotalLjusBta())));
+
+        document.add(grundforutsattningar);
+        document.add(table);
+        addEmptyLines(1);
+    }
+
+    private void addEmptyLines(int amountEmptyLines) throws DocumentException {
+        Paragraph emptyLine = new Paragraph();
+        addEmptyLine(emptyLine, amountEmptyLines);
+        document.add(emptyLine);
+    }
+
+    private PdfPCell createCell(String text, Font font) {
+        PdfPCell cell = new PdfPCell(new Phrase(text, font));
+        return cell;
     }
 
     private void addEmptyLine(Paragraph paragraph, int number) {

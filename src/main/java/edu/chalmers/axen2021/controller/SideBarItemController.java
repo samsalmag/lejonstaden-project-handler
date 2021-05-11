@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import javafx.event.ActionEvent;
@@ -55,6 +56,14 @@ public class SideBarItemController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button.setText(projectName);
         button.setToggleGroup(projectButtonGroup);
+    }
+
+    /**
+     * Method for creating Pdf when button is clicked
+     */
+    @FXML
+    private void createPdf() {
+        rootController.createPdf(projectName);
     }
 
     /**

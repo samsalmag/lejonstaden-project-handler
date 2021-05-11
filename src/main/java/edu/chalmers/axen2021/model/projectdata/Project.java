@@ -306,9 +306,9 @@ public class Project implements Serializable {
 
 
     // GETTERS FOR ALL THOSE VARIABLES...
-    public double getTomtkostnaderKkr() {
-        return tomtkostnaderKkr;
-    }
+    public double getNumOfApt() { return numOfApt; }
+
+    public double getTomtkostnaderKkr() { return tomtkostnaderKkr; }
 
     public double getTomtkostnaderKrBoa() {
         return tomtkostnaderKrBoa;
