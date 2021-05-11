@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ToggleButton?>
 
-<AnchorPane maxHeight="54.0" maxWidth="250.0" minHeight="54.0" minWidth="175.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Button fx:id="button" layoutX="35.0" layoutY="20.0" maxHeight="40.0" minHeight="40.0" minWidth="155.0" mnemonicParsing="false" onAction="#onClick" styleClass="project-buttons" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
-         <contextMenu>
-            <ContextMenu>
-              <items>
-                <MenuItem mnemonicParsing="false" text="Byt namn" />
-                  <MenuItem mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort" />
-              </items>
-            </ContextMenu>
-         </contextMenu></Button>
-   </children>
-</AnchorPane>
+<ToggleButton fx:id="button" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="155.0" mnemonicParsing="false" onAction="#onClick" styleClass="project-buttons" stylesheets="@../css/Stylesheet.css" text="ToggleButton" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <contextMenu>
+      <ContextMenu>
+         <items>
+            <MenuItem mnemonicParsing="false" text="Byt namn" />
+            <MenuItem mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort" />
+         </items>
+      </ContextMenu>
+   </contextMenu>
+</ToggleButton>

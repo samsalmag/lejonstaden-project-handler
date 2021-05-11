@@ -21,6 +21,14 @@
     -fx-text-align: center;
 }
 
+.project-buttons:pressed{
+    -fx-background-color: #FAFAFB;
+}
+
+.project-buttons:selected{
+    -fx-background-color: #000000;
+}
+
 .modal-window-shadow{
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }

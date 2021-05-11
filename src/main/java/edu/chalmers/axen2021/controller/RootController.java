@@ -4,6 +4,7 @@ import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.managers.SaveManager;
+import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -248,7 +249,25 @@ public class RootController {
         if(projectName.equals(projectManager.getActiveProject().getName())){
             projectManager.setActiveProject(null);
             defaultCenterStageAnchorPane.toFront();
+        } else {
+            sideBarController.setActiveButton(projectManager.getActiveProject().getName());
         }
+    }
+
+    /**
+     * Creates a new project (sidebarItem) and adds it to the SideBar.
+     * Also creates a save-file for the project.
+     */
+    public void addProject(String projectName){
+        sideBarController.addNewSideBarItem(projectName);
+        new Project(projectName);
+        projectManager.setActiveProject(projectName);
+        saveProjectData();
+        setActiveProjectButton(projectName);
+    }
+
+    public void setActiveProjectButton(String projectName){
+        sideBarController.setActiveButton(projectName);
     }
 
     /**

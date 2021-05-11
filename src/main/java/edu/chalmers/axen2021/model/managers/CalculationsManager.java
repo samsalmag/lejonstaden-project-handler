@@ -12,6 +12,9 @@ import java.util.Map;
 /**
  * The main class for access to the applications model.
  * @author Sam Salek
+ * @author Sara Vardheim
+ * @author Tilda Grönlund
+ * @author Ahmad Al-Aref
  */
 public class CalculationsManager implements Serializable {
 

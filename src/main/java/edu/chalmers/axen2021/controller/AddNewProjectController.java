@@ -72,25 +72,10 @@ public class AddNewProjectController implements Initializable {
             }
         }
 
-        Project newProject = createNewProject();
-        ProjectManager.getInstance().setActiveProject(newProject.getName());
+        rootController.addProject(projectNameTextField.getText());
         rootController.updateInputView();
         rootController.getAddNewProjectAnchorPane().toBack();
         projectNameTextField.clear();
-    }
-
-    /**
-     * Creates a new project (sidebarItem) and adds it to the SideBar.
-     * Also creates a save-file for the project.
-     */
-    private Project createNewProject() {
-        rootController.getSideBarController().addNewSideBarItem(projectNameTextField.getText());
-        Project newProject = new Project(projectNameTextField.getText());
-
-        SaveManager.getInstance().saveProject(newProject);
-        SaveManager.getInstance().saveProjectManager();
-
-        return newProject;
     }
 
     /**

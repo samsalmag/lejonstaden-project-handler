@@ -13,6 +13,9 @@ import java.util.HashMap;
  * Implements the 'Serializable' interface to allow serialization (saving) of this classes data.
  * @author Sam Salek
  * @author Malte Åkvist
+ * @author Sara Vardheim
+ * @author Tilda Grönlund
+ * @author Ahmad Al-Aref
  */
 public class Project implements Serializable {
 
@@ -657,7 +660,7 @@ public class Project implements Serializable {
     }
 
     private void updateOforutsettKkr() {
-        oforutsettKkr = entreprenadKkr*oforutsettPercent;
+        oforutsettKkr = calculationsManager.updatedOforutsettKkr(getEntrepenadCostItems(), totalBoa, oforutsettPercent);
     }
 
     private void updateOforutsettKrBoa() {

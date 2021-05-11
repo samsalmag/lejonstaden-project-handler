@@ -39,7 +39,7 @@ public class AXEN2021 extends Application {
         fxmlLoader.setController(rootController);
         Parent rootFXML = fxmlLoader.load();
 
-        Scene scene = new Scene(rootFXML, 1280, 720);
+        Scene scene = new Scene(rootFXML, 1366, 768);
         stage.setScene(scene);
         stage.setFullScreen(true);
         String title = "AXE-N 2021";
