@@ -263,11 +263,11 @@ public class InputController implements Initializable {
      * Updates all TextFields related to Grundforutsattningar.
      */
     private void updateGrundforutsattingar(){
-        normHyraMedStod.setText("" + projectManager.getActiveProject().getNormhyraMedStod());
-        investeringsstod.setText("" + projectManager.getActiveProject().getInvesteringsstod());
-        antagenPresumtionshyra.setText("" + projectManager.getActiveProject().getAntagenPresumtionshyra());
+        normHyraMedStod.setText(df.format(projectManager.getActiveProject().getNormhyraMedStod()));
+        investeringsstod.setText(df.format(projectManager.getActiveProject().getInvesteringsstod()));
+        antagenPresumtionshyra.setText(df.format(projectManager.getActiveProject().getAntagenPresumtionshyra()));
         totalBoa.setText(df.format(projectManager.getActiveProject().getTotalBoa()));
-        totalLjusBta.setText("" + projectManager.getActiveProject().getTotalLjusBta());
+        totalLjusBta.setText(df.format(projectManager.getActiveProject().getTotalLjusBta()));
         oforutsett.setText("" + projectManager.getActiveProject().getOforutsettPercent());
     }
 
