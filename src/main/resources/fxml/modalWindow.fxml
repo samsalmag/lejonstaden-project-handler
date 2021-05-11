@@ -4,16 +4,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="540.0" minWidth="960.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="540.0" minWidth="1250.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane minWidth="850.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -28,17 +29,28 @@
                               </Label>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" onAction="#closeModalWindow" text="Stäng" />
+                        <Button mnemonicParsing="false" onAction="#closeModalWindow" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../images/outline_close_black_24dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="240.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox fx:id="modalWindowItemVBox" alignment="TOP_CENTER" spacing="20.0" />
+                        <VBox fx:id="modalWindowItemVBox" alignment="TOP_CENTER" spacing="20.0">
+                           <padding>
+                              <Insets bottom="20.0" top="20.0" />
+                           </padding></VBox>
                      </content>
                   </ScrollPane>
-                  <HBox alignment="CENTER" maxHeight="100.0" minHeight="50.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" maxHeight="100.0" minHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#openAddNewCostView" text="Lägg till kostnad" HBox.hgrow="ALWAYS" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#openAddNewCostView" text="Lägg till kostnad" HBox.hgrow="ALWAYS" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeModalWindow" text="Stäng" />
                      </children>
                   </HBox>
                </children>
@@ -50,10 +62,10 @@
       <Pane minHeight="100.0" onMouseClicked="#closeModalWindow" styleClass="modal-window-shadow" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <Pane minWidth="100.0" onMouseClicked="#closeModalWindow" styleClass="modal-window-shadow" BorderPane.alignment="CENTER" />
+      <Pane minWidth="200.0" onMouseClicked="#closeModalWindow" styleClass="modal-window-shadow" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane minWidth="100.0" onMouseClicked="#closeModalWindow" styleClass="modal-window-shadow" BorderPane.alignment="CENTER" />
+      <Pane minWidth="200.0" onMouseClicked="#closeModalWindow" styleClass="modal-window-shadow" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
       <Pane minHeight="100.0" minWidth="100.0" onMouseClicked="#closeModalWindow" styleClass="modal-window-shadow" BorderPane.alignment="CENTER" />

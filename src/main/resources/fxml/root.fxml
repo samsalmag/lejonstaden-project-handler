@@ -24,13 +24,13 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <AnchorPane fx:id="headerAnchorPane" maxHeight="180.0" minHeight="89.0" VBox.vgrow="ALWAYS" />
+            <AnchorPane fx:id="headerAnchorPane" minHeight="150.0" VBox.vgrow="ALWAYS" />
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane fx:id="sideBarAnchorPane" maxWidth="250.0" minHeight="391.0" minWidth="175.0" HBox.hgrow="ALWAYS" />
                   <AnchorPane fx:id="centerStageAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="391.0" minWidth="1100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                      <children>
-                        <AnchorPane fx:id="defaultCenterStageAnchorPane" styleClass="white-background" stylesheets="@../css/Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane id="defaultanchorpane-background" fx:id="defaultCenterStageAnchorPane" stylesheets="@../css/Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
