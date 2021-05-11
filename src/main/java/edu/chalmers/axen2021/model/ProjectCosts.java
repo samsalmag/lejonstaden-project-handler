@@ -46,14 +46,14 @@ public class ProjectCosts {
 
     /**
      * Calculates and returns the Unforseen costs.
-     * @param contract cost per BOA.
+     * @param contractKkr Total cost of the cotract.
      * @param totBoa total BOA of the project.
      * @param contractPercent percentage of the contract.
      * @return Unforseen costs of the project.
      */
-    public double getUnforseenCost(double contract, double totBoa, double contractPercent) {
-        contractPercent = contractPercent/100;
-        return getContractCost(contract, totBoa) * contractPercent;
+    public double getUnforseenCost(double contractKkr, double totBoa, double contractPercent) {
+        double factor = contractPercent/100;
+        return (contractKkr * factor);
     }
 
     /**
