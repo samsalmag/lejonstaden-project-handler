@@ -127,6 +127,25 @@ public class ProjectManager implements Serializable {
     }
 
     /**
+     * Getter method used to get project from project name
+     * @param projectName the project that should be returned from projectName
+     */
+    public Project getProject(String projectName) {
+        if(projectName == null) {
+            return null;
+        }
+
+        for (Project p : projects) {
+            if(p.getName().equals(projectName)) {
+                return p;
+            }
+        }
+
+        // Throws exception if it did not return in the if-statement above.
+        throw new IllegalArgumentException("Could not set active project from project button name (button name is not a project)");
+    }
+
+    /**
      * Setter method used to set activeProject variable
      * @param project the project that should be active
      */

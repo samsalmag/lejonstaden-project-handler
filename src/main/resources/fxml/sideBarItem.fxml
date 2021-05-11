@@ -4,11 +4,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToggleButton?>
 
-<ToggleButton fx:id="button" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="155.0" mnemonicParsing="false" onAction="#onClick" styleClass="project-buttons" stylesheets="@../css/Stylesheet.css" text="ToggleButton" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<ToggleButton fx:id="button" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="155.0" mnemonicParsing="false" onAction="#onClick" styleClass="project-buttons" stylesheets="@../css/Stylesheet.css" text="ToggleButton" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <contextMenu>
       <ContextMenu>
          <items>
             <MenuItem mnemonicParsing="false" text="Byt namn" />
+            <MenuItem mnemonicParsing="false" onAction="#createPdf" text="Skapa pdf" />
             <MenuItem mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort" />
          </items>
       </ContextMenu>

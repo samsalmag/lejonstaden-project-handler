@@ -83,12 +83,12 @@ public class PdfManager {
 
     /**
      * Starts the process of making a PDF.
-     * @param initialFileName The initial name that is displayed when choosing the save directory.
+     * @param project The project to create pdf from
      * @return Returns True if creation of the PDF was successful, False if not.
      */
-    public boolean makePdf(String initialFileName) {
-        if(setSavePath(initialFileName)) {
-            project = ProjectManager.getInstance().getActiveProject();
+    public boolean makePdf(Project project) {
+        if(setSavePath(project.getName())) {
+            this.project = project;
             createPdf();
             return true;
         } else {
@@ -106,8 +106,8 @@ public class PdfManager {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF (*.pdf)","*.pdf"));
         fileChooser.setInitialFileName(initialFileName + ".pdf");
 
-        //File file = fileChooser.showSaveDialog(AXEN2021.getMainStage());
-        File file = new File(System.getProperty("user.home") + File.separatorChar + ".axen2021" + File.separatorChar + initialFileName + ".pdf");
+        File file = fileChooser.showSaveDialog(AXEN2021.getMainStage());
+        //File file = new File(System.getProperty("user.home") + File.separatorChar + ".axen2021" + File.separatorChar + initialFileName + ".pdf");
         if(file != null) {
             System.out.println("PDF path set!");
             FILE = file;

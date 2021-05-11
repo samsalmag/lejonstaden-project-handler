@@ -210,16 +210,9 @@ public class RootController {
      * Opens a dialog window to chose save directory.
      * Creates a PDF if a directory is chosen.
      */
-    @FXML
-    public void createPdf() {
-        // Don't continue if a active project isn't set.
-        if(ProjectManager.getInstance().getActiveProject() == null) {
-            System.out.println("No active project exists! Either create a new project or choose one from the sidebar!");
-            return;
-        }
-
-        String initialName = ProjectManager.getInstance().getActiveProject().getName();
-        PdfManager.getInstance().makePdf(initialName);
+    public void createPdf(String projectName) {
+        Project project = projectManager.getProject(projectName);
+        PdfManager.getInstance().makePdf(project);
     }
 
     /**
