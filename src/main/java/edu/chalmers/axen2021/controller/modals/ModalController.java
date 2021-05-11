@@ -1,5 +1,9 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.modals;
 
+import edu.chalmers.axen2021.controller.items.CostItemController;
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.items.ItemType;
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.CostItem;

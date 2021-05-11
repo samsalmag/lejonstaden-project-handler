@@ -1,5 +1,6 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.main;
 
+import edu.chalmers.axen2021.controller.FXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
