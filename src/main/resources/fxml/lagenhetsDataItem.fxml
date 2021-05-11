@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" minWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" minWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
@@ -19,7 +20,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <MenuButton fx:id="apartmentTypeMenuButton" alignment="CENTER" maxWidth="150.0" minWidth="105.0" mnemonicParsing="false" text="Lägenhetstyp">
+                  <MenuButton fx:id="apartmentTypeMenuButton" alignment="CENTER" maxWidth="105.0" minWidth="105.0" mnemonicParsing="false" text="Lägenhetstyp">
                      <items>
                         <MenuItem mnemonicParsing="false" text="1rks" />
                         <MenuItem mnemonicParsing="false" text="1rokv" />
@@ -71,62 +72,71 @@
                   </TextField>
                </children>
             </VBox>
+            <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button maxWidth="105.0" minWidth="105.0" mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort" />
+               </children>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER" spacing="5.0">
+      <HBox alignment="CENTER" spacing="7.0">
          <children>
-            <VBox alignment="CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label maxWidth="65.0" text="Hyra/Mån Låg" textAlignment="CENTER" wrapText="true" />
-                  <Label fx:id="rentMonthLow" text="Label" />
+                  <TextField fx:id="rentMonthLow" editable="false" maxWidth="70.0" minWidth="70.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
                </children>
             </VBox>
-            <VBox alignment="CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="kr/kvm" />
-                  <Label fx:id="krPerKvmLowRent" text="Label" />
+                  <TextField fx:id="krPerKvmLowRent" editable="false" maxWidth="70.0" minWidth="70.0" />
                </children>
                <padding>
                   <Insets top="16.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label maxWidth="65.0" text="Hyra/mån Hög" textAlignment="CENTER" wrapText="true" />
-                  <Label fx:id="rentMonthHigh" text="Label" />
+                  <TextField fx:id="rentMonthHigh" editable="false" maxWidth="70.0" minWidth="70.0" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="kr/kvm">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="krPerKvmHighRent" text="Label" />
+                  <TextField fx:id="krPerKvmHighRent" editable="false" maxWidth="70.0" minWidth="70.0" />
                </children>
                <padding>
                   <Insets top="16.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" minWidth="60.0" spacing="16.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" minWidth="60.0" spacing="16.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="BOA" />
-                  <Label fx:id="totalBoaPerAptType" text="Label" />
+                  <TextField fx:id="totalBoaPerAptType" editable="false" maxWidth="70.0" minWidth="70.0" />
                </children>
             </VBox>
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="percentOfTotArea" text="Label" />
+                  <TextField fx:id="percentOfTotArea" editable="false" maxWidth="70.0" minWidth="70.0" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" minWidth="60.0" spacing="16.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" minWidth="60.0" spacing="16.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Bidrag" />
-                  <Label fx:id="bidragPerAptType" text="Label" />
+                  <TextField fx:id="bidragPerAptType" editable="false" maxWidth="70.0" minWidth="70.0" />
                </children>
             </VBox>
          </children>
@@ -136,6 +146,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+      <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
    </padding>
 </VBox>

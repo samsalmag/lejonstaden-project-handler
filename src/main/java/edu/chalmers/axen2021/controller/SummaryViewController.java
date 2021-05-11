@@ -156,7 +156,7 @@ public class SummaryViewController implements Initializable {
      * @param newApartmentItem
      */
     private void createNewApartmentItemView(ApartmentItem newApartmentItem) {
-        FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataSummaryItem.fxml"));
+        FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));
         ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
         apartmentTypeFXML.setController(apartmentItemController);
         Node apartmentTypeNode = null;

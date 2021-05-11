@@ -6,607 +6,602 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="center-stage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1640.0" styleClass="white-background" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutY="-17.0" maxHeight="1440.0" maxWidth="2560.0" prefHeight="880.0" prefWidth="1640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#switchToSummaryView" text="Till Sammanfattningsvy" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-            <AnchorPane minHeight="100.0">
-               <children>
-                  <Label fx:id="titleLabel" alignment="CENTER" layoutY="40.0" text="Projekt namn" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <HBox maxHeight="4000.0" minHeight="150.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <VBox alignment="TOP_CENTER" maxWidth="750.0" minHeight="150.0" minWidth="300.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label alignment="CENTER" text="Lägenhetsdata">
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Button minWidth="200.0" mnemonicParsing="false" onAction="#addNewApartmentItem" text="Lägg till lägenhetstyp">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Button>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
-                           <content>
-                              <VBox fx:id="lagenhetsTypVbox" alignment="TOP_CENTER" />
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </VBox>
-                  <VBox maxWidth="1500.0" minHeight="150.0" minWidth="550.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="150.0" VBox.vgrow="ALWAYS">
-                           <content>
-                              <VBox>
-                                 <children>
-                                    <VBox alignment="CENTER" style="-fx-border-color: black;">
-                                       <children>
-                                          <Label alignment="CENTER" text="Grundförutsättningar">
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <HBox alignment="TOP_CENTER">
-                                             <children>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label alignment="CENTER" text="Normhyra med stöd" />
-                                                      <TextField fx:id="normHyraMedStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
-                                                      <Label alignment="CENTER" text="Investeringsstöd" />
-                                                      <TextField fx:id="investeringsstod" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets left="20.0" />
-                                                   </HBox.margin>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label alignment="CENTER" text="Antagen presumtionshyra" />
-                                                      <TextField fx:id="antagenPresumtionshyra" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
-                                                      <Label alignment="CENTER" text="Oförutsett" />
-                                                      <TextField fx:id="oforutsett" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label alignment="CENTER" text="Total BOA" />
-                                                      <TextField fx:id="totalBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <Label alignment="CENTER" text="Total ljus BTA" />
-                                                      <TextField fx:id="totalLjusBta" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets right="20.0" />
-                                                   </HBox.margin>
-                                                </VBox>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="20.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label alignment="CENTER" text="Projektkostnader">
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <HBox VBox.vgrow="ALWAYS">
-                                             <children>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label text="Kostnader">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Button fx:id="tomtkostnaderButton" minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Tomtkostnader">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda bygherre">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Anslutningar">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Byggherrekostnader">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Entrepenad">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Label text="Oförutsett">
-                                                         <VBox.margin>
-                                                            <Insets bottom="27.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Finansiella kostnader">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Label text="Mervärdeskatt">
-                                                         <VBox.margin>
-                                                            <Insets bottom="27.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Investeringsstöd">
-                                                         <VBox.margin>
-                                                            <Insets bottom="27.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Projektkostnad">
-                                                         <VBox.margin>
-                                                            <Insets left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label text="kkr">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="tomtkostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="nedlagdaBygherreKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="anslutningarKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="byggherrekostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="entreprenadKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="oforutsettKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="finanisellaKostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="mervardeskattKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="investeringsstodKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="projektkostnadKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </TextField>
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label text="kr/BOA">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="tomtkostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="nedlagdaBygherreKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="anslutningarKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="byggherrekostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="entreprenadKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="oforutsettKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="finanisellaKostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="mervardeskattKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="investeringsstodKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="projektkostnadKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </TextField>
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label text="kr/BTA">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="tomtkostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="nedlagdaBygherreKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="anslutningarKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="byggherrekostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="entreprenadKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="oforutsettKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="finanisellaKostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="mervardeskattKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="investeringsstodKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="projektkostnadKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </TextField>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="CENTER" text="Fastighetsvärde och Resultat">
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
-                                             <children>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Hyresintäkter">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" top="37.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Drift &amp; Underhåll">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Label text="Tomträttsavgäld">
-                                                         <VBox.margin>
-                                                            <Insets bottom="27.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Driftnetto">
-                                                         <VBox.margin>
-                                                            <Insets bottom="27.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Yield">
-                                                         <VBox.margin>
-                                                            <Insets bottom="27.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Marknadsvärde">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label text="Med stöd">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="hyresintakterMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="driftUnderhallMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="tomtrattsavgaldMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="driftnettoMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="yieldMedStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="marknadsvardeMedStod" alignment="CENTER" editable="false" layoutX="144.0" layoutY="272.0" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Label text="Utan stöd">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="hyresintakterUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="driftUnderhallUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="tomtrattsavgaldUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="driftnettoUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="yieldUtanStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0">
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                      </TextField>
-                                                      <TextField fx:id="marknadsvardeUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" left="5.0" right="5.0" />
-                                                         </VBox.margin>
-                                                      </TextField>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+            <Button mnemonicParsing="false" onAction="#switchToSummaryView" text="Till Sammanfattningsvy" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets right="20.0" top="20.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
+      <Label fx:id="titleLabel" alignment="CENTER" text="Projekt namn">
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+      <HBox VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="TOP_CENTER" minWidth="550.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" text="Lägenhetsdata">
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#addNewApartmentItem" text="Lägg till lägenhetstyp">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox fx:id="lagenhetsTypVbox" alignment="TOP_CENTER" spacing="5.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox minWidth="550.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox>
+                           <children>
+                              <VBox alignment="CENTER" style="-fx-border-color: black;">
+                                 <children>
+                                    <Label alignment="CENTER" text="Grundförutsättningar">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label alignment="CENTER" text="Normhyra med stöd" />
+                                                <TextField fx:id="normHyraMedStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
+                                                <Label alignment="CENTER" text="Investeringsstöd" />
+                                                <TextField fx:id="investeringsstod" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label alignment="CENTER" text="Antagen presumtionshyra" />
+                                                <TextField fx:id="antagenPresumtionshyra" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
+                                                <Label alignment="CENTER" text="Oförutsett" />
+                                                <TextField fx:id="oforutsett" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label alignment="CENTER" text="Total BOA" />
+                                                <TextField fx:id="totalBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <Label alignment="CENTER" text="Total ljus BTA" />
+                                                <TextField fx:id="totalLjusBta" alignment="CENTER" maxWidth="100.0" minWidth="50.0" text="0" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" text="Projektkostnader">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Kostnader">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Button fx:id="tomtkostnaderButton" minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Tomtkostnader">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda bygherre">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Anslutningar">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Byggherrekostnader">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Entrepenad">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Label text="Oförutsett">
+                                                   <VBox.margin>
+                                                      <Insets bottom="27.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Finansiella kostnader">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Label text="Mervärdeskatt">
+                                                   <VBox.margin>
+                                                      <Insets bottom="27.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Investeringsstöd">
+                                                   <VBox.margin>
+                                                      <Insets bottom="27.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Projektkostnad">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="kkr">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="tomtkostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="nedlagdaBygherreKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="anslutningarKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="byggherrekostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="entreprenadKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="oforutsettKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="finanisellaKostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="mervardeskattKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="investeringsstodKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="projektkostnadKkr" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="kr/BOA">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="tomtkostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="nedlagdaBygherreKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="anslutningarKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="byggherrekostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="entreprenadKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="oforutsettKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="finanisellaKostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="mervardeskattKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="investeringsstodKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="projektkostnadKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="kr/BTA">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="tomtkostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="nedlagdaBygherreKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="anslutningarKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="byggherrekostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="entreprenadKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="oforutsettKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="finanisellaKostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="mervardeskattKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="investeringsstodKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="projektkostnadKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="CENTER" text="Fastighetsvärde och Resultat">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Hyresintäkter">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" top="37.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button minWidth="120.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Drift &amp; Underhåll">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Label text="Tomträttsavgäld">
+                                                   <VBox.margin>
+                                                      <Insets bottom="27.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Driftnetto">
+                                                   <VBox.margin>
+                                                      <Insets bottom="27.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Yield">
+                                                   <VBox.margin>
+                                                      <Insets bottom="27.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Marknadsvärde">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Med stöd">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="hyresintakterMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="driftUnderhallMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="tomtrattsavgaldMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="driftnettoMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="yieldMedStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="marknadsvardeMedStod" alignment="CENTER" editable="false" layoutX="144.0" layoutY="272.0" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Utan stöd">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="hyresintakterUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="driftUnderhallUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="tomtrattsavgaldUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="driftnettoUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="yieldUtanStod" alignment="CENTER" maxWidth="100.0" minWidth="50.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                </TextField>
+                                                <TextField fx:id="marknadsvardeUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="50.0" style="-fx-background-color: lightgrey;">
+                                                   <cursor>
+                                                      <Cursor fx:constant="DEFAULT" />
+                                                   </cursor>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>
