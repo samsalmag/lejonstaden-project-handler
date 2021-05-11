@@ -105,6 +105,7 @@ public class ApartmentItemController implements Initializable {
                 // Remove unnecessary zeroes
                 BOATextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(BOATextField.getText())));
                 apartmentItem.setBOA(Double.parseDouble(BOATextField.getText()));
+                rootController.updateAllLabels();
             }
         });
     }
@@ -130,6 +131,7 @@ public class ApartmentItemController implements Initializable {
                 // Remove unnecessary zeroes
                 amountTextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(amountTextField.getText())));
                 apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
+                rootController.updateAllLabels();
             }
         });
     }
