@@ -36,3 +36,8 @@
 .white-background{
     -fx-background-color: white;
 }
+
+#defaultanchorpane-background{
+    -fx-background-image: url(/images/bakgrund-karta.jpg);
+
+}
