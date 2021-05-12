@@ -71,27 +71,27 @@
 }
 
 .cancel-button:hover{
-
+    -fx-background-color: #C5C5C5;
 }
 
 .cancel-button:pressed{
-
+    -fx-background-color: #BBBBBB;
 }
 
-/*ApproveButton*/
-.approve-button{
-    -fx-background-color: #C44545;
+/*RemoveButton*/
+.remove-button{
+    -fx-background-color: #F75252;
     -fx-background-radius: 5px;
     -fx-cursor: hand;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
 }
 
-.approve-button:hover{
-
+.remove-button:hover{
+    -fx-background-color: #ED4848;
 }
 
-.approve-button:pressed{
-
+.remove-button:pressed{
+    -fx-background-color: #E33E3E;
 }
 
 /*ChangeViewButton*/
