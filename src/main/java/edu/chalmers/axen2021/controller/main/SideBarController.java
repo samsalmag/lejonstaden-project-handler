@@ -1,5 +1,9 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.main;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.controller.items.ItemType;
+import edu.chalmers.axen2021.controller.items.SideBarItemController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import javafx.fxml.FXML;
@@ -37,8 +41,7 @@ public class SideBarController {
      */
     @FXML
     private void openAddNewProjectView() {
-        rootController.getAddNewProjectAnchorPane().toFront();
-        rootController.focusTextField(EventHandlerObjects.PROJECT);   // Focus the text field for project name input.
+        rootController.openAddNewProjectView();
     }
 
     /**
@@ -59,6 +62,9 @@ public class SideBarController {
         projectItemVbox.getChildren().add(0, sideBarItemNode);
     }
 
+    /**
+     * Clears all project buttons.
+     */
     public void clearAllProjectButtons(){
         projectItemVbox.getChildren().clear();
     }
@@ -72,6 +78,10 @@ public class SideBarController {
         }
     }
 
+    /**
+     * Sets the active project button based on project name.
+     * @param projectName Name of the project.
+     */
     public void setActiveButton(String projectName){
         for(Node button : projectItemVbox.getChildren()){
             if( ( (ToggleButton) button).getText().equals(projectName)){

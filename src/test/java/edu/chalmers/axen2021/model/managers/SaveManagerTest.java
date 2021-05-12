@@ -1,5 +1,6 @@
 package edu.chalmers.axen2021.model.managers;
 
+import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -76,12 +77,12 @@ public class SaveManagerTest {
 
     @Test
     public void readProjectManagerTest() {
-        ProjectManager.getInstance().getAnslutningar().add("test");
+        ProjectManager.getInstance().getCostItemNamesMap().get(Category.ANSLUTNINGAR).add("test");
         saveManager.saveProjectManager();
 
-        ProjectManager.getInstance().getAnslutningar().remove(0);
+        ProjectManager.getInstance().getCostItemNamesMap().get(Category.ANSLUTNINGAR).remove(0);
         ProjectManager projectManager = SaveManager.getInstance().readProjectManager();
-        assertEquals(projectManager.getAnslutningar().get(0), "test");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.ANSLUTNINGAR).get(0), "test");
     }
 
     @Test

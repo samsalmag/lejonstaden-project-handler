@@ -1,5 +1,7 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.items;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.utils.StringUtils;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.fxml.FXML;
@@ -136,8 +138,11 @@ public class ApartmentItemController implements Initializable {
         });
     }
 
+    /**
+     * Opens the confirmation window when removing an apartmentItem.
+     */
     @FXML
     private void openRemoveConfirmation(){
-        rootController.openConfirmationView(apartmentItem, EventHandlerObjects.APARTMENT_TYPE);
+        rootController.openConfirmationView(apartmentItem);
     }
 }

@@ -1,5 +1,7 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.modals;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -32,8 +34,7 @@ public class AddNewCostController {
      */
     @FXML
     private void closeAddNewCostView(Event event) {
-        rootController.getAddNewCostAnchorPane().toBack();
-        costNameTextField.clear();
+        rootController.closeAddNewCostView();
     }
 
     /**
@@ -55,11 +56,14 @@ public class AddNewCostController {
             }
         }
 
-        rootController.getModalController().addNewModalWindowItem(costNameTextField.getText());
-        rootController.getAddNewCostAnchorPane().toBack();
-        costNameTextField.clear();
+        rootController.addCostItem(costNameTextField.getText());
+        rootController.closeAddNewCostView();
     }
 
+    /**
+     * Getter for the TextField for cost item name input.
+     * @return
+     */
     public TextField getCostNameTextField() {
         return costNameTextField;
     }

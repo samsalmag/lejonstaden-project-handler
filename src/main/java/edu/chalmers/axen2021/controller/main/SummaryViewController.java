@@ -1,5 +1,8 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.main;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
@@ -63,7 +66,6 @@ public class SummaryViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         df = new DecimalFormat("#.##");
         df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
-
     }
 
     /**
@@ -131,7 +133,6 @@ public class SummaryViewController implements Initializable {
     private void addNewApartmentItem(ActionEvent event) {
         ApartmentItem newApartmentItem = projectManager.getActiveProject().addApartmentItem();
         createNewApartmentItemView(newApartmentItem);
-
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 

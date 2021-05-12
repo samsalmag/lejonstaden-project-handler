@@ -1,8 +1,9 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.modals;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
-import edu.chalmers.axen2021.model.managers.SaveManager;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,8 +45,7 @@ public class AddNewProjectController implements Initializable {
      */
     @FXML
     private void closeAddNewProjectView(Event event) {
-        rootController.getAddNewProjectAnchorPane().toBack();
-        projectNameTextField.clear();
+        rootController.closeAddNewProjectView();
     }
 
     /**
@@ -74,8 +74,7 @@ public class AddNewProjectController implements Initializable {
 
         rootController.addProject(projectNameTextField.getText());
         rootController.updateInputView();
-        rootController.getAddNewProjectAnchorPane().toBack();
-        projectNameTextField.clear();
+        rootController.closeAddNewProjectView();
     }
 
     /**
@@ -96,6 +95,10 @@ public class AddNewProjectController implements Initializable {
         });
     }
 
+    /**
+     * Getter for the TextField for project name input.
+     * @return
+     */
     public TextField getProjectNameTextField() {
         return projectNameTextField;
     }

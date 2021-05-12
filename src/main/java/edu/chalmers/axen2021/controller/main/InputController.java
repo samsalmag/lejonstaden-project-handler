@@ -1,5 +1,8 @@
-package edu.chalmers.axen2021.controller;
+package edu.chalmers.axen2021.controller.main;
 
+import edu.chalmers.axen2021.controller.FXMLController;
+import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemController;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.Category;
@@ -185,11 +188,7 @@ public class InputController implements Initializable {
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
         Category category = Category.fromString(((Button)event.getSource()).getText());
-        ProjectManager.getInstance().setActiveCategory(category);
-
-        rootController.getModalController().setCategoryNameLabelText(category.getName());
-        rootController.getModalController().populateCostItems();
-        rootController.getModalAnchorPane().toFront();
+        rootController.openModalWindow(category);
     }
 
     /**
@@ -200,10 +199,8 @@ public class InputController implements Initializable {
     @FXML
     private void addNewApartmentItem(ActionEvent event) {
         ApartmentItem newApartmentItem = projectManager.getActiveProject().addApartmentItem();
-
         createNewLagenhetstypView(newApartmentItem);
         updateAllTextFields();
-
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 
