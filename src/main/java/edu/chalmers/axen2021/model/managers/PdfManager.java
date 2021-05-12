@@ -53,11 +53,11 @@ public class PdfManager {
             e.printStackTrace();
         }
     }
-    private static Font arialSmall = new Font(arialBase, 12, Font.NORMAL);
-    private static Font arialNormal = new Font(arialBase, 12, Font.NORMAL);
-    private static Font arialNormalBold = new Font(arialBase, 12, Font.BOLD);
+    private static Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
+    private static Font arialSmallBold = new Font(arialBase, 11, Font.BOLD);
+    private static Font arialNormal = new Font(arialBase, 13, Font.NORMAL);
+    private static Font arialNormalBold = new Font(arialBase, 13, Font.BOLD);
     private static Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
-    private static Font arialSmallBold = new Font(arialBase, 12, Font.BOLD);
 
     // Singleton. Use getInstance().
     private PdfManager(){}
@@ -160,8 +160,6 @@ public class PdfManager {
         addGrundforutsattningar();
         addLagenhetsdata();
         addProjektkostnader();
-
-        document.newPage();
         addFastighetsvardeOchResultat();
     }
 
@@ -171,8 +169,8 @@ public class PdfManager {
     private void addLogo() {
         Image image;
         try {
-            image = Image.getInstance(getClass().getResource("/images/lejonstadenLogga.png"));
-            image.scalePercent(36);
+            image = Image.getInstance(getClass().getResource("/images/fullLogoHD.png"));
+            image.scalePercent(5);
             image.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
             image.setAbsolutePosition(30, PageSize.A4.getHeight() - image.getScaledHeight());
             document.add(image);
@@ -192,6 +190,7 @@ public class PdfManager {
             Paragraph header = new Paragraph(new Chunk(datum, arialSmall));
             header.setAlignment(Paragraph.ALIGN_RIGHT);
             document.add(header);
+            addEmptyLineToDocument(15);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,17 +203,89 @@ public class PdfManager {
         try {
             Chunk chunk = new Chunk(project.getName(), arialBigBold);
             Paragraph title = new Paragraph(chunk);
-            addEmptyLine(title, 1);
             title.setAlignment(Paragraph.ALIGN_CENTER);
             document.add(title);
+            addEmptyLineToDocument(15);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private void addGrundforutsattningar() throws DocumentException {
+        Paragraph grundforutsattningar = new Paragraph();
+        grundforutsattningar.add(new Paragraph("Grundförutsättningar:", arialNormalBold));
+        addEmptyLineToParagraph(grundforutsattningar, 4);
+
+        PdfPTable table = new PdfPTable(6);
+        table.getDefaultCell().setPadding(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{17,25,28,20,22,20});
+
+        table.addCell(createCell("Normhyra", arialSmall));
+        table.addCell(createCell("Investeringsstöd", arialSmall));
+        table.addCell(createCell("Antagen presumtions hyra", arialSmall));
+        table.addCell(createCell("Oförutsett (%)", arialSmall));
+        table.addCell(createCell("Total BOA", arialSmall));
+        table.addCell(createCell("Total ljus BTA", arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNormhyraMedStod())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstod())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getAntagenPresumtionshyra())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettPercent())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalLjusBta())), arialSmall));
+
+        grundforutsattningar.add(table);
+        document.add(grundforutsattningar);
+        addEmptyLineToDocument(10);
+    }
+
+    private void addLagenhetsdata() throws DocumentException {
+        Paragraph lagenhetsdata = new Paragraph();
+        lagenhetsdata.add(new Paragraph("Lägenhetsdata:", arialNormalBold));
+        addEmptyLineToParagraph(lagenhetsdata, 4);
+
+        PdfPTable table = new PdfPTable(10);
+        table.getDefaultCell().setPadding(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[]{22,15,15,22,18,22,18,15,19,18});
+        table.setHeaderRows(1);
+
+        table.addCell(createCell("Typ", arialSmall));
+        table.addCell(createCell("BOA", arialSmall));
+        table.addCell(createCell("Antal", arialSmall));
+        table.addCell(createCell("Hyra/mån låg", arialSmall));
+        table.addCell(createCell("Kr/kvm låg", arialSmall));
+        table.addCell(createCell("Hyra/mån hög", arialSmall));
+        table.addCell(createCell("Kr/kvm hög", arialSmall));
+        table.addCell(createCell("BOA", arialSmall));
+        table.addCell(createCell("BOA (%)", arialSmall));
+        table.addCell(createCell("Bidrag", arialSmall));
+
+        for(ApartmentItem apartmentItem : project.getApartmentItems()) {
+            createLagenhetsCell(table, apartmentItem);
+        }
+
+        table.addCell(createCell("Totalt", arialSmall, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNumOfApt())), arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
+
+        lagenhetsdata.add(table);
+        document.add(lagenhetsdata);
+        addEmptyLineToDocument(10);
+    }
+
     private void addProjektkostnader() throws DocumentException {
-        Paragraph projektkostnader = new Paragraph("Projektkostnader:", arialNormalBold);
-        addEmptyLine(projektkostnader, 1);
+        Paragraph projektkostnader = new Paragraph();
+        projektkostnader.setKeepTogether(true);
+        projektkostnader.add(new Paragraph("Projektkostnader:", arialNormalBold));
+        addEmptyLineToParagraph(projektkostnader, 4);
 
         PdfPTable table = new PdfPTable(4);
         table.getDefaultCell().setPadding(5);
@@ -271,20 +342,21 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBoa())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBta())), arialSmall));
 
-
         table.addCell(createCell("Projektkostnad", arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKkr())), arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBoa())), arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBta())), arialSmall, 2));
 
+        projektkostnader.add(table);
         document.add(projektkostnader);
-        document.add(table);
-        addEmptyLines(1);
+        addEmptyLineToDocument(10);
     }
 
     private void addFastighetsvardeOchResultat() throws DocumentException {
-        Paragraph fastighetsvardeOchResultat = new Paragraph("Fastighetsvärde och resultat:", arialNormalBold);
-        addEmptyLine(fastighetsvardeOchResultat, 1);
+        Paragraph fastighetsvardeOchResultat = new Paragraph();
+        fastighetsvardeOchResultat.setKeepTogether(true);
+        fastighetsvardeOchResultat.add(new Paragraph("Fastighetsvärde och resultat:", arialNormalBold));
+        addEmptyLineToParagraph(fastighetsvardeOchResultat, 4);
 
         PdfPTable table = new PdfPTable(3);
         table.getDefaultCell().setPadding(5);
@@ -311,7 +383,7 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoMedStod())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoUtanStod())), arialSmall));
 
-        table.addCell(createCell("Yield", arialSmall));
+        table.addCell(createCell("Yield (%)", arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getYieldMedStod())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getYieldUtanStod())), arialSmall));
 
@@ -322,100 +394,26 @@ public class PdfManager {
         table.addCell(createCell("Projektvinst", arialSmallBold));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstMedStod())), arialSmallBold));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstUtanStod())), arialSmallBold));
-        table.addCell(createCell("", arialSmallBold));
+        table.addCell(createCell("Projektvinst (%)", arialSmallBold));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstProcentMedStod())), arialSmallBold));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstProcentUtanStod())), arialSmallBold));
 
+        fastighetsvardeOchResultat.add(table);
         document.add(fastighetsvardeOchResultat);
-        document.add(table);
-        addEmptyLines(1);
-    }
-
-    private void addLagenhetsdata() throws DocumentException {
-        Paragraph lagenhetsdata = new Paragraph("Lägenhetsdata:", arialNormalBold);
-        addEmptyLine(lagenhetsdata, 1);
-
-        PdfPTable table = new PdfPTable(10);
-        table.getDefaultCell().setPadding(5);
-        table.setWidthPercentage(100);
-        table.setWidths(new float[]{22,15,15,22,18,22,18,15,19,18});
-
-        table.addCell(createCell("Typ", arialSmall));
-        table.addCell(createCell("BOA", arialSmall));
-        table.addCell(createCell("Antal", arialSmall));
-        table.addCell(createCell("Hyra/mån låg", arialSmall));
-        table.addCell(createCell("Kr/kvm", arialSmall));
-        table.addCell(createCell("Hyra/mån hög", arialSmall));
-        table.addCell(createCell("Kr/kvm", arialSmall));
-        table.addCell(createCell("BOA", arialSmall));
-        table.addCell(createCell("Procent", arialSmall));
-        table.addCell(createCell("Bidrag", arialSmall));
-
-        for(ApartmentItem apartmentItem : project.getApartmentItems()) {
-            createLagenhetsCell(table, apartmentItem);
-        }
-
-        table.addCell(createCell("Totalt", arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNumOfApt())), arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-
-
-        document.add(lagenhetsdata);
-        document.add(table);
-        addEmptyLines(1);
+        addEmptyLineToDocument(10);
     }
 
     private void createLagenhetsCell(PdfPTable table, ApartmentItem apartmentItem) {
         table.addCell(createCell(apartmentItem.getApartmentType(), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBOA())), arialSmall));
-        table.addCell(createCell(String.valueOf(apartmentItem.getAmount()), arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-        table.addCell(createCell("TBD", arialSmall));
-    }
-
-    private void addGrundforutsattningar() throws DocumentException {
-        Paragraph grundforutsattningar = new Paragraph("Grundförutsättningar:", arialNormalBold);
-        addEmptyLine(grundforutsattningar, 1);
-
-        PdfPTable table = new PdfPTable(6);
-        table.getDefaultCell().setPadding(5);
-        table.setWidthPercentage(100);
-        table.setWidths(new float[]{17,25,28,20,22,20});
-
-        table.addCell(createCell("Normhyra", arialSmall));
-        table.addCell(createCell("Investeringsstöd", arialSmall));
-        table.addCell(createCell("Antagen presumtions hyra", arialSmall));
-        table.addCell(createCell("Oförutsett %", arialSmall));
-        table.addCell(createCell("Total BOA", arialSmall));
-        table.addCell(createCell("Total ljus BTA", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNormhyraMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAntagenPresumtionshyra())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettPercent())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalLjusBta())), arialSmall));
-
-        document.add(grundforutsattningar);
-        document.add(table);
-        addEmptyLines(1);
-    }
-
-    private void addEmptyLines(int amountEmptyLines) throws DocumentException {
-        Paragraph emptyLine = new Paragraph();
-        addEmptyLine(emptyLine, amountEmptyLines);
-        document.add(emptyLine);
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getAmount())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getFullBOA())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getFullBOAPercent())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall));
     }
 
     private PdfPCell createCell(String text, Font font) {
@@ -431,9 +429,13 @@ public class PdfManager {
         return cell;
     }
 
-    private void addEmptyLine(Paragraph paragraph, int number) {
-        for (int i = 0; i < number; i++) {
-            paragraph.add(new Paragraph(" "));
-        }
+    private void addEmptyLineToDocument(int lineSize) throws DocumentException {
+        Paragraph emptyLine = new Paragraph();
+        emptyLine.add(new Paragraph(" ", new Font(arialBase, lineSize, Font.NORMAL)));
+        document.add(emptyLine);
+    }
+
+    private void addEmptyLineToParagraph(Paragraph paragrapgh, int lineSize) {
+        paragrapgh.add(new Paragraph(" ", new Font(arialBase, lineSize, Font.NORMAL)));
     }
 }
