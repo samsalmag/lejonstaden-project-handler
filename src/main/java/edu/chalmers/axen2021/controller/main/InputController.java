@@ -108,6 +108,7 @@ public class InputController implements Initializable {
      * List of all input TextFields.
      */
     private ArrayList<TextField> inputFields = new ArrayList<TextField>();
+    private ArrayList<TextField> inputFieldsPercent = new ArrayList<TextField>();
 
     /**
      * Vbox in the inputView containing lagenhetsDataSummaryItems.
@@ -132,9 +133,30 @@ public class InputController implements Initializable {
 
         for(TextField textField: inputFields){
 
-            //Adds property to TextField allowing users to only input numbers and ".".
+            //Adds property to TextField allowing users to only input numbers and ",".
             textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue.matches("[0-9]*" + "[,]?" + "[0-9]*")){
+                    textField.setText(oldValue);
+                }
+            });
+
+            //Adds focus lost property to textFields.
+            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+                if(!newValue){
+                    //Make sure that the textField has a readable value.
+                    if(textField.getText().equals("") || textField.getText().equals(",")){
+                        textField.setText("0");
+                    }
+                    setInputFields();
+                    rootController.updateAllLabels();
+                }
+            });
+        }
+        for(TextField textField: inputFieldsPercent){
+
+            //Adds property to TextField allowing users to only input numbers and ",".
+            textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                if(!newValue.matches("((100)|[0-9]{0,2}([,][0-9]{0,3})?)")){
                     textField.setText(oldValue);
                 }
             });
@@ -161,9 +183,9 @@ public class InputController implements Initializable {
         inputFields.add(antagenPresumtionshyra);
         inputFields.add(normHyraMedStod);
         inputFields.add(totalLjusBta);
-        inputFields.add(yieldMedStod);
-        inputFields.add(yieldUtanStod);
-        inputFields.add(oforutsett);
+        inputFieldsPercent.add(yieldMedStod);
+        inputFieldsPercent.add(yieldUtanStod);
+        inputFieldsPercent.add(oforutsett);
     }
 
     /**
