@@ -56,7 +56,7 @@ public class SideBarController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        projectItemVbox.getChildren().add(sideBarItemNode);
+        projectItemVbox.getChildren().add(0, sideBarItemNode);
     }
 
     public void clearAllProjectButtons(){

@@ -124,7 +124,7 @@ public class ModalController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        modalWindowItemVBox.getChildren().add(costItemNode);
+        modalWindowItemVBox.getChildren().add(0, costItemNode);
     }
 
     /**
