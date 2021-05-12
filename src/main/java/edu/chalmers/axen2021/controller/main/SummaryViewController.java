@@ -153,7 +153,7 @@ public class SummaryViewController implements Initializable {
     }
 
     /**
-     * Creates new lagenhetsDataItem and adds i to the current view.
+     * Creates new lagenhetsDataItem and adds it to the current view.
      * @param newApartmentItem
      */
     private void createNewApartmentItemView(ApartmentItem newApartmentItem) {
