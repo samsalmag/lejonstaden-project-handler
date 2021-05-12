@@ -5,13 +5,11 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.sun.scenario.effect.ImageData;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.stage.FileChooser;
 
-import javax.swing.text.html.ImageView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +20,7 @@ import java.util.Date;
 /**
  * This class handles the making of a PDF file containing information about the chosen project.
  * @author Sam Salek
+ * @author Malte Åkvist
  */
 public class PdfManager {
 
@@ -31,40 +30,33 @@ public class PdfManager {
     private static PdfManager instance = null;
 
     /**
-     * The document for pdf
+     * The document for the PDF.
      */
     private Document document = null;
 
     /**
-     * The project to create pdf from
+     * The project to create the PDF from.
      */
     private Project project = null;
 
     /**
      * The file to save AKA path to the PDF.
      */
-    private static File FILE;
+    private static File file;
 
     // Fonts
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-
-    private static BaseFont base;
-
+    private static BaseFont arialBase;
     {
         try {
-            base = BaseFont.createFont(String.valueOf(getClass().getResource("/fonts/ArialCE.ttf")), BaseFont.WINANSI, true);
+            arialBase = BaseFont.createFont(String.valueOf(getClass().getResource("/fonts/ArialCE.ttf")), BaseFont.WINANSI, true);
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
     }
-
-    private static Font arialSmall = new Font(base, 11, Font.NORMAL);
-    private static Font arialNormal = new Font(base, 12, Font.NORMAL);
-    private static Font arialNormalBold = new Font(base, 12, Font.BOLD);
-    private static Font arialBigBold = new Font(base, 16, Font.BOLD);
+    private static Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
+    private static Font arialNormal = new Font(arialBase, 12, Font.NORMAL);
+    private static Font arialNormalBold = new Font(arialBase, 12, Font.BOLD);
+    private static Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
 
     // Singleton. Use getInstance().
     private PdfManager(){}
@@ -90,8 +82,10 @@ public class PdfManager {
         if(setSavePath(project.getName())) {
             this.project = project;
             createPdf();
+            System.out.println("PDF of project \"" + project.getName() + "\" created at set directory!");
             return true;
         } else {
+            System.out.println("PDF path not set! Aborting PDF creation!");
             return false;
         }
     }
@@ -105,90 +99,119 @@ public class PdfManager {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF (*.pdf)","*.pdf"));
         fileChooser.setInitialFileName(initialFileName + ".pdf");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
         File file = fileChooser.showSaveDialog(AXEN2021.getMainStage());
         //File file = new File(System.getProperty("user.home") + File.separatorChar + ".axen2021" + File.separatorChar + initialFileName + ".pdf");
         if(file != null) {
-            System.out.println("PDF path set!");
-            FILE = file;
+            this.file = file;
             return true;
         } else {
-            System.out.println("PDF path not set! Aborting!");
             return false;
         }
     }
 
     /**
-     * Creates a PDF based on the information in the "add..." methods below.
+     * Creates a PDF based on the needed content.
      */
     private void createPdf() {
         // Don't continue if file path has not been set.
-        if(FILE == null) {
+        if(file == null) {
             throw new NullPointerException("File path for PDF has not been set!");
         }
 
         try {
+            // Init the document
             document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
-            // Add all content and information to the PDF
-            addMetaData(document);
-            addTitlePage(document);
+            // Add all information and content to the PDF
+            addMetaData();
+            addContent();
 
+            // Close document after all content has ben added.
             document.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // iText allows to add metadata to the PDF which can be viewed in your Adobe
-    // Reader
-    // under File -> Properties
-    private void addMetaData(Document document) {
+    /**
+     * Adds metadata to the PDF.
+     */
+    private void addMetaData() {
         document.addTitle(project.getName());
-        document.addSubject("Project");
-        document.addKeywords("Lejonstaden AB, PDF");
+        document.addSubject("PDF export of project " + project.getName());
+        document.addKeywords("Lejonstaden AB, PDF, " + project.getName());
         document.addAuthor("Lejonstaden AB");
         document.addCreator("Lejonstaden AB");
     }
 
-    private void addTitlePage(Document document) throws DocumentException {
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String datum = localDate.getMonthValue() + "/" + localDate.getDayOfMonth() + "/" + localDate.getYear();
+    /**
+     * Adds all content to the PDF.
+     * @throws DocumentException
+     */
+    private void addContent() throws DocumentException {
+        addLogo();
+        addDate();
+        addTitle();
+        addGrundforutsattningar();
+        addLagenhetsdata();
+        addProjektkostnader();
 
-        Image image = null;
-        try {
-            image = Image.getInstance(getClass().getResource("/images/lejonstadenLogga.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        image.scalePercent(36);
-        image.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
-        image.setAbsolutePosition(30, PageSize.A4.getHeight() - image.getScaledHeight());
-
-        document.add(image);
-
-        Paragraph header = new Paragraph(new Chunk(datum, arialSmall));
-        header.setAlignment(Paragraph.ALIGN_RIGHT);
-
-        Chunk chunk = new Chunk(project.getName(), arialBigBold);
-        Paragraph title = new Paragraph(chunk);
-        addEmptyLine(title, 1);
-        title.setAlignment(Paragraph.ALIGN_CENTER);
-
-        document.add(header);
-        document.add(title);
-        createGrundForutsattningar();
-        createLagenhetsdata();
-        createProjektKostnader();
         document.newPage();
-        createFastighetsvardeOchResultat();
-        document.newPage();
+        addFastighetsvardeOchResultat();
     }
 
-    private void createProjektKostnader() throws DocumentException {
+    /**
+     * Adds the logo to the PDF.
+     */
+    private void addLogo() {
+        Image image;
+        try {
+            image = Image.getInstance(getClass().getResource("/images/lejonstadenLogga.png"));
+            image.scalePercent(36);
+            image.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
+            image.setAbsolutePosition(30, PageSize.A4.getHeight() - image.getScaledHeight());
+            document.add(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Adds the date to the PDF.
+     */
+    private void addDate() {
+        try {
+            Date date = new Date();
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            String datum = localDate.getMonthValue() + "/" + localDate.getDayOfMonth() + "/" + localDate.getYear();
+            Paragraph header = new Paragraph(new Chunk(datum, arialSmall));
+            header.setAlignment(Paragraph.ALIGN_RIGHT);
+            document.add(header);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Adds the title (project name) to the PDF.
+     */
+    private void addTitle() {
+        try {
+            Chunk chunk = new Chunk(project.getName(), arialBigBold);
+            Paragraph title = new Paragraph(chunk);
+            addEmptyLine(title, 1);
+            title.setAlignment(Paragraph.ALIGN_CENTER);
+            document.add(title);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addProjektkostnader() throws DocumentException {
         Paragraph projektkostnader = new Paragraph("Projektkostnader:", arialNormalBold);
         addEmptyLine(projektkostnader, 1);
 
@@ -279,7 +302,7 @@ public class PdfManager {
         addEmptyLines(1);
     }
 
-    private void createFastighetsvardeOchResultat() throws DocumentException {
+    private void addFastighetsvardeOchResultat() throws DocumentException {
         Paragraph fastighetsvardeOchResultat = new Paragraph("Fastighetsvärde och resultat:", arialNormalBold);
         addEmptyLine(fastighetsvardeOchResultat, 1);
 
@@ -332,7 +355,7 @@ public class PdfManager {
         addEmptyLines(1);
     }
 
-    private void createLagenhetsdata() throws DocumentException {
+    private void addLagenhetsdata() throws DocumentException {
         Paragraph lagenhetsdata = new Paragraph("Lägenhetsdata:", arialNormalBold);
         addEmptyLine(lagenhetsdata, 1);
 
@@ -386,7 +409,7 @@ public class PdfManager {
         table.addCell("TBD");
     }
 
-    private void createGrundForutsattningar() throws DocumentException {
+    private void addGrundforutsattningar() throws DocumentException {
         Paragraph grundforutsattningar = new Paragraph("Grundförutsättningar:", arialNormalBold);
         addEmptyLine(grundforutsattningar, 1);
 
