@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -16,9 +17,9 @@
             <Pane minWidth="330.0" onMouseClicked="#closeConfirmationView" styleClass="modal-window-shadow" HBox.hgrow="ALWAYS" />
             <VBox alignment="CENTER" maxWidth="400.0" minWidth="350.0" spacing="10.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="confirmationBoxLabel" alignment="CENTER" contentDisplay="CENTER" text="Vill du ta bort &quot;blank&quot; från alla projekt?">
+                  <Label fx:id="confirmationBoxLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="standard-text" text="Vill du ta bort &quot;blank&quot; från alla projekt?">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="13.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="40.0" />
@@ -29,11 +30,19 @@
                         <Button fx:id="confirmButton" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" text="Ja">
                            <HBox.margin>
                               <Insets bottom="20.0" />
-                           </HBox.margin></Button>
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="approve-button" />
+                              <String fx:value="standard-text" />
+                           </styleClass></Button>
                         <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#closeConfirmationView" onMouseClicked="#closeConfirmationView" text="Avbryt">
                            <HBox.margin>
                               <Insets bottom="20.0" />
-                           </HBox.margin></Button>
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="cancel-button" />
+                              <String fx:value="standard-text" />
+                           </styleClass></Button>
                      </children>
                   </HBox>
                </children>
