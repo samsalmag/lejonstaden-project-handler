@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -41,9 +42,12 @@ public class AXEN2021 extends Application {
 
         Scene scene = new Scene(rootFXML, 1366, 768);
         stage.setScene(scene);
-        stage.setFullScreen(true);
-        String title = "AXE-N 2021";
+        stage.setMaximized(true);
+        stage.setMinWidth(821);
+        stage.setMinHeight(550);
+        String title = "AB Lejonstaden Projekthanterare";
         stage.setTitle(title);
+        stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("images/logo128x128.png")));
         stage.show();
 
         mainStage = stage;
