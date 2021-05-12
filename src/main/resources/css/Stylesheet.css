@@ -1,3 +1,5 @@
+/*------------ID---------------------*/
+
 #header{
     -fx-background-color: #FFFFFF;
 }
@@ -14,6 +16,13 @@
     -fx-font-size: 32px;
 }
 
+#cost-item {
+    -fx-background-radius: 20px;
+    -fx-background-color: #D4D4D4;
+}
+
+/*------------BUTTONS-----------------*/
+
 .project-buttons{
     -fx-background-color: #E8C261;
     -fx-background-radius: 30px;
@@ -21,32 +30,78 @@
     -fx-cursor: hand;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
 }
-
 .project-buttons:hover{
     -fx-background-color: #DEB756;
 }
-
 .project-buttons:pressed{
     -fx-background-color: #D4AD4C;
 }
-
 .project-buttons:selected{
     -fx-background-color: #C8A140;
     -fx-effect: innershadow( gaussian , rgba(0,0,0,0.5) , 3,0,2,2 );
 }
 
-.modal-window-shadow{
-    -fx-background-color: rgba(0, 0, 0, 0.75);
+
+.category-button{
+    -fx-background-color: #A0D1FA;
+    -fx-background-radius: 30px;
+    -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+.category-button:hover{
+
+}
+.category-button:pressed{
+
 }
 
-.white-background{
-    -fx-background-color: white;
+
+.cancel-button{
+    -fx-background-color: #ba3641;
+    -fx-background-radius: 5px;
+    -fx-border-color: #910612;
+    -fx-border-radius: 5px;
+    -fx-border-size: 1px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+.cancel-button:hover{
+
+}
+.cancel-button:pressed{
+
 }
 
-#defaultanchorpane-background{
-    -fx-background-image: url(/images/bakgrund-karta.jpg);
+
+.approve-button{
+    -fx-background-color: #45b04f;
+    -fx-background-radius: 5px;
+    -fx-border-color: #0d7817;
+    -fx-border-radius: 5px;
+    -fx-border-size: 1px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+.approve-button:hover{
 
 }
+.approve-button:pressed{
+
+}
+
+
+.change-view-button{
+
+}
+.change-view-button:hover{
+
+}
+.change-view-button:pressed{
+
+}
+
+/*------------FONT-SIZES-----------------*/
 
 .standard-text{
     -fx-font-size: 18px;
@@ -60,20 +115,18 @@
     -fx-font-size: 28px;
 }
 
-.category-button{
-    -fx-background-color: #A0D1FA;
-    -fx-background-radius: 30px;
-    -fx-text-align: center;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+/*------------BACKGROUNDS----------------*/
+
+.modal-window-shadow{
+    -fx-background-color: rgba(0, 0, 0, 0.75);
 }
 
-.category-button:hover{
-
+.white-background{
+    -fx-background-color: white;
 }
 
-.category-button:pressed{
-
+.background-image{
+    -fx-background-image: url(/images/bakgrund-karta.jpg);
 }
 
 .grey-out-text-field{
@@ -81,9 +134,4 @@
     -fx-border-color: #B6C4C3;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-}
-
-#cost-item {
-    -fx-background-radius: 20px;
-    -fx-background-color: #D4D4D4;
 }
