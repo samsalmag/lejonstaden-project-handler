@@ -15,7 +15,7 @@
 
 <BorderPane minHeight="540.0" minWidth="1250.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane minWidth="850.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="mainAnchorPane" focusTraversable="true" minWidth="850.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

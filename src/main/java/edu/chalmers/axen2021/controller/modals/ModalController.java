@@ -5,15 +5,19 @@ import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.CostItem;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Controller class for the applications modalWindow.fxml.
@@ -24,7 +28,7 @@ import java.util.ArrayList;
  * @author Sam Salek
  */
 @FXMLController
-public class ModalController {
+public class ModalController implements Initializable {
 
     /**
      * Parent controller.
@@ -35,6 +39,11 @@ public class ModalController {
      * Instance of the project manager.
      */
     private ProjectManager projectManager = ProjectManager.getInstance();
+
+    /**
+     * Main root node for this .fxml.
+     */
+    @FXML private AnchorPane mainAnchorPane;
 
     /**
      * TilePane in the modalWindow containing modalWindowItems.
@@ -49,10 +58,9 @@ public class ModalController {
     /**
      * Method for closing the modalWindow.
      * Puts the modalWindowAnchorPane to back in scene.
-     * @param event that triggered the method.
      */
     @FXML
-    private void closeModalWindow(Event event) {
+    private void closeModalWindow() {
         rootController.closeModalWindow();
     }
 
@@ -62,6 +70,11 @@ public class ModalController {
     @FXML
     private void openAddNewCostView() {
         rootController.openAddNewCostView();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initMainAnchorPane();
     }
 
     /**
@@ -109,6 +122,18 @@ public class ModalController {
             e.printStackTrace();
         }
         modalWindowItemVBox.getChildren().add(0, costItemNode);
+    }
+
+    /**
+     * Initializes the main root node (the AnchorPane).
+     */
+    private void initMainAnchorPane() {
+        mainAnchorPane.setOnKeyPressed(keyEvent -> {
+            // If 'Escape' is pressed then close view
+            if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                closeModalWindow();
+            }
+        });
     }
 
     /**

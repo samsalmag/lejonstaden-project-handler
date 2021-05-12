@@ -337,6 +337,7 @@ public class RootController {
         modalController.setCategoryNameLabelText(clickedCategory.getName());
         modalController.populateCostItems();
         modalAnchorPane.toFront();
+        modalController.getModalWindowItemVBox().requestFocus(); // Sets focus to modal window. Is needed for onKeyPressed events.
     }
 
     /**
@@ -423,5 +424,6 @@ public class RootController {
     public void closeAddNewCostView() {
         addNewCostAnchorPane.toBack();
         addNewCostController.getCostNameTextField().clear();
+        modalController.getModalWindowItemVBox().requestFocus();  // Returns focus to modal window. Is needed for onKeyPressed events.
     }
 }
