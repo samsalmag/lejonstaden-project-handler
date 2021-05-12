@@ -28,7 +28,7 @@
       </Label>
       <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" minWidth="550.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" minWidth="600.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="caption-text" text="Lägenhetsdata">
                      <VBox.margin>

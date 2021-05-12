@@ -87,7 +87,7 @@
          <children>
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxWidth="80.0" styleClass="standard-text" text="Hyra/mån Låg" textAlignment="CENTER" wrapText="true" />
+                  <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="Hyra/mån Låg" textAlignment="CENTER" wrapText="true" />
                   <TextField fx:id="rentMonthLow" editable="false" maxWidth="100.0" minWidth="75.0">
                      <VBox.margin>
                         <Insets />
@@ -114,7 +114,7 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxWidth="80.0" styleClass="standard-text" text="Hyra/mån Hög" textAlignment="CENTER" wrapText="true" />
+                  <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="Hyra/mån Hög" textAlignment="CENTER" wrapText="true" />
                   <TextField fx:id="rentMonthHigh" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
