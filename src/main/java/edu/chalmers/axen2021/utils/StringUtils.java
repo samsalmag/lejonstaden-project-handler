@@ -16,6 +16,7 @@ public class StringUtils {
 
     public static Double convertToDouble(String s) {
         s = s.replaceAll(",", ".");
+        s = s.replaceAll("%", "");
         return Double.parseDouble(s);
     }
 }

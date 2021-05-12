@@ -92,6 +92,7 @@ public class InputController implements Initializable {
     @FXML private Label titleLabel;
 
     private DecimalFormat df;
+    private DecimalFormat dfPercent;
 
 
     /**
@@ -119,6 +120,9 @@ public class InputController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         df = new DecimalFormat("#");
         df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
+
+        dfPercent = new DecimalFormat("#.###");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
 
         initInputFieldsList();
         initTextFieldProperties();
@@ -156,7 +160,7 @@ public class InputController implements Initializable {
 
             //Adds property to TextField allowing users to only input numbers and ",".
             textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                if(!newValue.matches("((100)|[0-9]{0,2}([,][0-9]{0,3})?)")){
+                if(!newValue.matches("((100)|[0-9]{0,2}([,][0-9]{0,3})?)[%]?")){
                     textField.setText(oldValue);
                 }
             });
@@ -287,7 +291,7 @@ public class InputController implements Initializable {
         antagenPresumtionshyra.setText(df.format(projectManager.getActiveProject().getAntagenPresumtionshyra()));
         totalBoa.setText(df.format(projectManager.getActiveProject().getTotalBoa()));
         totalLjusBta.setText(df.format(projectManager.getActiveProject().getTotalLjusBta()));
-        oforutsett.setText("" + projectManager.getActiveProject().getOforutsettPercent());
+        oforutsett.setText(dfPercent.format(projectManager.getActiveProject().getOforutsettPercent()) + "%");
     }
 
     /**
@@ -392,8 +396,8 @@ public class InputController implements Initializable {
         tomtrattsavgaldUtanStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldUtanStod()));
         driftnettoMedStod.setText(df.format(projectManager.getActiveProject().getDriftnettoMedStod()));
         driftnettoUtanStod.setText(df.format(projectManager.getActiveProject().getDriftnettoUtanStod()));
-        yieldMedStod.setText(df.format(projectManager.getActiveProject().getYieldMedStod()));
-        yieldUtanStod.setText(df.format(projectManager.getActiveProject().getYieldUtanStod()));
+        yieldMedStod.setText(dfPercent.format(projectManager.getActiveProject().getYieldMedStod()) + "%");
+        yieldUtanStod.setText(dfPercent.format(projectManager.getActiveProject().getYieldUtanStod()) + "%");
         marknadsvardeMedStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeMedStod()));
         marknadsvardeUtanStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
     }
