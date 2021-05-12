@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,13 +27,18 @@ public class AddNewCostController implements Initializable {
     private RootController rootController = RootController.getInstance();
 
     /**
+     * Main root node for this .fxml.
+     */
+    @FXML private VBox mainVBox;
+
+    /**
      * The input text field.
      */
-    @FXML
-    private TextField costNameTextField;
+    @FXML private TextField costNameTextField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initMainVBox();
         initTextField();
     }
 
@@ -69,19 +75,26 @@ public class AddNewCostController implements Initializable {
     }
 
     /**
+     * Initializes the main root node (the VBox)
+     */
+    private void initMainVBox() {
+        mainVBox.setOnKeyPressed(keyEvent -> {
+            // If 'Escape' is pressed then close view
+            if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                closeAddNewCostView();
+            }
+        });
+    }
+
+    /**
      * Initializes the TextField for cost item name input.
      */
     private void initTextField() {
-
         // On key pressed event
         costNameTextField.setOnKeyPressed(keyEvent -> {
             // If 'Enter' is pressed then add new cost item.
             if(keyEvent.getCode().equals(KeyCode.ENTER)) {
                 addNewCost();
-            }
-            // If 'Escape' is pressed then close view
-            else if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
-                closeAddNewCostView();
             }
         });
     }

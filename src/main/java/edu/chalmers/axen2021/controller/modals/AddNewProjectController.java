@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +27,15 @@ public class AddNewProjectController implements Initializable {
      */
     private RootController rootController = RootController.getInstance();
 
+    /**
+     * The regex used to check input when adding the project. Disallows illegal characters.
+     */
     private static String regex = "^$|^[0-9a-zA-ZåÅäÄöÖ\\s\\^\\&\\'\\@\\{\\}\\[\\]\\,\\$\\=\\!\\-\\#\\(\\)\\%\\+\\~\\_ ]+$";
+
+    /**
+     * Main root node for this .fxml.
+     */
+    @FXML private VBox mainVBox;
 
     /**
      * The input text field.
@@ -35,6 +44,7 @@ public class AddNewProjectController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initMainVBox();
         initTextField();
     }
 
@@ -77,6 +87,18 @@ public class AddNewProjectController implements Initializable {
     }
 
     /**
+     * Initializes the main root node (the VBox)
+     */
+    private void initMainVBox() {
+        mainVBox.setOnKeyPressed(keyEvent -> {
+            // If 'Escape' is pressed then close view
+            if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                closeAddNewProjectView();
+            }
+        });
+    }
+
+    /**
      * Initializes the TextField for project name input.
      */
     private void initTextField() {
@@ -98,10 +120,6 @@ public class AddNewProjectController implements Initializable {
             // If 'Enter' is pressed then add new project.
             if(keyEvent.getCode().equals(KeyCode.ENTER)) {
                 addNewProject();
-            }
-            // If 'Escape' is pressed then close view
-            else if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
-                closeAddNewProjectView();
             }
         });
     }
