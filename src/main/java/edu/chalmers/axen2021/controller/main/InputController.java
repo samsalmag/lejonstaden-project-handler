@@ -235,7 +235,7 @@ public class InputController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lagenhetsTypVbox.getChildren().add(apartmentTypeNode);
+        lagenhetsTypVbox.getChildren().add(0, apartmentTypeNode);
     }
 
     /**
