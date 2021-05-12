@@ -125,7 +125,7 @@ public class CostItemController implements Initializable {
     }
 
     /**
-     * Removes cost item.
+     * Opens the confirmation window when removing a cost item.
      */
     @FXML
     private void openRemoveConfirmation(){

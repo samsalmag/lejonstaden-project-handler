@@ -188,11 +188,7 @@ public class InputController implements Initializable {
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
         Category category = Category.fromString(((Button)event.getSource()).getText());
-        ProjectManager.getInstance().setActiveCategory(category);
-
-        rootController.getModalController().setCategoryNameLabelText(category.getName());
-        rootController.getModalController().populateCostItems();
-        rootController.getModalAnchorPane().toFront();
+        rootController.openModalWindow(category);
     }
 
     /**
@@ -203,10 +199,8 @@ public class InputController implements Initializable {
     @FXML
     private void addNewApartmentItem(ActionEvent event) {
         ApartmentItem newApartmentItem = projectManager.getActiveProject().addApartmentItem();
-
         createNewLagenhetstypView(newApartmentItem);
         updateAllTextFields();
-
         SaveManager.getInstance().saveProject(projectManager.getActiveProject());
     }
 

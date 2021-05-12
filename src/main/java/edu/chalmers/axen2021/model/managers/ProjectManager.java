@@ -206,37 +206,4 @@ public class ProjectManager implements Serializable {
     public ArrayList<String> getActiveCostItemNames() {
         return costItemNamesMap.get(activeCategory);
     }
-
-    // GETTERS FOR COST ITEM NAMES LISTS
-    public ArrayList<String> getTomtkostnader() {
-        return costItemNamesMap.get(Category.TOMTKOSTNADER);
-    }
-
-    public ArrayList<String> getNedlagdaByggherre() {
-        return costItemNamesMap.get(Category.NEDLAGDABYGGHERRE);
-    }
-
-    public ArrayList<String> getAnslutningar() {
-        return costItemNamesMap.get(Category.ANSLUTNINGAR);
-    }
-
-    public ArrayList<String> getByggherrekostnader() {
-        return costItemNamesMap.get(Category.BYGGHERREKOSTNADER);
-    }
-
-    public ArrayList<String> getEntrepenad() {
-        return costItemNamesMap.get(Category.ENTREPENAD);
-    }
-
-    public ArrayList<String> getFinansiellaKostnader() {
-        return costItemNamesMap.get(Category.FINANSIELLAKOSTNADER);
-    }
-
-    public ArrayList<String> getHyresintäkter() {
-        return costItemNamesMap.get(Category.HYRESINTÄKTER);
-    }
-
-    public ArrayList<String> getDriftOchUnderhåll() {
-        return costItemNamesMap.get(Category.DRIFTOCHUNDERHÅLL);
-    }
 }

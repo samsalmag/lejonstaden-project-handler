@@ -41,8 +41,7 @@ public class SideBarController {
      */
     @FXML
     private void openAddNewProjectView() {
-        rootController.getAddNewProjectAnchorPane().toFront();
-        rootController.focusTextField(ItemType.PROJECT);   // Focus the text field for project name input.
+        rootController.openAddNewProjectView();
     }
 
     /**
@@ -63,6 +62,9 @@ public class SideBarController {
         projectItemVbox.getChildren().add(sideBarItemNode);
     }
 
+    /**
+     * Clears all project buttons.
+     */
     public void clearAllProjectButtons(){
         projectItemVbox.getChildren().clear();
     }
@@ -76,6 +78,10 @@ public class SideBarController {
         }
     }
 
+    /**
+     * Sets the active project button based on project name.
+     * @param projectName Name of the project.
+     */
     public void setActiveButton(String projectName){
         for(Node button : projectItemVbox.getChildren()){
             if( ( (ToggleButton) button).getText().equals(projectName)){
