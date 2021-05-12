@@ -53,16 +53,11 @@ public class PdfManager {
             e.printStackTrace();
         }
     }
-    private static Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
+    private static Font arialSmall = new Font(arialBase, 12, Font.NORMAL);
     private static Font arialNormal = new Font(arialBase, 12, Font.NORMAL);
     private static Font arialNormalBold = new Font(arialBase, 12, Font.BOLD);
     private static Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
-
-    private static Font arialSmall = new Font(base, 12, Font.NORMAL);
-    private static Font arialNormal = new Font(base, 12, Font.NORMAL);
-    private static Font arialNormalBold = new Font(base, 12, Font.BOLD);
-    private static Font arialBigBold = new Font(base, 16, Font.BOLD);
-    private static Font arialSmallBold = new Font(base, 12, Font.BOLD);
+    private static Font arialSmallBold = new Font(arialBase, 12, Font.BOLD);
 
     // Singleton. Use getInstance().
     private PdfManager(){}

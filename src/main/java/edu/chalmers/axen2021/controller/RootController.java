@@ -273,10 +273,18 @@ public class RootController {
         projectManager.removeProject(projectName);
         sideBarController.clearAllProjectButtons();
         sideBarController.populateProjectButtons();
-        if(projectName.equals(projectManager.getActiveProject().getName())){
+
+        // If there is no active project: only bring center stage to front.
+        if(projectManager.getActiveProject() == null) {
+            defaultCenterStageAnchorPane.toFront();
+        }
+        // If the active project is the project being removed: set active project to null and bring center stage to front.
+        else if(projectName.equals(projectManager.getActiveProject().getName())){
             projectManager.setActiveProject(null);
             defaultCenterStageAnchorPane.toFront();
-        } else {
+        }
+        // If there is a active project but it is not the project being removed: Toggle the active project's button.
+        else {
             sideBarController.setActiveButton(projectManager.getActiveProject().getName());
         }
     }
