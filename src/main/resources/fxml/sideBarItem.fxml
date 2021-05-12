@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToggleButton?>
 
-<ToggleButton fx:id="button" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="155.0" mnemonicParsing="false" onAction="#onClick" styleClass="project-buttons" stylesheets="@../css/Stylesheet.css" text="ToggleButton" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ToggleButton fx:id="button" maxHeight="40.0" maxWidth="230.0" minHeight="40.0" minWidth="185.0" mnemonicParsing="false" onAction="#onClick" stylesheets="@../css/Stylesheet.css" text="ToggleButton" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <contextMenu>
       <ContextMenu>
          <items>
@@ -14,4 +15,8 @@
          </items>
       </ContextMenu>
    </contextMenu>
+   <styleClass>
+      <String fx:value="project-buttons" />
+      <String fx:value="standard-text" />
+   </styleClass>
 </ToggleButton>

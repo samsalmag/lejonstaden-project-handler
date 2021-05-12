@@ -22,7 +22,7 @@
                      <children>
                         <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label fx:id="categoryNameLabel" text="Knapp namn">
+                              <Label fx:id="categoryNameLabel" styleClass="caption-text" text="Knapp namn">
                                  <padding>
                                     <Insets left="50.0" />
                                  </padding>
@@ -49,8 +49,8 @@
                   </ScrollPane>
                   <HBox alignment="CENTER" maxHeight="100.0" minHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#openAddNewCostView" text="Lägg till kostnad" HBox.hgrow="ALWAYS" />
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeModalWindow" text="Stäng" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#openAddNewCostView" styleClass="standard-text" text="Lägg till kostnad" HBox.hgrow="ALWAYS" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeModalWindow" styleClass="standard-text" text="Stäng" />
                      </children>
                   </HBox>
                </children>
