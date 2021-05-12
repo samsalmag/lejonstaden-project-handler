@@ -4,10 +4,10 @@ import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,10 +41,9 @@ public class AddNewProjectController implements Initializable {
     /**
      * Method for closing the addNewProjectView.
      * Puts the addNewProjectView to back in scene.
-     * @param event that triggered the method.
      */
     @FXML
-    private void closeAddNewProjectView(Event event) {
+    private void closeAddNewProjectView() {
         rootController.closeAddNewProjectView();
     }
 
@@ -91,6 +90,18 @@ public class AddNewProjectController implements Initializable {
             // Check if it matches the regex
             if(!newValue.matches(regex)){
                 projectNameTextField.setText(oldValue);
+            }
+        });
+
+        // On key pressed event
+        projectNameTextField.setOnKeyPressed(keyEvent -> {
+            // If 'Enter' is pressed then add new project.
+            if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+                addNewProject();
+            }
+            // If 'Escape' is pressed then close view
+            else if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                closeAddNewProjectView();
             }
         });
     }
