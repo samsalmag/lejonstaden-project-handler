@@ -2,6 +2,7 @@ package edu.chalmers.axen2021.controller.items;
 
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.utils.StringUtils;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +24,15 @@ import java.util.ResourceBundle;
 @FXMLController
 public class ApartmentItemController implements Initializable {
 
+    /**
+     * Root controller.
+     */
     private RootController rootController = RootController.getInstance();
+
+    /**
+     * Main root node for this .fxml.
+     */
+    @FXML private VBox mainVBox;
 
     /**
      * MenuButton in the .fxml for choosing apartment type.
@@ -40,6 +50,41 @@ public class ApartmentItemController implements Initializable {
     @FXML private TextField amountTextField;
 
     /**
+     * TextField in the .fxml for rent/month low.
+     */
+    @FXML private TextField rentPerMonthLowTextField;
+
+    /**
+     * TextField in the .fxml for kr/kvm low.
+     */
+    @FXML private TextField krPerKvmLowTextField;
+
+    /**
+     * TextField in the .fxml for rent/month high.
+     */
+    @FXML private TextField rentPerMonthHighTextField;
+
+    /**
+     * TextField in the .fxml for kr/kvm high.
+     */
+    @FXML private TextField krPerKvmHighTextField;
+
+    /**
+     * TextField in the .fxml for full BOA.
+     */
+    @FXML private TextField fullBOATextField;
+
+    /**
+     * TextField in the .fxml for full BOA percent.
+     */
+    @FXML private TextField fullBOAPercentTextField;
+
+    /**
+     * TextField in the .fxml for bidrag.
+     */
+    @FXML private TextField bidragTextField;
+
+    /**
      * Apartment for this controller's instance.
      */
     private ApartmentItem apartmentItem;
@@ -54,10 +99,27 @@ public class ApartmentItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setBackgroundColor();
         setInitialValues();
         initMenuButtonProperties();
         initBOATextField();
         initAmountTextField();
+    }
+
+    /**
+     * This method goes back and forth between two different colors for every other ApartmentItem views background color.
+     * Reason is to differentiate the different ApartmentItem views when multiple of them are added to the project.
+     */
+    private void setBackgroundColor() {
+        // Gets the index of this apartmentItem in the active project
+        int itemIndex = ProjectManager.getInstance().getActiveProject().getApartmentItems().indexOf(apartmentItem);
+
+        // Go back and forth between the background color
+        if(itemIndex % 2 == 0) {
+            mainVBox.setStyle("-fx-background-color: #f4f4f4");
+        } else {
+            mainVBox.setStyle("-fx-background-color: #e3e3e3");
+        }
     }
 
     /**
@@ -71,6 +133,14 @@ public class ApartmentItemController implements Initializable {
         apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
+
+        rentPerMonthLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
+        krPerKvmLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
+        rentPerMonthHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
+        krPerKvmHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
+        fullBOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getFullBOA()));
+        fullBOAPercentTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getFullBOAPercent()));
+        bidragTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBidrag()));
     }
 
     /**

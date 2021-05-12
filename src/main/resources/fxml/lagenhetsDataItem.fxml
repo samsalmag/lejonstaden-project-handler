@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" minWidth="550.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainVBox" alignment="CENTER" minWidth="550.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
@@ -92,7 +92,7 @@
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="Hyra/mån Låg" textAlignment="CENTER" wrapText="true" />
-                  <TextField fx:id="rentMonthLow" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="rentPerMonthLowTextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -106,7 +106,7 @@
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="kr/kvm Låg" textAlignment="CENTER" wrapText="true" />
-                  <TextField fx:id="krPerKvmLowRent" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="krPerKvmLowTextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
                         <String fx:value="standard-text" />
@@ -116,7 +116,7 @@
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="Hyra/mån Hög" textAlignment="CENTER" wrapText="true" />
-                  <TextField fx:id="rentMonthHigh" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="rentPerMonthHighTextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
                         <String fx:value="standard-text" />
@@ -130,7 +130,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="krPerKvmHighRent" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="krPerKvmHighTextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
                         <String fx:value="standard-text" />
@@ -140,7 +140,7 @@
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="standard-text" text="Full BOA" />
-                  <TextField fx:id="totalBoaPerAptType" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="fullBOATextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
                         <String fx:value="standard-text" />
@@ -150,7 +150,7 @@
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="standard-text" text="Full BOA %" />
-                  <TextField fx:id="percentOfTotArea" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="fullBOAPercentTextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
                         <String fx:value="standard-text" />
@@ -160,7 +160,7 @@
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="standard-text" text="Bidrag" />
-                  <TextField fx:id="bidragPerAptType" editable="false" maxWidth="100.0" minWidth="75.0">
+                  <TextField fx:id="bidragTextField" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />
                         <String fx:value="standard-text" />
