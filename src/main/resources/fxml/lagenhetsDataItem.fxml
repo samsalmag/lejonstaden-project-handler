@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" minWidth="550.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" minWidth="550.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
@@ -75,7 +75,11 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#openRemoveConfirmation" styleClass="standard-text" text="Ta bort" />
+                  <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort">
+                     <styleClass>
+                        <String fx:value="standard-text" />
+                        <String fx:value="remove-button" />
+                     </styleClass></Button>
                </children>
             </VBox>
          </children>

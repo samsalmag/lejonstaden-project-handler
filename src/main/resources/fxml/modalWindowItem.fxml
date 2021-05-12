@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="nameLabel" alignment="CENTER" styleClass="caption-text" text="Kostnad" textAlignment="CENTER" wrapText="true">
          <font>
@@ -43,10 +44,14 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <Button mnemonicParsing="false" onAction="#openRemoveConfirmation" styleClass="standard-text" text="Ta bort kostnad">
+            <Button mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort kostnad">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <styleClass>
+                  <String fx:value="standard-text" />
+                  <String fx:value="remove-button" />
+               </styleClass>
             </Button>
          </children>
       </HBox>
