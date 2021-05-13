@@ -1,5 +1,8 @@
 package edu.chalmers.axen2021.model;
 
+import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  */
 public class ApartmentData {
     private SaboTable sabo;
-    private final int rh = 121; // Swedish standard value
+    private final double rhFactor = 77/121; // Swedish standard value
 
     public ApartmentData() {
         this.sabo = new SaboTable();
@@ -20,11 +23,11 @@ public class ApartmentData {
      * Calculates and returns the monthly rent.
      * @param type apartment type, no of rooms
      * @param rent normrent if low, presumed rent if high
-     * @param boa living area of the apartment
+     * @param boa living area of the apartment type
      * @return high or low monthly rent depending on the rent
      */
     public double getMonthlyRent(String type, double rent, double boa) {
-        return (sabo.getRE(type)+boa)*((rent*77)/rh)/12;
+        return ((sabo.getRE(type)+boa)*rent*rhFactor)/12;
     }
 
     /**
@@ -36,6 +39,22 @@ public class ApartmentData {
      */
     public double getKrPerSqm(String type, double rent, double boa) {
         return getMonthlyRent(type, rent, boa)*12/boa;
+    }
+
+    /**
+     * Calculates and returns the general kr per sqm for all apts in the project.
+     * @param apartments List of all apartments in the project.
+     * @param rent normrent if low, presumed rent if high
+     * @return kr per sqm of the project
+     */
+    public double getTotalKrPerSqm(ArrayList<ApartmentItem> apartments, double rent) {
+        double totalBoa = 0.0;
+        double krPerSqm = 0.0;
+        for (ApartmentItem a : apartments) {
+            totalBoa += (a.getBOA()*a.getAmount());
+            krPerSqm += (getKrPerSqm(a.getApartmentType(), rent, a.getBOA())*a.getBOA()*a.getAmount());
+        }
+        return krPerSqm/totalBoa;
     }
 
     /**

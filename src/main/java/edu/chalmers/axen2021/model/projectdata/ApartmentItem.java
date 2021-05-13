@@ -79,9 +79,7 @@ public class ApartmentItem implements Serializable {
         return totalBOA;
     }
 
-    public void setTotalBOA(double totalBOA) {
-        this.totalBOA = totalBOA;
-    }
+    public void setTotalBOA(double totalBOA) { this.totalBOA = totalBOA; }
 
     public double getTotalBOAPercent() {
         return totalBOAPercent;
