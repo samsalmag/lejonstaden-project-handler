@@ -127,8 +127,8 @@ public class ProjectManager implements Serializable {
     }
 
     /**
-     * Getter method used to get project from project name
-     * @param projectName the project that should be returned from projectName
+     * Getter method used to get project from project name.
+     * @param projectName The project that should be returned from projectName.
      */
     public Project getProject(String projectName) {
         if(projectName == null) {
@@ -142,7 +142,7 @@ public class ProjectManager implements Serializable {
         }
 
         // Throws exception if it did not return in the if-statement above.
-        throw new IllegalArgumentException("Could not set active project from project button name (button name is not a project)");
+        throw new IllegalArgumentException("Could not find a project with name \"" + projectName + "\"!");
     }
 
     /**

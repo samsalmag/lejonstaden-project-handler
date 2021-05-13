@@ -2,8 +2,8 @@ package edu.chalmers.axen2021.controller.modals;
 
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
-import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
+import edu.chalmers.axen2021.model.projectdata.Project;
 import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,13 +15,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller class for the applications addNewProjectView.fxml.
- * Handles all event triggered in the addNewProjectView.
- * @author Erik Wetter
+ * Controller class for the applications changeProjectName.fxml.
+ * Handles all event triggered in the changeProjectName.
  * @author Sam Salek
  */
 @FXMLController
-public class AddNewProjectController implements Initializable {
+public class ChangeProjectNameController implements Initializable {
 
     /**
      * The parent controller
@@ -31,12 +30,18 @@ public class AddNewProjectController implements Initializable {
     /**
      * Main root node for this .fxml.
      */
-    @FXML private VBox mainVBox;
+    @FXML
+    private VBox mainVBox;
 
     /**
      * The input text field.
      */
     @FXML private TextField projectNameTextField;
+
+    /**
+     * The current name of the project that's getting its name changed.
+     */
+    private String currentProjectName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,20 +50,20 @@ public class AddNewProjectController implements Initializable {
     }
 
     /**
-     * Method for closing the addNewProjectView.
-     * Puts the addNewProjectView to back in scene.
+     * Method for closing the changeProjectNameView.
+     * Puts the changeProjectNameView to back in the scene.
      */
     @FXML
-    private void closeAddNewProjectView() {
-        rootController.closeAddNewProjectView();
+    private void closeChangeProjectNameView() {
+        rootController.closeChangeProjectNameView();
     }
 
     /**
-     * Method for on addProject button clicked.
-     * Adds sideBarItem to the SideBar for the new project.
+     * Method for on changeProjectName button clicked.
+     * Changes the name of the project in question.
      */
     @FXML
-    private void addNewProject() {
+    private void changeProjectName() {
 
         // Project name input can't be empty.
         if(projectNameTextField.getText().equals("") || projectNameTextField.getText().equals(null)) {
@@ -77,9 +82,8 @@ public class AddNewProjectController implements Initializable {
             }
         }
 
-        rootController.addProject(projectNameTextField.getText());
-        rootController.updateInputView();
-        rootController.closeAddNewProjectView();
+        rootController.renameProject(currentProjectName, projectNameTextField.getText());
+        rootController.closeChangeProjectNameView();
     }
 
     /**
@@ -89,7 +93,7 @@ public class AddNewProjectController implements Initializable {
         mainVBox.setOnKeyPressed(keyEvent -> {
             // If 'Escape' is pressed then close view
             if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
-                closeAddNewProjectView();
+                closeChangeProjectNameView();
             }
         });
     }
@@ -115,9 +119,17 @@ public class AddNewProjectController implements Initializable {
         projectNameTextField.setOnKeyPressed(keyEvent -> {
             // If 'Enter' is pressed then add new project.
             if(keyEvent.getCode().equals(KeyCode.ENTER)) {
-                addNewProject();
+                changeProjectName();
             }
         });
+    }
+
+    /**
+     * Sets the current name of the project to change name of.
+     * @param currentProjectName Current name of the project.
+     */
+    public void setCurrentProjectName(String currentProjectName) {
+        this.currentProjectName = currentProjectName;
     }
 
     /**

@@ -246,13 +246,17 @@ public class Project implements Serializable {
         }
     }
 
-    // ------------------ GETTERS ------------------ //
+    // ------------------ GETTERS & SETTERS------------------ //
     /**
      * Getter for the name of the project.
      * @return Name of the project.
      */
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

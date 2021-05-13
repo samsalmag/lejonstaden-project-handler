@@ -60,14 +60,6 @@ public class SideBarItemController implements Initializable {
     }
 
     /**
-     * Method for creating a PDF for the project when a button is clicked.
-     */
-    @FXML
-    private void createPdf() {
-        rootController.createPdf(projectName);
-    }
-
-    /**
      * Method for when button is clicked
      * @param event of action.
      */
@@ -81,6 +73,22 @@ public class SideBarItemController implements Initializable {
         ProjectManager.getInstance().setActiveProject(button.getText());
         rootController.setActiveProjectButton(projectName);
         rootController.updateSummaryView();
+    }
+
+    /**
+     * Method for creating a PDF for the project when a button is clicked.
+     */
+    @FXML
+    private void openChangeNameView() {
+        rootController.openChangeProjectNameView(projectName);
+    }
+
+    /**
+     * Method for creating a PDF for the project when a button is clicked.
+     */
+    @FXML
+    private void createPdf() {
+        rootController.createPdf(projectName);
     }
 
     /**

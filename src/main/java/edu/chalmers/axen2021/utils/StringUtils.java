@@ -8,7 +8,7 @@ package edu.chalmers.axen2021.utils;
 public class StringUtils {
 
     /**
-     * The regex used on project name input.
+     * The regex used to check project name input. Disallows illegal characters.
      */
     public static String projectNameRegex = "^$|^[0-9a-zA-ZåÅäÄöÖ\\s\\^\\&\\'\\@\\{\\}\\[\\]\\,\\$\\=\\!\\-\\#\\(\\)\\%\\+\\~\\_ ]+$";
 

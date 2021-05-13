@@ -5,10 +5,7 @@ import edu.chalmers.axen2021.controller.main.HeaderController;
 import edu.chalmers.axen2021.controller.main.InputController;
 import edu.chalmers.axen2021.controller.main.SideBarController;
 import edu.chalmers.axen2021.controller.main.SummaryViewController;
-import edu.chalmers.axen2021.controller.modals.AddNewCostController;
-import edu.chalmers.axen2021.controller.modals.AddNewProjectController;
-import edu.chalmers.axen2021.controller.modals.ConfirmationController;
-import edu.chalmers.axen2021.controller.modals.ModalController;
+import edu.chalmers.axen2021.controller.modals.*;
 import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.managers.PdfManager;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
@@ -56,6 +53,7 @@ public class RootController {
     private SummaryViewController summaryViewController;
     private InputController inputController;
     private ConfirmationController confirmationController;
+    private ChangeProjectNameController changeProjectNameController;
 
     // Private accessible nodes.
     // Need these to be able to switch between the two views (input and summary).
@@ -117,6 +115,11 @@ public class RootController {
     @FXML private AnchorPane confirmationAnchorPane;
 
     /**
+     * AnchorPane for changeProjectName.fxml in root.fxml
+     */
+    @FXML private AnchorPane changeProjectNameAnchorPane;
+
+    /**
      * Initialize method that starts up the first scene and all its children.
      */
     public void initialize() {
@@ -130,6 +133,7 @@ public class RootController {
         inputController = new InputController();
         summaryViewController = new SummaryViewController();
         confirmationController = new ConfirmationController();
+        changeProjectNameController = new ChangeProjectNameController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -140,6 +144,7 @@ public class RootController {
         inputWindowNode = initFXML(centerStageAnchorPane, "inputView.fxml", inputController);
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
         initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
+        initFXML(changeProjectNameAnchorPane, "changeProjectNameView.fxml", changeProjectNameController);
 
         defaultCenterStageAnchorPane.toFront();
 
@@ -238,6 +243,25 @@ public class RootController {
     public void createPdf(String projectName) {
         Project project = projectManager.getProject(projectName);
         PdfManager.getInstance().makePdf(project);
+    }
+
+    /**
+     * Renames a project.
+     * @param currentName The current name of the project.
+     * @param newName The new name of the project.
+     */
+    public void renameProject(String currentName, String newName) {
+        Project project = projectManager.getProject(currentName);
+
+        // Try to remove old save file. If successful then change name.
+        if(saveManager.removeProjectFile(project)) {
+            project.setName(newName);
+            summaryViewController.updateTitle();
+            inputController.updateTitle();
+            saveManager.saveProject(project);
+            sideBarController.clearAllProjectButtons();
+            sideBarController.populateProjectButtons();
+        }
     }
 
     /**
@@ -379,25 +403,11 @@ public class RootController {
     }
 
     /**
-     * Focuses on either the project name or cost item name input TextField.
-     * @param type ItemType of the TextField to focus on.
-     */
-    public void focusTextField(ItemType type) {
-        // Focus on the TextField for the given type.
-        if (type == ItemType.PROJECT) {
-            addNewProjectController.getProjectNameTextField().requestFocus();
-
-        } else if(type == ItemType.COST_ITEM) {
-            addNewCostController.getCostNameTextField().requestFocus();
-        }
-    }
-
-    /**
      * Opens the addNewProject view.
      */
     public void openAddNewProjectView() {
         addNewProjectAnchorPane.toFront();
-        focusTextField(ItemType.PROJECT);   // Focus the text field for project name input.
+        addNewProjectController.getProjectNameTextField().requestFocus();   // Focus the text field for project name input.
     }
 
     /**
@@ -414,7 +424,7 @@ public class RootController {
      */
     public void openAddNewCostView() {
         addNewCostAnchorPane.toFront();
-        focusTextField(ItemType.COST_ITEM);   // Focus the text field for cost item name input.
+        addNewCostController.getCostNameTextField().requestFocus();   // Focus the text field for cost item name input.
     }
 
     /**
@@ -425,5 +435,22 @@ public class RootController {
         addNewCostAnchorPane.toBack();
         addNewCostController.getCostNameTextField().clear();
         modalController.getModalWindowItemVBox().requestFocus();  // Returns focus to modal window. Is needed for onKeyPressed events.
+    }
+
+    /**
+     * Opens the changeProjectNameView based on changeProjectName.fxml.
+     */
+    public void openChangeProjectNameView(String currentProjectName) {
+        changeProjectNameAnchorPane.toFront();
+        changeProjectNameController.setCurrentProjectName(currentProjectName);
+        changeProjectNameController.getProjectNameTextField().setText(currentProjectName);
+        changeProjectNameController.getProjectNameTextField().requestFocus(); // Focus the text field for project name input.
+    }
+
+    /**
+     * Method for closing the changeProjectNameView. Puts the changeProjectNameView to back in the scene.
+     */
+    public void closeChangeProjectNameView() {
+        changeProjectNameAnchorPane.toBack();
     }
 }

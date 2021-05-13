@@ -9,7 +9,7 @@
    <contextMenu>
       <ContextMenu>
          <items>
-            <MenuItem mnemonicParsing="false" text="Byt namn" />
+            <MenuItem mnemonicParsing="false" onAction="#openChangeNameView" text="Byt namn" />
             <MenuItem mnemonicParsing="false" onAction="#createPdf" text="Skapa PDF" />
             <MenuItem mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort" />
          </items>
