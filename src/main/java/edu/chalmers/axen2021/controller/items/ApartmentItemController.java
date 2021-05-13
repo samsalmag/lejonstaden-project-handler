@@ -70,14 +70,14 @@ public class ApartmentItemController implements Initializable {
     @FXML private TextField krPerKvmHighTextField;
 
     /**
-     * TextField in the .fxml for full BOA.
+     * TextField in the .fxml for total BOA.
      */
-    @FXML private TextField fullBOATextField;
+    @FXML private TextField totalBOATextField;
 
     /**
-     * TextField in the .fxml for full BOA percent.
+     * TextField in the .fxml for total BOA percent.
      */
-    @FXML private TextField fullBOAPercentTextField;
+    @FXML private TextField totalBOAPercentTextField;
 
     /**
      * TextField in the .fxml for bidrag.
@@ -138,8 +138,8 @@ public class ApartmentItemController implements Initializable {
         krPerKvmLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
         rentPerMonthHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
         krPerKvmHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
-        fullBOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getFullBOA()));
-        fullBOAPercentTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getFullBOAPercent()));
+        totalBOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOA()));
+        totalBOAPercentTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOAPercent()));
         bidragTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBidrag()));
     }
 

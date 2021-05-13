@@ -12,8 +12,8 @@ public class ApartmentItem implements Serializable {
     private double krPerKvmLow;
     private double rentPerMonthHigh;
     private double krPerKvmHigh;
-    private double fullBOA;
-    private double fullBOAPercent;
+    private double totalBOA;
+    private double totalBOAPercent;
     private double bidrag;
 
     // Not instantiable outside 'projectdata' package. Add a ApartmentItem through Project class instead.
@@ -75,20 +75,20 @@ public class ApartmentItem implements Serializable {
         this.krPerKvmHigh = krPerKvmHigh;
     }
 
-    public double getFullBOA() {
-        return fullBOA;
+    public double getTotalBOA() {
+        return totalBOA;
     }
 
-    public void setFullBOA(double fullBOA) {
-        this.fullBOA = fullBOA;
+    public void setTotalBOA(double totalBOA) {
+        this.totalBOA = totalBOA;
     }
 
-    public double getFullBOAPercent() {
-        return fullBOAPercent;
+    public double getTotalBOAPercent() {
+        return totalBOAPercent;
     }
 
-    public void setFullBOAPercent(double fullBOAPercent) {
-        this.fullBOAPercent = fullBOAPercent;
+    public void setTotalBOAPercent(double totalBOAPercent) {
+        this.totalBOAPercent = totalBOAPercent;
     }
 
     public double getBidrag() {

@@ -265,8 +265,8 @@ public class PdfManager {
         table.addCell(createCell("Kr/kvm låg", arialSmall));
         table.addCell(createCell("Hyra/mån hög", arialSmall));
         table.addCell(createCell("Kr/kvm hög", arialSmall));
-        table.addCell(createCell("BOA", arialSmall));
-        table.addCell(createCell("BOA (%)", arialSmall));
+        table.addCell(createCell("Total BOA", arialSmall));
+        table.addCell(createCell("Total BOA (%)", arialSmall));
         table.addCell(createCell("Bidrag", arialSmall));
 
         // Loop through all apartment items and add a row with data for each.
@@ -433,8 +433,8 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getFullBOA())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getFullBOAPercent())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOA())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOAPercent())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall));
     }
 
