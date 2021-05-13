@@ -172,7 +172,7 @@ public class PdfManager {
             image = Image.getInstance(getClass().getResource("/images/fullLogoHD.png"));
             image.scalePercent(5);
             image.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
-            image.setAbsolutePosition(30, PageSize.A4.getHeight() - image.getScaledHeight());
+            image.setAbsolutePosition(40, PageSize.A4.getHeight() - (image.getScaledHeight() + 10));
             document.add(image);
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,6 +211,10 @@ public class PdfManager {
         }
     }
 
+    /**
+     * Adds all relevant data from "Grundforutsattningar" to the PDF.
+     * @throws DocumentException
+     */
     private void addGrundforutsattningar() throws DocumentException {
         Paragraph grundforutsattningar = new Paragraph();
         grundforutsattningar.add(new Paragraph("Grundförutsättningar:", arialNormalBold));
@@ -239,6 +243,10 @@ public class PdfManager {
         addEmptyLineToDocument(10);
     }
 
+    /**
+     * Adds all relevant data from "Lagenhetsdata" to the PDF.
+     * @throws DocumentException
+     */
     private void addLagenhetsdata() throws DocumentException {
         Paragraph lagenhetsdata = new Paragraph();
         lagenhetsdata.add(new Paragraph("Lägenhetsdata:", arialNormalBold));
@@ -261,19 +269,20 @@ public class PdfManager {
         table.addCell(createCell("BOA (%)", arialSmall));
         table.addCell(createCell("Bidrag", arialSmall));
 
+        // Loop through all apartment items and add a row with data for each.
         for(ApartmentItem apartmentItem : project.getApartmentItems()) {
             createLagenhetsCell(table, apartmentItem);
         }
 
         table.addCell(createCell("Totalt", arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, 2));
+        table.addCell(createCell("TBD", arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getNumOfApt())), arialSmall, 2));
         table.addCell(createCell("TBD", arialSmall, 2));
         table.addCell(createCell("TBD", arialSmall, 2));
         table.addCell(createCell("TBD", arialSmall, 2));
         table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, 2));
+        table.addCell(createCell("100", arialSmall, 2));
         table.addCell(createCell("TBD", arialSmall, 2));
 
         lagenhetsdata.add(table);
@@ -281,6 +290,10 @@ public class PdfManager {
         addEmptyLineToDocument(10);
     }
 
+    /**
+     * Adds all relevant data from "Projektkostnader" to the PDF.
+     * @throws DocumentException
+     */
     private void addProjektkostnader() throws DocumentException {
         Paragraph projektkostnader = new Paragraph();
         projektkostnader.setKeepTogether(true);
@@ -317,6 +330,11 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBoa())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBta())), arialSmall));
 
+        table.addCell(createCell("Finansiella kostnader", arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKkr())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBoa())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBta())), arialSmall));
+
         table.addCell(createCell("Entrepenad", arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKkr())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBoa())), arialSmall));
@@ -326,11 +344,6 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKkr())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBoa())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBta())), arialSmall));
-
-        table.addCell(createCell("Finansiella kostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBta())), arialSmall));
 
         table.addCell(createCell("Mervärdeskatt", arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKkr())), arialSmall));
@@ -352,6 +365,10 @@ public class PdfManager {
         addEmptyLineToDocument(10);
     }
 
+    /**
+     * Adds all relevant data from "Fastighetsvarde Och Resultat" to the PDF.
+     * @throws DocumentException
+     */
     private void addFastighetsvardeOchResultat() throws DocumentException {
         Paragraph fastighetsvardeOchResultat = new Paragraph();
         fastighetsvardeOchResultat.setKeepTogether(true);
@@ -403,6 +420,11 @@ public class PdfManager {
         addEmptyLineToDocument(10);
     }
 
+    /**
+     * Adds all data from an ApartmentItem to a given table as a new row.
+     * @param table The table to add the data to.
+     * @param apartmentItem The ApartmentItem to get the data from
+     */
     private void createLagenhetsCell(PdfPTable table, ApartmentItem apartmentItem) {
         table.addCell(createCell(apartmentItem.getApartmentType(), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBOA())), arialSmall));
@@ -416,12 +438,25 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall));
     }
 
+    /**
+     * Creates a new table cell.
+     * @param text The text in the cell.
+     * @param font Font for the text.
+     * @return The newly created cell.
+     */
     private PdfPCell createCell(String text, Font font) {
         PdfPCell cell = new PdfPCell(new Phrase(text, font));
         cell.setPadding(5);
         return cell;
     }
 
+    /**
+     * Creates a new table cell with a top-border.
+     * @param text The text in the cell.
+     * @param font Font for the text.
+     * @param borderTop Size of the top-border.
+     * @return The newly created cell.
+     */
     private PdfPCell createCell(String text, Font font, int borderTop) {
         PdfPCell cell = new PdfPCell(new Phrase(text, font));
         cell.setPadding(5);
@@ -429,12 +464,22 @@ public class PdfManager {
         return cell;
     }
 
+    /**
+     * Adds an empty line to the main document.
+     * @param lineSize Size of the empty line.
+     * @throws DocumentException
+     */
     private void addEmptyLineToDocument(int lineSize) throws DocumentException {
         Paragraph emptyLine = new Paragraph();
         emptyLine.add(new Paragraph(" ", new Font(arialBase, lineSize, Font.NORMAL)));
         document.add(emptyLine);
     }
 
+    /**
+     * Adds an empty line to a given paragraph.
+     * @param paragrapgh The paragraph to add the empty line to.
+     * @param lineSize Size of the empty line.
+     */
     private void addEmptyLineToParagraph(Paragraph paragrapgh, int lineSize) {
         paragrapgh.add(new Paragraph(" ", new Font(arialBase, lineSize, Font.NORMAL)));
     }
