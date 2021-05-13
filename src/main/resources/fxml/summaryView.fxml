@@ -39,10 +39,14 @@
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#addNewApartmentItem" styleClass="standard-text" text="Lägg till lägenhetstyp">
+                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#addNewApartmentItem" text="Lägg till lägenhetstyp">
                      <VBox.margin>
-                        <Insets left="150.0" right="150.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="standard-text" />
+                        <String fx:value="category-button" />
+                     </styleClass>
                   </Button>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                      <content>

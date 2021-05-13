@@ -48,7 +48,7 @@
 /*CategoryButton*/
 .category-button{
     -fx-background-color: #A0D1FA;
-    -fx-background-radius: 30px;
+    -fx-background-radius: 5px;
     -fx-text-align: center;
     -fx-cursor: hand;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);

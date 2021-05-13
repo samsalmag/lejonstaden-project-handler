@@ -50,7 +50,11 @@
                   </ScrollPane>
                   <HBox alignment="CENTER" maxHeight="100.0" minHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#openAddNewCostView" styleClass="standard-text" text="Lägg till kostnad" HBox.hgrow="ALWAYS" />
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#openAddNewCostView" text="Lägg till kostnad" HBox.hgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="standard-text" />
+                              <String fx:value="category-button" />
+                           </styleClass></Button>
                         <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeModalWindow" text="Stäng">
                            <styleClass>
                               <String fx:value="standard-text" />
