@@ -93,7 +93,7 @@
 
 /*ChangeViewButton*/
 .change-view-button{
-    -fx-background-color: #7F9EA4;
+    -fx-background-color: #92B1B8;
      -fx-background-radius: 5px;
      -fx-cursor: hand;
      -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
@@ -105,6 +105,22 @@
 
 .change-view-button:pressed{
 
+}
+
+.add-project-approve{
+    -fx-background-color: #E8C261;
+    -fx-background-radius: 5px;
+    -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.add-project-approve:hover{
+    -fx-background-color: #DEB756;
+}
+
+.add-project-approve:pressed{
+    -fx-background-color: #D4AD4C;
 }
 
 /*------------FONT-SIZES-----------------*/
@@ -156,7 +172,5 @@
 }
 
 .side-bar{
-    -fx-background-color: linear-gradient(#E2A605, #FFFFFF);
-
-    /*#E8D9B1*/
+    -fx-background-color: linear-gradient(#FCDC86, #FFFFF4);
 }
