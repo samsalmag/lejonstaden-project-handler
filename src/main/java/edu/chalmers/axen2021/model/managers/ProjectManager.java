@@ -87,6 +87,7 @@ public class ProjectManager implements Serializable {
     public void loadProjects() {
         ArrayList<Project> readProjects = SaveManager.getInstance().readProjects();
         Collections.reverse(readProjects);
+
         // If no projects were read then don't continue.
         if(readProjects.size() == 0) {
             return;
@@ -95,9 +96,6 @@ public class ProjectManager implements Serializable {
         for (Project project : readProjects) {
             addProject(project);      // Add project to 'projects' list during load.
         }
-
-        // TODO - Remove line below...maybe? Depends on if a project should be 'chosen' on startup.
-        setActiveProject(getProjects().get(0).getName());     // Sets first loaded project as the active project.
     }
 
     /**

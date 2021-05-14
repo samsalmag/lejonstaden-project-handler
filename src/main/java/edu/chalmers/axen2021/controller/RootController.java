@@ -256,8 +256,13 @@ public class RootController {
         // Try to remove old save file. If successful then change name.
         if(saveManager.removeProjectFile(project)) {
             project.setName(newName);
-            summaryViewController.updateTitle();
-            inputController.updateTitle();
+
+            // Update title only if there is a active project (throws exception if they are called while null)
+            if(projectManager.getActiveProject() != null) {
+                summaryViewController.updateTitle();
+                inputController.updateTitle();
+            }
+
             saveManager.saveProject(project);
             sideBarController.clearAllProjectButtons();
             sideBarController.populateProjectButtons();
