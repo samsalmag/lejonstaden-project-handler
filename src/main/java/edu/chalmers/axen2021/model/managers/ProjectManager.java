@@ -5,6 +5,7 @@ import edu.chalmers.axen2021.model.projectdata.Project;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -85,7 +86,7 @@ public class ProjectManager implements Serializable {
      */
     public void loadProjects() {
         ArrayList<Project> readProjects = SaveManager.getInstance().readProjects();
-
+        Collections.reverse(readProjects);
         // If no projects were read then don't continue.
         if(readProjects.size() == 0) {
             return;

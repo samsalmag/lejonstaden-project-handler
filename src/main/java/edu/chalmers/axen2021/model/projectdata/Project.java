@@ -6,6 +6,7 @@ import edu.chalmers.axen2021.model.managers.ProjectManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -193,7 +194,7 @@ public class Project implements Serializable {
         }
 
         // Sort the list to alphabetical order.
-        ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
+        ProjectManager.getInstance().getActiveCostItemNames().sort(Collections.reverseOrder());
 
         System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getName() + "!");
         return costItem;
