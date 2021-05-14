@@ -17,6 +17,10 @@
     -fx-background-color: #D4D4D4;
 }
 
+#apartment-item{
+    -fx-background-radius: 50px;
+}
+
 /*------------BUTTONS-----------------*/
 
 /*ProjectButton*/

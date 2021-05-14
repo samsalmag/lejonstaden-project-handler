@@ -7,11 +7,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="nameLabel" alignment="CENTER" styleClass="caption-text" text="Kostnad" textAlignment="CENTER" wrapText="true">
          <font>
@@ -35,6 +36,9 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <tooltip>
+                  <Tooltip text="Lägger till 25% moms på kostnaden" />
+               </tooltip>
             </CheckBox>
             <TextArea fx:id="commentTextArea" maxHeight="50.0" maxWidth="250.0" minWidth="150.0" promptText="Kommentar" styleClass="standard-text">
                <HBox.margin>
@@ -52,6 +56,9 @@
                   <String fx:value="standard-text" />
                   <String fx:value="remove-button" />
                </styleClass>
+               <tooltip>
+                  <Tooltip text="Klicka för att ta bort denna kostnaden från alla projekt" />
+               </tooltip>
             </Button>
          </children>
       </HBox>
