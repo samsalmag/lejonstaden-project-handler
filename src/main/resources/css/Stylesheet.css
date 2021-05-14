@@ -4,10 +4,6 @@
     -fx-background-color: #FFFFFF;
 }
 
-#side-bar{
-    -fx-background-color: #FDFDFD;
-}
-
 #center-stage{
     -fx-background-color: #FAFAFB;
 }
@@ -80,23 +76,27 @@
 
 /*RemoveButton*/
 .remove-button{
-    -fx-background-color: #F75252;
+    /*-fx-background-color: #F75252;*/
+    -fx-background-color: #ED6868;
     -fx-background-radius: 5px;
     -fx-cursor: hand;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
 }
 
 .remove-button:hover{
-    -fx-background-color: #ED4848;
+    -fx-background-color: #E35E5E;
 }
 
 .remove-button:pressed{
-    -fx-background-color: #E33E3E;
+    -fx-background-color: #D95454;
 }
 
 /*ChangeViewButton*/
 .change-view-button{
-
+    -fx-background-color: #7F9EA4;
+     -fx-background-radius: 5px;
+     -fx-cursor: hand;
+     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
 }
 
 .change-view-button:hover{
@@ -140,4 +140,23 @@
     -fx-border-color: #B6C4C3;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+}
+
+.header{
+    -fx-background-image: url(/images/bakgrund-bostader.jpg);
+    -fx-background-size: stretch;
+}
+
+.scroll-pane{
+    -fx-background-color:transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.side-bar{
+    -fx-background-color: linear-gradient(#E2A605, #FFFFFF);
+
+    /*#E8D9B1*/
 }
