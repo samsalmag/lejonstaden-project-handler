@@ -32,7 +32,7 @@
       </Label>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" minWidth="550.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" minWidth="550.0" styleClass="transparent" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" styleClass="caption-text" text="Lägenhetsdata">
                      <VBox.margin>
@@ -57,11 +57,11 @@
             </VBox>
             <VBox minWidth="550.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="transparent" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox>
+                        <VBox styleClass="transparent">
                            <children>
-                              <VBox alignment="CENTER" style="-fx-border-color: black;">
+                              <VBox alignment="CENTER">
                                  <children>
                                     <Label alignment="CENTER" styleClass="caption-text" text="Grundförutsättningar">
                                        <VBox.margin>
