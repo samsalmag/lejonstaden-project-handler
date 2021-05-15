@@ -55,6 +55,9 @@ public class SummaryViewController implements Initializable {
 
     @FXML private Label titleLabel;
 
+    /**
+     * Decimal formatter removing decimals.
+     */
     private DecimalFormat df;
 
     /**

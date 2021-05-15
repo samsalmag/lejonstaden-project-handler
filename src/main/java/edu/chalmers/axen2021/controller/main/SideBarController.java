@@ -2,7 +2,6 @@ package edu.chalmers.axen2021.controller.main;
 
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
-import edu.chalmers.axen2021.controller.items.ItemType;
 import edu.chalmers.axen2021.controller.items.SideBarItemController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.Project;

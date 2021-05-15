@@ -91,7 +91,13 @@ public class InputController implements Initializable {
 
     @FXML private Label titleLabel;
 
+    /**
+     * Decimal formatter removing decimals
+     */
     private DecimalFormat df;
+    /**
+     * Decimal formatter for percent labels
+     */
     private DecimalFormat dfPercent;
 
 
@@ -109,6 +115,9 @@ public class InputController implements Initializable {
      * List of all input TextFields.
      */
     private ArrayList<TextField> inputFields = new ArrayList<TextField>();
+    /**
+     * List of all percent input TextFields.
+     */
     private ArrayList<TextField> inputFieldsPercent = new ArrayList<TextField>();
 
     /**
@@ -158,7 +167,7 @@ public class InputController implements Initializable {
         }
         for(TextField textField: inputFieldsPercent){
 
-            //Adds property to TextField allowing users to only input numbers and ",".
+            //Adds property to TextField allowing users to only input percent numbers, "," and "%".
             textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue.matches("((100)|[0-9]{0,2}([,][0-9]{0,3})?)[%]?")){
                     textField.setText(oldValue);
