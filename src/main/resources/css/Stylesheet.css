@@ -104,11 +104,11 @@
 }
 
 .change-view-button:hover{
-
+    -fx-background-color: #88A7AE;
 }
 
 .change-view-button:pressed{
-
+    -fx-background-color: #7E9DA4;
 }
 
 .add-project-approve{
@@ -177,4 +177,16 @@
 
 .side-bar{
     -fx-background-color: linear-gradient(#FCDC86, #FFFFF4);
+}
+
+.image-view-cross{
+    -fx-image: url(/images/outline_close_black_24dp.png);
+}
+
+.image-view-cross:hover{
+
+}
+
+.image-view-cross:pressed{
+
 }
