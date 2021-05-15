@@ -179,7 +179,7 @@ public class RootController {
 
         // Anchor the node to its anchor pane.
         anchorPane.getChildren().add(fxmlNode);
-        setAnchors(anchorPane, fxmlNode);
+        setAnchors(fxmlNode);
 
         return fxmlNode;
     }
@@ -194,10 +194,9 @@ public class RootController {
 
     /**
      * Method for anchoring child to its parent.
-     * @param anchorPane Parent.
      * @param node Child.
      */
-    private void setAnchors(AnchorPane anchorPane, Node node) {
+    private void setAnchors(Node node) {
         AnchorPane.setTopAnchor(node, 0.0);
         AnchorPane.setRightAnchor(node, 0.0);
         AnchorPane.setLeftAnchor(node, 0.0);
