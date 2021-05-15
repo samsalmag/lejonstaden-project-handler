@@ -28,14 +28,14 @@ public class Project implements Serializable {
     /**
      * A map containing all category lists.
      */
-    private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
+    private final HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
     /**
      * A list of all apartmentItems
      */
-    private ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
+    private final ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
 
-    private CalculationsManager calculationsManager = CalculationsManager.getInstance();
+    private final CalculationsManager calculationsManager = CalculationsManager.getInstance();
 
     private double numOfApt;
 

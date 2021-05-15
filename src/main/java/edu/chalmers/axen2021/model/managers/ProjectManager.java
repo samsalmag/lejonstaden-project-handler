@@ -46,7 +46,7 @@ public class ProjectManager implements Serializable {
     /**
      * A map containing all category lists
      */
-    private HashMap<Category, ArrayList<String>> costItemNamesMap = new HashMap<>();
+    private final HashMap<Category, ArrayList<String>> costItemNamesMap = new HashMap<>();
 
     // Private constructor because Singleton class. Use getInstance() instead.
     private ProjectManager(){

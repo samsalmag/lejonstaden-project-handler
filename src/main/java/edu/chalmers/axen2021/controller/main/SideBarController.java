@@ -26,14 +26,14 @@ public class SideBarController {
     /**
      * The parent controller
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * VBox in the sideBar.
      */
     @FXML private VBox projectItemVbox;
 
-    private ToggleGroup projectButtonGroup = new ToggleGroup();
+    private final ToggleGroup projectButtonGroup = new ToggleGroup();
 
     /**
      * Opens the addNewProject view.

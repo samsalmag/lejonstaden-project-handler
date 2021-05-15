@@ -37,12 +37,12 @@ public class RootController {
     /**
      * The project manager. Handles the projects.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * The save manager. Handles everything about saving.
      */
-    private SaveManager saveManager = SaveManager.getInstance();
+    private final SaveManager saveManager = SaveManager.getInstance();
 
     // Controllers for the views.
     private HeaderController headerController;
@@ -198,10 +198,10 @@ public class RootController {
      * @param node Child.
      */
     private void setAnchors(AnchorPane anchorPane, Node node) {
-        anchorPane.setTopAnchor(node, 0.0);
-        anchorPane.setRightAnchor(node, 0.0);
-        anchorPane.setLeftAnchor(node, 0.0);
-        anchorPane.setBottomAnchor(node, 0.0);
+        AnchorPane.setTopAnchor(node, 0.0);
+        AnchorPane.setRightAnchor(node, 0.0);
+        AnchorPane.setLeftAnchor(node, 0.0);
+        AnchorPane.setBottomAnchor(node, 0.0);
     }
 
     /**

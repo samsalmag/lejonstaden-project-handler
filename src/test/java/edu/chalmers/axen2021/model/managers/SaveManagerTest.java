@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Sam Salek
  */
 public class SaveManagerTest {
-    private static SaveManager saveManager = SaveManager.getInstance();
+    private static final SaveManager saveManager = SaveManager.getInstance();
 
     @BeforeAll
     public static void resetAll() {

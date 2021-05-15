@@ -53,11 +53,11 @@ public class PdfManager {
             e.printStackTrace();
         }
     }
-    private static Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
-    private static Font arialSmallBold = new Font(arialBase, 11, Font.BOLD);
-    private static Font arialNormal = new Font(arialBase, 13, Font.NORMAL);
-    private static Font arialNormalBold = new Font(arialBase, 13, Font.BOLD);
-    private static Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
+    private static final Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
+    private static final Font arialSmallBold = new Font(arialBase, 11, Font.BOLD);
+    private static final Font arialNormal = new Font(arialBase, 13, Font.NORMAL);
+    private static final Font arialNormalBold = new Font(arialBase, 13, Font.BOLD);
+    private static final Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
 
     // Singleton. Use getInstance().
     private PdfManager(){}
@@ -105,7 +105,7 @@ public class PdfManager {
         File file = fileChooser.showSaveDialog(AXEN2021.getMainStage());
         //File file = new File(System.getProperty("user.home") + File.separatorChar + ".axen2021" + File.separatorChar + initialFileName + ".pdf");
         if(file != null) {
-            this.file = file;
+            PdfManager.file = file;
             return true;
         } else {
             return false;

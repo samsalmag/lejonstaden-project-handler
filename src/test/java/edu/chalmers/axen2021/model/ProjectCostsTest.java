@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class ProjectCostsTest {
-    private ProjectCosts apt = new ProjectCosts();
+    private final ProjectCosts apt = new ProjectCosts();
     /**
      * Tests the getConnectionsCost(int, int) method in ProjectCosts class.
      */

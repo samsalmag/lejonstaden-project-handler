@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 @FXMLController
 public class CostItemController implements Initializable {
 
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * The name label in the .fxml file.
@@ -48,7 +48,7 @@ public class CostItemController implements Initializable {
     /**
      * The cost item for this controller intance.
      */
-    private CostItem costItem;
+    private final CostItem costItem;
 
     public CostItemController(CostItem costItem) {
         this.costItem = costItem;

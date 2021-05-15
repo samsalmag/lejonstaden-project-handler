@@ -22,7 +22,7 @@ public class ConfirmationController {
     /**
      * Parent controller.
      */
-  private RootController rootController = RootController.getInstance();
+  private final RootController rootController = RootController.getInstance();
 
     /**
      * Confirm button in the view.

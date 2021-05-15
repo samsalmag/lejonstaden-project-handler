@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Tilda Grönlund
  */
 public class ApartmentData {
-    private SaboTable sabo;
+    private final SaboTable sabo;
     private final int rh = 121; // Swedish standard value
 
     public ApartmentData() {

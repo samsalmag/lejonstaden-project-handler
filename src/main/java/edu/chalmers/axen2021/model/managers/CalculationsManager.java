@@ -37,8 +37,8 @@ public class CalculationsManager implements Serializable {
         return calculationsManager;
     }
 
-    private static ApartmentData apartmentData = new ApartmentData();
-    private static ProjectCosts projectCosts = new ProjectCosts();
+    private static final ApartmentData apartmentData = new ApartmentData();
+    private static final ProjectCosts projectCosts = new ProjectCosts();
 
     //Update methods
     public double updateTotalBoa(ArrayList<ApartmentItem> apartments) {

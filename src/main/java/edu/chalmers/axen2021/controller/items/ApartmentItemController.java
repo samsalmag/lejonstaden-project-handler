@@ -27,7 +27,7 @@ public class ApartmentItemController implements Initializable {
     /**
      * Root controller.
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * Main root node for this .fxml.
@@ -87,7 +87,7 @@ public class ApartmentItemController implements Initializable {
     /**
      * Apartment for this controller's instance.
      */
-    private ApartmentItem apartmentItem;
+    private final ApartmentItem apartmentItem;
 
     /**
      * Constructor for ApartmentItemController.

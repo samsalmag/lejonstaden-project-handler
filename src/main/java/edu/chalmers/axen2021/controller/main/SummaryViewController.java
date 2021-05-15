@@ -36,12 +36,12 @@ public class SummaryViewController implements Initializable {
     /**
      * Instance of Project Manager.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * Instance of parent controller.
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     //Variables connected to text fields in summaryView.fxml
     @FXML private TextField projektkostnadMedStod;

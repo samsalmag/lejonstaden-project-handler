@@ -33,12 +33,12 @@ public class ModalController implements Initializable {
     /**
      * Parent controller.
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * Instance of the project manager.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * Main root node for this .fxml.

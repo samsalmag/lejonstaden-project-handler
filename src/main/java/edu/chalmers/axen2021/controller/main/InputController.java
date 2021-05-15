@@ -104,21 +104,21 @@ public class InputController implements Initializable {
     /**
      * Instance of the project manager.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * Parent controller
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * List of all input TextFields.
      */
-    private ArrayList<TextField> inputFields = new ArrayList<TextField>();
+    private final ArrayList<TextField> inputFields = new ArrayList<TextField>();
     /**
      * List of all percent input TextFields.
      */
-    private ArrayList<TextField> inputFieldsPercent = new ArrayList<TextField>();
+    private final ArrayList<TextField> inputFieldsPercent = new ArrayList<TextField>();
 
     /**
      * Vbox in the inputView containing lagenhetsDataSummaryItems.

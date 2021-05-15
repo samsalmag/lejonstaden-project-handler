@@ -26,7 +26,7 @@ public class AddNewProjectController implements Initializable {
     /**
      * The parent controller
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * Main root node for this .fxml.
