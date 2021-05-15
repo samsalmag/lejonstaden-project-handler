@@ -116,9 +116,9 @@ public class ApartmentItemController implements Initializable {
 
         // Go back and forth between the background color
         if(itemIndex % 2 == 0) {
-            mainVBox.setStyle("-fx-background-color: #f4f4f4");
+            mainVBox.setStyle("-fx-background-color: #ececec");
         } else {
-            mainVBox.setStyle("-fx-background-color: #e3e3e3");
+            mainVBox.setStyle("-fx-background-color: #dddddd");
         }
     }
 

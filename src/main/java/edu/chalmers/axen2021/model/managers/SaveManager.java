@@ -26,7 +26,7 @@ public class SaveManager {
     /**
      * Main directory for all save files for the application.
      */
-    private static final String directory = System.getProperty("user.home") + File.separatorChar + ".axen2021";
+    private final String directory = System.getProperty("user.home") + File.separatorChar + ".axen2021";
 
     // Private constructor because Singleton class. Use getInstance() instead.
     private SaveManager(){}
