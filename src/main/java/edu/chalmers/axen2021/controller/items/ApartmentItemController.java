@@ -134,13 +134,23 @@ public class ApartmentItemController implements Initializable {
         BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
 
+        rentPerMonthLowTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())));
+        krPerKvmLowTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())));
+        rentPerMonthHighTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())));
+        krPerKvmHighTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())));
+        totalBOATextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOA())));
+        totalBOAPercentTextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOAPercent())));
+        bidragTextField.setText(String.valueOf(Math.round(apartmentItem.getBidrag())));
+
+        /*
         rentPerMonthLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
-        krPerKvmLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
+        krPerKvmLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getKrPerKvmLow()));
         rentPerMonthHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
-        krPerKvmHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
+        krPerKvmHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getKrPerKvmHigh()));
         totalBOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOA()));
         totalBOAPercentTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOAPercent()));
         bidragTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBidrag()));
+         */
     }
 
     /**
@@ -152,6 +162,8 @@ public class ApartmentItemController implements Initializable {
             menuItem.setOnAction(actionEvent -> {
                 apartmentTypeMenuButton.setText(menuItem.getText());
                 apartmentItem.setApartmentType(menuItem.getText());
+                apartmentTypeMenuButton.hide();  // Is needed so exception doesn't happen. Weird.
+                rootController.updateAllLabels();
             });
         }
     }

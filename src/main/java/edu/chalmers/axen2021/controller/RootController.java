@@ -226,12 +226,28 @@ public class RootController {
     }
 
     /**
+     * Updates all variable labels in all apartment items in the current view.
+     */
+    public void updateApartmentItems() {
+        // Only update the apartment items in the current view (either summaryView or inputView), for performance.
+        // This way only half of the apartment items need their views updated at a time.
+        if(isInputViewInFront()) {
+            inputController.clearApartmentItems();
+            inputController.populateApartmentItems();
+        } else if(isSummaryViewInFront()) {
+            summaryViewController.clearApartmentItems();
+            summaryViewController.populateApartmentItems();
+        }
+    }
+
+    /**
      * Updates all variable labels in the input and summary views.
      */
     public void updateAllLabels(){
         projectManager.getActiveProject().updateAllVariables();
         inputController.updateAllTextFields();
         summaryViewController.updateTextFields();
+        updateApartmentItems();
     }
 
     /**
@@ -285,10 +301,6 @@ public class RootController {
      */
     public void removeApartmentItem(ApartmentItem apartmentItem){
         projectManager.getActiveProject().removeApartmentItem(apartmentItem);
-        inputController.clearApartmentItems();
-        inputController.populateApartmentItems();
-        summaryViewController.clearApartmentItems();
-        summaryViewController.populateApartmentItems();
         updateAllLabels();  // Should update labels and variables after an apartmentItem is removed.
         saveProjectData();
     }
@@ -456,5 +468,25 @@ public class RootController {
      */
     public void closeChangeProjectNameView() {
         changeProjectNameAnchorPane.toBack();
+    }
+
+    /**
+     * Checks if the InputView is in front.
+     * @return True or False.
+     */
+    public boolean isInputViewInFront() {
+        // The front node is always the last child.
+        // Check if the last size in the inputWindowNode
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == inputWindowNode;
+    }
+
+    /**
+     * Checks if the SummaryView is in front.
+     * @return True or False.
+     */
+    public boolean isSummaryViewInFront() {
+        // The front node is always the last child.
+        // Check if the last size in the summaryViewNode
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == summaryViewNode;
     }
 }
