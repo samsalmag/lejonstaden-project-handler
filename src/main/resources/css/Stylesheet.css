@@ -111,6 +111,7 @@
     -fx-background-color: #7E9DA4;
 }
 
+/*AddProjectButton*/
 .add-project-approve{
     -fx-background-color: #E8C261;
     -fx-background-radius: 5px;
@@ -124,6 +125,23 @@
 }
 
 .add-project-approve:pressed{
+    -fx-background-color: #D4AD4C;
+}
+
+/*ChangeProjectNameButton*/
+.change-project-name-approve{
+    -fx-background-color: #E8C261;
+    -fx-background-radius: 5px;
+    -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.change-project-name-approve:hover{
+    -fx-background-color: #DEB756;
+}
+
+.change-project-name-approve:pressed{
     -fx-background-color: #D4AD4C;
 }
 
