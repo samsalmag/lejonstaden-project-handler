@@ -590,10 +590,6 @@ public class Project implements Serializable {
         updateMervardesskattKrBoa();
         updateMervardesskattKrBta();
 
-        updateProjektkostnadKkr();
-        updateProjektkostnadKrBoa();
-        updateProjektkostnadKrBta();
-
         updateInvesteringsstodKkr();
         updateInvesteringsstodKrBoa();
         updateInvesteringsstodKrBta();
@@ -601,8 +597,13 @@ public class Project implements Serializable {
         updateHyresintakterBostadMedStod();
         updateHyresintakterBostadUtanStod();
 
-        // Do this method last. Put new update methods above this line.
+        // Do this method  *almost*  last.
+        // Should be run before updateProjektkostnad methods, and maybe some more...
         updateApartmentItemsVariables();
+
+        updateProjektkostnadKkr();
+        updateProjektkostnadKrBoa();
+        updateProjektkostnadKrBta();
     }
 
     /**
