@@ -149,7 +149,7 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" minWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="Total BOA %" textAlignment="CENTER" wrapText="true" />
+                  <Label maxWidth="80.0" minHeight="55.0" minWidth="80.0" styleClass="standard-text" text="Total BOA (%)" textAlignment="CENTER" wrapText="true" />
                   <TextField fx:id="totalBOAPercentTextField" alignment="CENTER" editable="false" maxWidth="100.0" minWidth="75.0">
                      <styleClass>
                         <String fx:value="grey-out-text-field" />

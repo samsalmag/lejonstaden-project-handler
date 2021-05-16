@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -28,6 +31,11 @@ public class ApartmentItemController implements Initializable {
      * Root controller.
      */
     private final RootController rootController = RootController.getInstance();
+
+    /**
+     * Used to format the decimals in totalBOAPercent.
+     */
+    private final DecimalFormat dfPercent;
 
     /**
      * Main root node for this .fxml.
@@ -96,6 +104,10 @@ public class ApartmentItemController implements Initializable {
      */
     ApartmentItemController(ApartmentItem apartmentItem) {
         this.apartmentItem = apartmentItem;
+
+        // Init DecimalFormatter
+        dfPercent = new DecimalFormat("#.#");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
     @Override
@@ -146,7 +158,7 @@ public class ApartmentItemController implements Initializable {
         rentPerMonthHighTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())));
         krPerKvmHighTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())));
         totalBOATextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOA())));
-        totalBOAPercentTextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOAPercent())));
+        totalBOAPercentTextField.setText(dfPercent.format(apartmentItem.getTotalBOAPercent()));
         bidragTextField.setText(String.valueOf(Math.round(apartmentItem.getBidrag())));
     }
 
