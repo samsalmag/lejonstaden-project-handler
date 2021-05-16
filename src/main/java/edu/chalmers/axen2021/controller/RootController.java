@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.controller.items.ItemType;
 import edu.chalmers.axen2021.controller.main.HeaderController;
 import edu.chalmers.axen2021.controller.main.InputController;
@@ -226,17 +228,12 @@ public class RootController {
     }
 
     /**
-     * Updates all variable labels in all apartment items in the current view.
+     * Updates all variable TextFields in all apartment items in the current project.
      */
-    public void updateApartmentItems() {
-        // Only update the apartment items in the current view (either summaryView or inputView), for performance.
-        // This way only half of the apartment items need their views updated at a time.
-        if(isInputViewInFront()) {
-            inputController.clearApartmentItems();
-            inputController.populateApartmentItems();
-        } else if(isSummaryViewInFront()) {
-            summaryViewController.clearApartmentItems();
-            summaryViewController.populateApartmentItems();
+    public void updateApartmentItemsValues() {
+        // Go through all active instances of ApartmentItemController and call method to update values.
+        for(ApartmentItemController aic : ApartmentItemControllerFactory.getInstances()) {
+            aic.updateAllDisplayValues();
         }
     }
 
@@ -247,7 +244,7 @@ public class RootController {
         projectManager.getActiveProject().updateAllVariables();
         inputController.updateAllTextFields();
         summaryViewController.updateTextFields();
-        updateApartmentItems();
+        updateApartmentItemsValues();
     }
 
     /**
@@ -468,25 +465,5 @@ public class RootController {
      */
     public void closeChangeProjectNameView() {
         changeProjectNameAnchorPane.toBack();
-    }
-
-    /**
-     * Checks if the InputView is in front.
-     * @return True or False.
-     */
-    public boolean isInputViewInFront() {
-        // The front node is always the last child.
-        // Check if the last size in the inputWindowNode
-        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == inputWindowNode;
-    }
-
-    /**
-     * Checks if the SummaryView is in front.
-     * @return True or False.
-     */
-    public boolean isSummaryViewInFront() {
-        // The front node is always the last child.
-        // Check if the last size in the summaryViewNode
-        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == summaryViewNode;
     }
 }

@@ -91,9 +91,10 @@ public class ApartmentItemController implements Initializable {
 
     /**
      * Constructor for ApartmentItemController.
+     * Is package-private. Use the Factory to create instances.
      * @param apartmentItem Apartment.
      */
-    public ApartmentItemController(ApartmentItem apartmentItem) {
+    ApartmentItemController(ApartmentItem apartmentItem) {
         this.apartmentItem = apartmentItem;
     }
 
@@ -133,7 +134,13 @@ public class ApartmentItemController implements Initializable {
         apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
+        updateAllDisplayValues();
+    }
 
+    /**
+     * Updates the text in all TextFields used for displaying values from the model.
+     */
+    public void updateAllDisplayValues() {
         rentPerMonthLowTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())));
         krPerKvmLowTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())));
         rentPerMonthHighTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())));
@@ -141,16 +148,6 @@ public class ApartmentItemController implements Initializable {
         totalBOATextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOA())));
         totalBOAPercentTextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOAPercent())));
         bidragTextField.setText(String.valueOf(Math.round(apartmentItem.getBidrag())));
-
-        /*
-        rentPerMonthLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
-        krPerKvmLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getKrPerKvmLow()));
-        rentPerMonthHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
-        krPerKvmHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getKrPerKvmHigh()));
-        totalBOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOA()));
-        totalBOAPercentTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOAPercent()));
-        bidragTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBidrag()));
-         */
     }
 
     /**
