@@ -228,6 +228,21 @@ public class RootController {
     }
 
     /**
+     * Updates the views for the apartment items by removing them all and then recreating them.
+     */
+    public void updateApartmentItemsViews() {
+        // Only clear and populate the apartment item views of the front view.
+        // Cuts the apartment item views created in half.
+        if(isSummaryViewInFront()) {
+            summaryViewController.clearApartmentItems();
+            summaryViewController.populateApartmentItems();
+        } else if(isInputViewInFront()) {
+            inputController.clearApartmentItems();
+            inputController.populateApartmentItems();
+        }
+    }
+
+    /**
      * Updates all variable TextFields in all apartment items in the current project.
      */
     public void updateApartmentItemsValues() {
@@ -298,6 +313,7 @@ public class RootController {
      */
     public void removeApartmentItem(ApartmentItem apartmentItem){
         projectManager.getActiveProject().removeApartmentItem(apartmentItem);
+        updateApartmentItemsViews();
         updateAllLabels();  // Should update labels and variables after an apartmentItem is removed.
         saveProjectData();
     }
@@ -465,5 +481,25 @@ public class RootController {
      */
     public void closeChangeProjectNameView() {
         changeProjectNameAnchorPane.toBack();
+    }
+
+    /**
+     * Checks if the InputView is in front.
+     * @return True or False.
+     */
+    public boolean isInputViewInFront() {
+        // The node in the views front is always the last child in the list.
+        // Check if the last child node is the inputWindowNode.
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == inputWindowNode;
+    }
+
+    /**
+     * Checks if the SummaryView is in front.
+     * @return True or False.
+     */
+    public boolean isSummaryViewInFront() {
+        // The node in the views front is always the last child in the list.
+        // Check if the last child node is the summaryViewNode.
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == summaryViewNode;
     }
 }

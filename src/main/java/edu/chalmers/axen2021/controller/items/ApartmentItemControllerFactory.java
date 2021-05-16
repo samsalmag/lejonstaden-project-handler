@@ -29,7 +29,6 @@ public class ApartmentItemControllerFactory {
     public static ApartmentItemController create(ApartmentItem apartmentItem) {
         ApartmentItemController aic = new ApartmentItemController(apartmentItem);
         instances.add(aic);
-        System.out.println(ApartmentItemControllerFactory.getInstances().size());
         return aic;
     }
 
