@@ -590,10 +590,6 @@ public class Project implements Serializable {
         updateMervardesskattKrBoa();
         updateMervardesskattKrBta();
 
-        updateProjektkostnadKkr();
-        updateProjektkostnadKrBoa();
-        updateProjektkostnadKrBta();
-
         updateInvesteringsstodKkr();
         updateInvesteringsstodKrBoa();
         updateInvesteringsstodKrBta();
@@ -601,13 +597,48 @@ public class Project implements Serializable {
         updateHyresintakterBostadMedStod();
         updateHyresintakterBostadUtanStod();
 
+        // Do this method  *almost*  last.
+        // Should be run before updateProjektkostnad methods, and maybe some more...
+        updateApartmentItemsVariables();
+
+        updateProjektkostnadKkr();
+        updateProjektkostnadKrBoa();
+        updateProjektkostnadKrBta();
+    }
+
+    /**
+     * Goes through each apartment item in the project and calculates and updates all of its variable values.
+     */
+    public void updateApartmentItemsVariables() {
+        for(ApartmentItem apartmentItem : apartmentItems) {
+            // If one of the inputs equals zero then don't do calculations. Continue to next apartment item.
+            if(apartmentItem.getBOA() == 0 || apartmentItem.getAmount() == 0) {
+                apartmentItem.setRentPerMonthLow(0);
+                apartmentItem.setKrPerKvmLow(0);
+                apartmentItem.setRentPerMonthHigh(0);
+                apartmentItem.setKrPerKvmHigh(0);
+                apartmentItem.setTotalBOA(0);
+                apartmentItem.setTotalBOAPercent(0);
+                apartmentItem.setBidrag(0);
+                continue;
+            }
+
+            // Calculate and set values...
+            apartmentItem.setRentPerMonthLow(calculationsManager.updatedApartmentItemRentPerMonthLow(apartmentItem, normhyraMedStod));
+            apartmentItem.setKrPerKvmLow(calculationsManager.updatedApartmentItemKrPerKvmLow(apartmentItem, normhyraMedStod));
+            apartmentItem.setRentPerMonthHigh(calculationsManager.updatedApartmentItemRentPerMonthHigh(apartmentItem, antagenPresumtionshyra));
+            apartmentItem.setKrPerKvmHigh(calculationsManager.updatedApartmentItemKrPerKvmHigh(apartmentItem, antagenPresumtionshyra));
+            apartmentItem.setTotalBOA(calculationsManager.updatedApartmentItemTotalBOA(apartmentItem));
+            apartmentItem.setTotalBOAPercent(calculationsManager.updatedApartmentItemTotalBOAPercent(apartmentItem.getTotalBOA(), totalBoa));
+            apartmentItem.setBidrag(calculationsManager.updatedApartmentItemBidrag(apartmentItem, investeringsstod));
+        }
     }
 
     private void updateNumOfApt() {
-        numOfApt = calculationsManager.updateNumberOfApt(getApartmentItems());
+        numOfApt = calculationsManager.updatedNumberOfApt(getApartmentItems());
     }
     private void updateTotalBoa() {
-        totalBoa = calculationsManager.updateTotalBoa(getApartmentItems());
+        totalBoa = calculationsManager.updatedTotalBoa(getApartmentItems());
     }
 
     private void updateTomtkostnaderKkr() {
@@ -715,7 +746,7 @@ public class Project implements Serializable {
     }
 
     private void updateInvesteringsstodKkr() {
-       investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstod(), getApartmentItems());
+       investeringsstodKkr = calculationsManager.updatedSubsidyKKr(getInvesteringsstod(), getApartmentItems());
     }
 
     private void updateInvesteringsstodKrBoa() {
@@ -728,13 +759,12 @@ public class Project implements Serializable {
 
 
     private void updateHyresintakterBostadMedStod() {
-        krPerKvm = calculationsManager.updateKrPerKvm(apartmentItems, normhyraMedStod);
+        krPerKvm = calculationsManager.updatedKrPerKvm(apartmentItems, normhyraMedStod);
         hyresintakterMedStod = totalBoa*krPerKvm/1000;
     }
 
     private void updateHyresintakterBostadUtanStod() {
-        krPerKvm = calculationsManager.updateKrPerKvm(apartmentItems, antagenPresumtionshyra);
+        krPerKvm = calculationsManager.updatedKrPerKvm(apartmentItems, antagenPresumtionshyra);
         hyresintakterUtanStod = totalBoa*krPerKvm/1000;
     }
-
 }

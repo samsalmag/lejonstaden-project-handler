@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.controller.items.ItemType;
 import edu.chalmers.axen2021.controller.main.HeaderController;
 import edu.chalmers.axen2021.controller.main.InputController;
@@ -226,12 +228,38 @@ public class RootController {
     }
 
     /**
+     * Updates the views for the apartment items by removing them all and then recreating them.
+     */
+    public void updateApartmentItemsViews() {
+        // Only clear and populate the apartment item views of the front view.
+        // Cuts the apartment item views created in half.
+        if(isSummaryViewInFront()) {
+            summaryViewController.clearApartmentItems();
+            summaryViewController.populateApartmentItems();
+        } else if(isInputViewInFront()) {
+            inputController.clearApartmentItems();
+            inputController.populateApartmentItems();
+        }
+    }
+
+    /**
+     * Updates all variable TextFields in all apartment items in the current project.
+     */
+    public void updateApartmentItemsValues() {
+        // Go through all active instances of ApartmentItemController and call method to update values.
+        for(ApartmentItemController aic : ApartmentItemControllerFactory.getInstances()) {
+            aic.updateAllDisplayValues();
+        }
+    }
+
+    /**
      * Updates all variable labels in the input and summary views.
      */
     public void updateAllLabels(){
         projectManager.getActiveProject().updateAllVariables();
         inputController.updateAllTextFields();
         summaryViewController.updateTextFields();
+        updateApartmentItemsValues();
     }
 
     /**
@@ -285,10 +313,7 @@ public class RootController {
      */
     public void removeApartmentItem(ApartmentItem apartmentItem){
         projectManager.getActiveProject().removeApartmentItem(apartmentItem);
-        inputController.clearApartmentItems();
-        inputController.populateApartmentItems();
-        summaryViewController.clearApartmentItems();
-        summaryViewController.populateApartmentItems();
+        updateApartmentItemsViews();
         updateAllLabels();  // Should update labels and variables after an apartmentItem is removed.
         saveProjectData();
     }
@@ -456,5 +481,25 @@ public class RootController {
      */
     public void closeChangeProjectNameView() {
         changeProjectNameAnchorPane.toBack();
+    }
+
+    /**
+     * Checks if the InputView is in front.
+     * @return True or False.
+     */
+    public boolean isInputViewInFront() {
+        // The node in the views front is always the last child in the list.
+        // Check if the last child node is the inputWindowNode.
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == inputWindowNode;
+    }
+
+    /**
+     * Checks if the SummaryView is in front.
+     * @return True or False.
+     */
+    public boolean isSummaryViewInFront() {
+        // The node in the views front is always the last child in the list.
+        // Check if the last child node is the summaryViewNode.
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == summaryViewNode;
     }
 }

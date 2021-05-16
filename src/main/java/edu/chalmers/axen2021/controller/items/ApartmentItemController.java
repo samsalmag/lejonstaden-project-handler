@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -28,6 +31,11 @@ public class ApartmentItemController implements Initializable {
      * Root controller.
      */
     private final RootController rootController = RootController.getInstance();
+
+    /**
+     * Used to format the decimals in totalBOAPercent.
+     */
+    private final DecimalFormat dfPercent;
 
     /**
      * Main root node for this .fxml.
@@ -91,10 +99,15 @@ public class ApartmentItemController implements Initializable {
 
     /**
      * Constructor for ApartmentItemController.
+     * Is package-private. Use the Factory to create instances.
      * @param apartmentItem Apartment.
      */
-    public ApartmentItemController(ApartmentItem apartmentItem) {
+    ApartmentItemController(ApartmentItem apartmentItem) {
         this.apartmentItem = apartmentItem;
+
+        // Init DecimalFormatter
+        dfPercent = new DecimalFormat("#.#");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
     @Override
@@ -133,14 +146,20 @@ public class ApartmentItemController implements Initializable {
         apartmentTypeMenuButton.setText(apartmentItem.getApartmentType());
         BOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBOA()));
         amountTextField.setText(String.valueOf(apartmentItem.getAmount()));
+        updateAllDisplayValues();
+    }
 
-        rentPerMonthLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
-        krPerKvmLowTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthLow()));
-        rentPerMonthHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
-        krPerKvmHighTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getRentPerMonthHigh()));
-        totalBOATextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOA()));
-        totalBOAPercentTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getTotalBOAPercent()));
-        bidragTextField.setText(StringUtils.removeTrailingZeros(apartmentItem.getBidrag()));
+    /**
+     * Updates the text in all TextFields used for displaying values from the model.
+     */
+    public void updateAllDisplayValues() {
+        rentPerMonthLowTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())));
+        krPerKvmLowTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())));
+        rentPerMonthHighTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())));
+        krPerKvmHighTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())));
+        totalBOATextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOA())));
+        totalBOAPercentTextField.setText(dfPercent.format(apartmentItem.getTotalBOAPercent()));
+        bidragTextField.setText(String.valueOf(Math.round(apartmentItem.getBidrag())));
     }
 
     /**
@@ -152,6 +171,8 @@ public class ApartmentItemController implements Initializable {
             menuItem.setOnAction(actionEvent -> {
                 apartmentTypeMenuButton.setText(menuItem.getText());
                 apartmentItem.setApartmentType(menuItem.getText());
+                apartmentTypeMenuButton.hide();  // Is needed so exception doesn't happen. Weird.
+                rootController.updateAllLabels();
             });
         }
     }

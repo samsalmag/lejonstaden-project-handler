@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.controller.main;
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.Category;
@@ -252,6 +253,7 @@ public class InputController implements Initializable {
      * Remove all apartmentItems in the apartmentTypesView of the window.
      */
     public void clearApartmentItems() {
+        ApartmentItemControllerFactory.clearInstances();
         lagenhetsTypVbox.getChildren().clear();
     }
 
@@ -261,7 +263,7 @@ public class InputController implements Initializable {
      */
     private void createNewLagenhetstypView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));
-        ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
+        ApartmentItemController apartmentItemController = ApartmentItemControllerFactory.create(newApartmentItem);
         apartmentTypeFXML.setController(apartmentItemController);
         Node apartmentTypeNode = null;
 

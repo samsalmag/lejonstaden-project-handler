@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.controller.main;
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
@@ -152,6 +153,7 @@ public class SummaryViewController implements Initializable {
      * Remove all apartmentItems from view.
      */
     public void clearApartmentItems() {
+        ApartmentItemControllerFactory.clearInstances();
         lagenhetsTypVbox.getChildren().clear();
     }
 
@@ -161,7 +163,7 @@ public class SummaryViewController implements Initializable {
      */
     private void createNewApartmentItemView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));
-        ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
+        ApartmentItemController apartmentItemController = ApartmentItemControllerFactory.create(newApartmentItem);
         apartmentTypeFXML.setController(apartmentItemController);
         Node apartmentTypeNode = null;
 

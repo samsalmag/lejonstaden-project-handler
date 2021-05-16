@@ -41,7 +41,35 @@ public class CalculationsManager implements Serializable {
     private static final ProjectCosts projectCosts = new ProjectCosts();
 
     //Update methods
-    public double updateTotalBoa(ArrayList<ApartmentItem> apartments) {
+    public double updatedApartmentItemRentPerMonthLow(ApartmentItem apartmentItem, double normhyraMedStod) {
+        return apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), normhyraMedStod, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemKrPerKvmLow(ApartmentItem apartmentItem, double normhyraMedStod) {
+        return apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), normhyraMedStod, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemRentPerMonthHigh(ApartmentItem apartmentItem, double antagenPresumtionshyra) {
+        return apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), antagenPresumtionshyra, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemKrPerKvmHigh(ApartmentItem apartmentItem, double antagenPresumtionshyra) {
+        return apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), antagenPresumtionshyra, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemTotalBOA(ApartmentItem apartmentItem) {
+        return apartmentItem.getBOA()* apartmentItem.getAmount();
+    }
+
+    public double updatedApartmentItemTotalBOAPercent(double apartmentItemTotalBOA, double totalBOA) {
+        return (apartmentItemTotalBOA / totalBOA) * 100;
+    }
+
+    public double updatedApartmentItemBidrag(ApartmentItem apartmentItem, double investeringsstod) {
+        return apartmentData.getSubsidy(investeringsstod, apartmentItem.getAmount(), apartmentItem.getBOA());
+    }
+
+    public double updatedTotalBoa(ArrayList<ApartmentItem> apartments) {
         double totalBoa = 0.0;
 
         for(ApartmentItem apartmentItem : apartments) {
@@ -51,7 +79,7 @@ public class CalculationsManager implements Serializable {
         return totalBoa;
     }
 
-    public double updateNumberOfApt(ArrayList<ApartmentItem> apartments) {
+    public double updatedNumberOfApt(ArrayList<ApartmentItem> apartments) {
         double numOfApt = 0.0;
 
         for(ApartmentItem apartmentItem : apartments) {
@@ -61,7 +89,7 @@ public class CalculationsManager implements Serializable {
         return numOfApt;
     }
 
-    public double updateKrPerKvm(ArrayList<ApartmentItem> apartments, double rent) {
+    public double updatedKrPerKvm(ArrayList<ApartmentItem> apartments, double rent) {
         double krPerKvm = 0.0;
         for(ApartmentItem apartmentItem : apartments) {
             double rentPerKvm = apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
@@ -70,7 +98,7 @@ public class CalculationsManager implements Serializable {
         return krPerKvm;
     }
 
-    public double updateSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {
+    public double updatedSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {
         double subsidy = 0.0;
         for (ApartmentItem a : apartments) {
             subsidy -= apartmentData.getSubsidy(investeringsstod, a.getAmount(), a.getBOA());
