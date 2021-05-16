@@ -523,6 +523,18 @@ public class Project implements Serializable {
         return oforutsettPercent;
     }
 
+    public double getTotalKrPerKvmLow() {
+        return calculationsManager.updatedTotalKrPerKvmLow(apartmentItems);
+    }
+
+    public double getTotalKrPerKvmHigh() {
+        return calculationsManager.updatedTotalKrPerKvmHigh(apartmentItems);
+    }
+
+    public double getTotalBidrag() {
+        return calculationsManager.updatedTotalBidrag(apartmentItems);
+    }
+
     // SETTERS FOR INPUT VARIABLES
     public void setYieldMedStod(double yieldMedStod) {
         this.yieldMedStod = yieldMedStod;

@@ -287,15 +287,15 @@ public class PdfManager {
         }
 
         table.addCell(createCell("Totalt", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("", arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getNumOfApt())), arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("", arialSmall, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalKrPerKvmLow())), arialSmall, 2));
+        table.addCell(createCell("", arialSmall, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalKrPerKvmHigh())), arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, 2));
         table.addCell(createCell("100", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBidrag())), arialSmall, 2));
 
         lagenhetsdata.add(table);
         document.add(lagenhetsdata);
