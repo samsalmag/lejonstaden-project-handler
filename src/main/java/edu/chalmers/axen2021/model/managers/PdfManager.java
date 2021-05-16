@@ -13,9 +13,12 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * This class handles the making of a PDF file containing information about the chosen project.
@@ -44,6 +47,11 @@ public class PdfManager {
      */
     private static File file;
 
+    /**
+     * Used to format the decimals in totalBOAPercent.
+     */
+    private final DecimalFormat dfPercent;
+
     // Fonts
     private static BaseFont arialBase;
     {
@@ -60,7 +68,11 @@ public class PdfManager {
     private static final Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
 
     // Singleton. Use getInstance().
-    private PdfManager(){}
+    private PdfManager(){
+        // Init DecimalFormatter
+        dfPercent = new DecimalFormat("#.#");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
+    }
 
     /**
      * Returns the instance of this Singleton class.
@@ -234,7 +246,7 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getNormhyraMedStod())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstod())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getAntagenPresumtionshyra())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettPercent())), arialSmall));
+        table.addCell(createCell(dfPercent.format(project.getOforutsettPercent()), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(project.getTotalLjusBta())), arialSmall));
 
@@ -255,7 +267,7 @@ public class PdfManager {
         PdfPTable table = new PdfPTable(10);
         table.getDefaultCell().setPadding(5);
         table.setWidthPercentage(100);
-        table.setWidths(new float[]{22,15,15,22,18,22,18,15,19,18});
+        table.setWidths(new float[]{16,15,15,22,18,22,18,20,19,18});
         table.setHeaderRows(1);
 
         table.addCell(createCell("Typ", arialSmall));
@@ -401,8 +413,8 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoUtanStod())), arialSmall));
 
         table.addCell(createCell("Yield (%)", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getYieldMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getYieldUtanStod())), arialSmall));
+        table.addCell(createCell(dfPercent.format(project.getYieldMedStod()), arialSmall));
+        table.addCell(createCell(dfPercent.format(project.getYieldUtanStod()), arialSmall));
 
         table.addCell(createCell("Marknadsvärde", arialSmall, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeMedStod())), arialSmall, 2));
@@ -412,8 +424,8 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstMedStod())), arialSmallBold));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstUtanStod())), arialSmallBold));
         table.addCell(createCell("Projektvinst (%)", arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstProcentMedStod())), arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstProcentUtanStod())), arialSmallBold));
+        table.addCell(createCell(dfPercent.format(project.getProjektvinstProcentMedStod()), arialSmallBold));
+        table.addCell(createCell(dfPercent.format(project.getProjektvinstProcentUtanStod()), arialSmallBold));
 
         fastighetsvardeOchResultat.add(table);
         document.add(fastighetsvardeOchResultat);
@@ -434,7 +446,7 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOA())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOAPercent())), arialSmall));
+        table.addCell(createCell(dfPercent.format(apartmentItem.getTotalBOAPercent()), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall));
     }
 
