@@ -7,7 +7,6 @@ import edu.chalmers.axen2021.model.projectdata.CostItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A class managing the calculations needed for the different variables in a project.
@@ -67,6 +66,30 @@ public class CalculationsManager implements Serializable {
 
     public double updatedApartmentItemBidrag(ApartmentItem apartmentItem, double investeringsstod) {
         return apartmentData.getSubsidy(investeringsstod, apartmentItem.getAmount(), apartmentItem.getBOA());
+    }
+
+    public double updatedTotalKrPerKvmLow(ArrayList<ApartmentItem> apartments) {
+        double v = 0;
+        for(ApartmentItem apartmentItem : apartments) {
+            v += (apartmentItem.getKrPerKvmLow() * apartmentItem.getTotalBOA());
+        }
+        return v / updatedTotalBoa(apartments);
+    }
+
+    public double updatedTotalKrPerKvmHigh(ArrayList<ApartmentItem> apartments) {
+        double v = 0;
+        for(ApartmentItem apartmentItem : apartments) {
+            v += (apartmentItem.getKrPerKvmHigh() * apartmentItem.getTotalBOA());
+        }
+        return v / updatedTotalBoa(apartments);
+    }
+
+    public double updatedTotalBidrag(ArrayList<ApartmentItem> apartments) {
+        double v = 0;
+        for(ApartmentItem apartmentItem : apartments) {
+            v += apartmentItem.getBidrag();
+        }
+        return v;
     }
 
     public double updatedTotalBoa(ArrayList<ApartmentItem> apartments) {
