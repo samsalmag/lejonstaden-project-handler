@@ -7,6 +7,7 @@ import edu.chalmers.axen2021.model.projectdata.CostItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class managing the calculations needed for the different variables in a project.
@@ -39,7 +40,7 @@ public class CalculationsManager implements Serializable {
     private static final ApartmentData apartmentData = new ApartmentData();
     private static final ProjectCosts projectCosts = new ProjectCosts();
 
-    //Update methods
+    // Update methods
     public double updatedApartmentItemRentPerMonthLow(ApartmentItem apartmentItem, double normhyraMedStod) {
         return apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), normhyraMedStod, apartmentItem.getBOA());
     }
@@ -112,13 +113,19 @@ public class CalculationsManager implements Serializable {
         return numOfApt;
     }
 
-    public double updatedKrPerKvm(ArrayList<ApartmentItem> apartments, double rent) {
+    public double updatedHyresintakter(ArrayList<ApartmentItem> apartments, double rent, double totalBoa) {
         double krPerKvm = 0.0;
-        for(ApartmentItem apartmentItem : apartments) {
-            double rentPerKvm = apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
-            krPerKvm += apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), rentPerKvm, apartmentItem.getBOA());
+        /**
+         *         for(ApartmentItem apartmentItem : apartments) {
+         *             double rentPerKvm = apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
+         *             krPerKvm += apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), rentPerKvm, apartmentItem.getBOA());
+         *         }
+          */
+        for (ApartmentItem apartment : apartments) {
+            krPerKvm += apartment.getBOA()*apartment.getAmount()*
+                    apartmentData.getKrPerSqm(apartment.getApartmentType(), rent, apartment.getBOA());
         }
-        return krPerKvm;
+        return krPerKvm/totalBoa;
     }
 
     public double updatedSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {
@@ -176,8 +183,8 @@ public class CalculationsManager implements Serializable {
         return projectCosts.getCostPerBta(anslutningarKkr, totalBta);
     }
 
-    public double updatedByggherreKkr(ArrayList<CostItem> byggherre) {
-        return projectCosts.getTotalCost(byggherre);
+    public double updatedByggherreKkr(ArrayList<CostItem> byggherre, double totalBoa) {
+        return projectCosts.getTotalCost(byggherre)*totalBoa;
     }
 
     public double updatedByggherreKrBoa(double byggherreKkr, double totalBoa) {
@@ -251,5 +258,9 @@ public class CalculationsManager implements Serializable {
 
     public double updatedProjectCostKrBta(double projektkostnadKkr, double totalBta) {
         return projectCosts.getCostPerBta(projektkostnadKkr, totalBta);
+    }
+
+    public double updatedDriftOchUnderhall(ArrayList<CostItem> driftunderhall, double totalBoa) {
+        return projectCosts.getTotalCost(driftunderhall)*totalBoa;
     }
 }

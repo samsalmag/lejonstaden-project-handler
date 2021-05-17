@@ -609,6 +609,15 @@ public class Project implements Serializable {
         updateHyresintakterBostadMedStod();
         updateHyresintakterBostadUtanStod();
 
+        updateDriftOchUnderhallMedStod();
+        updateDriftOchUnderhallUtanStod();
+
+        updateDriftnettoMedStod();
+        updateDriftnettoUtanStod();
+
+        updateMarknadsvardeMedStod();
+        updateMarknadsvardeUtanStod();
+
         // Do this method  *almost*  last.
         // Should be run before updateProjektkostnad methods, and maybe some more...
         updateApartmentItemsVariables();
@@ -684,7 +693,7 @@ public class Project implements Serializable {
     }
 
     private void updateByggherreKkr() {
-        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems());
+        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems(), totalBoa);
     }
 
     private void updateByggherreKrBoa() {
@@ -771,12 +780,34 @@ public class Project implements Serializable {
 
 
     private void updateHyresintakterBostadMedStod() {
-        krPerKvm = calculationsManager.updatedKrPerKvm(apartmentItems, normhyraMedStod);
-        hyresintakterMedStod = totalBoa*krPerKvm/1000;
+        hyresintakterMedStod = calculationsManager.updatedHyresintakter(apartmentItems, normhyraMedStod, totalBoa);
     }
 
     private void updateHyresintakterBostadUtanStod() {
-        krPerKvm = calculationsManager.updatedKrPerKvm(apartmentItems, antagenPresumtionshyra);
-        hyresintakterUtanStod = totalBoa*krPerKvm/1000;
+        hyresintakterUtanStod = calculationsManager.updatedHyresintakter(apartmentItems, antagenPresumtionshyra, totalBoa);
+    }
+
+    private void updateDriftOchUnderhallMedStod() {
+        driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+    }
+
+    private void updateDriftOchUnderhallUtanStod() {
+        driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+    }
+
+    private void updateDriftnettoMedStod() {
+        driftnettoMedStod = hyresintakterMedStod+driftUnderhallMedStod; // + tomträddsavgäld också
+    }
+
+    private void updateDriftnettoUtanStod() {
+        driftnettoUtanStod = hyresintakterUtanStod+driftUnderhallUtanStod; // + tomträtsavgäld
+    }
+
+    private void updateMarknadsvardeMedStod() {
+        marknadsvardeMedStod = driftnettoMedStod/(yieldMedStod/100);
+    }
+
+    private void updateMarknadsvardeUtanStod() {
+        marknadsvardeUtanStod = driftnettoUtanStod/(yieldUtanStod/100);
     }
 }
