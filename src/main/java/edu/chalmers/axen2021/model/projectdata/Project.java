@@ -248,6 +248,33 @@ public class Project implements Serializable {
         }
     }
 
+    /**
+     * Changes name of a cost item in the project.
+     * @param category The category where the cost item resides.
+     * @param currentName The current name of the cost item.
+     * @param newName The new name for the cost item.
+     */
+    public void changeCostItemName(Category category, String currentName, String newName) {
+        // For every cost item in the given category...if its name is same as the currentName...
+        for (CostItem costItem : costItemsMap.get(category)) {
+            if (costItem.getName().equals(currentName)) {
+                costItem.setName(newName);
+
+                ProjectManager.getInstance().getCostItemNamesMap().get(category).remove(currentName);
+                // Only add cost item name to ProjectManager if ProjectManager doesn't already contain it in the active category.
+                // Used to avoid duplicate cost item names in the same categories,
+                // hence avoiding duplicate cost items when populating the category window.
+                if(!ProjectManager.getInstance().getCostItemNamesMap().get(category).contains(newName)) {
+                    ProjectManager.getInstance().getCostItemNamesMap().get(category).add(newName);
+                }
+                return;
+            }
+        }
+
+        // No cost item in the given category exists with the given currentName.
+        throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getName());
+    }
+
     // ------------------ GETTERS & SETTERS------------------ //
     /**
      * Getter for the name of the project.
