@@ -443,6 +443,7 @@ public class RootController {
     public void openConfirmationView(String nameObjectToRemove, ItemType type){
         confirmationController.setItemToRemove(nameObjectToRemove, type);
         confirmationAnchorPane.toFront();
+        confirmationController.getMainVBox().requestFocus();    // Enables keyEvents.
     }
 
     /**
@@ -452,6 +453,7 @@ public class RootController {
     public void openConfirmationView(ApartmentItem apartmentItem){
         confirmationController.setItemToRemove(apartmentItem);
         confirmationAnchorPane.toFront();
+        confirmationController.getMainVBox().requestFocus();    // Enables keyEvents.
     }
 
     /**
@@ -459,6 +461,11 @@ public class RootController {
      */
     public void closeConfirmationView(){
         confirmationAnchorPane.toBack();
+
+        // Returns focus to modal window. Is needed for onKeyPressed events.
+        // (only needed when closing confirmation view when removing a cost item)
+        // Doesn't seem to affect the view when removing a project or apartment item.
+        modalController.getModalWindowItemVBox().requestFocus();
     }
 
     /**
