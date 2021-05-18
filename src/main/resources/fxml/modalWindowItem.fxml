@@ -50,7 +50,7 @@
             </TextArea>
             <VBox prefHeight="100.0" prefWidth="150.0" spacing="15.0">
                <children>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openRemoveConfirmation" prefWidth="100.0" text="Byt namn">
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openChangeNameView" prefWidth="100.0" text="Byt namn">
                      <styleClass>
                         <String fx:value="standard-text" />
                         <String fx:value="change-cost-item-name-button" />

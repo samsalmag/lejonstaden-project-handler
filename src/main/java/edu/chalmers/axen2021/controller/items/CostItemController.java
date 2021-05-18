@@ -125,6 +125,14 @@ public class CostItemController implements Initializable {
     }
 
     /**
+     * Opens the change name view for this cost item.
+     */
+    @FXML
+    private void openChangeNameView() {
+        rootController.openChangeCostItemNameView(costItem.getName());
+    }
+
+    /**
      * Opens the confirmation window when removing a cost item.
      */
     @FXML
