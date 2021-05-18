@@ -103,6 +103,7 @@ public class Project implements Serializable {
     //Tomtrattsavgald
     private double tomtrattsavgaldMedStod;
     private double tomtrattsavgaldUtanStod;
+    private double tomtPercent;
 
     //Driftnetto
     private double driftnettoMedStod;
@@ -535,6 +536,9 @@ public class Project implements Serializable {
         return calculationsManager.updatedTotalBidrag(apartmentItems);
     }
 
+    public double getTomtPercent() { return tomtPercent; }
+
+
     // SETTERS FOR INPUT VARIABLES
     public void setYieldMedStod(double yieldMedStod) {
         this.yieldMedStod = yieldMedStod;
@@ -550,6 +554,10 @@ public class Project implements Serializable {
 
     public void setAntagenPresumtionshyra(double antagenPresumtionshyra) {
         this.antagenPresumtionshyra = antagenPresumtionshyra;
+    }
+
+    public void setTomtPercent(double tomtPercent) {
+        this.tomtPercent = tomtPercent;
     }
 
     public void setTotalLjusBta(double totalLjusBta) {
@@ -625,6 +633,8 @@ public class Project implements Serializable {
         updateProjektkostnadKkr();
         updateProjektkostnadKrBoa();
         updateProjektkostnadKrBta();
+
+        updateTomtrattsavgaldMedStod();
     }
 
     /**
@@ -795,6 +805,11 @@ public class Project implements Serializable {
         driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
     }
 
+    // Samma beräkning för med och utan stöd
+    private void updateTomtrattsavgaldMedStod() {
+        tomtrattsavgaldMedStod = -tomtkostnaderKkr*tomtPercent;
+    }
+
     private void updateDriftnettoMedStod() {
         driftnettoMedStod = hyresintakterMedStod+driftUnderhallMedStod; // + tomträddsavgäld också
     }
@@ -810,4 +825,6 @@ public class Project implements Serializable {
     private void updateMarknadsvardeUtanStod() {
         marknadsvardeUtanStod = driftnettoUtanStod/(yieldUtanStod/100);
     }
+
+
 }
