@@ -91,4 +91,34 @@ public class ProjectTest {
         // Doesn't exist in class anymore, should throw exception.
         assertThrows(IllegalArgumentException.class, () -> project.removeApartmentItem(apartmentItem));
     }
+
+    @Test
+    public void changeCostItemNameTest() {
+        Project project = new Project("test");
+        projectManager.setActiveCategory(Category.BYGGHERREKOSTNADER);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 0);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 0);
+
+        project.addCostItem("testCost1");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 1);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(0).getName(), "testCost1");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 1);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(0), "testCost1");
+
+        project.addCostItem("testCost2");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(1).getName(), "testCost2");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(0), "testCost2");
+
+        project.changeCostItemName(Category.BYGGHERREKOSTNADER, "testCost2", "newTestCost2");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(0).getName(), "testCost1");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(1).getName(), "newTestCost2");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(0), "testCost1");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(1), "newTestCost2");
+
+        assertThrows(IllegalArgumentException.class, () -> project.changeCostItemName(Category.BYGGHERREKOSTNADER, "fakeCost", "newTestCost2"));
+    }
 }
