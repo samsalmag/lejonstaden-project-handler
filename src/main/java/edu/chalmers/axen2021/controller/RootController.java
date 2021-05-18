@@ -56,6 +56,7 @@ public class RootController {
     private InputController inputController;
     private ConfirmationController confirmationController;
     private ChangeProjectNameController changeProjectNameController;
+    private ChangeCostItemNameController changeCostItemNameController;
 
     // Private accessible nodes.
     // Need these to be able to switch between the two views (input and summary).
@@ -122,6 +123,11 @@ public class RootController {
     @FXML private AnchorPane changeProjectNameAnchorPane;
 
     /**
+     * AnchorPane for changeCostItemName.fxml in root.fxml
+     */
+    @FXML private AnchorPane changeCostItemNameAnchorPane;
+
+    /**
      * Initialize method that starts up the first scene and all its children.
      */
     public void initialize() {
@@ -136,6 +142,7 @@ public class RootController {
         summaryViewController = new SummaryViewController();
         confirmationController = new ConfirmationController();
         changeProjectNameController = new ChangeProjectNameController();
+        changeCostItemNameController = new ChangeCostItemNameController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -147,6 +154,7 @@ public class RootController {
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
         initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
         initFXML(changeProjectNameAnchorPane, "changeProjectNameView.fxml", changeProjectNameController);
+        initFXML(changeCostItemNameAnchorPane, "changeCostItemNameView.fxml", changeCostItemNameController);
 
         defaultCenterStageAnchorPane.toFront();
 
@@ -297,6 +305,18 @@ public class RootController {
     }
 
     /**
+     * Renames a cost item in the active project and active category.
+     * @param currentName The current name of the cost item.
+     * @param newName The new name of the cost item.
+     */
+    public void renameCostItem(String currentName, String newName) {
+        projectManager.changeCostItemName(projectManager.getActiveCategory(), currentName, newName);
+        modalController.clearCostItems();
+        modalController.populateCostItems();
+        saveAllProjectData();
+    }
+
+    /**
      * Removes a cost item from the active project and reloads modal view.
      * @param costItemName Name of cost item to be removed.
      */
@@ -377,6 +397,16 @@ public class RootController {
      */
     public void saveProjectData(){
         saveManager.saveProject(projectManager.getActiveProject());
+        saveManager.saveProjectManager();
+    }
+
+    /**
+     * Saves the data for all existing projects.
+     */
+    public void saveAllProjectData() {
+        for(Project project : projectManager.getProjects()) {
+            saveManager.saveProject(project);
+        }
         saveManager.saveProjectManager();
     }
 
@@ -481,6 +511,24 @@ public class RootController {
      */
     public void closeChangeProjectNameView() {
         changeProjectNameAnchorPane.toBack();
+    }
+
+    /**
+     * Opens the changeCostItemNameView based on changeCostItemNameView.fxml.
+     */
+    public void openChangeCostItemNameView(String currentCostItemName) {
+        changeCostItemNameAnchorPane.toFront();
+        changeCostItemNameController.setCurrentCostItemName(currentCostItemName);
+        changeCostItemNameController.getCostNameTextField().setText(currentCostItemName);
+        changeCostItemNameController.getCostNameTextField().requestFocus(); // Focus the text field for project name input.
+    }
+
+    /**
+     * Method for closing the changeCostItemNameView. Puts the changeCostItemNameView to back in the scene.
+     */
+    public void closeChangeCostItemNameView() {
+        changeCostItemNameAnchorPane.toBack();
+        modalController.getModalWindowItemVBox().requestFocus();  // Returns focus to modal window. Is needed for onKeyPressed events.
     }
 
     /**

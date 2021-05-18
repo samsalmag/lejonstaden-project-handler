@@ -1,6 +1,7 @@
 package edu.chalmers.axen2021.model.managers;
 
 import edu.chalmers.axen2021.model.Category;
+import edu.chalmers.axen2021.model.projectdata.CostItem;
 import edu.chalmers.axen2021.model.projectdata.Project;
 
 import java.io.Serializable;
@@ -164,6 +165,35 @@ public class ProjectManager implements Serializable {
 
         // Throws exception if it did not return in the if-statement above.
         throw new IllegalArgumentException("Could not set active project from project button name (button name is not a project)");
+    }
+
+    /**
+     * Changes the name of a cost item.
+     * @param category The category where the cost item resides.
+     * @param currentName The current name of the cost item.
+     * @param newName The new name for the cost item.
+     */
+    public void changeCostItemName(Category category, String currentName, String newName) {
+
+        // Change cost item name in every project...
+        for (Project project : projects) {
+            // For every cost item in the given category...if its name is same as the currentName...
+            for (CostItem costItem : project.getCostItemsMap().get(category)) {
+                if (costItem.getName().equals(currentName)) {
+
+                    // Change cost item name and remove old name from ProjectManager.
+                    costItem.setName(newName);
+                    ProjectManager.getInstance().getCostItemNamesMap().get(category).remove(currentName);
+
+                    // Only add cost item name to ProjectManager if ProjectManager doesn't already contain it in the active category.
+                    // Used to avoid duplicate cost item names in the same categories,
+                    // hence avoiding duplicate cost items when populating the category window.
+                    if(!ProjectManager.getInstance().getCostItemNamesMap().get(category).contains(newName)) {
+                        ProjectManager.getInstance().getCostItemNamesMap().get(category).add(newName);
+                    }
+                }
+            }
+        }
     }
 
     /**
