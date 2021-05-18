@@ -145,6 +145,22 @@
     -fx-background-color: #D4AD4C;
 }
 
+/*ChangeCostItemNameButton*/
+.change-cost-item-name-button{
+    -fx-background-color: #A0D1FA;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.change-cost-item-name-button:hover{
+    -fx-background-color: #96C7F0;
+}
+
+.change-cost-item-name-button:pressed{
+    -fx-background-color: #8CBDE6;
+}
+
 /*------------FONT-SIZES-----------------*/
 
 .standard-text{

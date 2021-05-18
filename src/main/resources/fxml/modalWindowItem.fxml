@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" spacing="5.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="cost-item" alignment="CENTER" maxWidth="850.0" minWidth="850.0" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="nameLabel" alignment="CENTER" styleClass="caption-text" text="Kostnad" textAlignment="CENTER" wrapText="true">
          <font>
@@ -48,22 +48,38 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <Button mnemonicParsing="false" onAction="#openRemoveConfirmation" text="Ta bort kostnad">
+            <VBox prefHeight="100.0" prefWidth="150.0" spacing="15.0">
+               <children>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openRemoveConfirmation" prefWidth="100.0" text="Byt namn">
+                     <styleClass>
+                        <String fx:value="standard-text" />
+                        <String fx:value="change-cost-item-name-button" />
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="Klicka för att ta bort denna kostnaden från alla projekt" />
+                     </tooltip>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#openRemoveConfirmation" prefWidth="100.0" text="Ta bort">
+                     <styleClass>
+                        <String fx:value="standard-text" />
+                        <String fx:value="remove-button" />
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="Klicka för att ta bort denna kostnaden från alla projekt" />
+                     </tooltip>
+                  </Button>
+               </children>
                <HBox.margin>
-                  <Insets />
+                  <Insets left="15.0" />
                </HBox.margin>
-               <styleClass>
-                  <String fx:value="standard-text" />
-                  <String fx:value="remove-button" />
-               </styleClass>
-               <tooltip>
-                  <Tooltip text="Klicka för att ta bort denna kostnaden från alla projekt" />
-               </tooltip>
-            </Button>
+            </VBox>
          </children>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
       </HBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+      <Insets bottom="10.0" left="25.0" top="5.0" />
    </padding>
 </VBox>
