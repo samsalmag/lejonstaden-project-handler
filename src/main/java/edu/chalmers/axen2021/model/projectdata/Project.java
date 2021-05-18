@@ -636,8 +636,11 @@ public class Project implements Serializable {
 
         updateTomtrattsavgaldMedStod();
 
-        updateProjektVinstMedStod();
-        updateProjektVinstUtanStod();
+        updateProjektvinstMedStod();
+        updateProjektvinstUtanStod();
+
+        updateProjektvinstProcentMedStod();
+        updateProjektvinstProcentUtanStod();
     }
 
     /**
@@ -800,6 +803,7 @@ public class Project implements Serializable {
         hyresintakterUtanStod = calculationsManager.updatedHyresintakter(apartmentItems, antagenPresumtionshyra, totalBoa);
     }
 
+    // Denna och nästa måste bli olika med resp utan stöd
     private void updateDriftOchUnderhallMedStod() {
         driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
     }
@@ -814,11 +818,11 @@ public class Project implements Serializable {
     }
 
     private void updateDriftnettoMedStod() {
-        driftnettoMedStod = hyresintakterMedStod+driftUnderhallMedStod; // + tomträddsavgäld också
+        driftnettoMedStod = hyresintakterMedStod+driftUnderhallMedStod+tomtrattsavgaldMedStod;
     }
 
     private void updateDriftnettoUtanStod() {
-        driftnettoUtanStod = hyresintakterUtanStod+driftUnderhallUtanStod; // + tomträtsavgäld
+        driftnettoUtanStod = hyresintakterUtanStod+driftUnderhallUtanStod+tomtrattsavgaldUtanStod;
     }
 
     private void updateMarknadsvardeMedStod() {
@@ -829,11 +833,19 @@ public class Project implements Serializable {
         marknadsvardeUtanStod = driftnettoUtanStod/(yieldUtanStod/100);
     }
 
-    private void updateProjektVinstMedStod() {
+    private void updateProjektvinstMedStod() {
         projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkr;
     }
 
-    private void updateProjektVinstUtanStod() {
+    private void updateProjektvinstUtanStod() {
         projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr+investeringsstodKkr;
+    }
+
+    private void updateProjektvinstProcentMedStod() {
+        projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkr;
+    }
+
+    private void updateProjektvinstProcentUtanStod() {
+        projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr;
     }
 }
