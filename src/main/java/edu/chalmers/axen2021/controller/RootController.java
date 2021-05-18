@@ -305,7 +305,7 @@ public class RootController {
     }
 
     /**
-     * Renames a cost item in the active project and active category.
+     * Renames a cost item in all projects and in the active category.
      * @param currentName The current name of the cost item.
      * @param newName The new name of the cost item.
      */
@@ -313,7 +313,7 @@ public class RootController {
         projectManager.changeCostItemName(projectManager.getActiveCategory(), currentName, newName);
         modalController.clearCostItems();
         modalController.populateCostItems();
-        saveAllProjectData();
+        saveAllProjectData();  // Save data for all projects. Values are otherwise lost in all inactive projects.
     }
 
     /**

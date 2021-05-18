@@ -76,7 +76,7 @@ public class SideBarItemController implements Initializable {
     }
 
     /**
-     * Method for creating a PDF for the project when a button is clicked.
+     * Opens the name changeNameView for the project.
      */
     @FXML
     private void openChangeNameView() {
