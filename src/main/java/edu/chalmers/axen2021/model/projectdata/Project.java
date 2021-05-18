@@ -635,6 +635,9 @@ public class Project implements Serializable {
         updateProjektkostnadKrBta();
 
         updateTomtrattsavgaldMedStod();
+
+        updateProjektVinstMedStod();
+        updateProjektVinstUtanStod();
     }
 
     /**
@@ -826,5 +829,11 @@ public class Project implements Serializable {
         marknadsvardeUtanStod = driftnettoUtanStod/(yieldUtanStod/100);
     }
 
+    private void updateProjektVinstMedStod() {
+        projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkr;
+    }
 
+    private void updateProjektVinstUtanStod() {
+        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr+investeringsstodKkr;
+    }
 }
