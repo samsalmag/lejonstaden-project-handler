@@ -106,7 +106,7 @@ public class ApartmentItemController implements Initializable {
         this.apartmentItem = apartmentItem;
 
         // Init DecimalFormatter
-        dfPercent = new DecimalFormat("#.#");
+        dfPercent = new DecimalFormat("#.###");
         dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
@@ -181,9 +181,9 @@ public class ApartmentItemController implements Initializable {
      * Initializes the BOATextField by adding listeners.
      */
     private void initBOATextField() {
-        //Adds property to TextField allowing users to only input numbers and ".".
+        //Adds property to TextField allowing users to only input numbers and ",".
         BOATextField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            if(!newValue.matches("[0-9]*" + "[.]?" + "[0-9]*")){
+            if(!newValue.matches("[0-9]*" + "[,]?" + "[0-9]*")){
                 BOATextField.setText(oldValue);
             }
         });
@@ -192,12 +192,11 @@ public class ApartmentItemController implements Initializable {
         BOATextField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue){
                 //Make sure that the textField has a readable value.
-                if(BOATextField.getText().equals("") || BOATextField.getText().equals(".")){
-                    BOATextField.setText("0.0");
+                if(BOATextField.getText().equals("") || BOATextField.getText().equals(",")){
+                    BOATextField.setText("0");
                 }
-                // Remove unnecessary zeroes
-                BOATextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(BOATextField.getText())));
-                apartmentItem.setBOA(Double.parseDouble(BOATextField.getText()));
+                apartmentItem.setBOA(StringUtils.convertToDouble(BOATextField.getText()));
+                BOATextField.setText(dfPercent.format(apartmentItem.getBOA()));
                 rootController.updateAllLabels();
             }
         });

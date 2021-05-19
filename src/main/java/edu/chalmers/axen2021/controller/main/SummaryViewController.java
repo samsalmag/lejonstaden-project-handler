@@ -62,14 +62,21 @@ public class SummaryViewController implements Initializable {
     private DecimalFormat df;
 
     /**
+     * Decimal formatter for percent labels
+     */
+    private DecimalFormat dfPercent;
+
+    /**
      * VBox in the SummaryView.
      */
     @FXML private VBox lagenhetsTypVbox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        df = new DecimalFormat("#.##");
-        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        df = new DecimalFormat("#");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
+        dfPercent = new DecimalFormat("#.###");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
     /**
@@ -124,8 +131,8 @@ public class SummaryViewController implements Initializable {
      * Updates all TextFields related to ProjektvinstProcent.
      */
     private void updateProjektvinstProcent() {
-        projektvinstProcentMedStod.setText(df.format(projectManager.getActiveProject().getProjektvinstProcentMedStod()));
-        projektvinstProcentUtanStod.setText(df.format(projectManager.getActiveProject().getProjektvinstProcentUtanStod()));
+        projektvinstProcentMedStod.setText(dfPercent.format(projectManager.getActiveProject().getProjektvinstProcentMedStod()) + "%");
+        projektvinstProcentUtanStod.setText(dfPercent.format(projectManager.getActiveProject().getProjektvinstProcentUtanStod()) + "%");
     }
 
     /**
