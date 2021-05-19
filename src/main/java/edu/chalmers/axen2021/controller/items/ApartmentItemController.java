@@ -32,6 +32,12 @@ public class ApartmentItemController implements Initializable {
      */
     private final RootController rootController = RootController.getInstance();
 
+
+    /**
+     * Decimal formatter removing decimals.
+     */
+    private DecimalFormat df;
+
     /**
      * Used to format the decimals in totalBOAPercent.
      */
@@ -108,6 +114,9 @@ public class ApartmentItemController implements Initializable {
         // Init DecimalFormatter
         dfPercent = new DecimalFormat("#.###");
         dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
+
+        df = new DecimalFormat("#");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
     @Override
@@ -160,6 +169,8 @@ public class ApartmentItemController implements Initializable {
         totalBOATextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOA())));
         totalBOAPercentTextField.setText(dfPercent.format(apartmentItem.getTotalBOAPercent()));
         bidragTextField.setText(String.valueOf(Math.round(apartmentItem.getBidrag())));
+        BOATextField.setText(dfPercent.format(apartmentItem.getBOA()));
+        amountTextField.setText(df.format(apartmentItem.getAmount()));
     }
 
     /**
@@ -196,7 +207,6 @@ public class ApartmentItemController implements Initializable {
                     BOATextField.setText("0");
                 }
                 apartmentItem.setBOA(StringUtils.convertToDouble(BOATextField.getText()));
-                BOATextField.setText(dfPercent.format(apartmentItem.getBOA()));
                 rootController.updateAllLabels();
             }
         });
@@ -220,8 +230,6 @@ public class ApartmentItemController implements Initializable {
                 if(amountTextField.getText().equals("")){
                     amountTextField.setText("0");
                 }
-                // Remove unnecessary zeroes
-                amountTextField.setText(StringUtils.removeTrailingZeros(Double.parseDouble(amountTextField.getText())));
                 apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
                 rootController.updateAllLabels();
             }
