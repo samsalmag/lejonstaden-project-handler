@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Tilda Grönlund
  */
 class ApartmentDataTest {
-    private ApartmentData apt = new ApartmentData();
+    private final ApartmentData apt = new ApartmentData();
 
     /**
      * Tests the getMonthlyRent(String, int, double) method in ApartmentData class for low

@@ -6,6 +6,7 @@ import edu.chalmers.axen2021.model.managers.ProjectManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -27,14 +28,14 @@ public class Project implements Serializable {
     /**
      * A map containing all category lists.
      */
-    private HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
+    private final HashMap<Category, ArrayList<CostItem>> costItemsMap = new HashMap<>();
 
     /**
      * A list of all apartmentItems
      */
-    private ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
+    private final ArrayList<ApartmentItem> apartmentItems = new ArrayList<>();
 
-    private CalculationsManager calculationsManager = CalculationsManager.getInstance();
+    private final CalculationsManager calculationsManager = CalculationsManager.getInstance();
 
     private double numOfApt;
 
@@ -102,6 +103,7 @@ public class Project implements Serializable {
     //Tomtrattsavgald
     private double tomtrattsavgaldMedStod;
     private double tomtrattsavgaldUtanStod;
+    private double tomtPercent;
 
     //Driftnetto
     private double driftnettoMedStod;
@@ -193,7 +195,7 @@ public class Project implements Serializable {
         }
 
         // Sort the list to alphabetical order.
-        ProjectManager.getInstance().getActiveCostItemNames().sort(String::compareToIgnoreCase);
+        ProjectManager.getInstance().getActiveCostItemNames().sort(Collections.reverseOrder());
 
         System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getName() + "!");
         return costItem;
@@ -522,6 +524,21 @@ public class Project implements Serializable {
         return oforutsettPercent;
     }
 
+    public double getTotalKrPerKvmLow() {
+        return calculationsManager.updatedTotalKrPerKvmLow(apartmentItems);
+    }
+
+    public double getTotalKrPerKvmHigh() {
+        return calculationsManager.updatedTotalKrPerKvmHigh(apartmentItems);
+    }
+
+    public double getTotalBidrag() {
+        return calculationsManager.updatedTotalBidrag(apartmentItems);
+    }
+
+    public double getTomtPercent() { return tomtPercent; }
+
+
     // SETTERS FOR INPUT VARIABLES
     public void setYieldMedStod(double yieldMedStod) {
         this.yieldMedStod = yieldMedStod;
@@ -537,6 +554,10 @@ public class Project implements Serializable {
 
     public void setAntagenPresumtionshyra(double antagenPresumtionshyra) {
         this.antagenPresumtionshyra = antagenPresumtionshyra;
+    }
+
+    public void setTomtPercent(double tomtPercent) {
+        this.tomtPercent = tomtPercent;
     }
 
     public void setTotalLjusBta(double totalLjusBta) {
@@ -589,10 +610,6 @@ public class Project implements Serializable {
         updateMervardesskattKrBoa();
         updateMervardesskattKrBta();
 
-        updateProjektkostnadKkr();
-        updateProjektkostnadKrBoa();
-        updateProjektkostnadKrBta();
-
         updateInvesteringsstodKkr();
         updateInvesteringsstodKrBoa();
         updateInvesteringsstodKrBta();
@@ -600,13 +617,65 @@ public class Project implements Serializable {
         updateHyresintakterBostadMedStod();
         updateHyresintakterBostadUtanStod();
 
+        updateDriftOchUnderhallMedStod();
+        updateDriftOchUnderhallUtanStod();
+
+        updateDriftnettoMedStod();
+        updateDriftnettoUtanStod();
+
+        updateMarknadsvardeMedStod();
+        updateMarknadsvardeUtanStod();
+
+        // Do this method  *almost*  last.
+        // Should be run before updateProjektkostnad methods, and maybe some more...
+        updateApartmentItemsVariables();
+
+        updateProjektkostnadKkr();
+        updateProjektkostnadKrBoa();
+        updateProjektkostnadKrBta();
+
+        updateTomtrattsavgaldMedStod();
+
+        updateProjektvinstMedStod();
+        updateProjektvinstUtanStod();
+
+        updateProjektvinstProcentMedStod();
+        updateProjektvinstProcentUtanStod();
+    }
+
+    /**
+     * Goes through each apartment item in the project and calculates and updates all of its variable values.
+     */
+    public void updateApartmentItemsVariables() {
+        for(ApartmentItem apartmentItem : apartmentItems) {
+            // If one of the inputs equals zero then don't do calculations. Continue to next apartment item.
+            if(apartmentItem.getBOA() == 0 || apartmentItem.getAmount() == 0) {
+                apartmentItem.setRentPerMonthLow(0);
+                apartmentItem.setKrPerKvmLow(0);
+                apartmentItem.setRentPerMonthHigh(0);
+                apartmentItem.setKrPerKvmHigh(0);
+                apartmentItem.setTotalBOA(0);
+                apartmentItem.setTotalBOAPercent(0);
+                apartmentItem.setBidrag(0);
+                continue;
+            }
+
+            // Calculate and set values...
+            apartmentItem.setRentPerMonthLow(calculationsManager.updatedApartmentItemRentPerMonthLow(apartmentItem, normhyraMedStod));
+            apartmentItem.setKrPerKvmLow(calculationsManager.updatedApartmentItemKrPerKvmLow(apartmentItem, normhyraMedStod));
+            apartmentItem.setRentPerMonthHigh(calculationsManager.updatedApartmentItemRentPerMonthHigh(apartmentItem, antagenPresumtionshyra));
+            apartmentItem.setKrPerKvmHigh(calculationsManager.updatedApartmentItemKrPerKvmHigh(apartmentItem, antagenPresumtionshyra));
+            apartmentItem.setTotalBOA(calculationsManager.updatedApartmentItemTotalBOA(apartmentItem));
+            apartmentItem.setTotalBOAPercent(calculationsManager.updatedApartmentItemTotalBOAPercent(apartmentItem.getTotalBOA(), totalBoa));
+            apartmentItem.setBidrag(calculationsManager.updatedApartmentItemBidrag(apartmentItem, investeringsstod));
+        }
     }
 
     private void updateNumOfApt() {
-        numOfApt = calculationsManager.updateNumberOfApt(getApartmentItems());
+        numOfApt = calculationsManager.updatedNumberOfApt(getApartmentItems());
     }
     private void updateTotalBoa() {
-        totalBoa = calculationsManager.updateTotalBoa(getApartmentItems());
+        totalBoa = calculationsManager.updatedTotalBoa(getApartmentItems());
     }
 
     private void updateTomtkostnaderKkr() {
@@ -640,7 +709,7 @@ public class Project implements Serializable {
     }
 
     private void updateByggherreKkr() {
-        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems());
+        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems(), totalBoa);
     }
 
     private void updateByggherreKrBoa() {
@@ -714,7 +783,7 @@ public class Project implements Serializable {
     }
 
     private void updateInvesteringsstodKkr() {
-       investeringsstodKkr = calculationsManager.updateSubsidyKKr(getInvesteringsstod(), getApartmentItems());
+       investeringsstodKkr = calculationsManager.updatedSubsidyKKr(getInvesteringsstod(), getApartmentItems());
     }
 
     private void updateInvesteringsstodKrBoa() {
@@ -727,13 +796,56 @@ public class Project implements Serializable {
 
 
     private void updateHyresintakterBostadMedStod() {
-        krPerKvm = calculationsManager.updateKrPerKvm(apartmentItems, normhyraMedStod);
-        hyresintakterMedStod = totalBoa*krPerKvm/1000;
+        hyresintakterMedStod = calculationsManager.updatedHyresintakter(apartmentItems, normhyraMedStod, totalBoa);
     }
 
     private void updateHyresintakterBostadUtanStod() {
-        krPerKvm = calculationsManager.updateKrPerKvm(apartmentItems, antagenPresumtionshyra);
-        hyresintakterUtanStod = totalBoa*krPerKvm/1000;
+        hyresintakterUtanStod = calculationsManager.updatedHyresintakter(apartmentItems, antagenPresumtionshyra, totalBoa);
     }
 
+    // Denna och nästa måste bli olika med resp utan stöd
+    private void updateDriftOchUnderhallMedStod() {
+        driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+    }
+
+    private void updateDriftOchUnderhallUtanStod() {
+        driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+    }
+
+    // Samma beräkning för med och utan stöd
+    private void updateTomtrattsavgaldMedStod() {
+        tomtrattsavgaldMedStod = -tomtkostnaderKkr*tomtPercent;
+    }
+
+    private void updateDriftnettoMedStod() {
+        driftnettoMedStod = hyresintakterMedStod+driftUnderhallMedStod+tomtrattsavgaldMedStod;
+    }
+
+    private void updateDriftnettoUtanStod() {
+        driftnettoUtanStod = hyresintakterUtanStod+driftUnderhallUtanStod+tomtrattsavgaldUtanStod;
+    }
+
+    private void updateMarknadsvardeMedStod() {
+        marknadsvardeMedStod = driftnettoMedStod/(yieldMedStod/100);
+    }
+
+    private void updateMarknadsvardeUtanStod() {
+        marknadsvardeUtanStod = driftnettoUtanStod/(yieldUtanStod/100);
+    }
+
+    private void updateProjektvinstMedStod() {
+        projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkr;
+    }
+
+    private void updateProjektvinstUtanStod() {
+        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr+investeringsstodKkr;
+    }
+
+    private void updateProjektvinstProcentMedStod() {
+        projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkr;
+    }
+
+    private void updateProjektvinstProcentUtanStod() {
+        projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr;
+    }
 }

@@ -2,7 +2,6 @@ package edu.chalmers.axen2021.controller.main;
 
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
-import edu.chalmers.axen2021.controller.items.ItemType;
 import edu.chalmers.axen2021.controller.items.SideBarItemController;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.Project;
@@ -27,14 +26,14 @@ public class SideBarController {
     /**
      * The parent controller
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * VBox in the sideBar.
      */
     @FXML private VBox projectItemVbox;
 
-    private ToggleGroup projectButtonGroup = new ToggleGroup();
+    private final ToggleGroup projectButtonGroup = new ToggleGroup();
 
     /**
      * Opens the addNewProject view.

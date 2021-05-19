@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.controller.main;
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.Category;
@@ -91,25 +92,34 @@ public class InputController implements Initializable {
 
     @FXML private Label titleLabel;
 
+    /**
+     * Decimal formatter removing decimals
+     */
     private DecimalFormat df;
+    /**
+     * Decimal formatter for percent labels
+     */
     private DecimalFormat dfPercent;
 
 
     /**
      * Instance of the project manager.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * Parent controller
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * List of all input TextFields.
      */
-    private ArrayList<TextField> inputFields = new ArrayList<TextField>();
-    private ArrayList<TextField> inputFieldsPercent = new ArrayList<TextField>();
+    private final ArrayList<TextField> inputFields = new ArrayList<TextField>();
+    /**
+     * List of all percent input TextFields.
+     */
+    private final ArrayList<TextField> inputFieldsPercent = new ArrayList<TextField>();
 
     /**
      * Vbox in the inputView containing lagenhetsDataSummaryItems.
@@ -158,7 +168,7 @@ public class InputController implements Initializable {
         }
         for(TextField textField: inputFieldsPercent){
 
-            //Adds property to TextField allowing users to only input numbers and ",".
+            //Adds property to TextField allowing users to only input percent numbers, "," and "%".
             textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue.matches("((100)|[0-9]{0,2}([,][0-9]{0,3})?)[%]?")){
                     textField.setText(oldValue);
@@ -243,6 +253,7 @@ public class InputController implements Initializable {
      * Remove all apartmentItems in the apartmentTypesView of the window.
      */
     public void clearApartmentItems() {
+        ApartmentItemControllerFactory.clearInstances();
         lagenhetsTypVbox.getChildren().clear();
     }
 
@@ -252,7 +263,7 @@ public class InputController implements Initializable {
      */
     private void createNewLagenhetstypView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));
-        ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
+        ApartmentItemController apartmentItemController = ApartmentItemControllerFactory.create(newApartmentItem);
         apartmentTypeFXML.setController(apartmentItemController);
         Node apartmentTypeNode = null;
 

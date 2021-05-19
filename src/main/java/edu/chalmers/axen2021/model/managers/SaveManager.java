@@ -21,12 +21,12 @@ public class SaveManager {
     /**
      * The file type used to create save files, and save projects.
      */
-    private static String fileType = ".axen";
+    private static final String fileType = ".axen";
 
     /**
      * Main directory for all save files for the application.
      */
-    private static String directory = System.getProperty("user.home") + File.separatorChar + ".axen2021";;
+    private final String directory = System.getProperty("user.home") + File.separatorChar + ".axen2021";
 
     // Private constructor because Singleton class. Use getInstance() instead.
     private SaveManager(){}

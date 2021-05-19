@@ -27,7 +27,7 @@ public class SideBarItemController implements Initializable {
     /**
      * Parent Controller.
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     /**
      * Button for opening an existing project.
@@ -38,9 +38,9 @@ public class SideBarItemController implements Initializable {
     /**
      * Name of the project bound to the button.
      */
-    private String projectName;
+    private final String projectName;
 
-    private ToggleGroup projectButtonGroup;
+    private final ToggleGroup projectButtonGroup;
 
     /**
      * Constructor that initialize the project name.
@@ -76,7 +76,7 @@ public class SideBarItemController implements Initializable {
     }
 
     /**
-     * Method for creating a PDF for the project when a button is clicked.
+     * Opens the name changeNameView for the project.
      */
     @FXML
     private void openChangeNameView() {

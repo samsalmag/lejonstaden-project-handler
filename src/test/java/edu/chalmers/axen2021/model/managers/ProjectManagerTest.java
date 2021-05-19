@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Sam Salek.
  */
 public class ProjectManagerTest {
-    private static ProjectManager projectManager = ProjectManager.getInstance();
-    private static SaveManager saveManager = SaveManager.getInstance();
+    private static final ProjectManager projectManager = ProjectManager.getInstance();
+    private static final SaveManager saveManager = SaveManager.getInstance();
 
     @BeforeAll
     public static void resetAll() {
@@ -82,5 +82,33 @@ public class ProjectManagerTest {
         assertEquals(projectManager.getProjects().size(), 0);
 
         assertThrows(IllegalArgumentException.class, () -> projectManager.removeProject("test"));
+    }
+
+    @Test
+    public void changeCostItemNameTest() {
+        Project project = new Project("test");
+        projectManager.setActiveCategory(Category.BYGGHERREKOSTNADER);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 0);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 0);
+
+        project.addCostItem("testCost1");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 1);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(0).getName(), "testCost1");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 1);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(0), "testCost1");
+
+        project.addCostItem("testCost2");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(1).getName(), "testCost2");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(0), "testCost2");
+
+        projectManager.changeCostItemName(Category.BYGGHERREKOSTNADER, "testCost2", "newTestCost2");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(0).getName(), "testCost1");
+        assertEquals(project.getCostItemsMap().get(Category.BYGGHERREKOSTNADER).get(1).getName(), "newTestCost2");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).size(), 2);
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(0), "testCost1");
+        assertEquals(projectManager.getCostItemNamesMap().get(Category.BYGGHERREKOSTNADER).get(1), "newTestCost2");
     }
 }

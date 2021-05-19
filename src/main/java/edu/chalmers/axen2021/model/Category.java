@@ -26,12 +26,12 @@ public enum Category {
     /**
      * String name of the category. Must be the same as the string on the category buttons in the input view.
      */
-    private String name;
+    private final String name;
 
     /**
      * Unit of the category (e.g. "kkr" or "kr/BOA").
      */
-    private String unit;
+    private final String unit;
 
     Category(String name, String unit) {
         this.name = name;

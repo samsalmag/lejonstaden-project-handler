@@ -4,10 +4,6 @@
     -fx-background-color: #FFFFFF;
 }
 
-#side-bar{
-    -fx-background-color: #FDFDFD;
-}
-
 #center-stage{
     -fx-background-color: #FAFAFB;
 }
@@ -19,6 +15,10 @@
 #cost-item {
     -fx-background-radius: 20px;
     -fx-background-color: #D4D4D4;
+}
+
+#apartment-item{
+    -fx-background-radius: 50px;
 }
 
 /*------------BUTTONS-----------------*/
@@ -80,31 +80,85 @@
 
 /*RemoveButton*/
 .remove-button{
-    -fx-background-color: #F75252;
+    /*-fx-background-color: #F75252;*/
+    -fx-background-color: #ED6868;
     -fx-background-radius: 5px;
     -fx-cursor: hand;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
 }
 
 .remove-button:hover{
-    -fx-background-color: #ED4848;
+    -fx-background-color: #E35E5E;
 }
 
 .remove-button:pressed{
-    -fx-background-color: #E33E3E;
+    -fx-background-color: #D95454;
 }
 
 /*ChangeViewButton*/
 .change-view-button{
-
+    -fx-background-color: #92B1B8;
+     -fx-background-radius: 5px;
+     -fx-cursor: hand;
+     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
 }
 
 .change-view-button:hover{
-
+    -fx-background-color: #88A7AE;
 }
 
 .change-view-button:pressed{
+    -fx-background-color: #7E9DA4;
+}
 
+/*AddProjectButton*/
+.add-project-approve{
+    -fx-background-color: #E8C261;
+    -fx-background-radius: 5px;
+    -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.add-project-approve:hover{
+    -fx-background-color: #DEB756;
+}
+
+.add-project-approve:pressed{
+    -fx-background-color: #D4AD4C;
+}
+
+/*ChangeProjectNameButton*/
+.change-project-name-approve{
+    -fx-background-color: #E8C261;
+    -fx-background-radius: 5px;
+    -fx-text-align: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.change-project-name-approve:hover{
+    -fx-background-color: #DEB756;
+}
+
+.change-project-name-approve:pressed{
+    -fx-background-color: #D4AD4C;
+}
+
+/*ChangeCostItemNameButton*/
+.change-cost-item-name-button{
+    -fx-background-color: #A0D1FA;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 2,0,2,2);
+}
+
+.change-cost-item-name-button:hover{
+    -fx-background-color: #96C7F0;
+}
+
+.change-cost-item-name-button:pressed{
+    -fx-background-color: #8CBDE6;
 }
 
 /*------------FONT-SIZES-----------------*/
@@ -140,4 +194,33 @@
     -fx-border-color: #B6C4C3;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+}
+
+.header{
+    -fx-background-image: url(/images/bakgrund-bostader.jpg);
+    -fx-background-size: stretch;
+}
+
+.scroll-pane{
+    -fx-background-color:transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.side-bar{
+    -fx-background-color: linear-gradient(#FCDC86, #FFFFF4);
+}
+
+.image-view-cross{
+    -fx-image: url(/images/outline_close_black_24dp.png);
+}
+
+.image-view-cross:hover{
+
+}
+
+.image-view-cross:pressed{
+
 }

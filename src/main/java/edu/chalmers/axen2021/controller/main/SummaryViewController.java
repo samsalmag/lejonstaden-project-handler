@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.controller.main;
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
@@ -36,12 +37,12 @@ public class SummaryViewController implements Initializable {
     /**
      * Instance of Project Manager.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * Instance of parent controller.
      */
-    private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
 
     //Variables connected to text fields in summaryView.fxml
     @FXML private TextField projektkostnadMedStod;
@@ -55,7 +56,15 @@ public class SummaryViewController implements Initializable {
 
     @FXML private Label titleLabel;
 
+    /**
+     * Decimal formatter removing decimals.
+     */
     private DecimalFormat df;
+
+    /**
+     * Decimal formatter for percent labels
+     */
+    private DecimalFormat dfPercent;
 
     /**
      * VBox in the SummaryView.
@@ -64,8 +73,10 @@ public class SummaryViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        df = new DecimalFormat("#.##");
-        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        df = new DecimalFormat("#");
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
+        dfPercent = new DecimalFormat("#.###");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
     /**
@@ -120,8 +131,8 @@ public class SummaryViewController implements Initializable {
      * Updates all TextFields related to ProjektvinstProcent.
      */
     private void updateProjektvinstProcent() {
-        projektvinstProcentMedStod.setText(df.format(projectManager.getActiveProject().getProjektvinstProcentMedStod()));
-        projektvinstProcentUtanStod.setText(df.format(projectManager.getActiveProject().getProjektvinstProcentUtanStod()));
+        projektvinstProcentMedStod.setText(dfPercent.format(projectManager.getActiveProject().getProjektvinstProcentMedStod()) + "%");
+        projektvinstProcentUtanStod.setText(dfPercent.format(projectManager.getActiveProject().getProjektvinstProcentUtanStod()) + "%");
     }
 
     /**
@@ -149,6 +160,7 @@ public class SummaryViewController implements Initializable {
      * Remove all apartmentItems from view.
      */
     public void clearApartmentItems() {
+        ApartmentItemControllerFactory.clearInstances();
         lagenhetsTypVbox.getChildren().clear();
     }
 
@@ -158,7 +170,7 @@ public class SummaryViewController implements Initializable {
      */
     private void createNewApartmentItemView(ApartmentItem newApartmentItem) {
         FXMLLoader apartmentTypeFXML = new FXMLLoader(getClass().getResource("/fxml/lagenhetsDataItem.fxml"));
-        ApartmentItemController apartmentItemController = new ApartmentItemController(newApartmentItem);
+        ApartmentItemController apartmentItemController = ApartmentItemControllerFactory.create(newApartmentItem);
         apartmentTypeFXML.setController(apartmentItemController);
         Node apartmentTypeNode = null;
 

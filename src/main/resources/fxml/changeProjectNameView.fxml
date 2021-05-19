@@ -29,7 +29,7 @@
                         <Button minWidth="100.0" mnemonicParsing="false" onAction="#changeProjectName" text="Byt projektnamn">
                            <styleClass>
                               <String fx:value="standard-text" />
-                              <String fx:value="approve-button" />
+                              <String fx:value="change-project-name-approve" />
                            </styleClass></Button>
                         <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeChangeProjectNameView" text="Avbryt">
                            <styleClass>

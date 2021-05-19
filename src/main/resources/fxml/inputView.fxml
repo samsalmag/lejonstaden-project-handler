@@ -7,16 +7,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="TOP_CENTER" styleClass="background-image" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
+      <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToSummaryView" text="Till Sammanfattningsvy" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets right="20.0" top="20.0" />
+                  <Insets right="20.0" />
                </VBox.margin>
                <styleClass>
                   <String fx:value="standard-text" />
@@ -24,6 +25,9 @@
                </styleClass>
             </Button>
          </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
       <Label fx:id="titleLabel" alignment="CENTER" styleClass="title-text" text="Projekt namn">
          <VBox.margin>
@@ -32,7 +36,7 @@
       </Label>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" minWidth="550.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" minWidth="450.0" styleClass="transparent" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" styleClass="caption-text" text="Lägenhetsdata">
                      <VBox.margin>
@@ -48,20 +52,23 @@
                         <String fx:value="category-button" />
                      </styleClass>
                   </Button>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox fx:id="lagenhetsTypVbox" alignment="TOP_CENTER" spacing="5.0" />
+                        <VBox fx:id="lagenhetsTypVbox" alignment="TOP_CENTER" spacing="10.0">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding></VBox>
                      </content>
                   </ScrollPane>
                </children>
             </VBox>
             <VBox minWidth="550.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="transparent" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox>
+                        <VBox styleClass="transparent">
                            <children>
-                              <VBox alignment="CENTER" style="-fx-border-color: black;">
+                              <VBox alignment="CENTER">
                                  <children>
                                     <Label alignment="CENTER" styleClass="caption-text" text="Grundförutsättningar">
                                        <VBox.margin>
@@ -139,6 +146,9 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda bygherre">
                                                    <VBox.margin>
@@ -148,6 +158,9 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Anslutningar">
                                                    <VBox.margin>
@@ -157,6 +170,9 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Byggherrekostnader">
                                                    <VBox.margin>
@@ -166,6 +182,9 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Finansiella kostnader">
                                                    <VBox.margin>
@@ -175,6 +194,9 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Entrepenad">
                                                    <VBox.margin>
@@ -184,6 +206,9 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Oförutsett">
                                                    <VBox.margin>
@@ -214,7 +239,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </Label>
-                                                <TextField fx:id="tomtkostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="tomtkostnaderKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>
@@ -226,7 +251,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="nedlagdaBygherreKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="nedlagdaBygherreKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -235,7 +260,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="anslutningarKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="anslutningarKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -244,7 +269,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="byggherrekostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="byggherrekostnaderKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -253,7 +278,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="finanisellaKostnaderKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="finanisellaKostnaderKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -262,7 +287,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="entreprenadKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="entreprenadKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -271,7 +296,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="oforutsettKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="oforutsettKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -280,7 +305,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="mervardeskattKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="mervardeskattKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -289,7 +314,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="investeringsstodKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="investeringsstodKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -298,7 +323,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="projektkostnadKkr" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="projektkostnadKkr" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -312,7 +337,7 @@
                                           <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="standard-text" text="kr/BOA" />
-                                                <TextField fx:id="tomtkostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="tomtkostnaderKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -321,7 +346,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="nedlagdaBygherreKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="nedlagdaBygherreKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -330,7 +355,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="anslutningarKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="anslutningarKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -339,7 +364,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="byggherrekostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="byggherrekostnaderKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -348,7 +373,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="finanisellaKostnaderKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="finanisellaKostnaderKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -357,7 +382,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="entreprenadKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="entreprenadKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -366,7 +391,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="oforutsettKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="oforutsettKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -375,7 +400,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="mervardeskattKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="mervardeskattKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -384,7 +409,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="investeringsstodKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="investeringsstodKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -393,7 +418,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="projektkostnadKrBoa" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="projektkostnadKrBoa" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -407,7 +432,7 @@
                                           <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="standard-text" text="kr/BTA" />
-                                                <TextField fx:id="tomtkostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="tomtkostnaderKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -416,7 +441,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="nedlagdaBygherreKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="nedlagdaBygherreKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -425,7 +450,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="anslutningarKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="anslutningarKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -434,7 +459,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="byggherrekostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="byggherrekostnaderKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -443,7 +468,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="finanisellaKostnaderKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="finanisellaKostnaderKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -452,7 +477,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="entreprenadKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="entreprenadKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -461,7 +486,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="oforutsettKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="oforutsettKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -470,7 +495,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="mervardeskattKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="mervardeskattKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -479,7 +504,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="investeringsstodKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="investeringsstodKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -488,7 +513,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="projektkostnadKrBta" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="projektkostnadKrBta" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -515,12 +540,18 @@
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Drift &amp; Underhåll">
                                                    <styleClass>
                                                       <String fx:value="category-button" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <tooltip>
+                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                   </tooltip>
                                                 </Button>
                                                 <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Tomträttsavgäld" />
                                                 <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Driftnetto" />
@@ -537,7 +568,7 @@
                                           <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="standard-text" text="Med stöd" />
-                                                <TextField fx:id="hyresintakterMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="hyresintakterMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -546,7 +577,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="driftUnderhallMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="driftUnderhallMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -555,7 +586,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="tomtrattsavgaldMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="tomtrattsavgaldMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -564,7 +595,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="driftnettoMedStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="driftnettoMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -573,12 +604,12 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="yieldMedStod" alignment="CENTER" maxWidth="100.0" minHeight="42.0" minWidth="50.0" styleClass="standard-text">
+                                                <TextField fx:id="yieldMedStod" alignment="CENTER_RIGHT" maxWidth="100.0" minHeight="42.0" minWidth="50.0" styleClass="standard-text">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
                                                 </TextField>
-                                                <TextField fx:id="marknadsvardeMedStod" alignment="CENTER" editable="false" layoutX="144.0" layoutY="272.0" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="marknadsvardeMedStod" alignment="CENTER_RIGHT" editable="false" layoutX="144.0" layoutY="272.0" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -592,7 +623,7 @@
                                           <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="standard-text" text="Utan stöd" />
-                                                <TextField fx:id="hyresintakterUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="hyresintakterUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -601,7 +632,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="driftUnderhallUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="driftUnderhallUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -610,7 +641,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="tomtrattsavgaldUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="tomtrattsavgaldUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -619,7 +650,7 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="driftnettoUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="driftnettoUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
@@ -628,12 +659,12 @@
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
                                                 </TextField>
-                                                <TextField fx:id="yieldUtanStod" alignment="CENTER" maxWidth="100.0" minHeight="42.0" minWidth="50.0" styleClass="standard-text">
+                                                <TextField fx:id="yieldUtanStod" alignment="CENTER_RIGHT" maxWidth="100.0" minHeight="42.0" minWidth="50.0" styleClass="standard-text">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
                                                 </TextField>
-                                                <TextField fx:id="marknadsvardeUtanStod" alignment="CENTER" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
+                                                <TextField fx:id="marknadsvardeUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
                                                    </cursor>

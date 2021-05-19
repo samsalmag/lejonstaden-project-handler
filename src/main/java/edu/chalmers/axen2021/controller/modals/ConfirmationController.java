@@ -6,8 +6,14 @@ import edu.chalmers.axen2021.controller.RootController;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Controller class for confirmationView.fxml.
@@ -17,12 +23,17 @@ import javafx.scene.control.Label;
  * @author Sam Salek
  */
 @FXMLController
-public class ConfirmationController {
+public class ConfirmationController implements Initializable {
 
     /**
      * Parent controller.
      */
-  private RootController rootController = RootController.getInstance();
+    private final RootController rootController = RootController.getInstance();
+
+    /**
+     * The root node in the view.
+     */
+    @FXML VBox mainVBox;
 
     /**
      * Confirm button in the view.
@@ -43,6 +54,11 @@ public class ConfirmationController {
      * The apartment item to be removed. Only used when an apartment item is being removed.
      */
     private ApartmentItem apartmentItem;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initMainVBox();
+    }
 
     /**
      * EventHandler for when a cost item should be removed.
@@ -124,10 +140,30 @@ public class ConfirmationController {
     }
 
     /**
+     * Initializes the main root node (the VBox)
+     */
+    private void initMainVBox() {
+        mainVBox.setOnKeyPressed(keyEvent -> {
+            // If 'Escape' is pressed then close view
+            if(keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                closeConfirmationView();
+            }
+        });
+    }
+
+    /**
      * Closes the confirmation view.
      */
     @FXML
     private void closeConfirmationView(){
         rootController.closeConfirmationView();
+    }
+
+    /**
+     * Getter for the main root node in the view.
+     * @return The main root node.
+     */
+    public VBox getMainVBox() {
+        return mainVBox;
     }
 }

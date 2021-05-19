@@ -13,9 +13,12 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * This class handles the making of a PDF file containing information about the chosen project.
@@ -44,6 +47,11 @@ public class PdfManager {
      */
     private static File file;
 
+    /**
+     * Used to format the decimals in totalBOAPercent.
+     */
+    private final DecimalFormat dfPercent;
+
     // Fonts
     private static BaseFont arialBase;
     {
@@ -53,14 +61,18 @@ public class PdfManager {
             e.printStackTrace();
         }
     }
-    private static Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
-    private static Font arialSmallBold = new Font(arialBase, 11, Font.BOLD);
-    private static Font arialNormal = new Font(arialBase, 13, Font.NORMAL);
-    private static Font arialNormalBold = new Font(arialBase, 13, Font.BOLD);
-    private static Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
+    private static final Font arialSmall = new Font(arialBase, 11, Font.NORMAL);
+    private static final Font arialSmallBold = new Font(arialBase, 11, Font.BOLD);
+    private static final Font arialNormal = new Font(arialBase, 13, Font.NORMAL);
+    private static final Font arialNormalBold = new Font(arialBase, 13, Font.BOLD);
+    private static final Font arialBigBold = new Font(arialBase, 16, Font.BOLD);
 
     // Singleton. Use getInstance().
-    private PdfManager(){}
+    private PdfManager(){
+        // Init DecimalFormatter
+        dfPercent = new DecimalFormat("#.#");
+        dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
+    }
 
     /**
      * Returns the instance of this Singleton class.
@@ -105,7 +117,7 @@ public class PdfManager {
         File file = fileChooser.showSaveDialog(AXEN2021.getMainStage());
         //File file = new File(System.getProperty("user.home") + File.separatorChar + ".axen2021" + File.separatorChar + initialFileName + ".pdf");
         if(file != null) {
-            this.file = file;
+            PdfManager.file = file;
             return true;
         } else {
             return false;
@@ -186,7 +198,7 @@ public class PdfManager {
         try {
             Date date = new Date();
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String datum = localDate.getMonthValue() + "/" + localDate.getDayOfMonth() + "/" + localDate.getYear();
+            String datum = localDate.getDayOfMonth() + "/" + localDate.getMonthValue() + "/" + localDate.getYear();
             Paragraph header = new Paragraph(new Chunk(datum, arialSmall));
             header.setAlignment(Paragraph.ALIGN_RIGHT);
             document.add(header);
@@ -231,12 +243,12 @@ public class PdfManager {
         table.addCell(createCell("Oförutsett (%)", arialSmall));
         table.addCell(createCell("Total BOA", arialSmall));
         table.addCell(createCell("Total ljus BTA", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNormhyraMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAntagenPresumtionshyra())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettPercent())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalLjusBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNormhyraMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getAntagenPresumtionshyra())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(dfPercent.format(project.getOforutsettPercent()), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalLjusBta())), arialSmall, Element.ALIGN_RIGHT));
 
         grundforutsattningar.add(table);
         document.add(grundforutsattningar);
@@ -255,7 +267,7 @@ public class PdfManager {
         PdfPTable table = new PdfPTable(10);
         table.getDefaultCell().setPadding(5);
         table.setWidthPercentage(100);
-        table.setWidths(new float[]{22,15,15,22,18,22,18,15,19,18});
+        table.setWidths(new float[]{16,15,15,22,18,22,18,20,19,18});
         table.setHeaderRows(1);
 
         table.addCell(createCell("Typ", arialSmall));
@@ -274,16 +286,16 @@ public class PdfManager {
             createLagenhetsCell(table, apartmentItem);
         }
 
-        table.addCell(createCell("Totalt", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNumOfApt())), arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, 2));
-        table.addCell(createCell("100", arialSmall, 2));
-        table.addCell(createCell("TBD", arialSmall, 2));
+        table.addCell(createCell("Totalt", arialSmall, Element.ALIGN_LEFT,2));
+        table.addCell(createCell("", arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNumOfApt())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell("", arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalKrPerKvmLow())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell("", arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalKrPerKvmHigh())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBoa())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell("100", arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTotalBidrag())), arialSmall, Element.ALIGN_RIGHT, 2));
 
         lagenhetsdata.add(table);
         document.add(lagenhetsdata);
@@ -311,54 +323,54 @@ public class PdfManager {
         table.addCell(createCell("kr/BTA", arialSmall));
 
         table.addCell(createCell("Tomtkostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Nedlagda byggherre", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Anslutningar", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Byggherrekostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Finansiella kostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Entrepenad", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Oförutsett", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Mervärdeskatt", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Investeringsstöd", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKkr())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBoa())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBta())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
-        table.addCell(createCell("Projektkostnad", arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKkr())), arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBoa())), arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBta())), arialSmall, 2));
+        table.addCell(createCell("Projektkostnad", arialSmall, Element.ALIGN_LEFT,2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKkr())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBoa())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBta())), arialSmall, Element.ALIGN_RIGHT, 2));
 
         projektkostnader.add(table);
         document.add(projektkostnader);
@@ -385,35 +397,35 @@ public class PdfManager {
         table.addCell(createCell("Utan stöd", arialSmall));
 
         table.addCell(createCell("Hyresintäkter", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getHyresintakterMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getHyresintakterUtanStod())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getHyresintakterMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getHyresintakterUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Drift & Underhåll", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftUnderhallMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftUnderhallUtanStod())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getDriftUnderhallMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getDriftUnderhallUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Tomträttsavgäld", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtrattsavgaldMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtrattsavgaldUtanStod())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTomtrattsavgaldMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getTomtrattsavgaldUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Driftnetto", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoUtanStod())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Yield (%)", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getYieldMedStod())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getYieldUtanStod())), arialSmall));
+        table.addCell(createCell(dfPercent.format(project.getYieldMedStod()), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(dfPercent.format(project.getYieldUtanStod()), arialSmall, Element.ALIGN_RIGHT));
 
-        table.addCell(createCell("Marknadsvärde", arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeMedStod())), arialSmall, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeUtanStod())), arialSmall, 2));
+        table.addCell(createCell("Marknadsvärde", arialSmall, Element.ALIGN_LEFT,2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeMedStod())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeUtanStod())), arialSmall, Element.ALIGN_RIGHT, 2));
 
         table.addCell(createCell("Projektvinst", arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstMedStod())), arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstUtanStod())), arialSmallBold));
+        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstMedStod())), arialSmallBold, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstUtanStod())), arialSmallBold, Element.ALIGN_RIGHT));
         table.addCell(createCell("Projektvinst (%)", arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstProcentMedStod())), arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstProcentUtanStod())), arialSmallBold));
+        table.addCell(createCell(dfPercent.format(project.getProjektvinstProcentMedStod()), arialSmallBold, Element.ALIGN_RIGHT));
+        table.addCell(createCell(dfPercent.format(project.getProjektvinstProcentUtanStod()), arialSmallBold, Element.ALIGN_RIGHT));
 
         fastighetsvardeOchResultat.add(table);
         document.add(fastighetsvardeOchResultat);
@@ -427,15 +439,15 @@ public class PdfManager {
      */
     private void createLagenhetsCell(PdfPTable table, ApartmentItem apartmentItem) {
         table.addCell(createCell(apartmentItem.getApartmentType(), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBOA())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getAmount())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOA())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOAPercent())), arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBOA())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getAmount())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOA())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(dfPercent.format(apartmentItem.getTotalBOAPercent()), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall, Element.ALIGN_RIGHT));
     }
 
     /**
@@ -451,15 +463,31 @@ public class PdfManager {
     }
 
     /**
+     * Creates a new table cell.
+     * @param text The text in the cell.
+     * @param font Font for the text.
+     * @param alignment Alignment of the text.
+     * @return The newly created cell.
+     */
+    private PdfPCell createCell(String text, Font font, int alignment) {
+        PdfPCell cell = new PdfPCell(new Phrase(text, font));
+        cell.setPadding(5);
+        cell.setHorizontalAlignment(alignment);
+        return cell;
+    }
+
+    /**
      * Creates a new table cell with a top-border.
      * @param text The text in the cell.
      * @param font Font for the text.
+     * @param alignment Alignment of the text.
      * @param borderTop Size of the top-border.
      * @return The newly created cell.
      */
-    private PdfPCell createCell(String text, Font font, int borderTop) {
+    private PdfPCell createCell(String text, Font font, int alignment, int borderTop) {
         PdfPCell cell = new PdfPCell(new Phrase(text, font));
         cell.setPadding(5);
+        cell.setHorizontalAlignment(alignment);
         cell.setBorderWidthTop(borderTop);
         return cell;
     }

@@ -37,11 +37,63 @@ public class CalculationsManager implements Serializable {
         return calculationsManager;
     }
 
-    private static ApartmentData apartmentData = new ApartmentData();
-    private static ProjectCosts projectCosts = new ProjectCosts();
+    private static final ApartmentData apartmentData = new ApartmentData();
+    private static final ProjectCosts projectCosts = new ProjectCosts();
 
-    //Update methods
-    public double updateTotalBoa(ArrayList<ApartmentItem> apartments) {
+    // Update methods
+    public double updatedApartmentItemRentPerMonthLow(ApartmentItem apartmentItem, double normhyraMedStod) {
+        return apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), normhyraMedStod, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemKrPerKvmLow(ApartmentItem apartmentItem, double normhyraMedStod) {
+        return apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), normhyraMedStod, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemRentPerMonthHigh(ApartmentItem apartmentItem, double antagenPresumtionshyra) {
+        return apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), antagenPresumtionshyra, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemKrPerKvmHigh(ApartmentItem apartmentItem, double antagenPresumtionshyra) {
+        return apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), antagenPresumtionshyra, apartmentItem.getBOA());
+    }
+
+    public double updatedApartmentItemTotalBOA(ApartmentItem apartmentItem) {
+        return apartmentItem.getBOA()* apartmentItem.getAmount();
+    }
+
+    public double updatedApartmentItemTotalBOAPercent(double apartmentItemTotalBOA, double totalBOA) {
+        return (apartmentItemTotalBOA / totalBOA) * 100;
+    }
+
+    public double updatedApartmentItemBidrag(ApartmentItem apartmentItem, double investeringsstod) {
+        return apartmentData.getSubsidy(investeringsstod, apartmentItem.getAmount(), apartmentItem.getBOA());
+    }
+
+    public double updatedTotalKrPerKvmLow(ArrayList<ApartmentItem> apartments) {
+        double v = 0;
+        for(ApartmentItem apartmentItem : apartments) {
+            v += (apartmentItem.getKrPerKvmLow() * apartmentItem.getTotalBOA());
+        }
+        return v / updatedTotalBoa(apartments);
+    }
+
+    public double updatedTotalKrPerKvmHigh(ArrayList<ApartmentItem> apartments) {
+        double v = 0;
+        for(ApartmentItem apartmentItem : apartments) {
+            v += (apartmentItem.getKrPerKvmHigh() * apartmentItem.getTotalBOA());
+        }
+        return v / updatedTotalBoa(apartments);
+    }
+
+    public double updatedTotalBidrag(ArrayList<ApartmentItem> apartments) {
+        double v = 0;
+        for(ApartmentItem apartmentItem : apartments) {
+            v += apartmentItem.getBidrag();
+        }
+        return v;
+    }
+
+    public double updatedTotalBoa(ArrayList<ApartmentItem> apartments) {
         double totalBoa = 0.0;
 
         for(ApartmentItem apartmentItem : apartments) {
@@ -51,7 +103,7 @@ public class CalculationsManager implements Serializable {
         return totalBoa;
     }
 
-    public double updateNumberOfApt(ArrayList<ApartmentItem> apartments) {
+    public double updatedNumberOfApt(ArrayList<ApartmentItem> apartments) {
         double numOfApt = 0.0;
 
         for(ApartmentItem apartmentItem : apartments) {
@@ -61,16 +113,15 @@ public class CalculationsManager implements Serializable {
         return numOfApt;
     }
 
-    public double updateKrPerKvm(ArrayList<ApartmentItem> apartments, double rent) {
+    public double updatedHyresintakter(ArrayList<ApartmentItem> apartments, double rent, double totalBoa) {
         double krPerKvm = 0.0;
-        for(ApartmentItem apartmentItem : apartments) {
-            double rentPerKvm = apartmentData.getMonthlyRent(apartmentItem.getApartmentType(), rent, apartmentItem.getBOA());
-            krPerKvm += apartmentData.getKrPerSqm(apartmentItem.getApartmentType(), rentPerKvm, apartmentItem.getBOA());
+        for (ApartmentItem apartment : apartments) {
+            krPerKvm += apartmentData.getKrPerSqm(apartment.getApartmentType(), rent, apartment.getBOA());
         }
-        return krPerKvm;
+        return (krPerKvm*totalBoa)/1000;
     }
 
-    public double updateSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {
+    public double updatedSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {
         double subsidy = 0.0;
         for (ApartmentItem a : apartments) {
             subsidy -= apartmentData.getSubsidy(investeringsstod, a.getAmount(), a.getBOA());
@@ -125,8 +176,8 @@ public class CalculationsManager implements Serializable {
         return projectCosts.getCostPerBta(anslutningarKkr, totalBta);
     }
 
-    public double updatedByggherreKkr(ArrayList<CostItem> byggherre) {
-        return projectCosts.getTotalCost(byggherre);
+    public double updatedByggherreKkr(ArrayList<CostItem> byggherre, double totalBoa) {
+        return projectCosts.getTotalCost(byggherre)*totalBoa;
     }
 
     public double updatedByggherreKrBoa(double byggherreKkr, double totalBoa) {
@@ -200,5 +251,9 @@ public class CalculationsManager implements Serializable {
 
     public double updatedProjectCostKrBta(double projektkostnadKkr, double totalBta) {
         return projectCosts.getCostPerBta(projektkostnadKkr, totalBta);
+    }
+
+    public double updatedDriftOchUnderhall(ArrayList<CostItem> driftunderhall, double totalBoa) {
+        return projectCosts.getTotalCost(driftunderhall)*totalBoa;
     }
 }

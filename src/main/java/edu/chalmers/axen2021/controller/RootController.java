@@ -1,5 +1,7 @@
 package edu.chalmers.axen2021.controller;
 
+import edu.chalmers.axen2021.controller.items.ApartmentItemController;
+import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.controller.items.ItemType;
 import edu.chalmers.axen2021.controller.main.HeaderController;
 import edu.chalmers.axen2021.controller.main.InputController;
@@ -37,12 +39,12 @@ public class RootController {
     /**
      * The project manager. Handles the projects.
      */
-    private ProjectManager projectManager = ProjectManager.getInstance();
+    private final ProjectManager projectManager = ProjectManager.getInstance();
 
     /**
      * The save manager. Handles everything about saving.
      */
-    private SaveManager saveManager = SaveManager.getInstance();
+    private final SaveManager saveManager = SaveManager.getInstance();
 
     // Controllers for the views.
     private HeaderController headerController;
@@ -54,6 +56,7 @@ public class RootController {
     private InputController inputController;
     private ConfirmationController confirmationController;
     private ChangeProjectNameController changeProjectNameController;
+    private ChangeCostItemNameController changeCostItemNameController;
 
     // Private accessible nodes.
     // Need these to be able to switch between the two views (input and summary).
@@ -120,6 +123,11 @@ public class RootController {
     @FXML private AnchorPane changeProjectNameAnchorPane;
 
     /**
+     * AnchorPane for changeCostItemName.fxml in root.fxml
+     */
+    @FXML private AnchorPane changeCostItemNameAnchorPane;
+
+    /**
      * Initialize method that starts up the first scene and all its children.
      */
     public void initialize() {
@@ -134,6 +142,7 @@ public class RootController {
         summaryViewController = new SummaryViewController();
         confirmationController = new ConfirmationController();
         changeProjectNameController = new ChangeProjectNameController();
+        changeCostItemNameController = new ChangeCostItemNameController();
 
         // Init the fxml code.
         initFXML(headerAnchorPane, "header.fxml", headerController);
@@ -145,6 +154,7 @@ public class RootController {
         summaryViewNode = initFXML(centerStageAnchorPane, "summaryView.fxml", summaryViewController);
         initFXML(confirmationAnchorPane,"confirmationView.fxml", confirmationController);
         initFXML(changeProjectNameAnchorPane, "changeProjectNameView.fxml", changeProjectNameController);
+        initFXML(changeCostItemNameAnchorPane, "changeCostItemNameView.fxml", changeCostItemNameController);
 
         defaultCenterStageAnchorPane.toFront();
 
@@ -179,7 +189,7 @@ public class RootController {
 
         // Anchor the node to its anchor pane.
         anchorPane.getChildren().add(fxmlNode);
-        setAnchors(anchorPane, fxmlNode);
+        setAnchors(fxmlNode);
 
         return fxmlNode;
     }
@@ -194,14 +204,13 @@ public class RootController {
 
     /**
      * Method for anchoring child to its parent.
-     * @param anchorPane Parent.
      * @param node Child.
      */
-    private void setAnchors(AnchorPane anchorPane, Node node) {
-        anchorPane.setTopAnchor(node, 0.0);
-        anchorPane.setRightAnchor(node, 0.0);
-        anchorPane.setLeftAnchor(node, 0.0);
-        anchorPane.setBottomAnchor(node, 0.0);
+    private void setAnchors(Node node) {
+        AnchorPane.setTopAnchor(node, 0.0);
+        AnchorPane.setRightAnchor(node, 0.0);
+        AnchorPane.setLeftAnchor(node, 0.0);
+        AnchorPane.setBottomAnchor(node, 0.0);
     }
 
     /**
@@ -227,12 +236,38 @@ public class RootController {
     }
 
     /**
+     * Updates the views for the apartment items by removing them all and then recreating them.
+     */
+    public void updateApartmentItemsViews() {
+        // Only clear and populate the apartment item views of the front view.
+        // Cuts the apartment item views created in half.
+        if(isSummaryViewInFront()) {
+            summaryViewController.clearApartmentItems();
+            summaryViewController.populateApartmentItems();
+        } else if(isInputViewInFront()) {
+            inputController.clearApartmentItems();
+            inputController.populateApartmentItems();
+        }
+    }
+
+    /**
+     * Updates all variable TextFields in all apartment items in the current project.
+     */
+    public void updateApartmentItemsValues() {
+        // Go through all active instances of ApartmentItemController and call method to update values.
+        for(ApartmentItemController aic : ApartmentItemControllerFactory.getInstances()) {
+            aic.updateAllDisplayValues();
+        }
+    }
+
+    /**
      * Updates all variable labels in the input and summary views.
      */
     public void updateAllLabels(){
         projectManager.getActiveProject().updateAllVariables();
         inputController.updateAllTextFields();
         summaryViewController.updateTextFields();
+        updateApartmentItemsValues();
     }
 
     /**
@@ -256,12 +291,29 @@ public class RootController {
         // Try to remove old save file. If successful then change name.
         if(saveManager.removeProjectFile(project)) {
             project.setName(newName);
-            summaryViewController.updateTitle();
-            inputController.updateTitle();
+
+            // Update title only if there is a active project (throws exception if they are called while null)
+            if(projectManager.getActiveProject() != null) {
+                summaryViewController.updateTitle();
+                inputController.updateTitle();
+            }
+
             saveManager.saveProject(project);
             sideBarController.clearAllProjectButtons();
             sideBarController.populateProjectButtons();
         }
+    }
+
+    /**
+     * Renames a cost item in all projects and in the active category.
+     * @param currentName The current name of the cost item.
+     * @param newName The new name of the cost item.
+     */
+    public void renameCostItem(String currentName, String newName) {
+        projectManager.changeCostItemName(projectManager.getActiveCategory(), currentName, newName);
+        modalController.clearCostItems();
+        modalController.populateCostItems();
+        saveAllProjectData();  // Save data for all projects. Values are otherwise lost in all inactive projects.
     }
 
     /**
@@ -281,10 +333,7 @@ public class RootController {
      */
     public void removeApartmentItem(ApartmentItem apartmentItem){
         projectManager.getActiveProject().removeApartmentItem(apartmentItem);
-        inputController.clearApartmentItems();
-        inputController.populateApartmentItems();
-        summaryViewController.clearApartmentItems();
-        summaryViewController.populateApartmentItems();
+        updateApartmentItemsViews();
         updateAllLabels();  // Should update labels and variables after an apartmentItem is removed.
         saveProjectData();
     }
@@ -352,6 +401,16 @@ public class RootController {
     }
 
     /**
+     * Saves the data for all existing projects.
+     */
+    public void saveAllProjectData() {
+        for(Project project : projectManager.getProjects()) {
+            saveManager.saveProject(project);
+        }
+        saveManager.saveProjectManager();
+    }
+
+    /**
      * Method for opening the modalWindow for a category.
      * Puts the modalWindowAnchorPane to front in scene.
      * @param clickedCategory The category of the clicked button.
@@ -384,6 +443,7 @@ public class RootController {
     public void openConfirmationView(String nameObjectToRemove, ItemType type){
         confirmationController.setItemToRemove(nameObjectToRemove, type);
         confirmationAnchorPane.toFront();
+        confirmationController.getMainVBox().requestFocus();    // Enables keyEvents.
     }
 
     /**
@@ -393,6 +453,7 @@ public class RootController {
     public void openConfirmationView(ApartmentItem apartmentItem){
         confirmationController.setItemToRemove(apartmentItem);
         confirmationAnchorPane.toFront();
+        confirmationController.getMainVBox().requestFocus();    // Enables keyEvents.
     }
 
     /**
@@ -400,6 +461,11 @@ public class RootController {
      */
     public void closeConfirmationView(){
         confirmationAnchorPane.toBack();
+
+        // Returns focus to modal window. Is needed for onKeyPressed events.
+        // (only needed when closing confirmation view when removing a cost item)
+        // Doesn't seem to affect the view when removing a project or apartment item.
+        modalController.getModalWindowItemVBox().requestFocus();
     }
 
     /**
@@ -452,5 +518,43 @@ public class RootController {
      */
     public void closeChangeProjectNameView() {
         changeProjectNameAnchorPane.toBack();
+    }
+
+    /**
+     * Opens the changeCostItemNameView based on changeCostItemNameView.fxml.
+     */
+    public void openChangeCostItemNameView(String currentCostItemName) {
+        changeCostItemNameAnchorPane.toFront();
+        changeCostItemNameController.setCurrentCostItemName(currentCostItemName);
+        changeCostItemNameController.getCostNameTextField().setText(currentCostItemName);
+        changeCostItemNameController.getCostNameTextField().requestFocus(); // Focus the text field for project name input.
+    }
+
+    /**
+     * Method for closing the changeCostItemNameView. Puts the changeCostItemNameView to back in the scene.
+     */
+    public void closeChangeCostItemNameView() {
+        changeCostItemNameAnchorPane.toBack();
+        modalController.getModalWindowItemVBox().requestFocus();  // Returns focus to modal window. Is needed for onKeyPressed events.
+    }
+
+    /**
+     * Checks if the InputView is in front.
+     * @return True or False.
+     */
+    public boolean isInputViewInFront() {
+        // The node in the views front is always the last child in the list.
+        // Check if the last child node is the inputWindowNode.
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == inputWindowNode;
+    }
+
+    /**
+     * Checks if the SummaryView is in front.
+     * @return True or False.
+     */
+    public boolean isSummaryViewInFront() {
+        // The node in the views front is always the last child in the list.
+        // Check if the last child node is the summaryViewNode.
+        return centerStageAnchorPane.getChildren().get(centerStageAnchorPane.getChildren().size() - 1) == summaryViewNode;
     }
 }
