@@ -825,8 +825,8 @@ public class Project implements Serializable {
 
     // Samma beräkning för med och utan stöd
     private void updateTomtrattsavgald() {
-        tomtrattsavgaldMedStod = -tomtkostnaderKkr*tomtPercent;
-        tomtrattsavgaldUtanStod = -tomtkostnaderKkr*tomtPercent;
+        tomtrattsavgaldMedStod = -(tomtkostnaderKkr*tomtPercent)/100;
+        tomtrattsavgaldUtanStod = -(tomtkostnaderKkr*tomtPercent)/100;
     }
 
     private void updateDriftnettoMedStod() {
