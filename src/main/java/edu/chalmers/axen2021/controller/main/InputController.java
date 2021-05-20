@@ -225,7 +225,7 @@ public class InputController implements Initializable {
      */
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
-        Category category = Category.fromString(((Button)event.getSource()).getText());
+        Category category = Category.fromButtonText(((Button)event.getSource()).getText());
         rootController.openModalWindow(category);
     }
 

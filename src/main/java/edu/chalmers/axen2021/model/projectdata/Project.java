@@ -197,7 +197,7 @@ public class Project implements Serializable {
         // Sort the list to alphabetical order.
         ProjectManager.getInstance().getActiveCostItemNames().sort(Collections.reverseOrder());
 
-        System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getName() + "!");
+        System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getDisplayName() + "!");
         return costItem;
     }
 
@@ -230,7 +230,7 @@ public class Project implements Serializable {
             }
         }
 
-        throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getName());
+        throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getDisplayName());
     }
 
     /**
