@@ -759,7 +759,8 @@ public class Project implements Serializable {
     }
 
     private void updateMervardesskattKkr() {
-        mervardeskattKkr = calculationsManager.updatedMervardesskattKkr(costItemsMap, totalBoa, numOfApt);
+        mervardeskattKkr = calculationsManager.updatedMervardesskattKkr(costItemsMap, totalBoa, numOfApt)
+        + oforutsettKkr*0.25;
     }
 
     private void updateMervardesskattKrBoa() {
