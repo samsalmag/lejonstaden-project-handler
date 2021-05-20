@@ -634,7 +634,7 @@ public class Project implements Serializable {
         updateProjektkostnadMedStodKrBoa();
         updateProjektkostnadMedStodKrBta();
 
-        updateTomtrattsavgaldMedStod();
+        updateTomtrattsavgald();
 
         updateProjektvinstMedStod();
         updateProjektvinstUtanStod();
@@ -819,8 +819,9 @@ public class Project implements Serializable {
     }
 
     // Samma beräkning för med och utan stöd
-    private void updateTomtrattsavgaldMedStod() {
+    private void updateTomtrattsavgald() {
         tomtrattsavgaldMedStod = -tomtkostnaderKkr*tomtPercent;
+        tomtrattsavgaldUtanStod = -tomtkostnaderKkr*tomtPercent;
     }
 
     private void updateDriftnettoMedStod() {
@@ -840,11 +841,11 @@ public class Project implements Serializable {
     }
 
     private void updateProjektvinstMedStod() {
-        projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkr;
+        projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkrMedStod;
     }
 
     private void updateProjektvinstUtanStod() {
-        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr+investeringsstodKkr;
+        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr-investeringsstodKkr;
     }
 
     private void updateProjektvinstProcentMedStod() {
