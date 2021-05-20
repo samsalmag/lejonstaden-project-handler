@@ -116,9 +116,10 @@ public class CalculationsManager implements Serializable {
     public double updatedHyresintakter(ArrayList<ApartmentItem> apartments, double rent, double totalBoa) {
         double krPerKvm = 0.0;
         for (ApartmentItem apartment : apartments) {
-            krPerKvm += apartmentData.getKrPerSqm(apartment.getApartmentType(), rent, apartment.getBOA());
+            krPerKvm += apartmentData.getKrPerSqm(apartment.getApartmentType(), rent, apartment.getBOA())
+            * apartment.getBOA() * apartment.getAmount();
         }
-        return (krPerKvm*totalBoa)/1000;
+        return (krPerKvm)/1000;
     }
 
     public double updatedSubsidyKKr(double investeringsstod, ArrayList<ApartmentItem> apartments) {

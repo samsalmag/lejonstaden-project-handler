@@ -630,9 +630,9 @@ public class Project implements Serializable {
         // Should be run before updateProjektkostnad methods, and maybe some more...
         updateApartmentItemsVariables();
 
-        updateProjektkostnadKkr();
-        updateProjektkostnadKrBoa();
-        updateProjektkostnadKrBta();
+        updateProjektkostnadMedStodKkr();
+        updateProjektkostnadMedStodKrBoa();
+        updateProjektkostnadMedStodKrBta();
 
         updateTomtrattsavgaldMedStod();
 
@@ -641,6 +641,8 @@ public class Project implements Serializable {
 
         updateProjektvinstProcentMedStod();
         updateProjektvinstProcentUtanStod();
+
+        updateProjektkostnadUtanStodKkr();
     }
 
     /**
@@ -768,18 +770,22 @@ public class Project implements Serializable {
         mervardeskattKrBta = calculationsManager.updatedMervardesskattKrBta(mervardeskattKkr, totalLjusBta);
     }
 
-    private void updateProjektkostnadKkr() {
-        projektkostnadKkr = calculationsManager.updatedProjectCostKkr(tomtkostnaderKkr, nedlagdaByggherreKkr,anslutningarKkr,
+    private void updateProjektkostnadMedStodKkr() {
+        projektkostnadKkrMedStod = calculationsManager.updatedProjectCostKkr(tomtkostnaderKkr, nedlagdaByggherreKkr,anslutningarKkr,
                 byggherrekostnaderKkr, entreprenadKkr, oforutsettKkr, finansiellaKostnaderKkr,
                 mervardeskattKkr, investeringsstodKkr);
     }
 
-    private void updateProjektkostnadKrBoa() {
-        projektkostnadKrBoa = calculationsManager.updatedProjectCostKrBoa(projektkostnadKkr, totalBoa);
+    private void updateProjektkostnadMedStodKrBoa() {
+        projektkostnadKrBoa = calculationsManager.updatedProjectCostKrBoa(projektkostnadKkrMedStod, totalBoa);
     }
 
-    private void updateProjektkostnadKrBta() {
-        projektkostnadKrBta = calculationsManager.updatedProjectCostKrBta(projektkostnadKkr, totalLjusBta);
+    private void updateProjektkostnadMedStodKrBta() {
+        projektkostnadKrBta = calculationsManager.updatedProjectCostKrBta(projektkostnadKkrMedStod, totalLjusBta);
+    }
+
+    private void updateProjektkostnadUtanStodKkr() {
+        projektkostnadKkr = projektkostnadKkrMedStod-investeringsstodKkr;
     }
 
     private void updateInvesteringsstodKkr() {
