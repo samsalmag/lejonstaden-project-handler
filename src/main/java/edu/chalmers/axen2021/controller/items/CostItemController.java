@@ -46,12 +46,18 @@ public class CostItemController implements Initializable {
     @FXML private CheckBox momsCheckBox;
 
     /**
+     * Boolean value for if moms CheckBox should be available.
+     */
+    private boolean momsEnabled;
+
+    /**
      * The cost item for this controller intance.
      */
     private final CostItem costItem;
 
-    public CostItemController(CostItem costItem) {
+    public CostItemController(CostItem costItem, boolean momsEnabled) {
         this.costItem = costItem;
+        this.momsEnabled = momsEnabled;
     }
 
     @Override
@@ -102,6 +108,13 @@ public class CostItemController implements Initializable {
      * Initializes the momsCheckBox by adding listeners.
      */
     private void initMomsCheckBox() {
+        // Disable moms
+        if(!momsEnabled) {
+            momsCheckBox.setSelected(false);
+            momsCheckBox.setDisable(true);
+            return;
+        }
+
         // Adds changeListener to the momsCheckBox to update the cost item's value in model.
         momsCheckBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
             costItem.setMoms(momsCheckBox.isSelected());

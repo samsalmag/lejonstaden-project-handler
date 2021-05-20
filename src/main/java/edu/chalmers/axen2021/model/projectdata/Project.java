@@ -197,7 +197,7 @@ public class Project implements Serializable {
         // Sort the list to alphabetical order.
         ProjectManager.getInstance().getActiveCostItemNames().sort(Collections.reverseOrder());
 
-        System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getName() + "!");
+        System.out.println("Added cost item \"" + name + "\" in category " + activeCategory.getDisplayName() + "!");
         return costItem;
     }
 
@@ -230,7 +230,7 @@ public class Project implements Serializable {
             }
         }
 
-        throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getName());
+        throw new IllegalArgumentException("No cost item with name \"" + name + "\" exists in category " + category.getDisplayName());
     }
 
     /**
@@ -306,8 +306,12 @@ public class Project implements Serializable {
         return costItemsMap.get(Category.HYRESINTÄKTER);
     }
 
-    public ArrayList<CostItem> getDriftOchUnderhållCostItems() {
-        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLL);
+    public ArrayList<CostItem> getDriftOchUnderhållMedStödCostItems() {
+        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLLMEDSTÖD);
+    }
+
+    public ArrayList<CostItem> getDriftOchUnderhållUtanCostItems() {
+        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLLUTANSTÖD);
     }
 
 
@@ -630,17 +634,19 @@ public class Project implements Serializable {
         // Should be run before updateProjektkostnad methods, and maybe some more...
         updateApartmentItemsVariables();
 
-        updateProjektkostnadKkr();
-        updateProjektkostnadKrBoa();
-        updateProjektkostnadKrBta();
+        updateProjektkostnadMedStodKkr();
+        updateProjektkostnadMedStodKrBoa();
+        updateProjektkostnadMedStodKrBta();
 
-        updateTomtrattsavgaldMedStod();
+        updateTomtrattsavgald();
 
         updateProjektvinstMedStod();
         updateProjektvinstUtanStod();
 
         updateProjektvinstProcentMedStod();
         updateProjektvinstProcentUtanStod();
+
+        updateProjektkostnadUtanStodKkr();
     }
 
     /**
@@ -757,7 +763,8 @@ public class Project implements Serializable {
     }
 
     private void updateMervardesskattKkr() {
-        mervardeskattKkr = calculationsManager.updatedMervardesskattKkr(costItemsMap, totalBoa, numOfApt);
+        mervardeskattKkr = calculationsManager.updatedMervardesskattKkr(costItemsMap, totalBoa, numOfApt)
+        + oforutsettKkr*0.25;
     }
 
     private void updateMervardesskattKrBoa() {
@@ -768,18 +775,22 @@ public class Project implements Serializable {
         mervardeskattKrBta = calculationsManager.updatedMervardesskattKrBta(mervardeskattKkr, totalLjusBta);
     }
 
-    private void updateProjektkostnadKkr() {
-        projektkostnadKkr = calculationsManager.updatedProjectCostKkr(tomtkostnaderKkr, nedlagdaByggherreKkr,anslutningarKkr,
+    private void updateProjektkostnadMedStodKkr() {
+        projektkostnadKkrMedStod = calculationsManager.updatedProjectCostKkr(tomtkostnaderKkr, nedlagdaByggherreKkr,anslutningarKkr,
                 byggherrekostnaderKkr, entreprenadKkr, oforutsettKkr, finansiellaKostnaderKkr,
                 mervardeskattKkr, investeringsstodKkr);
     }
 
-    private void updateProjektkostnadKrBoa() {
-        projektkostnadKrBoa = calculationsManager.updatedProjectCostKrBoa(projektkostnadKkr, totalBoa);
+    private void updateProjektkostnadMedStodKrBoa() {
+        projektkostnadKrBoa = calculationsManager.updatedProjectCostKrBoa(projektkostnadKkrMedStod, totalBoa);
     }
 
-    private void updateProjektkostnadKrBta() {
-        projektkostnadKrBta = calculationsManager.updatedProjectCostKrBta(projektkostnadKkr, totalLjusBta);
+    private void updateProjektkostnadMedStodKrBta() {
+        projektkostnadKrBta = calculationsManager.updatedProjectCostKrBta(projektkostnadKkrMedStod, totalLjusBta);
+    }
+
+    private void updateProjektkostnadUtanStodKkr() {
+        projektkostnadKkr = projektkostnadKkrMedStod-investeringsstodKkr;
     }
 
     private void updateInvesteringsstodKkr() {
@@ -805,16 +816,17 @@ public class Project implements Serializable {
 
     // Denna och nästa måste bli olika med resp utan stöd
     private void updateDriftOchUnderhallMedStod() {
-        driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+        driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållMedStödCostItems(), totalBoa);
     }
 
     private void updateDriftOchUnderhallUtanStod() {
-        driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+        driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållUtanCostItems(), totalBoa);
     }
 
     // Samma beräkning för med och utan stöd
-    private void updateTomtrattsavgaldMedStod() {
+    private void updateTomtrattsavgald() {
         tomtrattsavgaldMedStod = -tomtkostnaderKkr*tomtPercent;
+        tomtrattsavgaldUtanStod = -tomtkostnaderKkr*tomtPercent;
     }
 
     private void updateDriftnettoMedStod() {
@@ -834,18 +846,18 @@ public class Project implements Serializable {
     }
 
     private void updateProjektvinstMedStod() {
-        projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkr;
+        projektvinstMedStod = marknadsvardeMedStod-projektkostnadKkrMedStod;
     }
 
     private void updateProjektvinstUtanStod() {
-        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr+investeringsstodKkr;
+        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr;
     }
 
     private void updateProjektvinstProcentMedStod() {
-        projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkr;
+        projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkrMedStod*100;
     }
 
     private void updateProjektvinstProcentUtanStod() {
-        projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr;
+        projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr*100;
     }
 }

@@ -544,16 +544,45 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Drift &amp; Underhåll">
-                                                   <styleClass>
-                                                      <String fx:value="category-button" />
-                                                      <String fx:value="standard-text" />
-                                                   </styleClass>
-                                                   <tooltip>
-                                                      <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
-                                                   </tooltip>
-                                                </Button>
-                                                <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Tomträttsavgäld" />
+                                                <Label contentDisplay="BOTTOM" styleClass="standard-text" text="Drift och Underhåll">
+                                                   <graphic>
+                                                      <HBox spacing="10.0">
+                                                         <children>
+                                                            <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Med stöd">
+                                                               <styleClass>
+                                                                  <String fx:value="category-button" />
+                                                                  <String fx:value="standard-text" />
+                                                               </styleClass>
+                                                               <tooltip>
+                                                                  <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                               </tooltip>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Utan stöd">
+                                                               <tooltip>
+                                                                  <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
+                                                               </tooltip>
+                                                               <styleClass>
+                                                                  <String fx:value="category-button" />
+                                                                  <String fx:value="standard-text" />
+                                                               </styleClass>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label alignment="CENTER" contentDisplay="RIGHT" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Tomträttsavgäld">
+                                                   <graphic>
+                                                      <TextField fx:id="tomtPercent" alignment="CENTER" maxWidth="90.0" minWidth="90.0" styleClass="standard-text" />
+                                                   </graphic></Label>
                                                 <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Driftnetto" />
                                                 <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Yield" />
                                                 <Label alignment="CENTER" minHeight="42.0" minWidth="200.0" styleClass="standard-text" text="Marknadsvärde" />
@@ -562,12 +591,13 @@
                                                 <Insets />
                                              </HBox.margin>
                                              <padding>
-                                                <Insets top="45.0" />
+                                                <Insets top="90.0" />
                                              </padding>
                                           </VBox>
                                           <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="standard-text" text="Med stöd" />
+                                                <Label styleClass="standard-text" text="kkr" />
                                                 <TextField fx:id="hyresintakterMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
@@ -585,6 +615,9 @@
                                                       <String fx:value="grey-out-text-field" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets top="15.0" />
+                                                   </VBox.margin>
                                                 </TextField>
                                                 <TextField fx:id="tomtrattsavgaldMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
@@ -594,6 +627,9 @@
                                                       <String fx:value="grey-out-text-field" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets top="13.0" />
+                                                   </VBox.margin>
                                                 </TextField>
                                                 <TextField fx:id="driftnettoMedStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
@@ -623,6 +659,7 @@
                                           <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="standard-text" text="Utan stöd" />
+                                                <Label styleClass="standard-text" text="kkr" />
                                                 <TextField fx:id="hyresintakterUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
                                                       <Cursor fx:constant="DEFAULT" />
@@ -640,6 +677,9 @@
                                                       <String fx:value="grey-out-text-field" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets top="15.0" />
+                                                   </VBox.margin>
                                                 </TextField>
                                                 <TextField fx:id="tomtrattsavgaldUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
@@ -649,6 +689,9 @@
                                                       <String fx:value="grey-out-text-field" />
                                                       <String fx:value="standard-text" />
                                                    </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets top="13.0" />
+                                                   </VBox.margin>
                                                 </TextField>
                                                 <TextField fx:id="driftnettoUtanStod" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" minHeight="42.0" minWidth="50.0">
                                                    <cursor>
@@ -680,6 +723,9 @@
                                  </children>
                               </VBox>
                            </children>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
                         </VBox>
                      </content>
                   </ScrollPane>

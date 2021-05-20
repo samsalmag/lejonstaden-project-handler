@@ -89,6 +89,7 @@ public class InputController implements Initializable {
     @FXML private TextField totalLjusBta;
     @FXML private TextField totalBoa;
     @FXML private TextField oforutsett;
+    @FXML private TextField tomtPercent;
 
     @FXML private Label titleLabel;
 
@@ -200,6 +201,7 @@ public class InputController implements Initializable {
         inputFieldsPercent.add(yieldMedStod);
         inputFieldsPercent.add(yieldUtanStod);
         inputFieldsPercent.add(oforutsett);
+        inputFieldsPercent.add(tomtPercent);
     }
 
     /**
@@ -223,7 +225,7 @@ public class InputController implements Initializable {
      */
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
-        Category category = Category.fromString(((Button)event.getSource()).getText());
+        Category category = Category.fromButtonText(((Button)event.getSource()).getText());
         rootController.openModalWindow(category);
     }
 
@@ -390,7 +392,7 @@ public class InputController implements Initializable {
      * Update all TextFields related to Projektkostnad.
      */
     private void updateProjektkostnad(){
-        projektkostnadKkr.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkr()));
+        projektkostnadKkr.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkrMedStod()));
         projektkostnadKrBoa.setText(df.format(projectManager.getActiveProject().getProjektkostnadKrBoa()));
         projektkostnadKrBta.setText(df.format(projectManager.getActiveProject().getProjektkostnadKrBta()));
     }
@@ -403,6 +405,7 @@ public class InputController implements Initializable {
         hyresintakterUtanStod.setText(df.format(projectManager.getActiveProject().getHyresintakterUtanStod()));
         driftUnderhallMedStod.setText(df.format(projectManager.getActiveProject().getDriftUnderhallMedStod()));
         driftUnderhallUtanStod.setText(df.format(projectManager.getActiveProject().getDriftUnderhallUtanStod()));
+        tomtPercent.setText(dfPercent.format(projectManager.getActiveProject().getTomtPercent()) + "%");
         tomtrattsavgaldMedStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldMedStod()));
         tomtrattsavgaldUtanStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldUtanStod()));
         driftnettoMedStod.setText(df.format(projectManager.getActiveProject().getDriftnettoMedStod()));
@@ -424,5 +427,6 @@ public class InputController implements Initializable {
         projectManager.getActiveProject().setYieldMedStod(StringUtils.convertToDouble(yieldMedStod.getText()));
         projectManager.getActiveProject().setYieldUtanStod(StringUtils.convertToDouble(yieldUtanStod.getText()));
         projectManager.getActiveProject().setOforutsettPercent(StringUtils.convertToDouble(oforutsett.getText()));
+        projectManager.getActiveProject().setTomtPercent(StringUtils.convertToDouble(tomtPercent.getText()));
     }
 }

@@ -417,7 +417,7 @@ public class RootController {
      */
     public void openModalWindow(Category clickedCategory) {
         ProjectManager.getInstance().setActiveCategory(clickedCategory);
-        modalController.setCategoryNameLabelText(clickedCategory.getName());
+        modalController.setCategoryNameLabelText(clickedCategory.getDisplayName());
         modalController.populateCostItems();
         modalAnchorPane.toFront();
         modalController.getModalWindowItemVBox().requestFocus(); // Sets focus to modal window. Is needed for onKeyPressed events.

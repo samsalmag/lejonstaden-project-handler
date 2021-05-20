@@ -3,6 +3,7 @@ package edu.chalmers.axen2021.controller.modals;
 import edu.chalmers.axen2021.controller.items.CostItemController;
 import edu.chalmers.axen2021.controller.FXMLController;
 import edu.chalmers.axen2021.controller.RootController;
+import edu.chalmers.axen2021.model.Category;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.projectdata.CostItem;
 import javafx.fxml.FXML;
@@ -112,7 +113,17 @@ public class ModalController implements Initializable {
      */
     public void addModalItem(CostItem newCostItem) {
         FXMLLoader costItem = new FXMLLoader(getClass().getResource("/fxml/modalWindowItem.fxml"));
-        CostItemController costItemController = new CostItemController(newCostItem);
+
+        // Certain categories doesn't use moms. Disable moms for their cost item views and in model.
+        boolean momsEnabled = true;
+        if(projectManager.getActiveCategory() == Category.HYRESINTÄKTER ||
+                projectManager.getActiveCategory() == Category.DRIFTOCHUNDERHÅLLMEDSTÖD ||
+                projectManager.getActiveCategory() == Category.DRIFTOCHUNDERHÅLLUTANSTÖD) {
+            momsEnabled = false;
+            newCostItem.setMoms(false);
+        }
+
+        CostItemController costItemController = new CostItemController(newCostItem, momsEnabled);
         costItem.setController(costItemController);
         Node costItemNode = null;
 
