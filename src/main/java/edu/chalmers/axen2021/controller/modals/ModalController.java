@@ -116,7 +116,9 @@ public class ModalController implements Initializable {
 
         // Certain categories doesn't use moms. Disable moms for their cost item views and in model.
         boolean momsEnabled = true;
-        if(projectManager.getActiveCategory() == Category.HYRESINTÄKTER || projectManager.getActiveCategory() == Category.DRIFTOCHUNDERHÅLL) {
+        if(projectManager.getActiveCategory() == Category.HYRESINTÄKTER ||
+                projectManager.getActiveCategory() == Category.DRIFTOCHUNDERHÅLLMEDSTÖD ||
+                projectManager.getActiveCategory() == Category.DRIFTOCHUNDERHÅLLUTANSTÖD) {
             momsEnabled = false;
             newCostItem.setMoms(false);
         }
