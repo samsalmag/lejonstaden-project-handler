@@ -1,0 +1,10 @@
+﻿Under denna sprint, som var den sista, så har vi lyckats få fram en färdig produkt. Under projektets gång har jag utvecklat mina programmeringskunskaper, och samtidigt kunnat applicera dem på projektet. Vidare har jag även lärt mig ofantligt mycket om hur det är att arbeta projektbaserat mot en PO. Bägge dessa aspekter kommer vara otroligt lärorika för projektbaserade arbeten på mastern, då jag har lite mer kött på benen kring hur jag ska tänka och lösa problem. 
+
+
+Under den senaste veckan har vår grupp haft ett möte med PO, där vissa idéer och synpunkter togs emot. Vi har under sprinten tänkt på dessa, och diskuterat hur vissa områden lättast kan förbättras för att uppnå en så bra kvalitet som möjligt. Jag har fortsatt bidragit till diskussionerna kring dessa ämnen, och kommit med mina åsikter. Jag har även hjälpt till vid arbete i par, där jag kunnat applicera och hjälpa mina team members inom olika delar.
+
+
+Under den sista veckan av arbetet har vi kommit fram till en punkt där de sista pusselbitarna skall falla på plats. Jag har bidragit genom att se till att våra DoD har uppnåtts, och att vi faktiskt har fullföljt att våra user stories som tänkt. Vidare har jag även bidragit genom att diskutera under våra team reflections, där olika faktorer som kan påverka arbetet diskuteras.
+
+
+Denna vecka har varit lite lugnare än tidigare, då kandidatarbetesbördan minskat sedan inlämningen. Jag har kunnat lägga större fokus på kodningen, och bidragit med att fullfölja arbetet, och delta genom aktiva diskussioner. Under veckan har vi sammanställt de slutliga delarna av arbetet, och rör oss mot att vara helt färdiga. Jag känner att jag har bidragit till kodningen, men känner även en stor tacksamhet till mina team medlemmar som har kunnat bistå med vidare lärande så att jag kunnat utvecklas så mycket som möjligt.
