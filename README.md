@@ -8,3 +8,6 @@ Members:
 * Sam Salek (sam123bir)
 * Sara Galligani Vardheim (saravardheim)
 * Tilda Grönlund (tildagronlund)
+
+External links:
+* Trello: https://trello.com/b/COmWfkie/axe-n
