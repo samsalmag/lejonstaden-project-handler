@@ -306,8 +306,12 @@ public class Project implements Serializable {
         return costItemsMap.get(Category.HYRESINTÄKTER);
     }
 
-    public ArrayList<CostItem> getDriftOchUnderhållCostItems() {
-        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLL);
+    public ArrayList<CostItem> getDriftOchUnderhållMedStödCostItems() {
+        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLLMEDSTÖD);
+    }
+
+    public ArrayList<CostItem> getDriftOchUnderhållUtanCostItems() {
+        return costItemsMap.get(Category.DRIFTOCHUNDERHÅLLUTANSTÖD);
     }
 
 
@@ -812,11 +816,11 @@ public class Project implements Serializable {
 
     // Denna och nästa måste bli olika med resp utan stöd
     private void updateDriftOchUnderhallMedStod() {
-        driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+        driftUnderhallMedStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållMedStödCostItems(), totalBoa);
     }
 
     private void updateDriftOchUnderhallUtanStod() {
-        driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållCostItems(), totalBoa);
+        driftUnderhallUtanStod = -calculationsManager.updatedDriftOchUnderhall(getDriftOchUnderhållUtanCostItems(), totalBoa);
     }
 
     // Samma beräkning för med och utan stöd
