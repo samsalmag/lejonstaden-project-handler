@@ -846,14 +846,14 @@ public class Project implements Serializable {
     }
 
     private void updateProjektvinstUtanStod() {
-        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr-investeringsstodKkr;
+        projektvinstUtanStod = marknadsvardeUtanStod-projektkostnadKkr;
     }
 
     private void updateProjektvinstProcentMedStod() {
-        projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkr;
+        projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkrMedStod*100;
     }
 
     private void updateProjektvinstProcentUtanStod() {
-        projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr;
+        projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr*100;
     }
 }
