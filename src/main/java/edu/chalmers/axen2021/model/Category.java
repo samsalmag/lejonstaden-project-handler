@@ -18,7 +18,8 @@ public enum Category {
     //MERVÄRDESKATT("Mervärdeskatt"),
     //INVESTERINGSSTÖD("Investeringsstöd"),
     HYRESINTÄKTER("Hyresintäkter", ""),
-    DRIFTOCHUNDERHÅLL("Drift & Underhåll", "");
+    DRIFTOCHUNDERHÅLLMEDSTÖD("Med stöd", ""),
+    DRIFTOCHUNDERHÅLLUTANSTÖD("Utan stöd", "");
     //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),
     //DRIFTNETTO("Driftnetto"),
     //YIELD("Yield");
