@@ -19,8 +19,8 @@ class ApartmentDataTest {
      */
     @Test
     public void getMonthlyRentTest() {
-        assertEquals(apt.getMonthlyRent("1rok", 1350, 29.0), 4510); // Low
-        assertEquals(apt.getMonthlyRent("1rok", 1700, 29.0), 5680); // High
+        assertEquals(apt.getMonthlyRent("1rok", 1350, 29.0), 4510, 0.35); // Low
+        assertEquals(apt.getMonthlyRent("1rok", 1700, 29.0), 5680,0.7); // High
     }
 
     /**
@@ -29,8 +29,8 @@ class ApartmentDataTest {
      */
     @Test
     public void getKrPerSqmTest() {
-        assertEquals(apt.getKrPerSqm("1rok", 1350, 29.0 ), 1866); // Low
-        assertEquals(apt.getKrPerSqm("1rok", 1700, 29.0), 2350); // High
+        assertEquals(apt.getKrPerSqm("1rok", 1350, 29.0 ), 1866, 0.35); // Low
+        assertEquals(apt.getKrPerSqm("1rok", 1700, 29.0), 2350,0.35); // High
     }
 
     /**

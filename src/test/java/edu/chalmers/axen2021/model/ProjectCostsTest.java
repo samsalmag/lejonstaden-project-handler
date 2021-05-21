@@ -18,7 +18,7 @@ class ProjectCostsTest {
      */
     @Test
     public void getConnectionsCostTest() {
-        assertEquals(apt.getConnectionsCost(2000, 4), 8);
+        assertEquals(apt.getConnectionsCost(2000, 4), 8000);
     }
 
     /**
@@ -34,7 +34,7 @@ class ProjectCostsTest {
      */
     @Test
     public void getContractCostTest() {
-        assertEquals(apt.getContractCost(2000, 6), 12);
+        assertEquals(apt.getContractCost(2000, 6), 12000);
     }
 
     /**
@@ -42,7 +42,7 @@ class ProjectCostsTest {
      */
     @Test
     public void getUnforseenCostTest() {
-        assertEquals(apt.getUnforseenCost(30, 200, 0.04), 0.24);
+        assertEquals(apt.getUnforseenCost(30, 200, 0.04), 0.012);
     }
 
     /**
@@ -50,6 +50,6 @@ class ProjectCostsTest {
      */
     @Test
     public void getFinancialCostTest() {
-        assertEquals(apt.getFinancialCost(2000, 6), 12);
+        assertEquals(apt.getFinancialCost(2000, 6), 12000);
     }
 }
