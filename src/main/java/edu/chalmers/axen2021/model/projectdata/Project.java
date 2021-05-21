@@ -811,11 +811,11 @@ public class Project implements Serializable {
 
 
     private void updateHyresintakterBostadMedStod() {
-        hyresintakterMedStod = calculationsManager.updatedHyresintakter(apartmentItems, normhyraMedStod, totalBoa);
+        hyresintakterMedStod = calculationsManager.updatedHyresintakter(apartmentItems, getHyresintäkterMedStödCostItems(), normhyraMedStod, totalBoa);
     }
 
     private void updateHyresintakterBostadUtanStod() {
-        hyresintakterUtanStod = calculationsManager.updatedHyresintakter(apartmentItems, antagenPresumtionshyra, totalBoa);
+        hyresintakterUtanStod = calculationsManager.updatedHyresintakter(apartmentItems, getHyresintäkterUtanStödCostItems(), antagenPresumtionshyra, totalBoa);
     }
 
     // Denna och nästa måste bli olika med resp utan stöd
