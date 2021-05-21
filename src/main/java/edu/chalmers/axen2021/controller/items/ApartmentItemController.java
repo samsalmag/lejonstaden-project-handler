@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -210,6 +211,18 @@ public class ApartmentItemController implements Initializable {
                 rootController.updateAllLabels();
             }
         });
+
+        BOATextField.setOnKeyPressed(keyEvent -> {
+            // If key pressed was 'Enter'..
+            if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+                //Make sure that the textField has a readable value.
+                if(BOATextField.getText().equals("") || BOATextField.getText().equals(",")){
+                    BOATextField.setText("0");
+                }
+                apartmentItem.setBOA(StringUtils.convertToDouble(BOATextField.getText()));
+                rootController.updateAllLabels();
+            }
+        });
     }
 
     /**
@@ -226,6 +239,18 @@ public class ApartmentItemController implements Initializable {
         // Adds focus lost property to textFields.
         amountTextField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue){
+                //Make sure that the textField has a readable value.
+                if(amountTextField.getText().equals("")){
+                    amountTextField.setText("0");
+                }
+                apartmentItem.setAmount(Integer.parseInt(amountTextField.getText()));
+                rootController.updateAllLabels();
+            }
+        });
+
+        amountTextField.setOnKeyPressed(keyEvent -> {
+            // If key pressed was 'Enter'..
+            if(keyEvent.getCode().equals(KeyCode.ENTER)) {
                 //Make sure that the textField has a readable value.
                 if(amountTextField.getText().equals("")){
                     amountTextField.setText("0");

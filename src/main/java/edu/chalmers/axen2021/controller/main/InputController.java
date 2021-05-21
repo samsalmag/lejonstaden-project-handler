@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -165,6 +166,19 @@ public class InputController implements Initializable {
                     rootController.updateAllLabels();
                 }
             });
+
+            // Adds 'Enter' key event
+            textField.setOnKeyPressed(keyEvent -> {
+                // If key pressed was 'Enter'..
+                if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+                    //Make sure that the textField has a readable value.
+                    if(textField.getText().equals("") || textField.getText().equals(",")){
+                        textField.setText("0");
+                    }
+                    setInputFields();
+                    rootController.updateAllLabels();
+                }
+            });
         }
         for(TextField textField: inputFieldsPercent){
 
@@ -178,6 +192,19 @@ public class InputController implements Initializable {
             //Adds focus lost property to textFields.
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
                 if(!newValue){
+                    //Make sure that the textField has a readable value.
+                    if(textField.getText().equals("") || textField.getText().equals(",")){
+                        textField.setText("0");
+                    }
+                    setInputFields();
+                    rootController.updateAllLabels();
+                }
+            });
+
+            // Adds 'Enter' key event
+            textField.setOnKeyPressed(keyEvent -> {
+                // If key pressed was 'Enter'..
+                if(keyEvent.getCode().equals(KeyCode.ENTER)) {
                     //Make sure that the textField has a readable value.
                     if(textField.getText().equals("") || textField.getText().equals(",")){
                         textField.setText("0");
