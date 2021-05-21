@@ -17,8 +17,8 @@ public enum Category {
     FINANSIELLAKOSTNADER("Finansiella kostnader", "kr/BOA"),
     //MERVÄRDESKATT("Mervärdeskatt"),
     //INVESTERINGSSTÖD("Investeringsstöd"),
-    HYRESINTÄKTERMEDSTÖD("Med stöd ", "Hyresintäkter med stöd","kr"),
-    HYRESINTÄKTERUTANSTÖD("Utan stöd ","Hyresintäkter utan stöd" ,"kr"),
+    HYRESINTÄKTERMEDSTÖD("Med stöd ", "Hyresintäkter med stöd","kr/kvm"),
+    HYRESINTÄKTERUTANSTÖD("Utan stöd ","Hyresintäkter utan stöd" ,"kr/kvm"),
     DRIFTOCHUNDERHÅLLMEDSTÖD("Med stöd","Drift och Underhåll med stöd", "kr/kvm"),
     DRIFTOCHUNDERHÅLLUTANSTÖD("Utan stöd","Drift och Underhåll utan stöd", "kr/kvm");
     //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),
