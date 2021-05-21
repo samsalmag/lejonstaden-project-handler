@@ -302,8 +302,12 @@ public class Project implements Serializable {
         return costItemsMap.get(Category.FINANSIELLAKOSTNADER);
     }
 
-    public ArrayList<CostItem> getHyresintäkterCostItems() {
-        return costItemsMap.get(Category.HYRESINTÄKTER);
+    public ArrayList<CostItem> getHyresintäkterMedStödCostItems() {
+        return costItemsMap.get(Category.HYRESINTÄKTERMEDSTÖD);
+    }
+
+    public ArrayList<CostItem> getHyresintäkterUtanStödCostItems() {
+        return costItemsMap.get(Category.HYRESINTÄKTERUTANSTÖD);
     }
 
     public ArrayList<CostItem> getDriftOchUnderhållMedStödCostItems() {

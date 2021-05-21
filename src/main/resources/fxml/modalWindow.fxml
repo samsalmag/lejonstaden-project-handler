@@ -62,7 +62,7 @@
                               <String fx:value="standard-text" />
                               <String fx:value="category-button" />
                            </styleClass></Button>
-                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeModalWindow" text="Stäng">
+                        <Button minWidth="100.0" mnemonicParsing="false" onAction="#closeModalWindow" text="Klar">
                            <styleClass>
                               <String fx:value="standard-text" />
                               <String fx:value="cancel-button" />
