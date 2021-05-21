@@ -8,35 +8,33 @@ public enum Category {
     // Some of these are commented because they don't have cost items, AKA no button in the inputView.
     // They should only be uncommented if they have a button.
     // Their variable values still exists in the Project class.
-    TOMTKOSTNADER("Tomtkostnader", "kr"),
-    NEDLAGDABYGGHERRE("Nedlagda byggherre", "kr"),
-    ANSLUTNINGAR("Anslutningar", "kr/lgh"),
-    BYGGHERREKOSTNADER("Byggherrekostnader", "kr"),
-    ENTREPENAD("Entrepenad", "kr/BOA"),
+    TOMTKOSTNADER("tomtkostnaderButton", "Tomtkostnader","kr"),
+    NEDLAGDABYGGHERRE("nedlagdaByggherreButton", "Nedlagda byggherre","kr"),
+    ANSLUTNINGAR("anslutningarButton", "Anslutningar","kr/lgh"),
+    BYGGHERREKOSTNADER("byggherrekostnaderButton", "Byggherrekostnader","kr"),
+    ENTREPENAD("entrepenadButton","Entrepenad", "kr/BOA"),
     //OFÖRUTSETT("Oförutsett", ""),
-    FINANSIELLAKOSTNADER("Finansiella kostnader", "kr/BOA"),
+    FINANSIELLAKOSTNADER("finansiellaKostnaderButton", "Finansiella kostnader","kr/BOA"),
     //MERVÄRDESKATT("Mervärdeskatt"),
     //INVESTERINGSSTÖD("Investeringsstöd"),
-    HYRESINTÄKTERMEDSTÖD("Med stöd ", "Hyresintäkter med stöd","kr/kvm"),
-    HYRESINTÄKTERUTANSTÖD("Utan stöd ","Hyresintäkter utan stöd" ,"kr/kvm"),
-    DRIFTOCHUNDERHÅLLMEDSTÖD("Med stöd","Drift och Underhåll med stöd", "kr/kvm"),
-    DRIFTOCHUNDERHÅLLUTANSTÖD("Utan stöd","Drift och Underhåll utan stöd", "kr/kvm");
+    HYRESINTÄKTERMEDSTÖD("hyresintäkterMedStödButton", "Hyresintäkter med stöd","kr/kvm"),
+    HYRESINTÄKTERUTANSTÖD("hyresintäkterUtanStödButton","Hyresintäkter utan stöd" ,"kr/kvm"),
+    DRIFTOCHUNDERHÅLLMEDSTÖD("driftOchUnderhållMedStödButton","Drift och Underhåll med stöd", "kr/kvm"),
+    DRIFTOCHUNDERHÅLLUTANSTÖD("driftOchUnderhållUtanStödButton","Drift och Underhåll utan stöd", "kr/kvm");
     //TOMTRÄTTSAVGÄLD("Tomträttsavgäld"),
     //DRIFTNETTO("Driftnetto"),
     //YIELD("Yield");
 
     /**
-     * String text of the button connected to the category.
-     * Must be EXACTLY the same as the string on the category buttons in the inputView.
+     * Fx:id of the button connected to the category.
+     * Must be EXACTLY the same as the id on the category buttons in the inputView.
      */
-    private final String buttonText;
+    private final String buttonFxid;
 
     /**
      * The name used when displaying the category.
      */
     private final String displayName;
-
-
 
     /**
      * Unit of the category (e.g. "kkr" or "kr/BOA").
@@ -44,40 +42,29 @@ public enum Category {
     private final String unit;
 
     /**
-     * Constructor. Used when the button text is the same as the display name.
-     * @param buttonText Text of the button connected to the category.
-     * @param unit The unit for the category.
-     */
-    Category(String buttonText, String unit) {
-        this.buttonText = buttonText;
-        this.displayName = buttonText;
-        this.unit = unit;
-    }
-
-    /**
-     * Constructor. Used when the button text is different from the display name.
-     * @param buttonText Text of the button connected to the category.
+     * Constructor.
+     * @param buttonFxid Text of the button connected to the category.
      * @param displayName The display name for the category.
      * @param unit The unit for the category.
      */
-    Category(String buttonText, String displayName, String unit) {
-        this.buttonText = buttonText;
+    Category(String buttonFxid, String displayName, String unit) {
+        this.buttonFxid = buttonFxid;
         this.displayName = displayName;
         this.unit = unit;
     }
 
     /**
      * Gets a Category from a string input.
-     * @param text the category to get.
+     * @param id Id of the category to get.
      * @return Category found from the string.
      */
-    public static Category fromButtonText(String text) {
+    public static Category fromButtonFxid(String id) {
         for (Category category : Category.values()) {
-            if (category.buttonText.equalsIgnoreCase(text)) {
+            if (category.buttonFxid.equalsIgnoreCase(id)) {
                 return category;
             }
         }
-        throw new IllegalArgumentException("No enum Category value with name " + text + " found!");
+        throw new IllegalArgumentException("No enum Category value with id " + id + " found!");
     }
 
     /**

@@ -150,7 +150,7 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda byggherre">
+                                                <Button fx:id="nedlagdaByggherreButton" minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda byggherre">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>
@@ -162,7 +162,7 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Anslutningar">
+                                                <Button fx:id="anslutningarButton" minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Anslutningar">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>
@@ -174,7 +174,7 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Byggherrekostnader">
+                                                <Button fx:id="byggherrekostnaderButton" minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Byggherrekostnader">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>
@@ -186,7 +186,7 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Finansiella kostnader">
+                                                <Button fx:id="finansiellaKostnaderButton" minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Finansiella kostnader">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>
@@ -198,7 +198,7 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Entrepenad">
+                                                <Button fx:id="entrepenadButton" minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Entrepenad">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>
@@ -539,7 +539,7 @@
                                                    <graphic>
                                                       <HBox spacing="10.0">
                                                          <children>
-                                                            <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Med stöd ">
+                                                            <Button fx:id="hyresintäkterMedStödButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Med stöd">
                                                                <styleClass>
                                                                   <String fx:value="category-button" />
                                                                   <String fx:value="standard-text" />
@@ -548,7 +548,7 @@
                                                                   <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                                </tooltip>
                                                             </Button>
-                                                            <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Utan stöd ">
+                                                            <Button fx:id="hyresintäkterUtanStödButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Utan stöd">
                                                                <styleClass>
                                                                   <String fx:value="category-button" />
                                                                   <String fx:value="standard-text" />
@@ -565,7 +565,7 @@
                                                    <graphic>
                                                       <HBox spacing="10.0">
                                                          <children>
-                                                            <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Med stöd">
+                                                            <Button fx:id="driftOchUnderhållMedStödButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Med stöd">
                                                                <styleClass>
                                                                   <String fx:value="category-button" />
                                                                   <String fx:value="standard-text" />
@@ -577,7 +577,7 @@
                                                                   <Insets />
                                                                </HBox.margin>
                                                             </Button>
-                                                            <Button minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Utan stöd">
+                                                            <Button fx:id="driftOchUnderhållUtanStödButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Utan stöd">
                                                                <tooltip>
                                                                   <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                                </tooltip>

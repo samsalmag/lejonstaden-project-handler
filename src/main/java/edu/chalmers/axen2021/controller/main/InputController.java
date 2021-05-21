@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -225,7 +224,8 @@ public class InputController implements Initializable {
      */
     @FXML
     private void categoryButtonClicked(ActionEvent event) {
-        Category category = Category.fromButtonText(((Button)event.getSource()).getText());
+        String fxid = ((Node) event.getSource()).getId();
+        Category category = Category.fromButtonFxid(fxid);
         rootController.openModalWindow(category);
     }
 
