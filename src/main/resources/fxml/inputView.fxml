@@ -150,7 +150,7 @@
                                                       <Tooltip text="Klicka för att visa alla kostnader under denna kategorin" />
                                                    </tooltip>
                                                 </Button>
-                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda bygherre">
+                                                <Button minHeight="42.0" minWidth="200.0" mnemonicParsing="false" onAction="#categoryButtonClicked" text="Nedlagda byggherre">
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin>

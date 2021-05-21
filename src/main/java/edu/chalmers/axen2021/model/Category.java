@@ -9,7 +9,7 @@ public enum Category {
     // They should only be uncommented if they have a button.
     // Their variable values still exists in the Project class.
     TOMTKOSTNADER("Tomtkostnader", "kr"),
-    NEDLAGDABYGGHERRE("Nedlagda bygherre", "kr"),
+    NEDLAGDABYGGHERRE("Nedlagda byggherre", "kr"),
     ANSLUTNINGAR("Anslutningar", "kr/lgh"),
     BYGGHERREKOSTNADER("Byggherrekostnader", "kr"),
     ENTREPENAD("Entrepenad", "kr/BOA"),
