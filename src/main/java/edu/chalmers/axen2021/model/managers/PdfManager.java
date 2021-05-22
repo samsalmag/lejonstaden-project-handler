@@ -70,7 +70,7 @@ public class PdfManager {
     // Singleton. Use getInstance().
     private PdfManager(){
         // Init DecimalFormatter
-        dfPercent = new DecimalFormat("#.#");
+        dfPercent = new DecimalFormat("#.###");
         dfPercent.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.GERMANY));
     }
 
@@ -368,7 +368,7 @@ public class PdfManager {
         table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Projektkostnad", arialSmall, Element.ALIGN_LEFT,2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKkr())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKkrMedStod())), arialSmall, Element.ALIGN_RIGHT, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBoa())), arialSmall, Element.ALIGN_RIGHT, 2));
         table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBta())), arialSmall, Element.ALIGN_RIGHT, 2));
 
