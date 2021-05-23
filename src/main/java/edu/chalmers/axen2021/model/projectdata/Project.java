@@ -842,10 +842,18 @@ public class Project implements Serializable {
     }
 
     private void updateMarknadsvardeMedStod() {
+        if(yieldMedStod == 0) {
+            marknadsvardeMedStod = 0;
+            return;
+        }
         marknadsvardeMedStod = driftnettoMedStod/(yieldMedStod/100);
     }
 
     private void updateMarknadsvardeUtanStod() {
+        if(yieldUtanStod == 0) {
+            marknadsvardeUtanStod = 0;
+            return;
+        }
         marknadsvardeUtanStod = driftnettoUtanStod/(yieldUtanStod/100);
     }
 
@@ -858,10 +866,18 @@ public class Project implements Serializable {
     }
 
     private void updateProjektvinstProcentMedStod() {
+        if(projektkostnadKkrMedStod == 0) {
+            projektvinstProcentMedStod = 0;
+            return;
+        }
         projektvinstProcentMedStod = projektvinstMedStod/projektkostnadKkrMedStod*100;
     }
 
     private void updateProjektvinstProcentUtanStod() {
+        if(projektkostnadKkr == 0) {
+            projektvinstProcentUtanStod = 0;
+            return;
+        }
         projektvinstProcentUtanStod = projektvinstUtanStod/projektkostnadKkr*100;
     }
 }
