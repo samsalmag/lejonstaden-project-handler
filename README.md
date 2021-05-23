@@ -17,9 +17,11 @@ Members: Name (Github account name)
 * Executable file: created with Maven command "clean package"
 
 
+
 * Documentation (reflections, project scope, etc.): *Dokumentation*
 * Source code: *src/main/java/edu/chalmers/axen2021*
 * Tests: *src/test/java/edu/chalmers/axen2021*
+* Resources (fxml, images, etc.): *src/main/resources*
 
 ### External links
 * Scrum Board (Trello): https://trello.com/b/COmWfkie/axe-n
