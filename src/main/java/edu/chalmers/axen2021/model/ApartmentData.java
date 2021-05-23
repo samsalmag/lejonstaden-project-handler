@@ -1,7 +1,5 @@
 package edu.chalmers.axen2021.model;
 
-import java.util.ArrayList;
-
 /**
  * Class for calculating the apartment data.
  * @author Ahmad Al-Aref
@@ -35,6 +33,9 @@ public class ApartmentData {
      * @return kr per sqm of the apartment
      */
     public double getKrPerSqm(String type, double rent, double boa) {
+        if(boa == 0) {
+            return 0;
+        }
         return getMonthlyRent(type, rent, boa)*12/boa;
     }
 
