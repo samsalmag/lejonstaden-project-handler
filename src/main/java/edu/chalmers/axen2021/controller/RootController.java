@@ -301,6 +301,12 @@ public class RootController {
             saveManager.saveProject(project);
             sideBarController.clearAllProjectButtons();
             sideBarController.populateProjectButtons();
+
+            // Update project toggle button only if there is a active project (throws exception if it's' called while null)
+            if(projectManager.getActiveProject() != null) {
+                sideBarController.setActiveButton(projectManager.getActiveProject().getName());
+            }
+
         }
     }
 
