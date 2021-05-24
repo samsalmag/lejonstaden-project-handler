@@ -95,13 +95,13 @@ public class ProjectCosts {
         for (HashMap.Entry<Category, ArrayList<CostItem>> entry : map.entrySet()) {
             Category c = entry.getKey();
             ArrayList<CostItem> costItems = map.get(c);
-            if (c == Category.TOMTKOSTNADER || c == Category.NEDLAGDABYGGHERRE) {
+            if (c == Category.TOMTKOSTNADER || c == Category.NEDLAGDABYGGHERRE || c == Category.BYGGHERREKOSTNADER) {
                 for (CostItem item : costItems) {
                     if (item.getMoms()) {
                         moms += item.getValue();
                     }
                 }
-            } else if (c == Category.ENTREPENAD || c == Category.FINANSIELLAKOSTNADER || c == Category.BYGGHERREKOSTNADER) {
+            } else if (c == Category.ENTREPENAD || c == Category.FINANSIELLAKOSTNADER) {
                 for (CostItem item : costItems) {
                     if (item.getMoms()) {
                         double value = item.getValue() * totBoa;

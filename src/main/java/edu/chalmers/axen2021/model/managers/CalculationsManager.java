@@ -178,8 +178,8 @@ public class CalculationsManager implements Serializable {
         return projectCosts.getCostPerBta(anslutningarKkr, totalBta);
     }
 
-    public double updatedByggherreKkr(ArrayList<CostItem> byggherre, double totalBoa) {
-        return projectCosts.getTotalCost(byggherre)*totalBoa;
+    public double updatedByggherreKkr(ArrayList<CostItem> byggherre) {
+        return projectCosts.getTotalCost(byggherre);
     }
 
     public double updatedByggherreKrBoa(double byggherreKkr, double totalBoa) {

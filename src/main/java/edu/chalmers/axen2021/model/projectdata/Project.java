@@ -719,7 +719,7 @@ public class Project implements Serializable {
     }
 
     private void updateByggherreKkr() {
-        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems(), totalBoa);
+        byggherrekostnaderKkr = calculationsManager.updatedByggherreKkr(getByggherrekostnaderCostItems());
     }
 
     private void updateByggherreKrBoa() {
