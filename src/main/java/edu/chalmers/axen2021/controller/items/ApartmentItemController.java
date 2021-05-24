@@ -163,13 +163,13 @@ public class ApartmentItemController implements Initializable {
      * Updates the text in all TextFields used for displaying values from the model.
      */
     public void updateAllDisplayValues() {
-        rentPerMonthLowTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())));
-        krPerKvmLowTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())));
-        rentPerMonthHighTextField.setText(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())));
-        krPerKvmHighTextField.setText(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())));
-        totalBOATextField.setText(String.valueOf(Math.round(apartmentItem.getTotalBOA())));
+        rentPerMonthLowTextField.setText(StringUtils.separateKkr((double)Math.round(apartmentItem.getRentPerMonthLow())));
+        krPerKvmLowTextField.setText(StringUtils.separateKkr((double)Math.round(apartmentItem.getKrPerKvmLow())));
+        rentPerMonthHighTextField.setText(StringUtils.separateKkr((double)Math.round(apartmentItem.getRentPerMonthHigh())));
+        krPerKvmHighTextField.setText(StringUtils.separateKkr((double)Math.round(apartmentItem.getKrPerKvmHigh())));
+        totalBOATextField.setText(StringUtils.separateKkr((double)Math.round(apartmentItem.getTotalBOA())));
         totalBOAPercentTextField.setText(dfPercent.format(apartmentItem.getTotalBOAPercent()));
-        bidragTextField.setText(String.valueOf(Math.round(apartmentItem.getBidrag())));
+        bidragTextField.setText(StringUtils.separateKkr((double)Math.round(apartmentItem.getBidrag())));
         BOATextField.setText(dfPercent.format(apartmentItem.getBOA()));
         amountTextField.setText(df.format(apartmentItem.getAmount()));
     }

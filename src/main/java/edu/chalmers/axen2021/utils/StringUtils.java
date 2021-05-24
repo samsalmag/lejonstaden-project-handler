@@ -49,4 +49,16 @@ public class StringUtils {
         s = s.replaceAll("%", "");
         return Double.parseDouble(s);
     }
+
+    public static String separateKkr(Double d) {
+        String s = removeTrailingZeros(d);
+        StringBuilder sb = new StringBuilder(s);
+        if (s.length() > 2) {
+            for (int i = s.length()-3 ; i >=0 ; i-- ) {
+                sb.insert(i, " ");
+                i -= 2;
+            }
+        }
+        return sb.toString();
+    }
 }
