@@ -119,7 +119,7 @@ public class CalculationsManager implements Serializable {
             krPerKvm += apartmentData.getKrPerSqm(apartment.getApartmentType(), rent, apartment.getBOA())
             * apartment.getBOA() * apartment.getAmount();
         }
-        double totIntakter = krPerKvm + (projectCosts.getTotalCost(extraIntakter) * totalBoa * 1000);
+        double totIntakter = krPerKvm + (projectCosts.getTotalCost(extraIntakter) * totalBoa);
         return (totIntakter)/1000;
     }
 
@@ -167,7 +167,7 @@ public class CalculationsManager implements Serializable {
     }
 
     public double updatedAnslutningarKkr(ArrayList<CostItem> anslutningar, double numOfApt) {
-        return projectCosts.getConnectionsCost(projectCosts.getTotalCost(anslutningar), numOfApt);
+        return projectCosts.getConnectionsCost(projectCosts.getTotalCost(anslutningar), numOfApt)/1000;
     }
 
     public double updatedAnslutningarKrBoa(double anslutningarKkr, double totalBoa) {
@@ -191,7 +191,7 @@ public class CalculationsManager implements Serializable {
     }
 
     public double updatedEntreprenadKkr(ArrayList<CostItem> entreprenad, double totalBoa) {
-        return projectCosts.getContractCost(projectCosts.getTotalCost(entreprenad), totalBoa);
+        return projectCosts.getContractCost(projectCosts.getTotalCost(entreprenad), totalBoa)/1000;
     }
 
     public double updatedEntreprenadKrBoa(double entreprenadKkr, double totalBoa) {
@@ -204,7 +204,7 @@ public class CalculationsManager implements Serializable {
 
     public double updatedOforutsettKkr(ArrayList<CostItem> entreprenad, double totalBoa, double contractPercent) {
         double entreprenadKkr = projectCosts.getContractCost(projectCosts.getTotalCost(entreprenad), totalBoa);
-        return projectCosts.getUnforseenCost(entreprenadKkr, totalBoa, contractPercent);
+        return projectCosts.getUnforseenCost(entreprenadKkr, totalBoa, contractPercent)/1000;
     }
 
     public double updatedOforutsettKrBoa(double oforutsettKkr, double totalBoa) {
@@ -216,7 +216,7 @@ public class CalculationsManager implements Serializable {
     }
 
     public double updatedFinansiellaKkr(ArrayList<CostItem> finansiella, double totalBoa) {
-        return projectCosts.getFinancialCost(totalBoa, projectCosts.getTotalCost(finansiella));
+        return projectCosts.getFinancialCost(totalBoa, (projectCosts.getTotalCost(finansiella)/1000));
     }
 
     public double updatedFinansiellaKrBoa(double finansiellaKkr, double totalBoa) {
@@ -256,6 +256,6 @@ public class CalculationsManager implements Serializable {
     }
 
     public double updatedDriftOchUnderhall(ArrayList<CostItem> driftunderhall, double totalBoa) {
-        return projectCosts.getTotalCost(driftunderhall)*totalBoa;
+        return projectCosts.getTotalCost(driftunderhall)*totalBoa/1000;
     }
 }

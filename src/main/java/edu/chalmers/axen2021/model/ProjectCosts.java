@@ -131,7 +131,7 @@ public class ProjectCosts {
         for (CostItem c : list) {
             total += c.getValue();
         }
-        return total / 1000;
+        return total;
     }
 
     /**

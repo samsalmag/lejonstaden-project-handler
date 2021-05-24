@@ -8,10 +8,10 @@ public enum Category {
     // Some of these are commented because they don't have cost items, AKA no button in the inputView.
     // They should only be uncommented if they have a button.
     // Their variable values still exists in the Project class.
-    TOMTKOSTNADER("tomtkostnaderButton", "Tomtkostnader","kr"),
-    NEDLAGDABYGGHERRE("nedlagdaByggherreButton", "Nedlagda byggherre","kr"),
+    TOMTKOSTNADER("tomtkostnaderButton", "Tomtkostnader","kkr"),
+    NEDLAGDABYGGHERRE("nedlagdaByggherreButton", "Nedlagda byggherre","kkr"),
     ANSLUTNINGAR("anslutningarButton", "Anslutningar","kr/lgh"),
-    BYGGHERREKOSTNADER("byggherrekostnaderButton", "Byggherrekostnader","kr"),
+    BYGGHERREKOSTNADER("byggherrekostnaderButton", "Byggherrekostnader","kkr"),
     ENTREPENAD("entrepenadButton","Entrepenad", "kr/BOA"),
     //OFÖRUTSETT("Oförutsett", ""),
     FINANSIELLAKOSTNADER("finansiellaKostnaderButton", "Finansiella kostnader","kr/BOA"),
