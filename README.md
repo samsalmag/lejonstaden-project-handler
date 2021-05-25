@@ -14,7 +14,8 @@ Members: Name (Github account name)
 
 ### Structure
 * Runnable .jar: *target/_build* (JRE is needed to run)
-* Executable file: created with Maven command "clean package"
+* Executable file: use Maven command "clean package" to generate in *target/_build* along with a packaged JRE (as folder win32).
+The .exe needs to be in the same folder as win32 to run.
 
 
 
