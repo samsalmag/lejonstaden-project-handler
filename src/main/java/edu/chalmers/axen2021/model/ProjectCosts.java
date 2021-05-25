@@ -98,7 +98,7 @@ public class ProjectCosts {
             if (c == Category.TOMTKOSTNADER || c == Category.NEDLAGDABYGGHERRE || c == Category.BYGGHERREKOSTNADER) {
                 for (CostItem item : costItems) {
                     if (item.getMoms()) {
-                        moms += item.getValue();
+                        moms += (item.getValue()*1000);
                     }
                 }
             } else if (c == Category.ENTREPENAD || c == Category.FINANSIELLAKOSTNADER) {
