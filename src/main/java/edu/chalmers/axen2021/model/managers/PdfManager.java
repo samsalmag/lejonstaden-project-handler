@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
 import edu.chalmers.axen2021.model.projectdata.Project;
+import edu.chalmers.axen2021.utils.StringUtils;
 import edu.chalmers.axen2021.view.AXEN2021;
 import javafx.stage.FileChooser;
 
@@ -323,54 +324,54 @@ public class PdfManager {
         table.addCell(createCell("kr/BTA", arialSmall));
 
         table.addCell(createCell("Tomtkostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtkostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getTomtkostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getTomtkostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getTomtkostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Nedlagda byggherre", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getNedlagdaByggherreKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getNedlagdaByggherreKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getNedlagdaByggherreKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getNedlagdaByggherreKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Anslutningar", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getAnslutningarKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getAnslutningarKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getAnslutningarKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getAnslutningarKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Byggherrekostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getByggherrekostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getByggherrekostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getByggherrekostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getByggherrekostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Finansiella kostnader", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getFinansiellaKostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getFinansiellaKostnaderKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getFinansiellaKostnaderKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getFinansiellaKostnaderKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Entrepenad", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getEntreprenadKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getEntreprenadKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getEntreprenadKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getEntreprenadKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Oförutsett", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getOforutsettKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getOforutsettKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getOforutsettKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getOforutsettKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Mervärdeskatt", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMervardeskattKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getMervardeskattKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getMervardeskattKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getMervardeskattKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Investeringsstöd", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKkr())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBoa())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getInvesteringsstodKrBta())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getInvesteringsstodKkr())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getInvesteringsstodKrBoa())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getInvesteringsstodKrBta())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Projektkostnad", arialSmall, Element.ALIGN_LEFT,2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKkrMedStod())), arialSmall, Element.ALIGN_RIGHT, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBoa())), arialSmall, Element.ALIGN_RIGHT, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektkostnadKrBta())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getProjektkostnadKkrMedStod())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getProjektkostnadKrBoa())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getProjektkostnadKrBta())), arialSmall, Element.ALIGN_RIGHT, 2));
 
         projektkostnader.add(table);
         document.add(projektkostnader);
@@ -397,32 +398,32 @@ public class PdfManager {
         table.addCell(createCell("Utan stöd", arialSmall));
 
         table.addCell(createCell("Hyresintäkter", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getHyresintakterMedStod())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getHyresintakterUtanStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getHyresintakterMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getHyresintakterUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Drift & Underhåll", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftUnderhallMedStod())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftUnderhallUtanStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getDriftUnderhallMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getDriftUnderhallUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Tomträttsavgäld", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtrattsavgaldMedStod())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getTomtrattsavgaldUtanStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getTomtrattsavgaldMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getTomtrattsavgaldUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Driftnetto", arialSmall));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoMedStod())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getDriftnettoUtanStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getDriftnettoMedStod())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getDriftnettoUtanStod())), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Yield (%)", arialSmall));
         table.addCell(createCell(dfPercent.format(project.getYieldMedStod()), arialSmall, Element.ALIGN_RIGHT));
         table.addCell(createCell(dfPercent.format(project.getYieldUtanStod()), arialSmall, Element.ALIGN_RIGHT));
 
         table.addCell(createCell("Marknadsvärde", arialSmall, Element.ALIGN_LEFT,2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeMedStod())), arialSmall, Element.ALIGN_RIGHT, 2));
-        table.addCell(createCell(String.valueOf(Math.round(project.getMarknadsvardeUtanStod())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getMarknadsvardeMedStod())), arialSmall, Element.ALIGN_RIGHT, 2));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getMarknadsvardeUtanStod())), arialSmall, Element.ALIGN_RIGHT, 2));
 
         table.addCell(createCell("Projektvinst", arialSmallBold));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstMedStod())), arialSmallBold, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(project.getProjektvinstUtanStod())), arialSmallBold, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getProjektvinstMedStod())), arialSmallBold, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(project.getProjektvinstUtanStod())), arialSmallBold, Element.ALIGN_RIGHT));
         table.addCell(createCell("Projektvinst (%)", arialSmallBold));
         table.addCell(createCell(dfPercent.format(project.getProjektvinstProcentMedStod()), arialSmallBold, Element.ALIGN_RIGHT));
         table.addCell(createCell(dfPercent.format(project.getProjektvinstProcentUtanStod()), arialSmallBold, Element.ALIGN_RIGHT));
@@ -441,13 +442,13 @@ public class PdfManager {
         table.addCell(createCell(apartmentItem.getApartmentType(), arialSmall));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBOA())), arialSmall, Element.ALIGN_RIGHT));
         table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getAmount())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthLow())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmLow())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getTotalBOA())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(apartmentItem.getRentPerMonthLow())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(apartmentItem.getKrPerKvmLow())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(apartmentItem.getRentPerMonthHigh())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(apartmentItem.getKrPerKvmHigh())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(apartmentItem.getTotalBOA())), arialSmall, Element.ALIGN_RIGHT));
         table.addCell(createCell(dfPercent.format(apartmentItem.getTotalBOAPercent()), arialSmall, Element.ALIGN_RIGHT));
-        table.addCell(createCell(String.valueOf(Math.round(apartmentItem.getBidrag())), arialSmall, Element.ALIGN_RIGHT));
+        table.addCell(createCell(StringUtils.separateKkr((double)Math.round(apartmentItem.getBidrag())), arialSmall, Element.ALIGN_RIGHT));
     }
 
     /**
