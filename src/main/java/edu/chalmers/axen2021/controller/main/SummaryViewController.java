@@ -7,6 +7,7 @@ import edu.chalmers.axen2021.controller.items.ApartmentItemControllerFactory;
 import edu.chalmers.axen2021.model.managers.ProjectManager;
 import edu.chalmers.axen2021.model.managers.SaveManager;
 import edu.chalmers.axen2021.model.projectdata.ApartmentItem;
+import edu.chalmers.axen2021.utils.StringUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -107,24 +108,24 @@ public class SummaryViewController implements Initializable {
      * Updates all TextFields related to Projektkostnad.
      */
     private void updateProjektkostnad() {
-        projektkostnadMedStod.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkrMedStod()));
-        projektkostnadUtanStod.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkr()));
+        projektkostnadMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektkostnadKkrMedStod()));
+        projektkostnadUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektkostnadKkr()));
     }
 
     /**
      * Updates all TextFields related to Marknadsvarde.
      */
     private void updateMarknadsvarde() {
-        marknadsvardeMedStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeMedStod()));
-        marknadsvardeUtanStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
+        marknadsvardeMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMarknadsvardeMedStod()));
+        marknadsvardeUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
     }
 
     /**
      * Updates all TextFields related to Projektvinst.
      */
     private void updateProjektvinst() {
-        projektvinstMedStod.setText(df.format(projectManager.getActiveProject().getProjektvinstMedStod()));
-        projektvinstUtanStod.setText(df.format(projectManager.getActiveProject().getProjektvinstUtanStod()));
+        projektvinstMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektvinstMedStod()));
+        projektvinstUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektvinstUtanStod()));
     }
 
     /**

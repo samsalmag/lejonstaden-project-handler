@@ -50,13 +50,14 @@ public class StringUtils {
         return Double.parseDouble(s);
     }
 
-    public static String separateKkr(Double d) {
-        String s = removeTrailingZeros(d);
+    public static String separateKkr(double d) {
+        Integer i = (int) d;
+        String s = i.toString();
         StringBuilder sb = new StringBuilder(s);
         if (s.length() > 2) {
-            for (int i = s.length()-3 ; i >=0 ; i-- ) {
-                sb.insert(i, " ");
-                i -= 2;
+            for (int j = s.length()-3 ; j >=0 ; j-- ) {
+                sb.insert(j, " ");
+                j -= 2;
             }
         }
         return sb.toString();

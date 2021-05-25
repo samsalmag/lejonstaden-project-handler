@@ -329,7 +329,7 @@ public class InputController implements Initializable {
         normHyraMedStod.setText(df.format(projectManager.getActiveProject().getNormhyraMedStod()));
         investeringsstod.setText(df.format(projectManager.getActiveProject().getInvesteringsstod()));
         antagenPresumtionshyra.setText(df.format(projectManager.getActiveProject().getAntagenPresumtionshyra()));
-        totalBoa.setText(df.format(projectManager.getActiveProject().getTotalBoa()));
+        totalBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getTotalBoa()));
         totalLjusBta.setText(df.format(projectManager.getActiveProject().getTotalLjusBta()));
         oforutsett.setText(dfPercent.format(projectManager.getActiveProject().getOforutsettPercent()) + "%");
     }
@@ -338,109 +338,109 @@ public class InputController implements Initializable {
      * Update all TextFields related to Tomtkostnader.
      */
     private void updateTomtkostnader(){
-        tomtkostnaderKkr.setText(df.format(projectManager.getActiveProject().getTomtkostnaderKkr()));
-        tomtkostnaderKrBoa.setText(df.format(projectManager.getActiveProject().getTomtkostnaderKrBoa()));
-        tomtkostnaderKrBta.setText(df.format(projectManager.getActiveProject().getTomtkostnaderKrBta()));
+        tomtkostnaderKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getTomtkostnaderKkr()));
+        tomtkostnaderKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getTomtkostnaderKrBoa()));
+        tomtkostnaderKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getTomtkostnaderKrBta()));
     }
 
     /**
      * Update all TextFields related to NedlagdaByggherre.
      */
     private void updateNedlagadaByggherre(){
-        nedlagdaBygherreKkr.setText(df.format(projectManager.getActiveProject().getNedlagdaByggherreKkr()));
-        nedlagdaBygherreKrBoa.setText(df.format(projectManager.getActiveProject().getNedlagdaByggherreKrBoa()));
-        nedlagdaBygherreKrBta.setText(df.format(projectManager.getActiveProject().getNedlagdaByggherreKrBta()));
+        nedlagdaBygherreKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getNedlagdaByggherreKkr()));
+        nedlagdaBygherreKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getNedlagdaByggherreKrBoa()));
+        nedlagdaBygherreKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getNedlagdaByggherreKrBta()));
     }
 
     /**
      * Update all TextFields related to Ansultningar.
      */
     private void updateAnslutningar(){
-        anslutningarKkr.setText(df.format(projectManager.getActiveProject().getAnslutningarKkr()));
-        anslutningarKrBoa.setText(df.format(projectManager.getActiveProject().getAnslutningarKrBoa()));
-        anslutningarKrBta.setText(df.format(projectManager.getActiveProject().getAnslutningarKrBta()));
+        anslutningarKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getAnslutningarKkr()));
+        anslutningarKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getAnslutningarKrBoa()));
+        anslutningarKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getAnslutningarKrBta()));
     }
 
     /**
      * Update all TextFields related to Byggherrekostnader.
      */
     private void updateByggherrekostnader(){
-        byggherrekostnaderKkr.setText(df.format(projectManager.getActiveProject().getByggherrekostnaderKkr()));
-        byggherrekostnaderKrBoa.setText(df.format(projectManager.getActiveProject().getByggherrekostnaderKrBoa()));
-        byggherrekostnaderKrBta.setText(df.format(projectManager.getActiveProject().getByggherrekostnaderKrBta()));
+        byggherrekostnaderKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getByggherrekostnaderKkr()));
+        byggherrekostnaderKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getByggherrekostnaderKrBoa()));
+        byggherrekostnaderKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getByggherrekostnaderKrBta()));
     }
 
     /**
      * Update all TextFields related to Entreprenad.
      */
     private void updateEntreprenad(){
-        entreprenadKkr.setText(df.format(projectManager.getActiveProject().getEntreprenadKkr()));
-        entreprenadKrBoa.setText(df.format(projectManager.getActiveProject().getEntreprenadKrBoa()));
-        entreprenadKrBta.setText(df.format(projectManager.getActiveProject().getEntreprenadKrBta()));
+        entreprenadKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getEntreprenadKkr()));
+        entreprenadKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getEntreprenadKrBoa()));
+        entreprenadKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getEntreprenadKrBta()));
     }
 
     /**
      * Update all TextFields related to Oforutsett.
      */
     private void updateOforutsett(){
-        oforutsettKkr.setText(df.format(projectManager.getActiveProject().getOforutsettKkr()));
-        oforutsettKrBoa.setText(df.format(projectManager.getActiveProject().getOforutsettKrBoa()));
-        oforutsettKrBta.setText(df.format(projectManager.getActiveProject().getOforutsettKrBta()));
+        oforutsettKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getOforutsettKkr()));
+        oforutsettKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getOforutsettKrBoa()));
+        oforutsettKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getOforutsettKrBta()));
     }
 
     /**
      * Update all TextFields related to FinansiellaKostnader.
      */
     private void updateFinansiellaKostnader(){
-        finanisellaKostnaderKkr.setText(df.format(projectManager.getActiveProject().getFinansiellaKostnaderKkr()));
-        finanisellaKostnaderKrBoa.setText(df.format(projectManager.getActiveProject().getFinansiellaKostnaderKrBoa()));
-        finanisellaKostnaderKrBta.setText(df.format(projectManager.getActiveProject().getFinansiellaKostnaderKrBta()));
+        finanisellaKostnaderKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getFinansiellaKostnaderKkr()));
+        finanisellaKostnaderKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getFinansiellaKostnaderKrBoa()));
+        finanisellaKostnaderKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getFinansiellaKostnaderKrBta()));
     }
 
     /**
      * Update all TextFields related to Mervardeskatt.
      */
     private void updateMervardeskatt(){
-        mervardeskattKkr.setText(df.format(projectManager.getActiveProject().getMervardeskattKkr()));
-        mervardeskattKrBoa.setText(df.format(projectManager.getActiveProject().getMervardeskattKrBoa()));
-        mervardeskattKrBta.setText(df.format(projectManager.getActiveProject().getMervardeskattKrBta()));
+        mervardeskattKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMervardeskattKkr()));
+        mervardeskattKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMervardeskattKrBoa()));
+        mervardeskattKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMervardeskattKrBta()));
     }
 
     /**
      * Update all TextFields related to Investeringsstod.
      */
     private void updateInvesteringsstod(){
-        investeringsstodKkr.setText(df.format(projectManager.getActiveProject().getInvesteringsstodKkr()));
-        investeringsstodKrBoa.setText(df.format(projectManager.getActiveProject().getInvesteringsstodKrBoa()));
-        investeringsstodKrBta.setText(df.format(projectManager.getActiveProject().getInvesteringsstodKrBta()));
+        investeringsstodKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getInvesteringsstodKkr()));
+        investeringsstodKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getInvesteringsstodKrBoa()));
+        investeringsstodKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getInvesteringsstodKrBta()));
     }
 
     /**
      * Update all TextFields related to Projektkostnad.
      */
     private void updateProjektkostnad(){
-        projektkostnadKkr.setText(df.format(projectManager.getActiveProject().getProjektkostnadKkrMedStod()));
-        projektkostnadKrBoa.setText(df.format(projectManager.getActiveProject().getProjektkostnadKrBoa()));
-        projektkostnadKrBta.setText(df.format(projectManager.getActiveProject().getProjektkostnadKrBta()));
+        projektkostnadKkr.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektkostnadKkrMedStod()));
+        projektkostnadKrBoa.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektkostnadKrBoa()));
+        projektkostnadKrBta.setText(StringUtils.separateKkr(projectManager.getActiveProject().getProjektkostnadKrBta()));
     }
 
     /**
      * Update all TextFields related to Fastighetsvarde and Resultat.
      */
     private void updateFastighetsvardeOchResultat(){
-        hyresintakterMedStod.setText(df.format(projectManager.getActiveProject().getHyresintakterMedStod()));
-        hyresintakterUtanStod.setText(df.format(projectManager.getActiveProject().getHyresintakterUtanStod()));
-        driftUnderhallMedStod.setText(df.format(projectManager.getActiveProject().getDriftUnderhallMedStod()));
-        driftUnderhallUtanStod.setText(df.format(projectManager.getActiveProject().getDriftUnderhallUtanStod()));
+        hyresintakterMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getHyresintakterMedStod()));
+        hyresintakterUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getHyresintakterUtanStod()));
+        driftUnderhallMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getDriftUnderhallMedStod()));
+        driftUnderhallUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getDriftUnderhallUtanStod()));
         tomtPercent.setText(dfPercent.format(projectManager.getActiveProject().getTomtPercent()) + "%");
-        tomtrattsavgaldMedStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldMedStod()));
-        tomtrattsavgaldUtanStod.setText(df.format(projectManager.getActiveProject().getTomtrattsavgaldUtanStod()));
-        driftnettoMedStod.setText(df.format(projectManager.getActiveProject().getDriftnettoMedStod()));
-        driftnettoUtanStod.setText(df.format(projectManager.getActiveProject().getDriftnettoUtanStod()));
+        tomtrattsavgaldMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getTomtrattsavgaldMedStod()));
+        tomtrattsavgaldUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getTomtrattsavgaldUtanStod()));
+        driftnettoMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getDriftnettoMedStod()));
+        driftnettoUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getDriftnettoUtanStod()));
         yieldMedStod.setText(dfPercent.format(projectManager.getActiveProject().getYieldMedStod()) + "%");
         yieldUtanStod.setText(dfPercent.format(projectManager.getActiveProject().getYieldUtanStod()) + "%");
-        marknadsvardeMedStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeMedStod()));
-        marknadsvardeUtanStod.setText(df.format(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
+        marknadsvardeMedStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMarknadsvardeMedStod()));
+        marknadsvardeUtanStod.setText(StringUtils.separateKkr(projectManager.getActiveProject().getMarknadsvardeUtanStod()));
     }
 
     /**
