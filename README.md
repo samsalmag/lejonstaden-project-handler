@@ -12,13 +12,12 @@ Members: Name (Github account name)
 ## AB Lejonstaden Projekthanterare
 ![test](src/main/resources/images/image1.png)
 
+### Download
+* Download a runnable .jar and .exe from [here](https://github.com/sam123bir/DAT257_AXE-N/releases/tag/v1.0) (ABLejonstadenProjekthanterareV1.zip)
+    * A recent JRE needs to be installed to run the .jar
+    * The .exe **must always** be located in the same folder as "win32" to be able to run. Create a shortcut of the .exe and place it wherever for easier access. 
+
 ### Structure
-* Runnable .jar: *target/_build* (JRE is needed to run)
-* Executable file: use Maven command "clean package" to generate in *target/_build* along with a packaged JRE (as folder win32).
-The .exe needs to be in the same folder as win32 to run.
-
-
-
 * Documentation (reflections, project scope, etc.): *Dokumentation*
 * Source code: *src/main/java/edu/chalmers/axen2021*
 * Tests: *src/test/java/edu/chalmers/axen2021*

@@ -23,10 +23,11 @@
 hs_err_pid*
 
 # Manually added
-target/*
-!target/_build
-target/_build/*
-!target/_build/*.jar
+#target/*
+#!target/_build
+#target/_build/*
+#!target/_build/*.jar
+target
 out
 *.iml
 .idea
